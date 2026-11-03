@@ -40,7 +40,8 @@ window.HKF_Supabase = (function () {
     if (window.HKF_API?.request) {
       return window.HKF_API.request(endpoint, options);
     }
-    const res = await fetch(`http://localhost:3000/api${endpoint}`, {
+    const apiBase = window.HKF_API?.baseUrl || '/api';
+    const res = await fetch(`${apiBase}${endpoint}`, {
       ...options,
       headers: { 'Content-Type': 'application/json', ...(options.headers || {}) }
     });
