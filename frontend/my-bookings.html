@@ -235,7 +235,7 @@
             <div class="flex items-center justify-between flex-wrap gap-2" style="margin-bottom:1rem; padding-bottom:0.75rem; border-bottom:1px solid var(--border-subtle);">
               <div>
                 <span style="font-size:0.78rem; color:var(--text-muted); font-family:monospace;">BOOKING ID: ${b.code}</span>
-                <h3 style="font-size:1.3rem; margin:0.2rem 0; color:#fff;">${b.venueName}</h3>
+                <h3 style="font-size:1.3rem; margin:0.2rem 0; color:var(--text-primary);">${b.venueName}</h3>
                 <span style="font-size:0.85rem; color:var(--text-secondary);">📍 ${b.venueCity}</span>
               </div>
               <div class="text-right">
@@ -249,15 +249,15 @@
             <div style="display:grid; grid-template-columns:repeat(auto-fit, minmax(160px, 1fr)); gap:1rem; margin-bottom:1.25rem; font-size:0.85rem; background:rgba(255,255,255,0.02); padding:1rem; border-radius:var(--radius-md);">
               <div>
                 <div style="color:var(--text-muted); font-size:0.75rem;">TIME SLOT</div>
-                <div style="font-weight:600; color:#fff;">${b.slot}</div>
+                <div style="font-weight:600; color:var(--text-primary);">${b.slot}</div>
               </div>
               <div>
                 <div style="color:var(--text-muted); font-size:0.75rem;">GUESTS</div>
-                <div style="font-weight:600; color:#fff;">${b.guests} Expected</div>
+                <div style="font-weight:600; color:var(--text-primary);">${b.guests} Expected</div>
               </div>
               <div>
                 <div style="color:var(--text-muted); font-size:0.75rem;">TOTAL QUOTE</div>
-                <div style="font-weight:600; color:#fff;">₹${b.totalAmount.toLocaleString('en-IN')}</div>
+                <div style="font-weight:600; color:var(--text-primary);">₹${b.totalAmount.toLocaleString('en-IN')}</div>
               </div>
               <div>
                 <div style="color:var(--text-muted); font-size:0.75rem;">TOKEN ADVANCE</div>

@@ -69,7 +69,7 @@
       resultsContainer.innerHTML = `
         <div style="padding:2rem 1rem; text-align:center; color:var(--text-secondary);">
           <div style="font-size:2rem; animation:pulse 1.5s infinite; margin-bottom:0.5rem;">🤖 ✨</div>
-          <p style="font-size:0.95rem; color:#fff; font-weight:600;">Analyzing your event requirements...</p>
+          <p style="font-size:0.95rem; color:var(--text-primary); font-weight:600;">Analyzing your event requirements...</p>
           <p style="font-size:0.8rem; color:var(--text-muted);">Grounded search across verified database listings without hallucinations.</p>
         </div>
       `;
@@ -140,7 +140,7 @@
             html += `
               <div style="display:flex; align-items:center; justify-content:space-between; background:rgba(255,255,255,0.04); border:1px solid var(--border-subtle); border-radius:var(--radius-md); padding:0.75rem 1rem; gap:1rem; flex-wrap:wrap;">
                 <div>
-                  <div style="font-weight:700; font-size:0.95rem; color:#fff;">
+                  <div style="font-weight:700; font-size:0.95rem; color:var(--text-primary);">
                     ${hall.name}
                     ${hall.matchScore ? `<span class="badge badge-gold" style="font-size:0.7rem; margin-left:0.4rem;">${hall.matchScore}% Match</span>` : ''}
                   </div>

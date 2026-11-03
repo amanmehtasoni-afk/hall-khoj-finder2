@@ -61,6 +61,9 @@
     const root = document.documentElement;
     root.setAttribute('data-theme', theme);
     root.style.colorScheme = theme;
+    if (document.body) {
+      document.body.setAttribute('data-theme', theme);
+    }
 
     updateMetaThemeColor(theme);
     updateToggleButtons(theme);

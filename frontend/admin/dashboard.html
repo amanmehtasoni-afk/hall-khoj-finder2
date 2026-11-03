@@ -140,6 +140,38 @@
       letter-spacing: 0.04em;
     }
 
+    :root[data-theme="light"] .table-container {
+      background: #FFFFFF !important;
+      border-color: rgba(0, 0, 0, 0.12) !important;
+    }
+    :root[data-theme="light"] .admin-table th {
+      background: #F1F5F9 !important;
+      color: #000000 !important;
+      border-bottom-color: rgba(0, 0, 0, 0.12) !important;
+    }
+    :root[data-theme="light"] .admin-table td {
+      color: #111827 !important;
+      border-bottom-color: rgba(0, 0, 0, 0.08) !important;
+    }
+    :root[data-theme="light"] .dash-nav-btn {
+      color: #374151 !important;
+    }
+    :root[data-theme="light"] .dash-nav-btn:hover {
+      background: rgba(0, 0, 0, 0.05) !important;
+      color: #000000 !important;
+    }
+    :root[data-theme="light"] .stat-card {
+      background: #FFFFFF !important;
+      border-color: rgba(0, 0, 0, 0.12) !important;
+      box-shadow: 0 4px 15px rgba(0, 0, 0, 0.05) !important;
+    }
+    :root[data-theme="light"] .stat-value {
+      color: #000000 !important;
+    }
+    :root[data-theme="light"] .stat-label {
+      color: #475569 !important;
+    }
+
     .admin-table td {
       padding: 1rem;
       border-bottom: 1px solid rgba(255, 255, 255, 0.04);
@@ -260,7 +292,7 @@
             <div style="display:grid; grid-template-columns:repeat(auto-fit, minmax(200px, 1fr)); gap:1rem; margin-bottom:2rem;">
               <div class="glass-panel" style="padding:1.25rem;">
                 <span style="font-size:0.75rem; color:var(--text-muted); text-transform:uppercase;">Total Registered Users</span>
-                <div style="font-size:1.75rem; font-weight:800; color:#fff; margin-top:0.25rem;" id="metric-total-users">0</div>
+                <div style="font-size:1.75rem; font-weight:800; color:var(--text-primary); margin-top:0.25rem;" id="metric-total-users">0</div>
                 <span style="font-size:0.7rem; color:#10b981;">● Customers & Business Partners</span>
               </div>
 
@@ -287,7 +319,7 @@
 
               <div class="glass-panel" style="padding:1.25rem;">
                 <span style="font-size:0.75rem; color:var(--text-muted); text-transform:uppercase;">Total Marketplace GMV</span>
-                <div style="font-size:1.75rem; font-weight:800; color:#fff; margin-top:0.25rem;" id="metric-total-gmv">₹0</div>
+                <div style="font-size:1.75rem; font-weight:800; color:var(--text-primary); margin-top:0.25rem;" id="metric-total-gmv">₹0</div>
                 <span style="font-size:0.7rem; color:#10b981;">Confirmed volume</span>
               </div>
             </div>
