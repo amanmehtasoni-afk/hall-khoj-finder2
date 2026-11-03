@@ -1,0 +1,246 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>My Bookings & Reservations | Hall Khoj Finder</title>
+  <meta name="description" content="Track your marriage hall and banquet booking requests, check owner approvals, pay advance tokens and download invoices.">
+  <link rel="icon" type="image/png" href="/assets/logo.png">
+
+  <!-- Theme Controller (Zero-Flash Dark/Light Mode) -->
+  <script src="js/theme.js"></script>
+
+  <!-- Core CSS -->
+  <link rel="stylesheet" href="css/main.css">
+  <link rel="stylesheet" href="css/3d.css">
+  <link rel="stylesheet" href="css/components.css">
+  <link rel="stylesheet" href="css/animations.css">
+
+  <style>
+    .booking-card {
+      border: 1px solid var(--border-subtle);
+      border-radius: var(--radius-lg);
+      padding: 1.5rem 1.75rem;
+      background: var(--bg-card);
+      margin-bottom: 1.5rem;
+      transition: all var(--transition-fast);
+    }
+
+    .booking-card:hover {
+      border-color: var(--border-light);
+      box-shadow: var(--shadow-md);
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Site Header -->
+  <header class="site-header" role="banner">
+    <div class="nav-container">
+      <a href="/" class="brand-logo">
+        <img src="/assets/logo.png" alt="Hall Khoj" class="brand-logo-img">
+        <div class="brand-logo-text">
+          <span class="brand-title">HALL KHOJ</span>
+          <span class="brand-tagline-sub">MY BOOKINGS</span>
+        </div>
+      </a>
+
+      <nav role="navigation">
+        <ul class="nav-links">
+          <li><a href="/" class="nav-link">Home</a></li>
+          <li><a href="/search.html" class="nav-link">Find Services</a></li>
+          <li><a href="/my-bookings.html" class="nav-link active">My Bookings</a></li>
+          <li><a href="/dashboard.html" class="nav-link">Dashboard</a></li>
+          <li><a href="/profile.html" class="nav-link">Profile</a></li>
+        </ul>
+      </nav>
+
+      <div class="nav-actions">
+        <div class="language-switcher-container"></div>
+        <button class="theme-toggle-btn" data-action="toggle-theme" aria-label="Toggle Dark/Light Mode" title="Toggle Theme">
+          <span class="theme-icon-sun">☀️</span>
+          <span class="theme-icon-moon" style="display:none;">🌙</span>
+        </button>
+        <a href="/search.html" class="btn btn-secondary btn-sm">+ New Reservation</a>
+      </div>
+    </div>
+  </header>
+
+  <main style="padding-top: 6rem; padding-bottom: 5rem;">
+    <div class="container">
+      <div class="flex items-center justify-between flex-wrap gap-2" style="margin-bottom: 2rem;">
+        <div>
+          <span class="badge badge-champagne" style="margin-bottom:0.5rem;">Event Reservations</span>
+          <h1 style="font-size:2rem; margin:0;">Track Your Venue Bookings</h1>
+          <p style="color:var(--text-secondary); margin:0.25rem 0 0 0;">
+            Real-time status updates with mandatory owner review and double-booking conflict protection.
+          </p>
+        </div>
+
+        <!-- Filter Tabs -->
+        <div style="display:flex; gap:0.5rem; flex-wrap:wrap;">
+          <button class="adv-chip active" data-tab="all">All Bookings</button>
+          <button class="adv-chip" data-tab="PENDING_OWNER_APPROVAL">Pending Review</button>
+          <button class="adv-chip" data-tab="APPROVED">Owner Approved</button>
+          <button class="adv-chip" data-tab="CONFIRMED">Confirmed</button>
+          <button class="adv-chip" data-tab="COMPLETED">Completed</button>
+        </div>
+      </div>
+
+      <!-- Bookings List Container -->
+      <div id="bookings-list">
+        <!-- Rendered via JavaScript -->
+      </div>
+    </div>
+  </main>
+
+  <footer class="footer-section" style="background:var(--bg-secondary); border-top:1px solid var(--border-subtle); padding:3rem 0; margin-top:4rem;">
+    <div class="container text-center" style="font-size:0.85rem; color:var(--text-muted);">
+      <p>&copy; 2026 Hall Khoj Finder. Transparent Booking Workflow & Reservation Engine.</p>
+    </div>
+  </footer>
+
+  <script>
+    (function initMyBookings() {
+      const BOOKINGS_DATA = [
+        {
+          id: 'bk-901',
+          code: 'HKF-2026-8812',
+          venueName: 'The Royal Grand Heritage Palace',
+          venueCity: 'Gomti Nagar, Lucknow',
+          eventDate: '2026-11-20',
+          slot: 'Full Day (Morning & Evening)',
+          guests: 650,
+          totalAmount: 110000,
+          advanceRequired: 27500,
+          status: 'PENDING_OWNER_APPROVAL',
+          statusText: 'Pending Owner Review',
+          statusClass: 'badge-status-pending',
+          ownerNote: 'Owner is reviewing the dates and venue availability.',
+          hallId: 'h-101'
+        },
+        {
+          id: 'bk-902',
+          code: 'HKF-2026-7734',
+          venueName: 'Mayur Emerald Banquet & Lawn',
+          venueCity: 'Boring Road, Patna',
+          eventDate: '2026-12-05',
+          slot: 'Evening / Night Gala',
+          guests: 400,
+          totalAmount: 85000,
+          advanceRequired: 21250,
+          status: 'APPROVED',
+          statusText: 'Owner Approved — Pay Token',
+          statusClass: 'badge-status-available',
+          ownerNote: 'Venue dates accepted! Please pay token advance within 24 hours to lock your booking.',
+          hallId: 'h-102'
+        },
+        {
+          id: 'bk-903',
+          code: 'HKF-2026-6641',
+          venueName: 'Sanskriti Luxury Resort & Lawn',
+          venueCity: 'Cantt, Varanasi',
+          eventDate: '2026-10-15',
+          slot: 'Full Day Event',
+          guests: 900,
+          totalAmount: 140000,
+          advanceRequired: 35000,
+          status: 'CONFIRMED',
+          statusText: 'Dates Locked & Confirmed',
+          statusClass: 'badge-verified',
+          ownerNote: 'Token verified. Hall reserved exclusively for your event.',
+          hallId: 'h-103'
+        }
+      ];
+
+      const container = document.getElementById('bookings-list');
+
+      function render(items) {
+        if (items.length === 0) {
+          container.innerHTML = `
+            <div class="glass-panel text-center" style="padding:4rem 2rem;">
+              <div style="font-size:3rem; margin-bottom:1rem;">📅</div>
+              <h3>No Bookings in this Category</h3>
+              <p style="color:var(--text-secondary); margin-bottom:1.5rem;">Explore verified venues and submit a booking request.</p>
+              <a href="/search.html" class="btn btn-primary">Find Venues</a>
+            </div>
+          `;
+          return;
+        }
+
+        container.innerHTML = items.map(b => `
+          <div class="booking-card glass-panel" data-status="${b.status}">
+            <div class="flex items-center justify-between flex-wrap gap-2" style="margin-bottom:1rem; padding-bottom:0.75rem; border-bottom:1px solid var(--border-subtle);">
+              <div>
+                <span style="font-size:0.78rem; color:var(--text-muted); font-family:monospace;">BOOKING ID: ${b.code}</span>
+                <h3 style="font-size:1.3rem; margin:0.2rem 0; color:#fff;">${b.venueName}</h3>
+                <span style="font-size:0.85rem; color:var(--text-secondary);">📍 ${b.venueCity}</span>
+              </div>
+              <div class="text-right">
+                <span class="badge ${b.statusClass}" style="font-size:0.85rem; padding:0.4rem 0.85rem;">
+                  ${b.statusText}
+                </span>
+                <div style="font-size:0.75rem; color:var(--text-muted); margin-top:0.35rem;">Event Date: <strong>${b.eventDate}</strong></div>
+              </div>
+            </div>
+
+            <div style="display:grid; grid-template-columns:repeat(auto-fit, minmax(160px, 1fr)); gap:1rem; margin-bottom:1.25rem; font-size:0.85rem; background:rgba(255,255,255,0.02); padding:1rem; border-radius:var(--radius-md);">
+              <div>
+                <div style="color:var(--text-muted); font-size:0.75rem;">TIME SLOT</div>
+                <div style="font-weight:600; color:#fff;">${b.slot}</div>
+              </div>
+              <div>
+                <div style="color:var(--text-muted); font-size:0.75rem;">GUESTS</div>
+                <div style="font-weight:600; color:#fff;">${b.guests} Expected</div>
+              </div>
+              <div>
+                <div style="color:var(--text-muted); font-size:0.75rem;">TOTAL QUOTE</div>
+                <div style="font-weight:600; color:#fff;">₹${b.totalAmount.toLocaleString('en-IN')}</div>
+              </div>
+              <div>
+                <div style="color:var(--text-muted); font-size:0.75rem;">TOKEN ADVANCE</div>
+                <div style="font-weight:700; color:var(--color-champagne);">₹${b.advanceRequired.toLocaleString('en-IN')}</div>
+              </div>
+            </div>
+
+            <div class="flex items-center justify-between flex-wrap gap-2">
+              <div style="font-size:0.82rem; color:var(--text-secondary); max-width:600px;">
+                💡 <em>${b.ownerNote}</em>
+              </div>
+
+              <div class="flex items-center gap-2">
+                <a href="/hall-details.html?id=${b.hallId}" class="btn btn-secondary btn-sm">Venue Info</a>
+                ${b.status === 'APPROVED' ? `
+                  <button class="btn btn-champagne btn-sm" onclick="alert('Proceeding to Razorpay checkout for token advance: ₹${b.advanceRequired}')">
+                    💳 Pay Advance Token (₹${b.advanceRequired.toLocaleString('en-IN')})
+                  </button>
+                ` : ''}
+                ${b.status === 'CONFIRMED' ? `
+                  <button class="btn btn-primary btn-sm" onclick="alert('Downloading Official Booking Invoice: ${b.code}.pdf')">
+                    📄 Download Invoice
+                  </button>
+                ` : ''}
+              </div>
+            </div>
+          </div>
+        `).join('');
+      }
+
+      render(BOOKINGS_DATA);
+
+      document.querySelectorAll('.adv-chip').forEach(btn => {
+        btn.addEventListener('click', (e) => {
+          document.querySelectorAll('.adv-chip').forEach(b => b.classList.remove('active'));
+          e.target.classList.add('active');
+          const t = e.target.getAttribute('data-tab');
+          if (t === 'all') {
+            render(BOOKINGS_DATA);
+          } else {
+            render(BOOKINGS_DATA.filter(b => b.status === t));
+          }
+        });
+      });
+    })();
+  </script>
+</body>
+</html>

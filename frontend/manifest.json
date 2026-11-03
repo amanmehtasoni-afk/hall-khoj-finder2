@@ -1,0 +1,25 @@
+{
+  "name": "Hall Khoj Finder — Marriage Halls, Cars, Tents & Event Services",
+  "short_name": "Hall Khoj",
+  "description": "Find, inspect 3D layouts, and reserve verified marriage halls, luxury cars, tent houses, catering and event services.",
+  "start_url": "/index.html",
+  "display": "standalone",
+  "orientation": "portrait-primary",
+  "background_color": "#070a13",
+  "theme_color": "#070a13",
+  "categories": ["events", "lifestyle", "utilities"],
+  "icons": [
+    {
+      "src": "/assets/logo.png",
+      "sizes": "192x192",
+      "type": "image/png",
+      "purpose": "any maskable"
+    },
+    {
+      "src": "/assets/logo.png",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "any maskable"
+    }
+  ]
+}

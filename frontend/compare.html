@@ -1,0 +1,328 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Compare Wedding Venues Side-by-Side | Hall Khoj Finder</title>
+  <meta name="description" content="Compare pricing, guest capacity, lawn size, parking, air conditioning, and amenities across top banquet halls and wedding palaces in India.">
+  <link rel="icon" type="image/png" href="/assets/logo.png">
+
+  <!-- Theme Controller (Zero-Flash Dark/Light Mode) -->
+  <script src="js/theme.js"></script>
+
+  <!-- Core CSS -->
+  <link rel="stylesheet" href="css/main.css">
+  <link rel="stylesheet" href="css/3d.css">
+  <link rel="stylesheet" href="css/components.css">
+  <link rel="stylesheet" href="css/animations.css">
+
+  <style>
+    .compare-table-wrapper {
+      overflow-x: auto;
+      border-radius: var(--radius-lg);
+      border: 1px solid var(--border-subtle);
+      background: var(--bg-card);
+      box-shadow: var(--shadow-md);
+    }
+
+    .compare-table {
+      width: 100%;
+      border-collapse: collapse;
+      min-width: 720px;
+      text-align: left;
+    }
+
+    .compare-table th, .compare-table td {
+      padding: 1.1rem 1.25rem;
+      border-bottom: 1px solid var(--border-subtle);
+    }
+
+    .compare-table tr:last-child td {
+      border-bottom: none;
+    }
+
+    .compare-table th {
+      background: rgba(255, 255, 255, 0.03);
+      width: 220px;
+      font-weight: 700;
+      color: var(--text-champagne);
+      font-size: 0.88rem;
+      text-transform: uppercase;
+      letter-spacing: 0.04em;
+    }
+
+    .compare-venue-header {
+      text-align: center;
+      padding: 1.5rem 1rem;
+      background: rgba(255, 255, 255, 0.02);
+    }
+
+    .compare-venue-img {
+      width: 100%;
+      height: 140px;
+      object-fit: cover;
+      border-radius: var(--radius-md);
+      margin-bottom: 0.75rem;
+      border: 1px solid var(--border-subtle);
+    }
+
+    .feat-check {
+      color: #10b981;
+      font-weight: 700;
+    }
+
+    .feat-cross {
+      color: #64748b;
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Site Header -->
+  <header class="site-header" role="banner">
+    <div class="nav-container">
+      <a href="/" class="brand-logo">
+        <img src="/assets/logo.png" alt="Hall Khoj" class="brand-logo-img">
+        <div class="brand-logo-text">
+          <span class="brand-title">HALL KHOJ</span>
+          <span class="brand-tagline-sub">COMPARE</span>
+        </div>
+      </a>
+
+      <nav role="navigation">
+        <ul class="nav-links">
+          <li><a href="/" class="nav-link">Home</a></li>
+          <li><a href="/search.html" class="nav-link">Find Services</a></li>
+          <li><a href="/compare.html" class="nav-link active">Compare</a></li>
+          <li><a href="/3d-preview.html" class="nav-link">3D Walkthrough</a></li>
+          <li><a href="/favorites.html" class="nav-link">Favorites</a></li>
+        </ul>
+      </nav>
+
+      <div class="nav-actions">
+        <div class="language-switcher-container"></div>
+        <button class="theme-toggle-btn" data-action="toggle-theme" aria-label="Toggle Dark/Light Mode" title="Toggle Theme">
+          <span class="theme-icon-sun">☀️</span>
+          <span class="theme-icon-moon" style="display:none;">🌙</span>
+        </button>
+        <a href="/search.html" class="btn btn-secondary btn-sm">Explore All</a>
+      </div>
+    </div>
+  </header>
+
+  <main style="padding-top: 6rem; padding-bottom: 5rem;">
+    <div class="container">
+      <!-- Title -->
+      <div class="text-center" style="margin-bottom: 2.5rem;">
+        <span class="badge badge-champagne" style="margin-bottom:0.75rem;">Decision Assistant</span>
+        <h1 class="section-title">Side-by-Side Venue Comparison</h1>
+        <p class="section-subtitle">
+          Evaluate prices, capacities, facilities, and live availability to make the perfect choice for your royal wedding.
+        </p>
+
+        <!-- Venue Picker Controls -->
+        <div style="display:flex; justify-content:center; align-items:center; flex-wrap:wrap; gap:1rem; margin-top:1.5rem;">
+          <div class="flex items-center gap-1">
+            <span style="font-size:0.85rem; font-weight:600;">Venue 1:</span>
+            <select id="select-venue-1" class="form-control" style="width:240px; font-size:0.85rem;">
+              <option value="h-101">The Royal Grand Heritage Palace</option>
+              <option value="h-102">Mayur Emerald Banquet & Lawn</option>
+              <option value="h-103">Sanskriti Luxury Resort & Lawn</option>
+              <option value="h-104">Shehnai Palace & Marriage Garden</option>
+            </select>
+          </div>
+
+          <div class="flex items-center gap-1">
+            <span style="font-size:0.85rem; font-weight:600;">Venue 2:</span>
+            <select id="select-venue-2" class="form-control" style="width:240px; font-size:0.85rem;">
+              <option value="h-102">Mayur Emerald Banquet & Lawn</option>
+              <option value="h-101">The Royal Grand Heritage Palace</option>
+              <option value="h-103">Sanskriti Luxury Resort & Lawn</option>
+              <option value="h-104">Shehnai Palace & Marriage Garden</option>
+            </select>
+          </div>
+
+          <div class="flex items-center gap-1">
+            <span style="font-size:0.85rem; font-weight:600;">Venue 3:</span>
+            <select id="select-venue-3" class="form-control" style="width:240px; font-size:0.85rem;">
+              <option value="h-103">Sanskriti Luxury Resort & Lawn</option>
+              <option value="h-101">The Royal Grand Heritage Palace</option>
+              <option value="h-102">Mayur Emerald Banquet & Lawn</option>
+              <option value="h-104">Shehnai Palace & Marriage Garden</option>
+            </select>
+          </div>
+        </div>
+      </div>
+
+      <!-- Comparison Matrix -->
+      <div class="compare-table-wrapper">
+        <table class="compare-table">
+          <thead>
+            <tr>
+              <th>Feature / Metric</th>
+              <td class="compare-venue-header" id="header-col-1"></td>
+              <td class="compare-venue-header" id="header-col-2"></td>
+              <td class="compare-venue-header" id="header-col-3"></td>
+            </tr>
+          </thead>
+          <tbody id="compare-tbody">
+            <!-- Rendered dynamically -->
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </main>
+
+  <footer class="footer-section" style="background:var(--bg-secondary); border-top:1px solid var(--border-subtle); padding:3rem 0; margin-top:4rem;">
+    <div class="container text-center" style="font-size:0.85rem; color:var(--text-muted);">
+      <p>&copy; 2026 Hall Khoj Finder. Transparent Venue Comparison & Booking Engine.</p>
+    </div>
+  </footer>
+
+  <script>
+    (function initCompare() {
+      const VENUES = {
+        'h-101': {
+          id: 'h-101',
+          name: 'The Royal Grand Heritage Palace',
+          city: 'Gomti Nagar, Lucknow',
+          img: 'https://images.unsplash.com/photo-1519167758481-83f550bb49b3?auto=format&fit=crop&w=600&q=80',
+          price: '₹65,000',
+          fullDayPrice: '₹1,10,000',
+          advance: '25% (₹16,250)',
+          capacity: '200 – 1,200 Guests',
+          lawnArea: '25,000 sq ft',
+          parking: '150 Cars',
+          ac: true,
+          generator: true,
+          bridalSuite: true,
+          inHouseDecor: true,
+          rating: '★ 5.0 (152 reviews)',
+          model3D: true
+        },
+        'h-102': {
+          id: 'h-102',
+          name: 'Mayur Emerald Banquet & Lawn',
+          city: 'Boring Road, Patna',
+          img: 'https://images.unsplash.com/photo-1545232979-fbf68fe9b1af?auto=format&fit=crop&w=600&q=80',
+          price: '₹55,000',
+          fullDayPrice: '₹95,000',
+          advance: '25% (₹13,750)',
+          capacity: '150 – 800 Guests',
+          lawnArea: '18,000 sq ft',
+          parking: '80 Cars',
+          ac: true,
+          generator: true,
+          bridalSuite: true,
+          inHouseDecor: false,
+          rating: '★ 4.8 (98 reviews)',
+          model3D: true
+        },
+        'h-103': {
+          id: 'h-103',
+          name: 'Sanskriti Luxury Resort & Lawn',
+          city: 'Cantt, Varanasi',
+          img: 'https://images.unsplash.com/photo-1465495976277-4387d4b0b4c6?auto=format&fit=crop&w=600&q=80',
+          price: '₹85,000',
+          fullDayPrice: '₹1,40,000',
+          advance: '30% (₹25,500)',
+          capacity: '300 – 1,800 Guests',
+          lawnArea: '35,000 sq ft',
+          parking: '250 Cars',
+          ac: true,
+          generator: true,
+          bridalSuite: true,
+          inHouseDecor: true,
+          rating: '★ 4.9 (210 reviews)',
+          model3D: true
+        },
+        'h-104': {
+          id: 'h-104',
+          name: 'Shehnai Palace & Marriage Garden',
+          city: 'Civil Lines, Kanpur',
+          img: 'https://images.unsplash.com/photo-1511795409834-ef04bbd61622?auto=format&fit=crop&w=600&q=80',
+          price: '₹48,000',
+          fullDayPrice: '₹80,000',
+          advance: '25% (₹12,000)',
+          capacity: '100 – 600 Guests',
+          lawnArea: '14,000 sq ft',
+          parking: '60 Cars',
+          ac: true,
+          generator: true,
+          bridalSuite: false,
+          inHouseDecor: true,
+          rating: '★ 4.7 (74 reviews)',
+          model3D: false
+        }
+      };
+
+      const s1 = document.getElementById('select-venue-1');
+      const s2 = document.getElementById('select-venue-2');
+      const s3 = document.getElementById('select-venue-3');
+
+      // Check query params
+      const urlParams = new URLSearchParams(window.location.search);
+      if (urlParams.get('v1') && VENUES[urlParams.get('v1')]) s1.value = urlParams.get('v1');
+      if (urlParams.get('v2') && VENUES[urlParams.get('v2')]) s2.value = urlParams.get('v2');
+      if (urlParams.get('v3') && VENUES[urlParams.get('v3')]) s3.value = urlParams.get('v3');
+
+      function updateComparison() {
+        const v1 = VENUES[s1.value];
+        const v2 = VENUES[s2.value];
+        const v3 = VENUES[s3.value];
+
+        [v1, v2, v3].forEach((v, idx) => {
+          const colEl = document.getElementById(`header-col-${idx + 1}`);
+          colEl.innerHTML = `
+            <img src="${v.img}" alt="${v.name}" class="compare-venue-img">
+            <h3 style="font-size:1.05rem; font-weight:700; margin:0 0 0.25rem 0;">${v.name}</h3>
+            <p style="font-size:0.8rem; color:var(--text-secondary); margin:0 0 0.85rem 0;">📍 ${v.city}</p>
+            <div class="flex items-center justify-center gap-1">
+              <a href="/3d-preview.html" class="btn btn-secondary btn-sm" style="font-size:0.75rem;">3D View</a>
+              <a href="/booking.html?hallId=${v.id}" class="btn btn-primary btn-sm" style="font-size:0.75rem;">Book Now</a>
+            </div>
+          `;
+        });
+
+        const rows = [
+          { label: 'Starting Price (Half Day)', key: 'price' },
+          { label: 'Full Day Package', key: 'fullDayPrice' },
+          { label: 'Advance Token Required', key: 'advance' },
+          { label: 'Guest Capacity', key: 'capacity' },
+          { label: 'Lawn Area', key: 'lawnArea' },
+          { label: 'Reserved Parking', key: 'parking' },
+          { label: 'Central Air Conditioning', key: 'ac', isBool: true },
+          { label: 'Generator Backup (Silent)', key: 'generator', isBool: true },
+          { label: 'Bridal Suite with Attached Bath', key: 'bridalSuite', isBool: true },
+          { label: 'In-House Theme Decor Option', key: 'inHouseDecor', isBool: true },
+          { label: 'Interactive 3D Walkthrough', key: 'model3D', isBool: true },
+          { label: 'Customer Rating & Reviews', key: 'rating' }
+        ];
+
+        const tbody = document.getElementById('compare-tbody');
+        tbody.innerHTML = rows.map(r => `
+          <tr>
+            <th>${r.label}</th>
+            <td style="text-align:center;">${formatCell(v1[r.key], r.isBool)}</td>
+            <td style="text-align:center;">${formatCell(v2[r.key], r.isBool)}</td>
+            <td style="text-align:center;">${formatCell(v3[r.key], r.isBool)}</td>
+          </tr>
+        `).join('');
+      }
+
+      function formatCell(val, isBool) {
+        if (isBool) {
+          return val ? '<span class="feat-check">✓ Available</span>' : '<span class="feat-cross">✕ Not Included</span>';
+        }
+        return `<strong>${val || '—'}</strong>`;
+      }
+
+      s1.addEventListener('change', updateComparison);
+      s2.addEventListener('change', updateComparison);
+      s3.addEventListener('change', updateComparison);
+
+      updateComparison();
+    })();
+  </script>
+</body>
+</html>

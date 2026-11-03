@@ -1,0 +1,166 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Payment History & Invoices | Hall Khoj Finder</title>
+  <meta name="description" content="View all past token payments, Razorpay transaction receipts and download tax invoices for your wedding venue reservations.">
+  <link rel="icon" type="image/png" href="/assets/logo.png">
+
+  <!-- Theme Controller (Zero-Flash Dark/Light Mode) -->
+  <script src="js/theme.js"></script>
+
+  <!-- Core CSS -->
+  <link rel="stylesheet" href="css/main.css">
+  <link rel="stylesheet" href="css/3d.css">
+  <link rel="stylesheet" href="css/components.css">
+  <link rel="stylesheet" href="css/animations.css">
+</head>
+<body>
+
+  <!-- Site Header -->
+  <header class="site-header" role="banner">
+    <div class="nav-container">
+      <a href="/" class="brand-logo">
+        <img src="/assets/logo.png" alt="Hall Khoj" class="brand-logo-img">
+        <div class="brand-logo-text">
+          <span class="brand-title">HALL KHOJ</span>
+          <span class="brand-tagline-sub">PAYMENTS</span>
+        </div>
+      </a>
+
+      <nav role="navigation">
+        <ul class="nav-links">
+          <li><a href="/" class="nav-link">Home</a></li>
+          <li><a href="/search.html" class="nav-link">Find Services</a></li>
+          <li><a href="/my-bookings.html" class="nav-link">My Bookings</a></li>
+          <li><a href="/payment-history.html" class="nav-link active">Payments</a></li>
+          <li><a href="/dashboard.html" class="nav-link">Dashboard</a></li>
+        </ul>
+      </nav>
+
+      <div class="nav-actions">
+        <div class="language-switcher-container"></div>
+        <button class="theme-toggle-btn" data-action="toggle-theme" aria-label="Toggle Dark/Light Mode" title="Toggle Theme">
+          <span class="theme-icon-sun">☀️</span>
+          <span class="theme-icon-moon" style="display:none;">🌙</span>
+        </button>
+        <a href="/dashboard.html" class="btn btn-secondary btn-sm">My Account</a>
+      </div>
+    </div>
+  </header>
+
+  <main style="padding-top: 6rem; padding-bottom: 5rem;">
+    <div class="container">
+      <div class="flex items-center justify-between flex-wrap gap-2" style="margin-bottom: 2rem;">
+        <div>
+          <span class="badge badge-champagne" style="margin-bottom:0.5rem;">Financial Ledger</span>
+          <h1 style="font-size:2rem; margin:0;">Payment History & Invoices</h1>
+          <p style="color:var(--text-secondary); margin:0.25rem 0 0 0;">
+            100% secure Razorpay transactions with HMAC signature validation and GST receipts.
+          </p>
+        </div>
+        <div class="flex items-center gap-2">
+          <span class="badge badge-verified">🛡️ 256-Bit SSL Encrypted</span>
+        </div>
+      </div>
+
+      <!-- Payment Stats Overview -->
+      <div style="display:grid; grid-template-columns:repeat(auto-fit, minmax(220px, 1fr)); gap:1.25rem; margin-bottom:2rem;">
+        <div class="glass-panel" style="padding:1.5rem;">
+          <div style="font-size:0.8rem; color:var(--text-muted); text-transform:uppercase;">Total Paid to Date</div>
+          <div style="font-size:1.8rem; font-weight:800; color:#fff; margin-top:0.35rem;">₹62,500</div>
+          <div style="font-size:0.75rem; color:#10b981; margin-top:0.25rem;">✓ 2 Completed Transactions</div>
+        </div>
+
+        <div class="glass-panel" style="padding:1.5rem;">
+          <div style="font-size:0.8rem; color:var(--text-muted); text-transform:uppercase;">Pending Token Payments</div>
+          <div style="font-size:1.8rem; font-weight:800; color:var(--color-champagne); margin-top:0.35rem;">₹21,250</div>
+          <div style="font-size:0.75rem; color:var(--text-muted); margin-top:0.25rem;">1 Approved Booking Awaiting Token</div>
+        </div>
+
+        <div class="glass-panel" style="padding:1.5rem;">
+          <div style="font-size:0.8rem; color:var(--text-muted); text-transform:uppercase;">Refunds Processed</div>
+          <div style="font-size:1.8rem; font-weight:800; color:#fff; margin-top:0.35rem;">₹0.00</div>
+          <div style="font-size:0.75rem; color:var(--text-muted); margin-top:0.25rem;">Zero Disputes</div>
+        </div>
+      </div>
+
+      <!-- Transactions Table -->
+      <div class="compare-table-wrapper">
+        <table class="compare-table">
+          <thead>
+            <tr>
+              <th>Date</th>
+              <th>Transaction ID / Order</th>
+              <th>Venue / Event Service</th>
+              <th>Amount</th>
+              <th>Payment Method</th>
+              <th>Status</th>
+              <th>Invoice</th>
+            </tr>
+          </thead>
+          <tbody id="tx-tbody">
+            <!-- Dynamically populated -->
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </main>
+
+  <footer class="footer-section" style="background:var(--bg-secondary); border-top:1px solid var(--border-subtle); padding:3rem 0; margin-top:4rem;">
+    <div class="container text-center" style="font-size:0.85rem; color:var(--text-muted);">
+      <p>&copy; 2026 Hall Khoj Finder. Secure Payment & Financial Ledger Engine.</p>
+    </div>
+  </footer>
+
+  <script>
+    (function initPaymentHistory() {
+      const TRANSACTIONS = [
+        {
+          date: '2026-10-16',
+          txId: 'pay_Pq1029384756',
+          orderId: 'order_HKF_8812',
+          venue: 'The Royal Grand Heritage Palace',
+          amount: 27500,
+          method: 'UPI (Google Pay)',
+          status: 'SUCCESS',
+          statusText: 'Paid',
+          statusClass: 'badge-verified'
+        },
+        {
+          date: '2026-09-24',
+          txId: 'pay_Ok9876543210',
+          orderId: 'order_HKF_6641',
+          venue: 'Sanskriti Luxury Resort & Lawn',
+          amount: 35000,
+          method: 'NetBanking (HDFC)',
+          status: 'SUCCESS',
+          statusText: 'Paid',
+          statusClass: 'badge-verified'
+        }
+      ];
+
+      const tbody = document.getElementById('tx-tbody');
+      tbody.innerHTML = TRANSACTIONS.map(tx => `
+        <tr>
+          <td>${tx.date}</td>
+          <td>
+            <div style="font-family:monospace; font-weight:600; color:#fff;">${tx.txId}</div>
+            <div style="font-size:0.75rem; color:var(--text-muted);">${tx.orderId}</div>
+          </td>
+          <td><strong>${tx.venue}</strong></td>
+          <td><strong style="color:var(--color-champagne); font-size:1.05rem;">₹${tx.amount.toLocaleString('en-IN')}</strong></td>
+          <td>${tx.method}</td>
+          <td><span class="badge ${tx.statusClass}">${tx.statusText}</span></td>
+          <td>
+            <button class="btn btn-secondary btn-sm" onclick="alert('Downloading GST Tax Invoice for: ${tx.txId}')" style="font-size:0.75rem;">
+              📄 PDF Receipt
+            </button>
+          </td>
+        </tr>
+      `).join('');
+    })();
+  </script>
+</body>
+</html>

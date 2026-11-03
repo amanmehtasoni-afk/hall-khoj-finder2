@@ -1,0 +1,729 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>The Royal Grand Heritage Palace — 3D Venue Layout & Booking | Hall Khoj Finder</title>
+  <meta name="description" content="Inspect interactive 3D layout, check real-time availability calendar, and book The Royal Grand Heritage Palace in Gomti Nagar, Lucknow.">
+  <link rel="canonical" href="https://hallkhoj.in/hall-details.html?id=h-101">
+  <link rel="icon" type="image/png" href="/assets/logo.png">
+
+  <!-- Open Graph -->
+  <meta property="og:type" content="place">
+  <meta property="og:title" content="The Royal Grand Heritage Palace — 3D Venue Layout & Booking | Hall Khoj Finder">
+  <meta property="og:description" content="Explore 3D walkthrough, live booking calendar and verified rates for The Royal Grand Heritage Palace, Lucknow.">
+  <meta property="og:image" content="https://hallkhoj.in/images/halls/h101-hero.jpg">
+
+  <!-- JSON-LD EventVenue Schema -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "EventVenue",
+    "name": "The Royal Grand Heritage Palace",
+    "description": "Luxury air-conditioned wedding and reception banquet hall with grand lawn and bridal suites.",
+    "address": {
+      "@type": "PostalAddress",
+      "streetAddress": "Vibhuti Khand, Gomti Nagar",
+      "addressLocality": "Lucknow",
+      "addressRegion": "Uttar Pradesh",
+      "postalCode": "226010",
+      "addressCountry": "IN"
+    },
+    "maximumAttendeeCapacity": 1200,
+    "priceRange": "₹65,000 - ₹1,50,000",
+    "telephone": "+919876543210"
+  }
+  </script>
+
+  <!-- Theme Controller (Zero-Flash Dark/Light Mode) -->
+  <script src="js/theme.js"></script>
+
+  <!-- Core CSS -->
+  <link rel="stylesheet" href="css/main.css">
+  <link rel="stylesheet" href="css/3d.css">
+  <link rel="stylesheet" href="css/components.css">
+  <link rel="stylesheet" href="css/animations.css">
+
+  <!-- Three.js CDN -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+</head>
+<body>
+
+  <!-- Site Header -->
+  <header class="site-header" role="banner">
+    <div class="nav-container">
+      <a href="/" class="brand-logo">
+        <img src="/assets/logo.png" alt="Hall Khoj" class="brand-logo-img">
+        <div class="brand-logo-text">
+          <span class="brand-title">HALL KHOJ</span>
+          <span class="brand-tagline-sub">FINDER</span>
+        </div>
+      </a>
+
+      <nav role="navigation">
+        <ul class="nav-links">
+          <li><a href="/" class="nav-link">Home</a></li>
+          <li><a href="/search.html" class="nav-link">Find Services</a></li>
+          <li><a href="/search.html?category=Marriage+Halls" class="nav-link active">Halls</a></li>
+          <li><a href="#" class="nav-link" data-trigger="near-me">Near Me</a></li>
+        </ul>
+      </nav>
+
+      <div class="nav-actions">
+        <!-- Language Switcher Mount (14 Indian Languages) -->
+        <div class="language-switcher-container"></div>
+        <button class="theme-toggle-btn" data-action="toggle-theme" aria-label="Toggle Dark/Light Mode" title="Toggle Theme">
+          <span class="theme-icon-sun">☀️</span>
+          <span class="theme-icon-moon" style="display:none;">🌙</span>
+        </button>
+        <a href="/booking.html?hallId=h-101" class="btn btn-primary btn-sm">Book This Venue</a>
+        <button id="open-drawer-btn" class="mobile-menu-toggle" aria-label="Open Menu">
+          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor"><line x1="3" y1="12" x2="21" y2="12"/><line x1="3" y1="6" x2="21" y2="6"/><line x1="3" y1="18" x2="21" y2="18"/></svg>
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <!-- Mobile Drawer -->
+  <div id="drawer-overlay" class="drawer-overlay"></div>
+  <aside id="mobile-drawer" class="mobile-drawer">
+    <div class="flex items-center justify-between">
+      <span class="brand-title">HALL KHOJ</span>
+      <button id="close-drawer-btn" class="modal-close-btn">&times;</button>
+    </div>
+    <ul class="flex flex-col gap-2" style="list-style:none; margin-top:1rem;">
+      <li><a href="/" class="nav-link">🏠 Home</a></li>
+      <li><a href="/search.html" class="nav-link">🔍 Find Services</a></li>
+      <li><a href="/booking.html?hallId=h-101" class="nav-link active">📅 Book Venue</a></li>
+    </ul>
+  </aside>
+
+  <!-- Main Content -->
+  <main style="padding-top: 5.5rem; padding-bottom: 4rem;">
+    <div class="container">
+      <!-- Breadcrumbs -->
+      <div style="font-size:0.8rem; color:var(--text-muted); margin-bottom:0.75rem;">
+        <a href="/">Home</a> / <a href="/search.html">Marriage Halls</a> / <span style="color:var(--text-primary);">The Royal Grand Heritage Palace</span>
+      </div>
+
+      <!-- Venue Title Header Row -->
+      <div class="flex items-center justify-between" style="flex-wrap:wrap; gap:1rem; margin-bottom:1.5rem;">
+        <div>
+          <div class="flex items-center gap-1" style="margin-bottom:0.4rem;">
+            <span class="badge badge-verified">✓ Verified Venue</span>
+            <span class="badge badge-gold">★ 4.9 (148 Reviews)</span>
+            <span class="badge badge-indigo">Interactive 3D Ready</span>
+          </div>
+          <h1 style="font-size:clamp(1.8rem, 3vw, 2.5rem);">The Royal Grand Heritage Palace</h1>
+          <p style="color:var(--text-secondary); font-size:0.95rem;">
+            📍 Sector 4, Vibhuti Khand, Gomti Nagar, Lucknow, Uttar Pradesh — 226010 (2.4 km from your location)
+          </p>
+        </div>
+
+        <div style="display:flex; gap:0.6rem;">
+          <button class="btn btn-secondary btn-sm" onclick="navigator.clipboard?.writeText(window.location.href); showToast('Link copied to clipboard!', 'success');">
+            🔗 Share
+          </button>
+          <button class="btn btn-secondary btn-sm" id="details-fav-btn" onclick="toggleDetailsFavorite()" style="position:static; width:auto; border-radius:var(--radius-full); padding:0.4rem 1rem;">
+            🤍 Save to Favorites
+          </button>
+        </div>
+      </div>
+
+      <!-- =====================================================================
+           SECTION 12: OPTIONAL 3D VENUE PREVIEW & 2D FALLBACK
+      ====================================================================== -->
+      <section style="margin-bottom: 2.5rem;">
+        <div class="flex items-center justify-between" style="margin-bottom:0.85rem; flex-wrap:wrap; gap:0.5rem;">
+          <div>
+            <h2 style="font-size:1.35rem; display:flex; align-items:center; gap:0.5rem;">
+              <span>🏛️</span> Interactive 3D Venue Layout
+            </h2>
+            <p style="font-size:0.85rem; color:var(--text-muted);">
+              Inspect the stage, guest seating, dining wing, and grand entrance in full 3D. Click and drag to rotate, scroll to zoom.
+            </p>
+          </div>
+          <button id="toggle-venue-view-btn" class="btn btn-secondary btn-sm">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor"><path d="M4 16l4.586-4.586a2 2 0 012.828 0L16 16m-2-2l1.586-1.586a2 2 0 012.828 0L20 14m-6-6h.01M6 20h12a2 2 0 002-2V6a2 2 0 00-2-2H6a2 2 0 00-2 2v12a2 2 0 002 2z"/></svg>
+            Switch to 2D Gallery
+          </button>
+        </div>
+
+        <!-- 3D Canvas Container -->
+        <div id="venue-3d-wrapper" class="venue-3d-container">
+          <!-- Zone Switcher Overlay Buttons -->
+          <div class="venue-3d-overlay">
+            <button class="btn btn-gold btn-sm" data-venue-zone="overview">Overview</button>
+            <button class="btn btn-secondary btn-sm" data-venue-zone="stage">Grand Stage</button>
+            <button class="btn btn-secondary btn-sm" data-venue-zone="seating">Guest Seating</button>
+            <button class="btn btn-secondary btn-sm" data-venue-zone="dining">Dining & Buffet</button>
+            <button class="btn btn-secondary btn-sm" data-venue-zone="entrance">Grand Entrance</button>
+            <button class="btn btn-secondary btn-sm" data-venue-zone="rooms">VIP / Bridal Suite</button>
+            <span style="border-left:1px solid rgba(255,255,255,0.2); margin:0 0.3rem;"></span>
+            <button class="btn btn-gold btn-sm" data-venue-lighting="daylight" title="Daylight View">☀️ Day</button>
+            <button class="btn btn-secondary btn-sm" data-venue-lighting="sunset" title="Golden Hour / Sunset">🌅 Sunset</button>
+            <button class="btn btn-secondary btn-sm" data-venue-lighting="night_gala" title="Night Gala / Party Lights">🎆 Night Gala</button>
+          </div>
+
+          <canvas id="venue-3d-canvas"></canvas>
+          <div class="venue-3d-controls-hint">🖱️ Drag to rotate • Wheel to zoom • Tap buttons to inspect zones</div>
+        </div>
+
+        <!-- 2D High-Res Interactive Photo Gallery (Toggle / Fallback) -->
+        <div id="venue-2d-gallery" style="display:none; margin-top:1rem;">
+          <div class="flex items-center justify-between" style="margin-bottom:1rem; flex-wrap:wrap; gap:0.5rem; background:rgba(255,255,255,0.03); padding:0.75rem 1rem; border-radius:var(--radius-md); border:1px solid var(--border-subtle);">
+            <div style="display:flex; gap:0.4rem; flex-wrap:wrap;">
+              <button class="btn btn-gold btn-sm gallery-filter-btn active" onclick="filterVenueGallery('all')">All Photos (<span id="gallery-badge-count">0</span>)</button>
+              <button class="btn btn-secondary btn-sm gallery-filter-btn" onclick="filterVenueGallery('stage')">Stage & Mandap</button>
+              <button class="btn btn-secondary btn-sm gallery-filter-btn" onclick="filterVenueGallery('hall')">Main Hall</button>
+              <button class="btn btn-secondary btn-sm gallery-filter-btn" onclick="filterVenueGallery('lawn')">Lawn & Garden</button>
+              <button class="btn btn-secondary btn-sm gallery-filter-btn" onclick="filterVenueGallery('dining')">Dining & Decor</button>
+            </div>
+            <span style="font-size:0.8rem; color:var(--text-muted);">💡 Click any photo for full-screen view</span>
+          </div>
+
+          <div id="venue-gallery-grid" style="display:grid; grid-template-columns:repeat(auto-fill, minmax(260px, 1fr)); gap:1rem;">
+            <!-- Injected by JS -->
+          </div>
+        </div>
+      </section>
+
+      <!-- Full-Screen Photo Lightbox Modal -->
+      <div id="gallery-lightbox" class="modal-backdrop" style="background:rgba(0,0,0,0.94); z-index:9999;" onclick="if(event.target === this) closeLightbox();">
+        <button class="modal-close-btn" onclick="closeLightbox()" style="position:absolute; top:1.25rem; right:1.5rem; font-size:2.2rem; color:#fff; z-index:10001; background:rgba(255,255,255,0.1); border-radius:50%; width:44px; height:44px; display:flex; align-items:center; justify-content:center;">&times;</button>
+        
+        <div style="position:relative; width:92%; max-width:1000px; display:flex; flex-direction:column; align-items:center;">
+          <img id="lightbox-img" src="" style="max-width:100%; max-height:76vh; object-fit:contain; border-radius:var(--radius-md); box-shadow:0 12px 48px rgba(0,0,0,0.9); border:1px solid rgba(255,255,255,0.15);" alt="Venue Photo Fullscreen">
+          
+          <div style="display:flex; justify-content:space-between; align-items:center; width:100%; margin-top:1rem; padding:0 0.5rem; flex-wrap:wrap; gap:0.5rem;">
+            <div>
+              <span id="lightbox-counter" style="color:#fbbf24; font-weight:700; font-size:1rem;">1 of 6</span>
+              <span id="lightbox-caption" style="color:var(--text-muted); font-size:0.85rem; margin-left:0.75rem;">Venue Photo</span>
+            </div>
+            <div style="display:flex; gap:0.6rem;">
+              <button class="btn btn-secondary btn-sm" onclick="prevLightboxPhoto()" style="padding:0.4rem 1rem;">◀ Previous</button>
+              <button class="btn btn-gold btn-sm" onclick="nextLightboxPhoto()" style="padding:0.4rem 1rem;">Next ▶</button>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Venue Details Grid: Left Content + Right Booking Card -->
+      <div style="display:grid; grid-template-columns:1.8fr 1fr; gap:2rem;" class="venue-details-layout">
+        <!-- Left Column: Facilities, Rules, Availability Calendar -->
+        <div>
+          <!-- About Section -->
+          <div class="glass-panel" style="padding:1.75rem; margin-bottom:1.5rem;">
+            <h3 style="font-size:1.2rem; margin-bottom:0.75rem;">About The Venue</h3>
+            <p style="line-height:1.7; font-size:0.95rem; margin-bottom:1rem;">
+              The Royal Grand Heritage Palace is a premier luxury destination for grand Indian weddings, royal receptions, engagements, and corporate events. Spread across 2.5 acres, it offers an air-conditioned banquet hall coupled with a 25,000 sq. ft. landscaped green lawn. The venue features an elevated royal wedding stage, separate vegetarian & non-vegetarian kitchen sections, and two complimentary bridal suites.
+            </p>
+            <div style="display:grid; grid-template-columns:repeat(auto-fit, minmax(180px, 1fr)); gap:0.75rem; font-size:0.85rem; color:var(--text-secondary); background:rgba(255,255,255,0.03); padding:1rem; border-radius:var(--radius-md);">
+              <div>👥 <strong>Guest Capacity:</strong> 200 to 1200</div>
+              <div>📐 <strong>Area:</strong> 25,000 sq. ft. Lawn + Hall</div>
+              <div>🚗 <strong>Parking:</strong> 150+ Cars (Valet available)</div>
+              <div>⚡ <strong>Backup:</strong> 100% Silent Generator</div>
+            </div>
+          </div>
+
+          <!-- Facilities Grid -->
+          <div class="glass-panel" style="padding:1.75rem; margin-bottom:1.5rem;">
+            <h3 style="font-size:1.2rem; margin-bottom:1rem;">Amenities & Facilities</h3>
+            <div style="display:grid; grid-template-columns:repeat(auto-fill, minmax(160px, 1fr)); gap:0.75rem;">
+              <span class="amenity-chip">❄️ Central Air Conditioned</span>
+              <span class="amenity-chip">🚗 Valet & Dedicated Parking</span>
+              <span class="amenity-chip">⚡ 100% Power Generator</span>
+              <span class="amenity-chip">👑 Royal Stage Setup</span>
+              <span class="amenity-chip">👰 2 AC Bridal & Groom Suites</span>
+              <span class="amenity-chip">🍽️ In-House Catering Kitchen</span>
+              <span class="amenity-chip">🛡️ 24/7 CCTV & Security</span>
+              <span class="amenity-chip">🛗 Wheelchair & Lift Access</span>
+              <span class="amenity-chip">📶 High-Speed Wi-Fi</span>
+              <span class="amenity-chip">🎵 Sound & DJ Floor</span>
+            </div>
+          </div>
+
+          <!-- Section 13: Live Availability Calendar Widget -->
+          <div class="calendar-card" style="margin-bottom:1.5rem;">
+            <div class="flex items-center justify-between" style="margin-bottom:1rem;">
+              <h3 style="font-size:1.2rem;">Live Availability Calendar (October 2026)</h3>
+              <span style="font-size:0.8rem; color:var(--text-muted);">Real-time atomic status</span>
+            </div>
+
+            <!-- Calendar Legend -->
+            <div class="calendar-legend">
+              <div class="legend-item">
+                <span class="legend-dot" style="background:var(--color-available);"></span>
+                <span>AVAILABLE</span>
+              </div>
+              <div class="legend-item">
+                <span class="legend-dot" style="background:var(--color-pending);"></span>
+                <span>PENDING REQUEST</span>
+              </div>
+              <div class="legend-item">
+                <span class="legend-dot" style="background:var(--color-booked);"></span>
+                <span>BOOKED</span>
+              </div>
+              <div class="legend-item">
+                <span class="legend-dot" style="background:var(--color-blocked);"></span>
+                <span>BLOCKED</span>
+              </div>
+            </div>
+
+            <!-- Days Grid -->
+            <div class="calendar-days-grid">
+              <div class="cal-day-cell status-available">
+                <span class="cal-day-num">15 Oct</span>
+                <span class="cal-day-status">Available</span>
+              </div>
+              <div class="cal-day-cell status-pending">
+                <span class="cal-day-num">16 Oct</span>
+                <span class="cal-day-status">Pending</span>
+              </div>
+              <div class="cal-day-cell status-booked">
+                <span class="cal-day-num">17 Oct</span>
+                <span class="cal-day-status">Booked</span>
+              </div>
+              <div class="cal-day-cell status-blocked">
+                <span class="cal-day-num">18 Oct</span>
+                <span class="cal-day-status">Blocked</span>
+              </div>
+              <div class="cal-day-cell status-available">
+                <span class="cal-day-num">19 Oct</span>
+                <span class="cal-day-status">Available</span>
+              </div>
+              <div class="cal-day-cell status-available">
+                <span class="cal-day-num">20 Oct</span>
+                <span class="cal-day-status">Available</span>
+              </div>
+              <div class="cal-day-cell status-available">
+                <span class="cal-day-num">21 Oct</span>
+                <span class="cal-day-status">Available</span>
+              </div>
+            </div>
+          </div>
+
+          <!-- =====================================================================
+               VERIFIED CUSTOMER REVIEWS & RATINGS (PHASE 11)
+          ====================================================================== -->
+          <div class="glass-panel" style="padding:1.75rem; margin-top:1.5rem;" id="venue-reviews-section">
+            <div class="flex items-center justify-between" style="margin-bottom:1.25rem; flex-wrap:wrap; gap:0.5rem;">
+              <div>
+                <h3 style="font-size:1.25rem; display:flex; align-items:center; gap:0.5rem; margin:0 0 0.2rem 0;">
+                  <span>⭐</span> Verified Customer Reviews
+                </h3>
+                <p style="font-size:0.8rem; color:var(--text-secondary); margin:0;">
+                  100% genuine reviews from guests who booked and completed events at this venue.
+                </p>
+              </div>
+              <div class="flex items-center gap-2">
+                <span style="font-size:2rem; font-weight:800; color:#fbbf24;" id="details-avg-rating">4.9</span>
+                <div style="font-size:0.8rem; color:var(--text-muted);">
+                  <div style="color:#fbbf24; font-size:0.95rem;">★★★★★</div>
+                  <span id="details-review-count">0 verified reviews</span>
+                </div>
+              </div>
+            </div>
+
+            <!-- Reviews List Container -->
+            <div id="details-reviews-list" style="display:flex; flex-direction:column; gap:1rem;">
+              <div style="text-align:center; color:var(--text-muted); padding:2rem;">
+                Loading verified reviews...
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Right Column: Transparent Pricing & Direct Booking Card -->
+        <div>
+          <div class="glass-panel" style="padding:1.75rem; position:sticky; top:85px; border:1px solid var(--border-focus);">
+            <div style="font-size:0.75rem; text-transform:uppercase; color:var(--text-muted); font-weight:600;">Pricing Breakdown</div>
+            <div style="font-size:1.85rem; font-weight:800; color:#ffffff; margin:0.35rem 0 1rem 0;">
+              ₹65,000 <span style="font-size:0.9rem; color:var(--text-muted); font-weight:normal;">/ evening event</span>
+            </div>
+
+            <div style="display:flex; flex-direction:column; gap:0.6rem; font-size:0.85rem; border-top:1px solid var(--border-subtle); padding-top:1rem; margin-bottom:1.5rem;">
+              <div class="flex justify-between">
+                <span style="color:var(--text-secondary);">Weekday Evening:</span>
+                <strong>₹65,000</strong>
+              </div>
+              <div class="flex justify-between">
+                <span style="color:var(--text-secondary);">Weekend (Sat-Sun):</span>
+                <strong>₹85,000</strong>
+              </div>
+              <div class="flex justify-between">
+                <span style="color:var(--text-secondary);">Full Day (Morning to Night):</span>
+                <strong>₹1,10,000</strong>
+              </div>
+              <div class="flex justify-between">
+                <span style="color:var(--text-secondary);">Advance Deposit:</span>
+                <strong style="color:#fbbf24;">25% (₹16,250)</strong>
+              </div>
+            </div>
+
+            <a href="/booking.html?hallId=h-101" id="btn-proceed-booking" class="btn btn-gold w-full btn-lg" style="margin-bottom:0.75rem;">
+              Proceed to Booking
+            </a>
+
+            <div class="flex gap-2">
+              <a href="tel:+919876543210" class="btn btn-secondary w-full btn-sm">
+                📞 Call Owner
+              </a>
+              <button class="btn btn-secondary w-full btn-sm" onclick="handleDetailsChat()">
+                💬 Chat
+              </button>
+            </div>
+
+            <div style="margin-top:1.25rem; font-size:0.75rem; color:var(--text-muted); line-height:1.5; text-align:center;">
+              🛡️ Zero Commission • Double Booking Protection • Transparent Pricing Recalculated Server-Side
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </main>
+
+  <style>
+    @media (max-width: 860px) {
+      .venue-details-layout {
+        grid-template-columns: 1fr !important;
+      }
+    }
+  </style>
+
+  <!-- Scripts -->
+  <script src="js/i18n.js"></script>
+  <script src="js/app.js"></script>
+  <script src="js/api.js"></script>
+  <script src="js/nav.js"></script>
+  <script src="js/modals.js"></script>
+  <script src="js/three-venue.js"></script>
+
+  <script>
+    // Venue Details Dynamic Reviews & Favorites
+    const urlParams = new URLSearchParams(window.location.search);
+    const currentVenueId = urlParams.get('id') || 'h-101';
+
+    // Update booking button link
+    const bookingBtn = document.getElementById('btn-proceed-booking');
+    if (bookingBtn) {
+      bookingBtn.href = `/booking.html?hallId=${encodeURIComponent(currentVenueId)}`;
+    }
+
+    async function loadVenueReviews() {
+      const container = document.getElementById('details-reviews-list');
+      const avgElem = document.getElementById('details-avg-rating');
+      const countElem = document.getElementById('details-review-count');
+      if (!container || !window.HKF_API?.reviews) return;
+
+      try {
+        const res = await HKF_API.reviews.getListingReviews(currentVenueId);
+        const reviews = res.data || [];
+
+        if (avgElem && res.meta?.averageRating !== undefined) {
+          avgElem.textContent = Number(res.meta.averageRating).toFixed(1);
+        }
+        if (countElem) {
+          countElem.textContent = `${reviews.length} verified review${reviews.length === 1 ? '' : 's'}`;
+        }
+
+        if (reviews.length === 0) {
+          container.innerHTML = `
+            <div style="text-align:center; color:var(--text-secondary); padding:2rem;">
+              <p style="margin:0 0 0.5rem 0;">No reviews written yet for this venue.</p>
+              <span style="font-size:0.8rem; color:var(--text-muted);">Book your celebration to become the first verified reviewer!</span>
+            </div>
+          `;
+          return;
+        }
+
+        container.innerHTML = reviews.map(r => {
+          const starsStr = '★'.repeat(r.rating || 5) + '☆'.repeat(5 - (r.rating || 5));
+          const dateStr = new Date(r.createdAt || Date.now()).toLocaleDateString('en-IN', { day: 'numeric', month: 'short', year: 'numeric' });
+
+          return `
+            <div style="background:rgba(255,255,255,0.03); border:1px solid var(--border-subtle); border-radius:var(--radius-md); padding:1.25rem;">
+              <div class="flex items-center justify-between" style="margin-bottom:0.4rem; flex-wrap:wrap; gap:0.4rem;">
+                <div class="flex items-center gap-1">
+                  <strong style="color:#fff; font-size:0.95rem;">${r.customerName || 'Verified Guest'}</strong>
+                  <span class="badge badge-verified" style="font-size:0.65rem; padding:0.15rem 0.4rem;">✓ Verified Booking</span>
+                </div>
+                <div style="display:flex; align-items:center; gap:0.5rem;">
+                  <span style="color:#fbbf24; font-size:0.95rem;">${starsStr}</span>
+                  <span style="font-size:0.75rem; color:var(--text-muted);">${dateStr}</span>
+                </div>
+              </div>
+
+              ${r.title ? `<h4 style="font-size:0.9rem; color:#fde68a; margin:0 0 0.35rem 0;">"${r.title}"</h4>` : ''}
+              <p style="font-size:0.85rem; color:var(--text-secondary); line-height:1.5; margin:0 0 0.5rem 0;">
+                ${r.comment || ''}
+              </p>
+
+              ${r.photos && r.photos.length > 0 ? `
+                <div class="flex gap-1" style="margin-bottom:0.5rem; overflow-x:auto;">
+                  ${r.photos.map(p => `<img src="${p}" style="width:64px; height:64px; object-fit:cover; border-radius:var(--radius-sm); border:1px solid var(--border-subtle);" alt="Review photo">`).join('')}
+                </div>
+              ` : ''}
+
+              ${r.ownerReply ? `
+                <div style="background:rgba(245,158,11,0.06); border-left:3px solid #f59e0b; padding:0.65rem 0.85rem; border-radius:var(--radius-sm); margin-top:0.6rem; font-size:0.8rem;">
+                  <strong style="color:#fbbf24; font-size:0.75rem; display:block; margin-bottom:0.15rem;">Owner Response:</strong>
+                  <span style="color:var(--text-secondary);">${r.ownerReply.text}</span>
+                </div>
+              ` : ''}
+            </div>
+          `;
+        }).join('');
+      } catch (err) {
+        console.warn('Could not load reviews:', err.message);
+      }
+    }
+
+    async function checkFavoriteStatus() {
+      const favBtn = document.getElementById('details-fav-btn');
+      if (!favBtn || !HKF_API.auth.getToken()) return;
+
+      try {
+        const res = await HKF_API.users.getFavorites();
+        const favs = res.data || [];
+        const isFav = favs.some(f => (f.id || f) === currentVenueId);
+        if (isFav) {
+          favBtn.innerHTML = '❤️ Saved in Favorites';
+          favBtn.style.color = '#ef4444';
+        } else {
+          favBtn.innerHTML = '🤍 Save to Favorites';
+          favBtn.style.color = '';
+        }
+      } catch (e) { /* ignore */ }
+    }
+
+    async function toggleDetailsFavorite() {
+      if (!HKF_API.auth.getToken()) {
+        window.location.href = `/login.html?redirect=${encodeURIComponent(window.location.pathname + window.location.search)}`;
+        return;
+      }
+
+      try {
+        const res = await HKF_API.users.toggleFavorite(currentVenueId);
+        const isFav = res.data?.isFavorited;
+        const favBtn = document.getElementById('details-fav-btn');
+        if (favBtn) {
+          if (isFav) {
+            favBtn.innerHTML = '❤️ Saved in Favorites';
+            favBtn.style.color = '#ef4444';
+            showToast('Added to your favorites!', 'success');
+          } else {
+            favBtn.innerHTML = '🤍 Save to Favorites';
+            favBtn.style.color = '';
+            showToast('Removed from favorites.', 'info');
+          }
+        }
+      } catch (err) {
+        showToast(err.message || 'Failed to update favorites', 'error');
+      }
+    }
+
+    function handleDetailsChat() {
+      if (!HKF_API.auth.getToken()) {
+        window.location.href = `/login.html?redirect=${encodeURIComponent(window.location.pathname + window.location.search)}`;
+        return;
+      }
+      window.location.href = `/dashboard.html#messages`;
+    }
+
+    let venueGalleryPhotos = [];
+    let currentLightboxIndex = 0;
+
+    async function loadVenueDetails() {
+      try {
+        if (!window.HKF_API?.halls) return;
+        const res = await HKF_API.halls.getById(currentVenueId);
+        const venue = res.data;
+        if (!venue) return;
+
+        // Populate Page Title & Meta
+        if (venue.name) {
+          document.title = `${venue.name} — 3D Venue Layout & Booking | Hall Khoj Finder`;
+          const h1 = document.querySelector('h1');
+          if (h1) h1.textContent = venue.name;
+        }
+
+        // Location
+        const locP = document.querySelector('h1 + p');
+        if (locP && (venue.address || venue.city)) {
+          locP.innerHTML = `📍 ${venue.address || ''}${venue.city ? ', ' + venue.city : ''}${venue.state ? ', ' + venue.state : ''}${venue.pinCode ? ' — ' + venue.pinCode : ''}`;
+        }
+
+        // Base Price / Rent
+        const price = venue.startingPrice || 65000;
+        const priceDisplay = document.querySelectorAll('#mobile-venue-action-bar div div:last-child, .pricing-display');
+        priceDisplay.forEach(el => {
+          if (el.textContent.includes('₹')) {
+            el.innerHTML = `₹${price.toLocaleString('en-IN')}<span style="font-size:0.75rem; color:#94a3b8; font-weight:400;">/day</span>`;
+          }
+        });
+
+        // Photos & Gallery
+        venueGalleryPhotos = [];
+        if (venue.coverImg) venueGalleryPhotos.push({ url: venue.coverImg, category: 'stage', caption: 'Venue Main View' });
+        if (Array.isArray(venue.photos)) {
+          venue.photos.forEach((p, idx) => {
+            const url = typeof p === 'string' ? p : p.url;
+            if (url && !venueGalleryPhotos.some(g => g.url === url)) {
+              venueGalleryPhotos.push({ url, category: idx % 2 === 0 ? 'hall' : 'lawn', caption: `Gallery Photo ${idx + 1}` });
+            }
+          });
+        }
+        if (Array.isArray(venue.gallery)) {
+          venue.gallery.forEach((p, idx) => {
+            const url = typeof p === 'string' ? p : p.url;
+            if (url && !venueGalleryPhotos.some(g => g.url === url)) {
+              venueGalleryPhotos.push({ url, category: 'dining', caption: `Gallery Photo ${idx + 1}` });
+            }
+          });
+        }
+
+        // Fallbacks if only 1 photo
+        if (venueGalleryPhotos.length < 3) {
+          venueGalleryPhotos.push(
+            { url: 'https://images.unsplash.com/photo-1519167758481-83f550bb49b3?auto=format&fit=crop&w=800&q=80', category: 'stage', caption: 'Grand Wedding Stage' },
+            { url: 'https://images.unsplash.com/photo-1544830254-20b1274f881b?auto=format&fit=crop&w=800&q=80', category: 'hall', caption: 'AC Royal Banquet Hall' },
+            { url: 'https://images.unsplash.com/photo-1566073771259-6a8506099945?auto=format&fit=crop&w=800&q=80', category: 'lawn', caption: 'Green Landscaped Lawn' }
+          );
+        }
+
+        renderVenueGallery(venueGalleryPhotos);
+      } catch (err) {
+        console.warn('Venue load notice:', err.message);
+        // Default photos
+        venueGalleryPhotos = [
+          { url: 'https://images.unsplash.com/photo-1519167758481-83f550bb49b3?auto=format&fit=crop&w=800&q=80', category: 'stage', caption: 'Royal Wedding Stage' },
+          { url: 'https://images.unsplash.com/photo-1544830254-20b1274f881b?auto=format&fit=crop&w=800&q=80', category: 'hall', caption: 'Central AC Banquet Hall' },
+          { url: 'https://images.unsplash.com/photo-1566073771259-6a8506099945?auto=format&fit=crop&w=800&q=80', category: 'lawn', caption: 'Landscaped Reception Lawn' }
+        ];
+        renderVenueGallery(venueGalleryPhotos);
+      }
+    }
+
+    function renderVenueGallery(photos) {
+      const grid = document.getElementById('venue-gallery-grid');
+      const badgeCount = document.getElementById('gallery-badge-count');
+      if (!grid) return;
+
+      if (badgeCount) badgeCount.textContent = photos.length;
+
+      grid.innerHTML = photos.map((item, idx) => `
+        <div style="position:relative; border-radius:var(--radius-md); overflow:hidden; border:1px solid var(--border-subtle); background:#0c1222; aspect-ratio:16/10; cursor:pointer; group;" onclick="openLightbox(${idx})">
+          <img src="${item.url}" style="width:100%; height:100%; object-fit:cover; transition:transform 0.3s ease;" onmouseover="this.style.transform='scale(1.05)'" onmouseout="this.style.transform='scale(1)'" alt="${item.caption || 'Hall Photo'}">
+          <div style="position:absolute; bottom:0; left:0; right:0; background:linear-gradient(transparent, rgba(0,0,0,0.85)); padding:0.5rem 0.75rem; color:#fff; display:flex; justify-content:space-between; align-items:center;">
+            <span style="font-size:0.8rem; font-weight:600;">${item.caption || 'Hall Photo'}</span>
+            <span style="font-size:0.7rem; color:#fbbf24; background:rgba(0,0,0,0.4); padding:2px 6px; border-radius:4px;">🔍 Zoom</span>
+          </div>
+        </div>
+      `).join('');
+    }
+
+    function filterVenueGallery(cat) {
+      document.querySelectorAll('.gallery-filter-btn').forEach(b => {
+        b.classList.remove('btn-gold', 'active');
+        b.classList.add('btn-secondary');
+      });
+      event.target.classList.remove('btn-secondary');
+      event.target.classList.add('btn-gold', 'active');
+
+      if (cat === 'all') {
+        renderVenueGallery(venueGalleryPhotos);
+      } else {
+        const filtered = venueGalleryPhotos.filter(p => p.category === cat);
+        renderVenueGallery(filtered.length ? filtered : venueGalleryPhotos);
+      }
+    }
+
+    function openLightbox(index) {
+      currentLightboxIndex = index;
+      const modal = document.getElementById('gallery-lightbox');
+      const img = document.getElementById('lightbox-img');
+      const counter = document.getElementById('lightbox-counter');
+      const caption = document.getElementById('lightbox-caption');
+
+      if (!modal || !venueGalleryPhotos[index]) return;
+
+      img.src = venueGalleryPhotos[index].url;
+      counter.textContent = `${index + 1} of ${venueGalleryPhotos.length}`;
+      caption.textContent = venueGalleryPhotos[index].caption || 'Venue Photo';
+      modal.classList.add('open');
+      document.body.style.overflow = 'hidden';
+    }
+
+    function closeLightbox() {
+      const modal = document.getElementById('gallery-lightbox');
+      if (modal) modal.classList.remove('open');
+      document.body.style.overflow = '';
+    }
+
+    function nextLightboxPhoto() {
+      if (!venueGalleryPhotos.length) return;
+      currentLightboxIndex = (currentLightboxIndex + 1) % venueGalleryPhotos.length;
+      openLightbox(currentLightboxIndex);
+    }
+
+    function prevLightboxPhoto() {
+      if (!venueGalleryPhotos.length) return;
+      currentLightboxIndex = (currentLightboxIndex - 1 + venueGalleryPhotos.length) % venueGalleryPhotos.length;
+      openLightbox(currentLightboxIndex);
+    }
+
+    document.addEventListener('keydown', (e) => {
+      const modal = document.getElementById('gallery-lightbox');
+      if (modal && modal.classList.contains('open')) {
+        if (e.key === 'Escape') closeLightbox();
+        if (e.key === 'ArrowRight') nextLightboxPhoto();
+        if (e.key === 'ArrowLeft') prevLightboxPhoto();
+      }
+    });
+
+    document.addEventListener('DOMContentLoaded', () => {
+      loadVenueReviews();
+      checkFavoriteStatus();
+      loadVenueDetails();
+
+      const mobBtn = document.getElementById('mobile-book-btn');
+      if (mobBtn && currentVenueId) {
+        mobBtn.href = `/booking.html?hallId=${encodeURIComponent(currentVenueId)}`;
+      }
+    });
+  </script>
+
+  <!-- Mobile Phone Sticky Quick Action Bar -->
+  <div id="mobile-venue-action-bar" style="position:fixed; bottom:0; left:0; width:100%; background:rgba(11,18,34,0.96); backdrop-filter:blur(16px); -webkit-backdrop-filter:blur(16px); border-top:1px solid rgba(255,255,255,0.12); padding:0.65rem 1rem; z-index:990; display:flex; align-items:center; justify-content:space-between; gap:0.6rem;">
+    <div>
+      <div style="font-size:0.72rem; color:var(--text-muted); text-transform:uppercase;">Starts from</div>
+      <div style="font-size:1.15rem; font-weight:800; color:#fbbf24;">₹65,000<span style="font-size:0.75rem; color:#94a3b8; font-weight:400;">/day</span></div>
+    </div>
+    <div style="display:flex; gap:0.4rem; flex:1; justify-content:flex-end;">
+      <a href="tel:+919876543210" class="btn btn-secondary btn-sm" style="height:42px; display:inline-flex; align-items:center; gap:0.3rem; padding:0 0.75rem; border-radius:var(--radius-full);" aria-label="Call Owner">
+        📞 <span style="font-size:0.8rem;">Call</span>
+      </a>
+      <a href="https://wa.me/919876543210?text=Hello,%20I%20am%20interested%20in%20booking%20this%20venue%20via%20Hall%20Khoj" target="_blank" rel="noopener" class="btn btn-sm" style="height:42px; background:#16a34a; color:#fff; display:inline-flex; align-items:center; gap:0.3rem; padding:0 0.75rem; border-radius:var(--radius-full); font-weight:600; text-decoration:none;" aria-label="WhatsApp Owner">
+        💬 <span style="font-size:0.8rem;">WhatsApp</span>
+      </a>
+      <a href="/booking.html?id=h-101" id="mobile-book-btn" class="btn btn-gold btn-sm" style="height:42px; display:inline-flex; align-items:center; padding:0 0.9rem; border-radius:var(--radius-full); font-weight:700;">
+        Book Now
+      </a>
+    </div>
+  </div>
+
+  <style>
+    @media (min-width: 861px) {
+      #mobile-venue-action-bar {
+        display: none !important;
+      }
+    }
+    @media (max-width: 860px) {
+      body {
+        padding-bottom: 75px !important;
+      }
+    }
+  </style>
+</body>
+</html>

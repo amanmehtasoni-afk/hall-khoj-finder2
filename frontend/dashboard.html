@@ -1,0 +1,1682 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Customer Dashboard — Hall Khoj Finder</title>
+
+  <!-- Theme Controller (Zero-Flash Dark/Light Mode) -->
+  <script src="js/theme.js"></script>
+
+  <!-- Core CSS -->
+  <link rel="stylesheet" href="css/main.css">
+  <link rel="stylesheet" href="css/3d.css">
+  <link rel="stylesheet" href="css/components.css">
+  <link rel="stylesheet" href="css/animations.css">
+
+  <style>
+    /* Dashboard Layout */
+    .dash-wrapper {
+      display: grid;
+      grid-template-columns: 260px 1fr;
+      gap: 1.5rem;
+      min-height: calc(100vh - 5.5rem);
+      padding-top: 5.5rem;
+      padding-bottom: 3rem;
+    }
+
+    .dash-sidebar {
+      position: sticky;
+      top: 5.5rem;
+      height: fit-content;
+      padding: 1.25rem;
+      border-radius: var(--radius-lg);
+    }
+
+    .dash-nav-list {
+      list-style: none;
+      padding: 0;
+      margin: 0;
+      display: flex;
+      flex-direction: column;
+      gap: 0.35rem;
+    }
+
+    .dash-nav-btn {
+      width: 100%;
+      display: flex;
+      align-items: center;
+      gap: 0.75rem;
+      padding: 0.7rem 0.9rem;
+      border-radius: var(--radius-md);
+      background: transparent;
+      border: 1px solid transparent;
+      color: var(--text-secondary);
+      font-size: 0.9rem;
+      font-weight: 500;
+      text-align: left;
+      cursor: pointer;
+      transition: var(--transition-fast);
+    }
+
+    .dash-nav-btn:hover {
+      background: rgba(255, 255, 255, 0.05);
+      color: var(--text-primary);
+    }
+
+    .dash-nav-btn.active {
+      background: rgba(99, 102, 241, 0.15);
+      border-color: rgba(99, 102, 241, 0.3);
+      color: var(--primary-light);
+      font-weight: 600;
+    }
+
+    .dash-nav-btn svg {
+      width: 18px;
+      height: 18px;
+      flex-shrink: 0;
+    }
+
+    .dash-nav-badge {
+      margin-left: auto;
+      font-size: 0.7rem;
+      padding: 0.15rem 0.45rem;
+      border-radius: var(--radius-full);
+      background: rgba(245, 158, 11, 0.2);
+      color: var(--secondary-light);
+      font-weight: 700;
+    }
+
+    .tab-content-panel {
+      display: none;
+    }
+
+    .tab-content-panel.active {
+      display: block;
+      animation: fadeIn 0.25s ease-in-out;
+    }
+
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(6px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    .filter-pills-bar {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.5rem;
+      margin-bottom: 1.25rem;
+    }
+
+    .filter-pill-btn {
+      padding: 0.4rem 0.9rem;
+      font-size: 0.8rem;
+      font-weight: 500;
+      border-radius: var(--radius-full);
+      background: rgba(255, 255, 255, 0.04);
+      border: 1px solid var(--border-subtle);
+      color: var(--text-secondary);
+      cursor: pointer;
+      transition: var(--transition-fast);
+    }
+
+    .filter-pill-btn.active {
+      background: var(--primary);
+      border-color: var(--primary);
+      color: #fff;
+    }
+
+    @media (max-width: 900px) {
+      .dash-wrapper {
+        grid-template-columns: 1fr;
+      }
+      .dash-sidebar {
+        position: static;
+        margin-bottom: 1rem;
+      }
+      .dash-nav-list {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(130px, 1fr));
+        gap: 0.35rem;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Site Header -->
+  <header class="site-header" role="banner">
+    <div class="nav-container">
+      <a href="/" class="brand-logo">
+        <img src="/assets/logo.png" alt="Hall Khoj" class="brand-logo-img">
+        <div class="brand-logo-text">
+          <span class="brand-title">HALL KHOJ</span>
+          <span class="brand-tagline-sub">CUSTOMER PORTAL</span>
+        </div>
+      </a>
+
+      <nav role="navigation">
+        <ul class="nav-links">
+          <li><a href="/" class="nav-link">Home</a></li>
+          <li><a href="/search.html" class="nav-link">Find Services</a></li>
+          <li><a href="/dashboard.html" class="nav-link active">Dashboard</a></li>
+        </ul>
+      </nav>
+
+      <div class="nav-actions">
+        <div class="flex items-center gap-2">
+          <!-- Language Switcher Mount (14 Indian Languages) -->
+          <div class="language-switcher-container"></div>
+          <button class="theme-toggle-btn" data-action="toggle-theme" aria-label="Toggle Dark/Light Mode" title="Toggle Theme">
+            <span class="theme-icon-sun">☀️</span>
+            <span class="theme-icon-moon" style="display:none;">🌙</span>
+          </button>
+          <button class="btn btn-secondary btn-sm" onclick="switchTab('notifications')" style="position:relative; padding:0.4rem 0.6rem;">
+            🔔
+            <span id="notif-indicator" style="display:none; position:absolute; top:2px; right:2px; width:8px; height:8px; background:#ef4444; border-radius:50%;"></span>
+          </button>
+          <button class="btn btn-secondary btn-sm" onclick="handleLogout()">
+            Sign Out
+          </button>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <main>
+    <div class="container dash-wrapper">
+
+      <!-- =====================================================================
+           LEFT: DASHBOARD SIDEBAR NAVIGATION
+      ====================================================================== -->
+      <aside class="dash-sidebar glass-panel">
+        <div class="flex items-center gap-2" style="margin-bottom:1.5rem; padding-bottom:1rem; border-bottom:1px solid var(--border-subtle);">
+          <div id="sidebar-avatar" style="width:46px; height:46px; border-radius:50%; background:linear-gradient(135deg, #6366f1, #a855f7); display:flex; align-items:center; justify-content:center; font-size:1.1rem; color:#fff; font-weight:700; flex-shrink:0; overflow:hidden;">
+            <span id="sidebar-initials">AS</span>
+          </div>
+          <div style="overflow:hidden;">
+            <div id="sidebar-user-name" style="font-weight:700; font-size:0.95rem; color:#fff; white-space:nowrap; text-overflow:ellipsis; overflow:hidden;">Customer</div>
+            <div id="sidebar-user-location" style="font-size:0.75rem; color:var(--text-muted); white-space:nowrap; text-overflow:ellipsis; overflow:hidden;">India</div>
+          </div>
+        </div>
+
+        <ul class="dash-nav-list">
+          <li>
+            <button class="dash-nav-btn active" onclick="switchTab('overview')">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="7" height="7"/><rect x="14" y="3" width="7" height="7"/><rect x="14" y="14" width="7" height="7"/><rect x="3" y="14" width="7" height="7"/></svg>
+              <span>Overview</span>
+            </button>
+          </li>
+          <li>
+            <button class="dash-nav-btn" onclick="switchTab('bookings')">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="4" width="18" height="18" rx="2" ry="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg>
+              <span>My Bookings</span>
+              <span class="dash-nav-badge" id="badge-bookings-count">0</span>
+            </button>
+          </li>
+          <li>
+            <button class="dash-nav-btn" onclick="switchTab('favorites')">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/></svg>
+              <span>Favorites</span>
+              <span class="dash-nav-badge" id="badge-favs-count">0</span>
+            </button>
+          </li>
+          <li>
+            <button class="dash-nav-btn" onclick="switchTab('messages')">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg>
+              <span>Messages</span>
+              <span class="dash-nav-badge" id="badge-messages-count" style="display:none;">0</span>
+            </button>
+          </li>
+          <li>
+            <button class="dash-nav-btn" onclick="switchTab('notifications')">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 8A6 6 0 0 0 6 8c0 7-3 9-3 9h18s-3-2-3-9"/><path d="M13.73 21a2 2 0 0 1-3.46 0"/></svg>
+              <span>Notifications</span>
+              <span class="dash-nav-badge" id="badge-notifs-count" style="display:none;">0</span>
+            </button>
+          </li>
+          <li>
+            <button class="dash-nav-btn" onclick="switchTab('reviews')">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+              <span>Reviews</span>
+              <span class="dash-nav-badge" id="badge-reviews-count" style="display:none;">0</span>
+            </button>
+          </li>
+          <li>
+            <button class="dash-nav-btn" onclick="switchTab('locations')">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>
+              <span>Saved Locations</span>
+            </button>
+          </li>
+          <li>
+            <button class="dash-nav-btn" onclick="switchTab('settings')">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="3"/><path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 0 1 0 2.83 2 2 0 0 1-2.83 0l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-2 2 2 2 0 0 1-2-2v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 0 1-2.83 0 2 2 0 0 1 0-2.83l.06-.06a1.65 1.65 0 0 0 .33-1.82 1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1-2-2 2 2 0 0 1 2-2h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 0 1 0-2.83 2 2 0 0 1 2.83 0l.06.06a1.65 1.65 0 0 0 1.82.33H9a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 2-2 2 2 0 0 1 2 2v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 0 1 2.83 0 2 2 0 0 1 0 2.83l-.06.06a1.65 1.65 0 0 0-.33 1.82V9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 2 2 2 2 0 0 1-2 2h-.09a1.65 1.65 0 0 0-1.51 1z"/></svg>
+              <span>Account Settings</span>
+            </button>
+          </li>
+        </ul>
+      </aside>
+
+      <!-- =====================================================================
+           RIGHT: MAIN TABBED CONTENT PANELS
+      ====================================================================== -->
+      <section class="dash-main">
+
+        <!-- TAB 1: OVERVIEW -->
+        <div id="tab-overview" class="tab-content-panel active">
+          <!-- Profile Greeting Banner -->
+          <div class="glass-panel" style="padding:1.75rem 2rem; margin-bottom:1.75rem; display:flex; align-items:center; justify-content:space-between; flex-wrap:wrap; gap:1.25rem;">
+            <div class="flex items-center gap-2">
+              <div id="overview-avatar" style="width:68px; height:68px; border-radius:50%; background:linear-gradient(135deg, #6366f1, #a855f7); display:flex; align-items:center; justify-content:center; font-size:1.6rem; color:#fff; font-weight:700; flex-shrink:0; overflow:hidden;">
+                <span id="overview-initials">AS</span>
+              </div>
+              <div>
+                <div class="flex items-center gap-1" style="margin-bottom:0.2rem;">
+                  <h1 id="overview-user-name" style="font-size:1.5rem;">Welcome back!</h1>
+                  <span class="badge badge-verified" id="overview-verified-badge">Verified</span>
+                </div>
+                <p id="overview-subtext" style="font-size:0.85rem; color:var(--text-secondary);">Member • Lucknow, UP</p>
+              </div>
+            </div>
+
+            <div class="flex gap-2">
+              <button class="btn btn-secondary btn-sm" onclick="switchTab('settings')">Edit Profile</button>
+              <a href="/search.html" class="btn btn-primary btn-sm">+ Book Event Service</a>
+            </div>
+          </div>
+
+          <!-- Quick Metrics Cards -->
+          <div style="display:grid; grid-template-columns:repeat(auto-fit, minmax(180px, 1fr)); gap:1rem; margin-bottom:2rem;">
+            <div class="glass-panel" style="padding:1.25rem; cursor:pointer;" onclick="switchTab('bookings')">
+              <div style="font-size:0.75rem; color:var(--text-muted); text-transform:uppercase;">Total Bookings</div>
+              <div id="metric-total-bookings" style="font-size:1.75rem; font-weight:800; color:#fff; margin-top:0.25rem;">0</div>
+            </div>
+            <div class="glass-panel" style="padding:1.25rem; border:1px solid rgba(245, 158, 11, 0.4); cursor:pointer;" onclick="switchTab('bookings', 'pending')">
+              <div style="font-size:0.75rem; color:var(--text-muted); text-transform:uppercase;">Pending Review</div>
+              <div id="metric-pending-bookings" style="font-size:1.75rem; font-weight:800; color:#fbbf24; margin-top:0.25rem;">0</div>
+            </div>
+            <div class="glass-panel" style="padding:1.25rem; cursor:pointer;" onclick="switchTab('bookings', 'upcoming')">
+              <div style="font-size:0.75rem; color:var(--text-muted); text-transform:uppercase;">Upcoming Events</div>
+              <div id="metric-upcoming-bookings" style="font-size:1.75rem; font-weight:800; color:#10b981; margin-top:0.25rem;">0</div>
+            </div>
+            <div class="glass-panel" style="padding:1.25rem; cursor:pointer;" onclick="switchTab('favorites')">
+              <div style="font-size:0.75rem; color:var(--text-muted); text-transform:uppercase;">Saved Favorites</div>
+              <div id="metric-total-favorites" style="font-size:1.75rem; font-weight:800; color:#a855f7; margin-top:0.25rem;">0</div>
+            </div>
+          </div>
+
+          <!-- Upcoming Event Highlight or Empty Banner -->
+          <div style="margin-bottom:2rem;">
+            <div class="flex items-center justify-between" style="margin-bottom:1rem;">
+              <h2 style="font-size:1.2rem;">Next Event Highlight</h2>
+              <button class="btn btn-secondary btn-sm" onclick="switchTab('bookings')">View All</button>
+            </div>
+            <div id="next-event-container">
+              <!-- Dynamically populated or default message -->
+              <div class="glass-panel" style="padding:1.5rem; text-align:center; color:var(--text-secondary);">
+                <p style="margin-bottom:0.75rem;">No upcoming events scheduled yet.</p>
+                <a href="/search.html" class="btn btn-gold btn-sm">Browse Halls & Vendors</a>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- TAB 2: MY BOOKINGS -->
+        <div id="tab-bookings" class="tab-content-panel">
+          <div class="flex items-center justify-between" style="margin-bottom:1rem; flex-wrap:wrap; gap:0.5rem;">
+            <div>
+              <h2 style="font-size:1.4rem;">My Bookings & Reservations</h2>
+              <p style="font-size:0.85rem; color:var(--text-secondary);">Track status, access invoices, or request modifications.</p>
+            </div>
+            <a href="/search.html" class="btn btn-primary btn-sm">+ New Booking</a>
+          </div>
+
+          <!-- Filter Pills -->
+          <div class="filter-pills-bar">
+            <button class="filter-pill-btn active" onclick="filterBookings('all', this)">All Bookings</button>
+            <button class="filter-pill-btn" onclick="filterBookings('upcoming', this)">Upcoming</button>
+            <button class="filter-pill-btn" onclick="filterBookings('pending', this)">Pending Owner Review</button>
+            <button class="filter-pill-btn" onclick="filterBookings('completed', this)">Completed</button>
+            <button class="filter-pill-btn" onclick="filterBookings('cancelled', this)">Cancelled / Rejected</button>
+          </div>
+
+          <!-- Bookings List Container -->
+          <div id="bookings-list-container" style="display:flex; flex-direction:column; gap:1rem;">
+            <!-- Populated dynamically via JS -->
+            <div class="glass-panel" style="padding:2rem; text-align:center; color:var(--text-muted);">
+              Loading your bookings...
+            </div>
+          </div>
+        </div>
+
+        <!-- TAB 3: FAVORITES -->
+        <div id="tab-favorites" class="tab-content-panel">
+          <div class="flex items-center justify-between" style="margin-bottom:1.25rem;">
+            <div>
+              <h2 style="font-size:1.4rem;">Saved Favorites</h2>
+              <p style="font-size:0.85rem; color:var(--text-secondary);">Quickly re-visit venues and event providers you bookmarked.</p>
+            </div>
+          </div>
+
+          <div id="favorites-grid" style="display:grid; grid-template-columns:repeat(auto-fit, minmax(280px, 1fr)); gap:1.25rem;">
+            <!-- Populated dynamically -->
+            <div class="glass-panel" style="padding:2rem; text-align:center; color:var(--text-muted); grid-column:1/-1;">
+              Loading saved favorites...
+            </div>
+          </div>
+        </div>
+
+        <!-- TAB 4: MESSAGES -->
+        <div id="tab-messages" class="tab-content-panel">
+          <div style="margin-bottom:1rem;">
+            <h2 style="font-size:1.4rem;">Direct Owner Messaging</h2>
+            <p style="font-size:0.85rem; color:var(--text-secondary);">Communicate in real-time with venue managers and service coordinators.</p>
+          </div>
+
+          <div class="glass-panel" style="display:grid; grid-template-columns:260px 1fr; min-height:460px; border-radius:var(--radius-lg); overflow:hidden;">
+            <!-- Conversations sidebar -->
+            <div style="border-right:1px solid var(--border-subtle); padding:1rem; background:rgba(0,0,0,0.2);">
+              <div class="flex justify-between items-center" style="margin-bottom:0.75rem;">
+                <div style="font-size:0.75rem; text-transform:uppercase; color:var(--text-muted); font-weight:700;">Conversations</div>
+                <button class="btn btn-secondary btn-sm" style="padding:0.2rem 0.5rem; font-size:0.75rem;" onclick="loadConversations()" title="Refresh conversations">🔄</button>
+              </div>
+              <div id="conversations-list" style="display:flex; flex-direction:column; gap:0.5rem; max-height:400px; overflow-y:auto;">
+                <div style="font-size:0.8rem; color:var(--text-muted); text-align:center; padding:1.5rem 0.5rem;">
+                  Loading conversations...
+                </div>
+              </div>
+            </div>
+
+            <!-- Active Chat Window -->
+            <div style="display:flex; flex-direction:column; justify-content:space-between; padding:1.25rem;">
+              <div id="active-chat-header" style="padding-bottom:0.75rem; border-bottom:1px solid var(--border-subtle); margin-bottom:0.75rem; display:flex; justify-content:space-between; align-items:center;">
+                <div>
+                  <strong id="chat-partner-name" style="font-size:0.95rem; color:#fff;">Direct Messages</strong>
+                  <div id="chat-partner-sub" style="font-size:0.75rem; color:var(--text-secondary);">Select a conversation to start chatting</div>
+                </div>
+                <span id="chat-active-badge" class="badge badge-verified" style="display:none;">Active</span>
+              </div>
+              <div id="chat-messages-box" style="display:flex; flex-direction:column; gap:0.75rem; height:320px; overflow-y:auto; padding-right:0.5rem;">
+                <div style="text-align:center; color:var(--text-muted); margin-top:5rem; font-size:0.85rem;">
+                  Select a thread on the left or tap "Chat with Owner" from any booking.
+                </div>
+              </div>
+
+              <!-- Message Input -->
+              <form id="chat-send-form" onsubmit="sendMessage(event)" style="display:flex; gap:0.5rem; margin-top:1rem;">
+                <input type="text" id="chat-input" class="form-input" style="height:44px;" placeholder="Type your message to the owner..." required autocomplete="off">
+                <button type="submit" id="chat-send-btn" class="btn btn-primary btn-sm">Send</button>
+              </form>
+            </div>
+          </div>
+        </div>
+
+        <!-- TAB 5: NOTIFICATIONS -->
+        <div id="tab-notifications" class="tab-content-panel">
+          <div class="flex items-center justify-between" style="margin-bottom:1.25rem;">
+            <div>
+              <h2 style="font-size:1.4rem;">Notification Center</h2>
+              <p style="font-size:0.85rem; color:var(--text-secondary);">Real-time alerts for booking status, chat messages, and venue updates.</p>
+            </div>
+            <div class="flex gap-2">
+              <button class="btn btn-secondary btn-sm" onclick="loadNotifications()">🔄 Refresh</button>
+              <button class="btn btn-secondary btn-sm" onclick="markAllNotificationsRead()">Mark All Read</button>
+            </div>
+          </div>
+
+          <div id="notifications-list" style="display:flex; flex-direction:column; gap:0.75rem;">
+            <div class="glass-panel" style="padding:2rem; text-align:center; color:var(--text-muted);">
+              Loading notifications...
+            </div>
+          </div>
+        </div>
+
+        <!-- TAB 6: REVIEWS -->
+        <div id="tab-reviews" class="tab-content-panel">
+          <div class="flex items-center justify-between" style="margin-bottom:1.25rem;">
+            <div>
+              <h2 style="font-size:1.4rem;">My Reviews & Ratings</h2>
+              <p style="font-size:0.85rem; color:var(--text-secondary);">Verified customer reviews submitted after attending completed events.</p>
+            </div>
+            <button class="btn btn-secondary btn-sm" onclick="loadMyReviews()">🔄 Refresh</button>
+          </div>
+
+          <div id="reviews-container" style="display:flex; flex-direction:column; gap:1rem;">
+            <div class="glass-panel" style="padding:2rem; text-align:center; color:var(--text-muted);">
+              Loading reviews...
+            </div>
+          </div>
+        </div>
+
+        <!-- TAB 7: SAVED LOCATIONS -->
+        <div id="tab-locations" class="tab-content-panel">
+          <div class="flex items-center justify-between" style="margin-bottom:1.25rem;">
+            <div>
+              <h2 style="font-size:1.4rem;">Saved Event Locations</h2>
+              <p style="font-size:0.85rem; color:var(--text-secondary);">Save favorite hometown addresses and village locations for faster nearby searches.</p>
+            </div>
+            <button class="btn btn-primary btn-sm" onclick="openAddLocationModal()">+ Add Address</button>
+          </div>
+
+          <div id="locations-grid" style="display:grid; grid-template-columns:repeat(auto-fit, minmax(280px, 1fr)); gap:1rem;">
+            <!-- Populated dynamically -->
+            <div class="glass-panel" style="padding:1.25rem;">
+              <div class="flex justify-between items-center" style="margin-bottom:0.5rem;">
+                <span class="badge badge-indigo">Home</span>
+              </div>
+              <p style="font-size:0.85rem; color:var(--text-primary); font-weight:600; margin-bottom:0.25rem;">Gomti Nagar, Sector 4</p>
+              <p style="font-size:0.75rem; color:var(--text-secondary);">Lucknow, Uttar Pradesh - 226010</p>
+            </div>
+          </div>
+        </div>
+
+        <!-- TAB 8: ACCOUNT SETTINGS & PROFILE EDIT -->
+        <div id="tab-settings" class="tab-content-panel">
+          <div style="margin-bottom:1.25rem;">
+            <h2 style="font-size:1.4rem;">Account & Profile Settings</h2>
+            <p style="font-size:0.85rem; color:var(--text-secondary);">Update your personal information, profile photo, and address details.</p>
+          </div>
+
+          <div class="glass-panel" style="padding:2rem;">
+            <!-- Photo Upload Section -->
+            <div class="flex items-center gap-2" style="margin-bottom:2rem; padding-bottom:1.5rem; border-bottom:1px solid var(--border-subtle); flex-wrap:wrap;">
+              <div id="settings-avatar-preview" style="width:76px; height:76px; border-radius:50%; background:linear-gradient(135deg, #6366f1, #a855f7); display:flex; align-items:center; justify-content:center; font-size:1.8rem; color:#fff; font-weight:700; overflow:hidden; flex-shrink:0;">
+                <span id="settings-initials">AS</span>
+              </div>
+              <div>
+                <input type="file" id="profile-photo-input" accept="image/jpeg,image/png,image/webp" style="display:none;" onchange="handleProfilePhotoUpload(this)">
+                <button type="button" class="btn btn-secondary btn-sm" onclick="document.getElementById('profile-photo-input').click()">
+                  📷 Upload New Photo
+                </button>
+                <div style="font-size:0.75rem; color:var(--text-muted); margin-top:0.35rem;">JPG, PNG, or WebP. Max 5MB.</div>
+              </div>
+            </div>
+
+            <!-- Profile Form -->
+            <form id="profile-form" onsubmit="saveProfileChanges(event)">
+              <div style="display:grid; grid-template-columns:repeat(auto-fit, minmax(240px, 1fr)); gap:1.25rem; margin-bottom:1.5rem;">
+                <div class="form-group">
+                  <label class="form-label">Full Name *</label>
+                  <input type="text" id="prof-name" class="form-input" required>
+                </div>
+                <div class="form-group">
+                  <label class="form-label">Mobile Number *</label>
+                  <input type="tel" id="prof-mobile" class="form-input" required>
+                </div>
+                <div class="form-group">
+                  <label class="form-label">WhatsApp / Alternate Mobile</label>
+                  <input type="tel" id="prof-whatsapp" class="form-input" placeholder="e.g. 9876543210" maxlength="10" inputmode="numeric">
+                </div>
+                <div class="form-group">
+                  <label class="form-label">Address Line</label>
+                  <input type="text" id="prof-address" class="form-input" placeholder="House/Flat, Street, Area">
+                </div>
+                <div class="form-group">
+                  <label class="form-label">State</label>
+                  <select id="prof-state" class="form-input" style="background:#111827; color:#fff;">
+                    <option value="">Select State</option>
+                    <option value="Uttar Pradesh">Uttar Pradesh</option>
+                    <option value="Bihar">Bihar</option>
+                    <option value="Haryana">Haryana</option>
+                    <option value="Delhi NCR">Delhi NCR</option>
+                    <option value="Madhya Pradesh">Madhya Pradesh</option>
+                    <option value="Rajasthan">Rajasthan</option>
+                    <option value="Punjab">Punjab</option>
+                    <option value="Uttarakhand">Uttarakhand</option>
+                  </select>
+                </div>
+                <div class="form-group">
+                  <label class="form-label">District</label>
+                  <input type="text" id="prof-district" class="form-input" placeholder="e.g. Lucknow">
+                </div>
+                <div class="form-group">
+                  <label class="form-label">City / Town</label>
+                  <input type="text" id="prof-city" class="form-input" placeholder="e.g. Lucknow">
+                </div>
+                <div class="form-group">
+                  <label class="form-label">Village (Gram / Gaon)</label>
+                  <input type="text" id="prof-village" class="form-input" placeholder="e.g. Chinhat">
+                </div>
+                <div class="form-group">
+                  <label class="form-label">PIN Code</label>
+                  <input type="text" id="prof-pincode" class="form-input" placeholder="6-digit PIN" maxlength="6">
+                </div>
+              </div>
+
+              <div class="flex justify-end gap-2">
+                <button type="submit" id="save-profile-btn" class="btn btn-primary">Save Profile Changes</button>
+              </div>
+            </form>
+          </div>
+        </div>
+
+      </section>
+    </div>
+  </main>
+
+  <!-- Add Location Modal -->
+  <div id="add-location-modal" class="modal-backdrop">
+    <div class="modal-dialog">
+      <div class="modal-header">
+        <h3 class="modal-title">Add Saved Location</h3>
+        <button class="modal-close-btn" onclick="closeAddLocationModal()">&times;</button>
+      </div>
+      <div class="modal-body">
+        <form onsubmit="submitSaveLocation(event)">
+          <div class="form-group" style="margin-bottom:1rem;">
+            <label class="form-label">Label</label>
+            <input type="text" id="loc-label" class="form-input" required placeholder="e.g. Home, Village Farmhouse">
+          </div>
+          <div class="form-group" style="margin-bottom:1rem;">
+            <label class="form-label">Address Line</label>
+            <input type="text" id="loc-address" class="form-input" required placeholder="Street address">
+          </div>
+          <div class="form-group" style="margin-bottom:1rem;">
+            <label class="form-label">City / Town</label>
+            <input type="text" id="loc-city" class="form-input" required placeholder="City name">
+          </div>
+          <div class="form-group" style="margin-bottom:1.5rem;">
+            <label class="form-label">PIN Code</label>
+            <input type="text" id="loc-pincode" class="form-input" placeholder="6-digit PIN" maxlength="6">
+          </div>
+          <div class="flex justify-end gap-2">
+            <button type="button" class="btn btn-secondary btn-sm" onclick="closeAddLocationModal()">Cancel</button>
+            <button type="submit" class="btn btn-primary btn-sm">Save Address</button>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+
+  <!-- Write Verified Review Modal -->
+  <div id="write-review-modal" class="modal-backdrop">
+    <div class="modal-dialog">
+      <div class="modal-header">
+        <h3 class="modal-title">⭐ Write Verified Review</h3>
+        <button class="modal-close-btn" onclick="closeReviewModal()">&times;</button>
+      </div>
+      <div class="modal-body">
+        <form id="write-review-form" onsubmit="submitVerifiedReview(event)">
+          <input type="hidden" id="rev-booking-id">
+          <input type="hidden" id="rev-service-id">
+
+          <div style="background:rgba(255,255,255,0.04); padding:0.75rem 1rem; border-radius:var(--radius-md); margin-bottom:1.25rem;">
+            <div style="font-size:0.75rem; color:var(--text-muted); text-transform:uppercase;">Venue / Event Service</div>
+            <strong id="rev-venue-name" style="color:#fbbf24; font-size:1.05rem;">The Royal Grand Heritage</strong>
+            <span class="badge badge-verified" style="margin-left:0.5rem; font-size:0.7rem;">✓ Verified Booking</span>
+          </div>
+
+          <!-- Overall Star Rating -->
+          <div class="form-group" style="margin-bottom:1.25rem; text-align:center;">
+            <label class="form-label" style="margin-bottom:0.4rem;">Overall Rating *</label>
+            <div id="rev-star-picker" style="font-size:2.2rem; cursor:pointer; display:inline-flex; gap:0.35rem; color:#f59e0b;">
+              <span class="rev-star" data-val="1" onclick="setReviewRating(1)">★</span>
+              <span class="rev-star" data-val="2" onclick="setReviewRating(2)">★</span>
+              <span class="rev-star" data-val="3" onclick="setReviewRating(3)">★</span>
+              <span class="rev-star" data-val="4" onclick="setReviewRating(4)">★</span>
+              <span class="rev-star" data-val="5" onclick="setReviewRating(5)">★</span>
+            </div>
+            <input type="hidden" id="rev-rating" value="5">
+          </div>
+
+          <div class="form-group" style="margin-bottom:1rem;">
+            <label class="form-label">Review Headline *</label>
+            <input type="text" id="rev-title" class="form-input" required placeholder="e.g. Memorable wedding celebration, great amenities!">
+          </div>
+
+          <div class="form-group" style="margin-bottom:1rem;">
+            <label class="form-label">Detailed Review *</label>
+            <textarea id="rev-comment" class="form-input" rows="4" required placeholder="Share details about the venue ambience, catering setup, staff helpfulness, AC cooling, parking, etc."></textarea>
+          </div>
+
+          <!-- Aspect Ratings -->
+          <div style="display:grid; grid-template-columns:repeat(3, 1fr); gap:0.75rem; margin-bottom:1.25rem;">
+            <div>
+              <label class="form-label" style="font-size:0.75rem;">Cleanliness</label>
+              <select id="rev-cleanliness" class="form-input" style="background:#111827; color:#fff;">
+                <option value="5">5/5 - Spotless</option>
+                <option value="4">4/5 - Good</option>
+                <option value="3">3/5 - Average</option>
+                <option value="2">2/5 - Fair</option>
+                <option value="1">1/5 - Poor</option>
+              </select>
+            </div>
+            <div>
+              <label class="form-label" style="font-size:0.75rem;">Staff & Service</label>
+              <select id="rev-staff" class="form-input" style="background:#111827; color:#fff;">
+                <option value="5">5/5 - Excellent</option>
+                <option value="4">4/5 - Helpful</option>
+                <option value="3">3/5 - Average</option>
+                <option value="2">2/5 - Slow</option>
+                <option value="1">1/5 - Poor</option>
+              </select>
+            </div>
+            <div>
+              <label class="form-label" style="font-size:0.75rem;">Value for Money</label>
+              <select id="rev-value" class="form-input" style="background:#111827; color:#fff;">
+                <option value="5">5/5 - Worth every ₹</option>
+                <option value="4">4/5 - Good Value</option>
+                <option value="3">3/5 - Reasonable</option>
+                <option value="2">2/5 - Pricey</option>
+                <option value="1">1/5 - Overpriced</option>
+              </select>
+            </div>
+          </div>
+
+          <div class="form-group" style="margin-bottom:1.5rem;">
+            <label class="form-label">Photo URLs (Optional, comma-separated)</label>
+            <input type="text" id="rev-photos" class="form-input" placeholder="https://images.unsplash.com/photo-1..., https://...">
+          </div>
+
+          <div class="flex justify-end gap-2">
+            <button type="button" class="btn btn-secondary btn-sm" onclick="closeReviewModal()">Cancel</button>
+            <button type="submit" id="btn-submit-review" class="btn btn-gold btn-sm">Submit Verified Review</button>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+
+  <!-- =========================================================================
+       MODAL: 25% ADVANCE PAYMENT CHECKOUT (PHASE 15)
+  ========================================================================= -->
+  <div id="payment-checkout-modal" class="modal-backdrop" role="dialog" aria-modal="true">
+    <div class="modal-dialog" style="max-width:540px;">
+      <div class="modal-header">
+        <div class="flex items-center gap-1">
+          <div class="brand-icon-box" style="width:32px; height:32px; font-size:0.9rem;">💳</div>
+          <h3 class="modal-title">Confirm & Pay Booking Advance</h3>
+        </div>
+        <button class="modal-close-btn" onclick="closePaymentModal()">&times;</button>
+      </div>
+      <div class="modal-body">
+        <input type="hidden" id="pay-booking-id">
+        <div style="background:rgba(255,255,255,0.04); padding:1rem; border-radius:var(--radius-md); margin-bottom:1.25rem;">
+          <div style="font-size:0.75rem; color:var(--text-muted); text-transform:uppercase;">Venue / Booking Code</div>
+          <strong id="pay-venue-name" style="color:#fbbf24; font-size:1.1rem;">The Royal Grand Palace</strong>
+          <div id="pay-booking-code-label" style="font-size:0.8rem; color:var(--text-secondary); margin-top:0.2rem;"></div>
+        </div>
+
+        <!-- Breakdown Table -->
+        <div style="display:flex; flex-direction:column; gap:0.6rem; font-size:0.88rem; background:rgba(0,0,0,0.2); padding:1rem; border-radius:var(--radius-md); margin-bottom:1.25rem;">
+          <div class="flex justify-between">
+            <span style="color:var(--text-secondary);">Total Event Price:</span>
+            <strong id="pay-total-amount">₹0</strong>
+          </div>
+          <div class="flex justify-between" style="color:#10b981; font-weight:700; border-top:1px dashed var(--border-subtle); padding-top:0.5rem;">
+            <span>25% Mandatory Advance Now:</span>
+            <strong id="pay-advance-amount" style="font-size:1.15rem; color:#fbbf24;">₹0</strong>
+          </div>
+          <div class="flex justify-between" style="font-size:0.8rem; color:var(--text-muted);">
+            <span>Remaining 75% on Event Day:</span>
+            <span id="pay-remaining-amount">₹0</span>
+          </div>
+        </div>
+
+        <!-- Payment Method Tabs -->
+        <div class="form-group" style="margin-bottom:1.25rem;">
+          <label class="form-label" style="margin-bottom:0.5rem;">Select Payment Method</label>
+          <div style="display:grid; grid-template-columns:repeat(3, 1fr); gap:0.5rem;">
+            <button type="button" class="btn btn-gold btn-sm pay-method-btn" onclick="selectPayMethod('UPI', this)">
+              📱 UPI / QR
+            </button>
+            <button type="button" class="btn btn-secondary btn-sm pay-method-btn" onclick="selectPayMethod('CARD', this)">
+              💳 Card
+            </button>
+            <button type="button" class="btn btn-secondary btn-sm pay-method-btn" onclick="selectPayMethod('NETBANK', this)">
+              🏦 Net Banking
+            </button>
+          </div>
+        </div>
+
+        <!-- Simulated UPI QR Display -->
+        <div id="pay-upi-section" style="text-align:center; background:rgba(255,255,255,0.03); border:1px solid var(--border-subtle); border-radius:var(--radius-md); padding:1.25rem; margin-bottom:1.25rem;">
+          <div style="display:inline-block; padding:0.75rem; background:#fff; border-radius:var(--radius-sm); margin-bottom:0.75rem;">
+            <!-- SVG QR Simulation -->
+            <svg width="120" height="120" viewBox="0 0 100 100" fill="#000">
+              <rect width="100" height="100" fill="#fff"/>
+              <rect x="10" y="10" width="30" height="30" fill="#000"/>
+              <rect x="15" y="15" width="20" height="20" fill="#fff"/>
+              <rect x="20" y="20" width="10" height="10" fill="#000"/>
+              <rect x="60" y="10" width="30" height="30" fill="#000"/>
+              <rect x="65" y="15" width="20" height="20" fill="#fff"/>
+              <rect x="70" y="20" width="10" height="10" fill="#000"/>
+              <rect x="10" y="60" width="30" height="30" fill="#000"/>
+              <rect x="15" y="65" width="20" height="20" fill="#fff"/>
+              <rect x="20" y="70" width="10" height="10" fill="#000"/>
+              <rect x="45" y="15" width="8" height="15" fill="#000"/>
+              <rect x="45" y="45" width="15" height="15" fill="#000"/>
+              <rect x="65" y="65" width="20" height="20" fill="#000"/>
+              <rect x="45" y="70" width="10" height="15" fill="#000"/>
+            </svg>
+          </div>
+          <div style="font-size:0.8rem; color:var(--text-secondary);">
+            Scan with GPay, PhonePe, Paytm or BHIM UPI
+          </div>
+        </div>
+
+        <div class="flex justify-end gap-2">
+          <button type="button" class="btn btn-secondary btn-sm" onclick="closePaymentModal()">Cancel</button>
+          <button type="button" id="btn-submit-payment" class="btn btn-gold btn-sm" onclick="processAdvancePayment()">
+            🔒 Complete 25% Advance Payment
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="toast-container"></div>
+  <script src="js/i18n.js"></script>
+  <script src="js/app.js"></script>
+  <script src="js/api.js"></script>
+  <script src="js/firebase-config.js"></script>
+
+  <script>
+    // 1. Authentication Check
+    const token = HKF_API.auth.getToken();
+    if (!token) {
+      window.location.href = '/login.html?redirect=/dashboard.html';
+    }
+
+    let currentUserProfile = null;
+    let userBookingsCache = [];
+
+    // 2. Tab Navigation System
+    function switchTab(tabId, subFilter = null) {
+      document.querySelectorAll('.dash-nav-btn').forEach(btn => btn.classList.remove('active'));
+      document.querySelectorAll('.tab-content-panel').forEach(panel => panel.classList.remove('active'));
+
+      const targetBtn = Array.from(document.querySelectorAll('.dash-nav-btn')).find(b => b.getAttribute('onclick')?.includes(tabId));
+      if (targetBtn) targetBtn.classList.add('active');
+
+      const targetPanel = document.getElementById(`tab-${tabId}`);
+      if (targetPanel) targetPanel.classList.add('active');
+
+      if (tabId === 'bookings' && subFilter) {
+        const filterBtn = Array.from(document.querySelectorAll('.filter-pill-btn')).find(b => b.getAttribute('onclick')?.includes(subFilter));
+        if (filterBtn) filterBookings(subFilter, filterBtn);
+      }
+    }
+
+    // 3. Load User Profile
+    async function loadCustomerProfile() {
+      try {
+        const res = await HKF_API.users.getProfile();
+        currentUserProfile = res.data;
+        renderProfileData(currentUserProfile);
+      } catch (err) {
+        console.warn('Profile fetch warning:', err.message);
+        const cached = HKF_API.auth.getCurrentUser();
+        if (cached) renderProfileData(cached);
+      }
+    }
+
+    function renderProfileData(user) {
+      if (!user) return;
+      const initials = (user.name || 'User').split(' ').map(n => n[0]).join('').toUpperCase().slice(0, 2);
+
+      // Sidebar
+      document.getElementById('sidebar-user-name').textContent = user.name || 'Customer';
+      document.getElementById('sidebar-user-location').textContent = [user.city, user.state].filter(Boolean).join(', ') || 'India';
+      if (user.profilePhoto) {
+        document.getElementById('sidebar-avatar').innerHTML = `<img src="${user.profilePhoto}" style="width:100%; height:100%; object-fit:cover;" alt="${user.name}">`;
+      } else {
+        document.getElementById('sidebar-initials').textContent = initials;
+      }
+
+      // Overview
+      document.getElementById('overview-user-name').textContent = user.name || 'Welcome back!';
+      document.getElementById('overview-subtext').textContent = `Customer • ${[user.village, user.city, user.state].filter(Boolean).join(', ') || 'India'}`;
+      if (user.profilePhoto) {
+        document.getElementById('overview-avatar').innerHTML = `<img src="${user.profilePhoto}" style="width:100%; height:100%; object-fit:cover;" alt="${user.name}">`;
+      } else {
+        document.getElementById('overview-initials').textContent = initials;
+      }
+
+      // Settings Inputs
+      if (document.getElementById('prof-name')) document.getElementById('prof-name').value = user.name || '';
+      if (document.getElementById('prof-mobile')) document.getElementById('prof-mobile').value = user.mobile || '';
+      if (document.getElementById('prof-whatsapp')) document.getElementById('prof-whatsapp').value = user.whatsapp || '';
+      if (document.getElementById('prof-email')) document.getElementById('prof-email').value = user.email || '';
+      document.getElementById('prof-address').value = user.address || '';
+      document.getElementById('prof-state').value = user.state || '';
+      document.getElementById('prof-district').value = user.district || '';
+      document.getElementById('prof-city').value = user.city || '';
+      document.getElementById('prof-village').value = user.village || '';
+      document.getElementById('prof-pincode').value = user.pinCode || '';
+
+      if (user.profilePhoto) {
+        document.getElementById('settings-avatar-preview').innerHTML = `<img src="${user.profilePhoto}" style="width:100%; height:100%; object-fit:cover;" alt="${user.name}">`;
+      } else {
+        document.getElementById('settings-initials').textContent = initials;
+      }
+
+      // Favorites badge
+      const favCount = (user.favorites || []).length;
+      document.getElementById('badge-favs-count').textContent = favCount;
+      document.getElementById('metric-total-favorites').textContent = favCount;
+    }
+
+    // 4. Load Bookings
+    async function loadUserBookings() {
+      try {
+        const res = await HKF_API.bookings.getUserBookings();
+        userBookingsCache = res.data || [];
+        renderBookings(userBookingsCache);
+
+        // Update counts
+        const total = userBookingsCache.length;
+        const pending = userBookingsCache.filter(b => ['REQUESTED', 'PENDING'].includes(b.status)).length;
+        const upcoming = userBookingsCache.filter(b => ['ACCEPTED', 'CONFIRMED'].includes(b.status)).length;
+
+        document.getElementById('badge-bookings-count').textContent = total;
+        document.getElementById('metric-total-bookings').textContent = total;
+        document.getElementById('metric-pending-bookings').textContent = pending;
+        document.getElementById('metric-upcoming-bookings').textContent = upcoming;
+
+        // Render Highlight
+        renderNextEventHighlight(userBookingsCache);
+      } catch (err) {
+        console.warn('Could not load user bookings:', err.message);
+      }
+    }
+
+    function renderBookings(list) {
+      const container = document.getElementById('bookings-list-container');
+      if (!container) return;
+
+      if (!list || list.length === 0) {
+        container.innerHTML = `
+          <div class="glass-panel" style="padding:2.5rem; text-align:center; color:var(--text-secondary);">
+            <div style="font-size:2.5rem; margin-bottom:0.75rem;">📅</div>
+            <h3 style="font-size:1.15rem; color:#fff; margin-bottom:0.3rem;">No Bookings Found</h3>
+            <p style="font-size:0.85rem; margin-bottom:1.25rem;">You have not booked any venues or services in this category yet.</p>
+            <a href="/search.html" class="btn btn-primary btn-sm">Explore Event Marketplace</a>
+          </div>
+        `;
+        return;
+      }
+
+      container.innerHTML = list.map(b => {
+        const isConfirmed = b.status === 'CONFIRMED' || b.status === 'ACCEPTED';
+        const isPending = b.status === 'PENDING' || b.status === 'REQUESTED';
+        const isCompleted = b.status === 'COMPLETED';
+        const isCancelled = b.status === 'CANCELLED' || b.status === 'REJECTED';
+
+        const borderColor = isConfirmed ? '#10b981' : (isPending ? '#f59e0b' : (isCompleted ? '#6366f1' : '#ef4444'));
+        const badgeClass = isConfirmed ? 'badge-status-available' : (isPending ? 'badge-status-pending' : (isCompleted ? 'badge-indigo' : 'badge-status-booked'));
+
+        return `
+          <div class="glass-panel" style="padding:1.5rem; border-left:4px solid ${borderColor};">
+            <div class="flex items-center justify-between" style="margin-bottom:0.75rem; flex-wrap:wrap; gap:0.5rem;">
+              <div>
+                <span style="font-size:0.75rem; color:var(--text-muted); text-transform:uppercase;">Booking ID</span>
+                <strong style="color:#fbbf24; font-size:0.95rem; margin-left:0.4rem;">${b.id}</strong>
+              </div>
+              <span class="badge ${badgeClass}">${b.status}</span>
+            </div>
+
+            <h3 style="font-size:1.15rem; margin-bottom:0.4rem;">${b.serviceName || 'Premium Event Venue'}</h3>
+            <div style="font-size:0.85rem; color:var(--text-secondary); margin-bottom:0.75rem; display:flex; flex-wrap:wrap; gap:1rem;">
+              <span>📅 ${b.eventDate}</span>
+              <span>⏰ ${b.timeSlot || 'Evening'}</span>
+              <span>👥 ${b.guestCount || 0} Guests</span>
+            </div>
+
+            <div class="flex items-center justify-between" style="border-top:1px solid var(--border-subtle); padding-top:0.75rem; font-size:0.85rem; flex-wrap:wrap; gap:0.5rem;">
+              <div>
+                <span style="color:var(--text-muted);">Total Price:</span>
+                <strong style="color:#ffffff; margin-left:0.3rem;">₹${(b.pricing?.totalPrice || b.totalPrice || 0).toLocaleString()}</strong>
+              </div>
+              <div class="flex gap-1" style="flex-wrap:wrap; align-items:center;">
+                <button class="btn btn-secondary btn-sm" onclick="startChatWithBooking('${b.id}', '${b.ownerId || ''}', '${(b.serviceName || 'Venue Manager').replace(/'/g, "\\'")}')">💬 Chat</button>
+                ${(b.status === 'ACCEPTED' || (b.status === 'CONFIRMED' && b.paymentStatus !== 'ADVANCE_PAID' && b.paymentStatus !== 'PAID')) ? `
+                  <button class="btn btn-gold btn-sm" onclick="openPaymentModal('${b.id}', '${(b.serviceName || 'Event Venue').replace(/'/g, "\\'")}', ${b.pricing?.totalPrice || b.totalPrice || 0})">💳 Pay 25% Advance</button>
+                ` : ''}
+                ${(b.paymentStatus === 'ADVANCE_PAID' || b.paymentStatus === 'PAID') ? `
+                  <span class="badge badge-status-available" style="font-size:0.75rem; padding:0.25rem 0.5rem;">✓ Advance Paid</span>
+                ` : ''}
+                ${isPending ? `<button class="btn btn-secondary btn-sm" style="color:#ef4444;" onclick="cancelBooking('${b.id}')">Cancel</button>` : ''}
+                ${isCompleted ? `<button class="btn btn-gold btn-sm" onclick="openReviewModal('${b.id}', '${b.serviceId || b.hallId}', '${(b.serviceName || 'Event Venue').replace(/'/g, "\\'")}')">★ Leave Review</button>` : ''}
+                <a href="/api/bookings/${b.id}/invoice" target="_blank" download="HallKhoj_Invoice_${b.id}.pdf" class="btn btn-secondary btn-sm" title="Download Verified PDF Invoice">📄 PDF Invoice</a>
+              </div>
+            </div>
+
+          </div>
+        `;
+      }).join('');
+    }
+
+    // Payment Modal System (Phase 15)
+    let selectedPaymentMethod = 'UPI';
+
+    function openPaymentModal(bookingId, venueName, totalAmount) {
+      const modal = document.getElementById('payment-checkout-modal');
+      if (!modal) return;
+
+      const advanceAmount = Math.round(totalAmount * 0.25);
+      const remainingAmount = totalAmount - advanceAmount;
+
+      document.getElementById('pay-booking-id').value = bookingId;
+      document.getElementById('pay-venue-name').textContent = venueName || 'Selected Venue';
+      document.getElementById('pay-booking-code-label').textContent = 'Booking Reference: ' + bookingId;
+      document.getElementById('pay-total-amount').textContent = '₹' + totalAmount.toLocaleString('en-IN');
+      document.getElementById('pay-advance-amount').textContent = '₹' + advanceAmount.toLocaleString('en-IN');
+      document.getElementById('pay-remaining-amount').textContent = '₹' + remainingAmount.toLocaleString('en-IN');
+
+      const submitBtn = document.getElementById('btn-submit-payment');
+      if (submitBtn) {
+        submitBtn.disabled = false;
+        submitBtn.textContent = '🔒 Complete 25% Advance Payment (₹' + advanceAmount.toLocaleString('en-IN') + ')';
+      }
+
+      modal.classList.add('open');
+    }
+
+    function closePaymentModal() {
+      const modal = document.getElementById('payment-checkout-modal');
+      if (modal) modal.classList.remove('open');
+    }
+
+    function selectPayMethod(method, btn) {
+      selectedPaymentMethod = method;
+      document.querySelectorAll('.pay-method-btn').forEach(b => {
+        b.classList.remove('btn-gold');
+        b.classList.add('btn-secondary');
+      });
+      if (btn) {
+        btn.classList.remove('btn-secondary');
+        btn.classList.add('btn-gold');
+      }
+
+      const upiSection = document.getElementById('pay-upi-section');
+      if (upiSection) {
+        if (method === 'UPI') {
+          upiSection.style.display = 'block';
+        } else {
+          upiSection.style.display = 'none';
+        }
+      }
+    }
+
+    async function processAdvancePayment() {
+      const bookingId = document.getElementById('pay-booking-id').value;
+      if (!bookingId) {
+        showToast('Invalid booking ID for payment', 'error');
+        return;
+      }
+
+      const submitBtn = document.getElementById('btn-submit-payment');
+      if (submitBtn) {
+        submitBtn.disabled = true;
+        submitBtn.textContent = '⏳ Processing Secure Payment...';
+      }
+
+      try {
+        // Step 1: Create Order on backend (calculates 25% advance strictly on server)
+        const orderRes = await HKF_API.payments.createOrder(bookingId);
+        if (!orderRes || !orderRes.data) {
+          throw new Error(orderRes.message || 'Failed to create payment order');
+        }
+
+        const { orderId, amount, currency } = orderRes.data;
+
+        // Step 2: Simulate Gateway / Razorpay signature callback
+        const paymentPayload = {
+          bookingId,
+          orderId,
+          paymentId: 'pay_' + Date.now() + '_' + Math.random().toString(36).substring(2, 7),
+          signature: 'SIMULATED_TEST_SIGNATURE',
+          method: selectedPaymentMethod
+        };
+
+        const verifyRes = await HKF_API.payments.verify(paymentPayload);
+        if (verifyRes.success) {
+          showToast(`✅ Advance payment of ₹${(amount || 0).toLocaleString('en-IN')} confirmed! Booking is now CONFIRMED.`, 'success');
+          closePaymentModal();
+          await loadUserBookings();
+        } else {
+          throw new Error(verifyRes.message || 'Payment verification failed');
+        }
+      } catch (err) {
+        showToast(err.message || 'Payment transaction failed', 'error');
+      } finally {
+        if (submitBtn) {
+          submitBtn.disabled = false;
+          submitBtn.textContent = '🔒 Complete 25% Advance Payment';
+        }
+      }
+    }
+
+    function renderNextEventHighlight(list) {
+      const container = document.getElementById('next-event-container');
+      const upcoming = list.find(b => ['ACCEPTED', 'CONFIRMED'].includes(b.status));
+      if (!upcoming) return;
+
+      const needsAdvance = upcoming.paymentStatus !== 'ADVANCE_PAID' && upcoming.paymentStatus !== 'PAID';
+
+      container.innerHTML = `
+        <div class="glass-panel" style="padding:1.5rem; border-left:4px solid #10b981;">
+          <div class="flex items-center justify-between" style="margin-bottom:0.5rem;">
+            <span class="badge badge-status-available">Confirmed Upcoming Event</span>
+            <span style="font-size:0.8rem; color:var(--text-muted);">${upcoming.id}</span>
+          </div>
+          <h3 style="font-size:1.2rem; margin-bottom:0.3rem;">${upcoming.serviceName || 'The Royal Grand Palace'}</h3>
+          <p style="font-size:0.85rem; color:var(--text-secondary); margin-bottom:0.75rem;">
+            📅 ${upcoming.eventDate} • Slot: ${upcoming.timeSlot || 'Evening'} • Guests: ${upcoming.guestCount || 0}
+          </p>
+          <div class="flex gap-2">
+            ${needsAdvance ? `
+              <button class="btn btn-gold btn-sm" onclick="openPaymentModal('${upcoming.id}', '${(upcoming.serviceName || 'The Royal Grand Palace').replace(/'/g, "\\'")}', ${upcoming.pricing?.totalPrice || upcoming.totalPrice || 0})">💳 Pay 25% Advance</button>
+            ` : ''}
+            <button class="btn btn-secondary btn-sm" onclick="startChatWithBooking('${upcoming.id}', '${upcoming.ownerId || ''}', '${(upcoming.serviceName || 'Venue Manager').replace(/'/g, "\\'")}')">💬 Message Venue Manager</button>
+            <button class="btn btn-primary btn-sm" onclick="switchTab('bookings')">View Booking Details</button>
+          </div>
+        </div>
+      `;
+    }
+
+    function filterBookings(category, btn) {
+      document.querySelectorAll('.filter-pill-btn').forEach(b => b.classList.remove('active'));
+      if (btn) btn.classList.add('active');
+
+      if (category === 'all') {
+        renderBookings(userBookingsCache);
+      } else if (category === 'upcoming') {
+        renderBookings(userBookingsCache.filter(b => ['ACCEPTED', 'CONFIRMED'].includes(b.status)));
+      } else if (category === 'pending') {
+        renderBookings(userBookingsCache.filter(b => ['REQUESTED', 'PENDING'].includes(b.status)));
+      } else if (category === 'completed') {
+        renderBookings(userBookingsCache.filter(b => b.status === 'COMPLETED'));
+      } else if (category === 'cancelled') {
+        renderBookings(userBookingsCache.filter(b => ['CANCELLED', 'REJECTED'].includes(b.status)));
+      }
+    }
+
+    async function cancelBooking(id) {
+      if (!confirm('Are you sure you want to cancel this booking request?')) return;
+      try {
+        await HKF_API.bookings.updateStatus(id, 'CANCELLED');
+        showToast('Booking cancelled.', 'info');
+        loadUserBookings();
+      } catch (err) {
+        showToast(err.message || 'Cancellation failed', 'error');
+      }
+    }
+
+    // 5. Load Favorites
+    async function loadFavorites() {
+      const grid = document.getElementById('favorites-grid');
+      try {
+        const res = await HKF_API.users.getFavorites();
+        const items = res.data || [];
+        if (items.length === 0) {
+          grid.innerHTML = `
+            <div class="glass-panel" style="padding:2rem; text-align:center; color:var(--text-secondary); grid-column:1/-1;">
+              <p style="margin-bottom:0.75rem;">You haven't saved any favorites yet.</p>
+              <a href="/search.html" class="btn btn-gold btn-sm">Explore Halls & Cars</a>
+            </div>
+          `;
+          return;
+        }
+
+        grid.innerHTML = items.map(item => `
+          <div class="glass-panel" style="overflow:hidden; padding:0; border-radius:var(--radius-md);">
+            <div style="height:150px; background:url('${item.coverImg || ''}') center/cover no-repeat #1e293b;"></div>
+            <div style="padding:1rem;">
+              <div class="flex justify-between items-center" style="margin-bottom:0.25rem;">
+                <span class="badge badge-gold">${item.category || item.type || 'Venue'}</span>
+                <span style="font-size:0.8rem; color:#fbbf24;">★ ${item.rating || '4.9'}</span>
+              </div>
+              <h4 style="font-size:1rem; margin-bottom:0.3rem;">${item.name}</h4>
+              <p style="font-size:0.75rem; color:var(--text-muted); margin-bottom:0.75rem;">${item.city || 'Lucknow'}, ${item.state || 'UP'}</p>
+              <div class="flex justify-between items-center">
+                <strong style="color:#fff; font-size:0.95rem;">₹${(item.startingPrice || 0).toLocaleString()}</strong>
+                <div class="flex gap-1">
+                  <a href="/hall-details.html?id=${item.id}" class="btn btn-secondary btn-sm">View</a>
+                  <button class="btn btn-secondary btn-sm" style="color:#ef4444;" onclick="removeFavorite('${item.id}')">✕</button>
+                </div>
+              </div>
+            </div>
+          </div>
+        `).join('');
+      } catch (err) {
+        console.warn('Could not load favorites:', err.message);
+      }
+    }
+
+    async function removeFavorite(id) {
+      try {
+        await HKF_API.users.toggleFavorite(id);
+        showToast('Removed from favorites', 'info');
+        loadCustomerProfile();
+        loadFavorites();
+      } catch (err) {
+        showToast(err.message, 'error');
+      }
+    }
+
+    // 6. Profile Photo Upload Handler
+    async function handleProfilePhotoUpload(input) {
+      const file = input.files?.[0];
+      if (!file) return;
+
+      showToast('Uploading profile photo...', 'info');
+      try {
+        const uploadRes = await HKF_Firebase.storage.uploadFile(file, 'profiles');
+        const photoUrl = uploadRes.url;
+
+        // Persist to user profile
+        await HKF_API.users.updateProfile({ profilePhoto: photoUrl });
+        showToast('Profile photo updated successfully!', 'success');
+        loadCustomerProfile();
+      } catch (err) {
+        showToast(err.message || 'Photo upload failed', 'error');
+      } finally {
+        input.value = '';
+      }
+    }
+
+    // 7. Save Profile Details
+    async function saveProfileChanges(e) {
+      e.preventDefault();
+      const saveBtn = document.getElementById('save-profile-btn');
+      saveBtn.disabled = true;
+      saveBtn.textContent = 'Saving...';
+
+      const payload = {
+        name: document.getElementById('prof-name').value.trim(),
+        mobile: document.getElementById('prof-mobile').value.trim(),
+        address: document.getElementById('prof-address').value.trim(),
+        state: document.getElementById('prof-state').value,
+        district: document.getElementById('prof-district').value.trim(),
+        city: document.getElementById('prof-city').value.trim(),
+        village: document.getElementById('prof-village').value.trim(),
+        pinCode: document.getElementById('prof-pincode').value.trim()
+      };
+
+      try {
+        const res = await HKF_API.users.updateProfile(payload);
+        currentUserProfile = res.data;
+        renderProfileData(currentUserProfile);
+        showToast('Profile updated successfully!', 'success');
+      } catch (err) {
+        showToast(err.message || 'Update failed', 'error');
+      } finally {
+        saveBtn.disabled = false;
+        saveBtn.textContent = 'Save Profile Changes';
+      }
+    }
+
+    // 8. Saved Locations System
+    const locModal = document.getElementById('add-location-modal');
+    function openAddLocationModal() { if (locModal) locModal.classList.add('open'); }
+    function closeAddLocationModal() { if (locModal) locModal.classList.remove('open'); }
+
+    async function loadSavedLocations() {
+      const grid = document.getElementById('locations-grid');
+      try {
+        const res = await HKF_API.users.getLocations();
+        const locations = res.data || [];
+        if (locations.length > 0) {
+          grid.innerHTML = locations.map(loc => `
+            <div class="glass-panel" style="padding:1.25rem;">
+              <span class="badge badge-indigo" style="margin-bottom:0.5rem;">${loc.label}</span>
+              <p style="font-size:0.85rem; color:var(--text-primary); font-weight:600; margin-bottom:0.25rem;">${loc.address}</p>
+              <p style="font-size:0.75rem; color:var(--text-secondary);">${[loc.city, loc.district, loc.state].filter(Boolean).join(', ')} ${loc.pinCode ? '- ' + loc.pinCode : ''}</p>
+            </div>
+          `).join('');
+        }
+      } catch (err) {
+        console.warn('Could not load locations:', err.message);
+      }
+    }
+
+    async function submitSaveLocation(e) {
+      e.preventDefault();
+      const label = document.getElementById('loc-label').value.trim();
+      const address = document.getElementById('loc-address').value.trim();
+      const city = document.getElementById('loc-city').value.trim();
+      const pinCode = document.getElementById('loc-pincode').value.trim();
+
+      try {
+        await HKF_API.users.addLocation({ label, address, city, pinCode });
+        showToast('Location saved!', 'success');
+        closeAddLocationModal();
+        loadSavedLocations();
+      } catch (err) {
+        showToast(err.message, 'error');
+      }
+    }
+
+    // =========================================================================
+    // 9. MESSAGING & CHAT SYSTEM (PHASE 10)
+    // =========================================================================
+    let activeConversationId = null;
+    let activeChatRecipientId = null;
+    let activeChatBookingId = null;
+    let activeChatVenueId = null;
+    let conversationsCache = [];
+
+    async function loadConversations() {
+      const listContainer = document.getElementById('conversations-list');
+      if (!listContainer) return;
+
+      try {
+        const res = await HKF_API.messages.getConversations();
+        conversationsCache = res.data || [];
+
+        const unreadTotal = conversationsCache.reduce((acc, c) => acc + (c.unreadCount || 0), 0);
+        const badge = document.getElementById('badge-messages-count');
+        if (badge) {
+          badge.textContent = unreadTotal;
+          badge.style.display = unreadTotal > 0 ? 'inline-block' : 'none';
+        }
+
+        if (conversationsCache.length === 0) {
+          listContainer.innerHTML = `
+            <div style="font-size:0.8rem; color:var(--text-muted); text-align:center; padding:1.5rem 0.5rem;">
+              No messages yet. Chat with a venue from your bookings list!
+            </div>
+          `;
+          return;
+        }
+
+        listContainer.innerHTML = conversationsCache.map(conv => {
+          const isSelected = conv.id === activeConversationId;
+          const partnerName = conv.otherParticipant?.name || 'Venue Manager';
+          const lastMsg = conv.lastMessage?.text || 'No messages yet';
+          const unreadBadge = conv.unreadCount > 0 ? `<span class="badge badge-gold" style="font-size:0.65rem; padding:0.1rem 0.35rem;">${conv.unreadCount} new</span>` : '';
+
+          return `
+            <div class="glass-panel" style="padding:0.75rem; cursor:pointer; background:${isSelected ? 'rgba(99,102,241,0.25)' : 'rgba(255,255,255,0.03)'}; border-color:${isSelected ? 'rgba(99,102,241,0.5)' : 'var(--border-subtle)'};" onclick="selectConversation('${conv.id}')">
+              <div class="flex justify-between items-center" style="margin-bottom:0.2rem;">
+                <strong style="font-size:0.85rem; color:#fff; white-space:nowrap; overflow:hidden; text-overflow:ellipsis;">${partnerName}</strong>
+                ${unreadBadge}
+              </div>
+              <div style="font-size:0.75rem; color:var(--text-secondary); text-overflow:ellipsis; overflow:hidden; white-space:nowrap;">
+                ${lastMsg}
+              </div>
+            </div>
+          `;
+        }).join('');
+
+        // Auto select first if none active
+        if (!activeConversationId && conversationsCache.length > 0) {
+          selectConversation(conversationsCache[0].id);
+        }
+      } catch (err) {
+        console.warn('Could not load conversations:', err.message);
+      }
+    }
+
+    async function selectConversation(convId) {
+      activeConversationId = convId;
+      const conv = conversationsCache.find(c => c.id === convId);
+      if (conv) {
+        document.getElementById('chat-partner-name').textContent = conv.otherParticipant?.name || 'Venue Manager';
+        document.getElementById('chat-partner-sub').textContent = conv.otherParticipant?.role === 'owner' ? 'Verified Venue Partner' : 'Direct Conversation';
+        document.getElementById('chat-active-badge').style.display = 'inline-block';
+        activeChatRecipientId = conv.otherParticipant?.id;
+        activeChatBookingId = conv.bookingId;
+      }
+
+      await loadMessages(convId);
+      // Mark read
+      try {
+        await HKF_API.messages.markAsRead(convId);
+      } catch (e) { /* ignore */ }
+    }
+
+    async function loadMessages(convId) {
+      const chatBox = document.getElementById('chat-messages-box');
+      if (!chatBox) return;
+
+      try {
+        const res = await HKF_API.messages.getMessages(convId);
+        const msgs = res.data || [];
+
+        if (msgs.length === 0) {
+          chatBox.innerHTML = `
+            <div style="text-align:center; color:var(--text-muted); margin-top:4rem; font-size:0.85rem;">
+              Conversation started. Type a message below to reach the owner.
+            </div>
+          `;
+          return;
+        }
+
+        const currentUserId = currentUserProfile?.id || HKF_API.auth.getCurrentUser()?.id;
+
+        chatBox.innerHTML = msgs.map(m => {
+          const isMe = m.senderId === currentUserId;
+          const bg = isMe ? 'var(--primary)' : 'rgba(255,255,255,0.06)';
+          const align = isMe ? 'flex-end' : 'flex-start';
+          const senderLabel = isMe ? 'You' : (m.senderName || (m.senderRole === 'owner' ? 'Owner' : 'Support'));
+          const time = new Date(m.createdAt || Date.now()).toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' });
+
+          return `
+            <div style="align-self:${align}; background:${bg}; color:#fff; padding:0.6rem 0.85rem; border-radius:var(--radius-md); max-width:80%; font-size:0.85rem;">
+              <strong style="color:${isMe ? '#e0e7ff' : 'var(--secondary-light)'}; font-size:0.75rem; display:block; margin-bottom:0.2rem;">${senderLabel}</strong>
+              ${m.text}
+              <span style="display:block; font-size:0.65rem; color:rgba(255,255,255,0.6); margin-top:0.3rem; text-align:${isMe ? 'right' : 'left'};">${time}</span>
+            </div>
+          `;
+        }).join('');
+
+        chatBox.scrollTop = chatBox.scrollHeight;
+      } catch (err) {
+        console.warn('Could not load messages:', err.message);
+      }
+    }
+
+    async function sendMessage(e) {
+      if (e) e.preventDefault();
+      const input = document.getElementById('chat-input');
+      const text = input.value.trim();
+      if (!text) return;
+
+      const payload = {
+        text,
+        conversationId: activeConversationId || undefined,
+        recipientId: activeChatRecipientId || undefined,
+        bookingId: activeChatBookingId || undefined,
+        venueId: activeChatVenueId || undefined
+      };
+
+      try {
+        const res = await HKF_API.messages.send(payload);
+        input.value = '';
+        if (!activeConversationId && res.data?.conversationId) {
+          activeConversationId = res.data.conversationId;
+        }
+        await loadConversations();
+        if (activeConversationId) {
+          await loadMessages(activeConversationId);
+        }
+      } catch (err) {
+        showToast(err.message || 'Failed to send message', 'error');
+      }
+    }
+
+    function startChatWithBooking(bookingId, ownerId, venueName) {
+      switchTab('messages');
+      activeChatBookingId = bookingId;
+      activeChatRecipientId = ownerId;
+      activeConversationId = null;
+
+      document.getElementById('chat-partner-name').textContent = venueName || 'Venue Manager';
+      document.getElementById('chat-partner-sub').textContent = `Inquiry for Booking #${bookingId}`;
+      document.getElementById('chat-active-badge').style.display = 'inline-block';
+
+      // Check if conversation already exists for this booking
+      const match = conversationsCache.find(c => c.bookingId === bookingId);
+      if (match) {
+        selectConversation(match.id);
+      } else {
+        const chatBox = document.getElementById('chat-messages-box');
+        chatBox.innerHTML = `
+          <div style="text-align:center; color:var(--text-muted); margin-top:4rem; font-size:0.85rem;">
+            Starting new chat for booking <strong>#${bookingId}</strong>.<br>Send a message below to notify the owner.
+          </div>
+        `;
+        document.getElementById('chat-input').focus();
+      }
+    }
+
+    // =========================================================================
+    // 10. NOTIFICATION CENTER (PHASE 10)
+    // =========================================================================
+    async function loadNotifications() {
+      const listContainer = document.getElementById('notifications-list');
+      const indicator = document.getElementById('notif-indicator');
+      const navBadge = document.getElementById('badge-notifs-count');
+
+      try {
+        const res = await HKF_API.notifications.list();
+        const notifs = res.data || [];
+        const unreadCount = notifs.filter(n => !n.read).length;
+
+        if (indicator) indicator.style.display = unreadCount > 0 ? 'block' : 'none';
+        if (navBadge) {
+          navBadge.textContent = unreadCount;
+          navBadge.style.display = unreadCount > 0 ? 'inline-block' : 'none';
+        }
+
+        if (!listContainer) return;
+
+        if (notifs.length === 0) {
+          listContainer.innerHTML = `
+            <div class="glass-panel" style="padding:2.5rem; text-align:center; color:var(--text-secondary);">
+              <div style="font-size:2rem; margin-bottom:0.5rem;">🔔</div>
+              <h4 style="color:#fff; margin-bottom:0.25rem;">No notifications</h4>
+              <p style="font-size:0.85rem; margin:0;">You're completely caught up! We will alert you here as your bookings progress.</p>
+            </div>
+          `;
+          return;
+        }
+
+        listContainer.innerHTML = notifs.map(n => {
+          const isUnread = !n.read;
+          const time = new Date(n.createdAt || Date.now()).toLocaleString();
+          let icon = '🔔';
+          if (n.type?.includes('BOOKING')) icon = '📅';
+          if (n.type?.includes('MESSAGE') || n.type?.includes('CHAT')) icon = '💬';
+          if (n.type?.includes('REVIEW')) icon = '⭐';
+
+          return `
+            <div class="glass-panel" style="padding:1rem 1.25rem; display:flex; align-items:flex-start; gap:0.75rem; border-left:${isUnread ? '4px solid #f59e0b' : '1px solid var(--border-subtle)'}; background:${isUnread ? 'rgba(245,158,11,0.06)' : 'rgba(255,255,255,0.02)'};">
+              <span style="font-size:1.4rem;">${icon}</span>
+              <div style="flex:1;">
+                <div class="flex justify-between items-center">
+                  <strong style="color:${isUnread ? '#fbbf24' : '#fff'}; font-size:0.95rem;">${n.title || 'Notification'}</strong>
+                  ${isUnread ? '<span class="badge badge-gold" style="font-size:0.65rem;">New</span>' : ''}
+                </div>
+                <p style="font-size:0.85rem; color:var(--text-secondary); margin:0.3rem 0;">${n.message || ''}</p>
+                <div class="flex justify-between items-center" style="margin-top:0.4rem;">
+                  <span style="font-size:0.7rem; color:var(--text-muted);">${time}</span>
+                  <div class="flex gap-1">
+                    ${isUnread ? `<button class="btn btn-secondary btn-sm" style="padding:0.2rem 0.5rem; font-size:0.7rem;" onclick="markSingleNotificationRead('${n.id}')">Mark read</button>` : ''}
+                    ${n.link ? `<a href="${n.link}" class="btn btn-primary btn-sm" style="padding:0.2rem 0.5rem; font-size:0.7rem;">View</a>` : ''}
+                  </div>
+                </div>
+              </div>
+            </div>
+          `;
+        }).join('');
+      } catch (err) {
+        console.warn('Could not load notifications:', err.message);
+      }
+    }
+
+    async function markSingleNotificationRead(id) {
+      try {
+        await HKF_API.notifications.markAsRead(id);
+        loadNotifications();
+      } catch (err) {
+        console.warn(err);
+      }
+    }
+
+    async function markAllNotificationsRead() {
+      try {
+        await HKF_API.notifications.markAllAsRead();
+        showToast('All notifications marked as read', 'info');
+        loadNotifications();
+      } catch (err) {
+        showToast(err.message || 'Failed to mark all as read', 'error');
+      }
+    }
+
+    // =========================================================================
+    // 11. VERIFIED REVIEWS ENGINE (PHASE 11)
+    // =========================================================================
+    const reviewModal = document.getElementById('write-review-modal');
+
+    function openReviewModal(bookingId, serviceId, venueName) {
+      document.getElementById('rev-booking-id').value = bookingId;
+      document.getElementById('rev-service-id').value = serviceId || '';
+      document.getElementById('rev-venue-name').textContent = venueName || 'Event Venue';
+      document.getElementById('rev-title').value = '';
+      document.getElementById('rev-comment').value = '';
+      document.getElementById('rev-photos').value = '';
+      setReviewRating(5);
+
+      if (reviewModal) reviewModal.classList.add('open');
+    }
+
+    function closeReviewModal() {
+      if (reviewModal) reviewModal.classList.remove('open');
+    }
+
+    function setReviewRating(stars) {
+      document.getElementById('rev-rating').value = stars;
+      const spans = document.querySelectorAll('#rev-star-picker .rev-star');
+      spans.forEach((s, idx) => {
+        if (idx < stars) {
+          s.style.color = '#f59e0b';
+        } else {
+          s.style.color = 'rgba(255,255,255,0.2)';
+        }
+      });
+    }
+
+    async function submitVerifiedReview(e) {
+      e.preventDefault();
+      const submitBtn = document.getElementById('btn-submit-review');
+      submitBtn.disabled = true;
+      submitBtn.textContent = 'Submitting...';
+
+      const bookingId = document.getElementById('rev-booking-id').value;
+      const serviceId = document.getElementById('rev-service-id').value;
+      const rating = parseInt(document.getElementById('rev-rating').value, 10);
+      const title = document.getElementById('rev-title').value.trim();
+      const comment = document.getElementById('rev-comment').value.trim();
+      const cleanliness = parseInt(document.getElementById('rev-cleanliness').value, 10);
+      const staff = parseInt(document.getElementById('rev-staff').value, 10);
+      const value = parseInt(document.getElementById('rev-value').value, 10);
+      const photosRaw = document.getElementById('rev-photos').value.trim();
+      const photos = photosRaw ? photosRaw.split(',').map(p => p.trim()).filter(Boolean) : [];
+
+      const payload = {
+        bookingId,
+        serviceId,
+        rating,
+        title,
+        comment,
+        aspects: { cleanliness, staff, value },
+        photos
+      };
+
+      try {
+        await HKF_API.reviews.create(payload);
+        showToast('Thank you! Your verified review has been published.', 'success');
+        closeReviewModal();
+        switchTab('reviews');
+        loadMyReviews();
+        loadUserBookings();
+      } catch (err) {
+        showToast(err.message || 'Review submission failed', 'error');
+      } finally {
+        submitBtn.disabled = false;
+        submitBtn.textContent = 'Submit Verified Review';
+      }
+    }
+
+    async function loadMyReviews() {
+      const container = document.getElementById('reviews-container');
+      const badge = document.getElementById('badge-reviews-count');
+      if (!container) return;
+
+      try {
+        const res = await HKF_API.reviews.getUserReviews();
+        const reviews = res.data || [];
+
+        if (badge) {
+          badge.textContent = reviews.length;
+          badge.style.display = reviews.length > 0 ? 'inline-block' : 'none';
+        }
+
+        if (reviews.length === 0) {
+          container.innerHTML = `
+            <div class="glass-panel" style="padding:2.5rem; text-align:center; color:var(--text-secondary);">
+              <div style="font-size:2.5rem; margin-bottom:0.75rem;">⭐</div>
+              <h3 style="font-size:1.15rem; color:#fff; margin-bottom:0.3rem;">No Reviews Yet</h3>
+              <p style="font-size:0.85rem; margin-bottom:1.25rem;">Once your event booking is COMPLETED, you will be able to leave a verified rating and review here.</p>
+              <button class="btn btn-secondary btn-sm" onclick="switchTab('bookings')">View My Bookings</button>
+            </div>
+          `;
+          return;
+        }
+
+        container.innerHTML = reviews.map(r => {
+          const starsStr = '★'.repeat(r.rating || 5) + '☆'.repeat(5 - (r.rating || 5));
+          const dateStr = new Date(r.createdAt || Date.now()).toLocaleDateString('en-IN', { day: 'numeric', month: 'short', year: 'numeric' });
+
+          return `
+            <div class="glass-panel" style="padding:1.5rem; border-left:4px solid #f59e0b;">
+              <div class="flex items-center justify-between" style="margin-bottom:0.5rem; flex-wrap:wrap; gap:0.5rem;">
+                <div>
+                  <strong style="font-size:1.1rem; color:#fff;">${r.serviceName || r.title || 'Event Venue'}</strong>
+                  <span class="badge badge-verified" style="margin-left:0.5rem; font-size:0.7rem;">✓ Verified Booking</span>
+                </div>
+                <div style="display:flex; align-items:center; gap:0.5rem;">
+                  <span style="color:#fbbf24; font-size:1.1rem; letter-spacing:1px;">${starsStr}</span>
+                  <span style="font-size:0.8rem; color:var(--text-muted);">${dateStr}</span>
+                </div>
+              </div>
+
+              <h4 style="font-size:0.95rem; color:#fde68a; margin-bottom:0.35rem;">"${r.title || ''}"</h4>
+              <p style="font-size:0.85rem; color:var(--text-secondary); margin-bottom:0.75rem; line-height:1.6;">
+                ${r.comment || ''}
+              </p>
+
+              ${r.photos && r.photos.length > 0 ? `
+                <div class="flex gap-1" style="margin-bottom:0.75rem; overflow-x:auto;">
+                  ${r.photos.map(p => `<img src="${p}" style="width:70px; height:70px; object-fit:cover; border-radius:var(--radius-sm); border:1px solid var(--border-subtle);" alt="Review photo">`).join('')}
+                </div>
+              ` : ''}
+
+              ${r.ownerReply ? `
+                <div style="background:rgba(255,255,255,0.03); padding:0.85rem 1rem; border-radius:var(--radius-sm); font-size:0.85rem; border-left:3px solid var(--secondary); margin-top:0.75rem;">
+                  <div class="flex justify-between items-center" style="margin-bottom:0.25rem;">
+                    <strong style="color:var(--secondary-light); font-size:0.8rem;">Owner Response:</strong>
+                    <span style="font-size:0.7rem; color:var(--text-muted);">${new Date(r.ownerReply.repliedAt || Date.now()).toLocaleDateString()}</span>
+                  </div>
+                  <p style="margin:0; color:var(--text-secondary);">${r.ownerReply.text}</p>
+                </div>
+              ` : ''}
+            </div>
+          `;
+        }).join('');
+      } catch (err) {
+        console.warn('Could not load user reviews:', err.message);
+      }
+    }
+
+    function handleLogout() {
+      HKF_API.auth.logout();
+      showToast('Logged out successfully', 'info');
+      setTimeout(() => window.location.href = '/login.html', 500);
+    }
+
+    // Initialize on page load
+    document.addEventListener('DOMContentLoaded', () => {
+      loadCustomerProfile();
+      loadUserBookings();
+      loadFavorites();
+      loadSavedLocations();
+      loadNotifications();
+      loadConversations();
+      loadMyReviews();
+
+      // Periodic check for new notifications & messages every 15s
+      setInterval(() => {
+        loadNotifications();
+        if (activeConversationId) {
+          loadMessages(activeConversationId);
+        }
+      }, 15000);
+    });
+  </script>
+</body>
+</html>

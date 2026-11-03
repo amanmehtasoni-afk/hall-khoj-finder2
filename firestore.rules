@@ -1,0 +1,150 @@
+rules_version = '2';
+service cloud.firestore {
+  match /databases/{database}/documents {
+
+    // =========================================================================
+    // HELPER FUNCTIONS
+    // =========================================================================
+    function isAuthenticated() {
+      return request.auth != null;
+    }
+
+    function isUser(userId) {
+      return isAuthenticated() && request.auth.uid == userId;
+    }
+
+    function isAdmin() {
+      return isAuthenticated() && (
+        request.auth.token.role == 'admin' ||
+        get(/databases/$(database)/documents/users/$(request.auth.uid)).data.role == 'admin'
+      );
+    }
+
+    function isOwnerRole() {
+      return isAuthenticated() && (
+        request.auth.token.role == 'owner' ||
+        get(/databases/$(database)/documents/users/$(request.auth.uid)).data.role == 'owner'
+      );
+    }
+
+    // =========================================================================
+    // USERS COLLECTION
+    // =========================================================================
+    match /users/{userId} {
+      allow read: if isUser(userId) || isAdmin();
+      allow create: if isAuthenticated() && request.resource.data.role != 'admin';
+      allow update: if (isUser(userId) && request.resource.data.role == resource.data.role) || isAdmin();
+      allow delete: if isAdmin();
+    }
+
+    // =========================================================================
+    // LISTINGS COLLECTIONS (Halls, Cars, Tent Houses, Services)
+    // =========================================================================
+    match /{listingCollection}/{listingId} {
+      allow read: if listingCollection in ['halls', 'cars', 'tent_houses', 'services'] && (
+        resource.data.status == 'APPROVED' ||
+        resource.data.status == 'ACTIVE' ||
+        (isAuthenticated() && resource.data.ownerId == request.auth.uid) ||
+        isAdmin()
+      );
+      allow create: if listingCollection in ['halls', 'cars', 'tent_houses', 'services'] && (
+        (isOwnerRole() && request.resource.data.ownerId == request.auth.uid) ||
+        isAdmin()
+      );
+      allow update: if listingCollection in ['halls', 'cars', 'tent_houses', 'services'] && (
+        (isAuthenticated() && resource.data.ownerId == request.auth.uid) ||
+        isAdmin()
+      );
+      allow delete: if listingCollection in ['halls', 'cars', 'tent_houses', 'services'] && (
+        (isAuthenticated() && resource.data.ownerId == request.auth.uid) ||
+        isAdmin()
+      );
+    }
+
+    // =========================================================================
+    // BOOKINGS COLLECTION
+    // =========================================================================
+    match /bookings/{bookingId} {
+      allow read: if isAuthenticated() && (
+        resource.data.customerId == request.auth.uid ||
+        resource.data.ownerId == request.auth.uid ||
+        isAdmin()
+      );
+      allow create: if isAuthenticated() && request.resource.data.customerId == request.auth.uid;
+      allow update: if isAuthenticated() && (
+        resource.data.customerId == request.auth.uid ||
+        resource.data.ownerId == request.auth.uid ||
+        isAdmin()
+      );
+      allow delete: if isAdmin();
+    }
+
+    // =========================================================================
+    // VERIFIED REVIEWS COLLECTION
+    // =========================================================================
+    match /reviews/{reviewId} {
+      allow read: if resource.data.status == 'APPROVED' || isAdmin() || (isAuthenticated() && resource.data.userId == request.auth.uid);
+      allow create: if isAuthenticated() && request.resource.data.userId == request.auth.uid;
+      allow update: if isAdmin() || (isAuthenticated() && (
+        resource.data.userId == request.auth.uid ||
+        (isOwnerRole() && request.resource.data.diff(resource.data).affectedKeys().hasOnly(['ownerReply']))
+      ));
+      allow delete: if isAdmin() || (isAuthenticated() && resource.data.userId == request.auth.uid);
+    }
+
+    // =========================================================================
+    // DIRECT MESSAGES & CONVERSATIONS
+    // =========================================================================
+    match /messages/{messageId} {
+      allow read: if isAuthenticated() && (
+        resource.data.senderId == request.auth.uid ||
+        resource.data.receiverId == request.auth.uid ||
+        isAdmin()
+      );
+      allow create: if isAuthenticated() && request.resource.data.senderId == request.auth.uid;
+      allow update, delete: if isAdmin();
+    }
+
+    match /conversations/{conversationId} {
+      allow read: if isAuthenticated() && (
+        request.auth.uid in resource.data.participants ||
+        isAdmin()
+      );
+      allow create, update: if isAuthenticated() && (
+        request.auth.uid in request.resource.data.participants ||
+        isAdmin()
+      );
+      allow delete: if isAdmin();
+    }
+
+    // =========================================================================
+    // NOTIFICATIONS COLLECTION
+    // =========================================================================
+    match /notifications/{notificationId} {
+      allow read, update, delete: if isAuthenticated() && (
+        resource.data.userId == request.auth.uid ||
+        isAdmin()
+      );
+      allow create: if isAuthenticated();
+    }
+
+    // =========================================================================
+    // FINANCIAL TRANSACTIONS LEDGER (Immutable)
+    // =========================================================================
+    match /transactions/{transactionId} {
+      allow read: if isAuthenticated() && (
+        resource.data.customerId == request.auth.uid ||
+        resource.data.ownerId == request.auth.uid ||
+        isAdmin()
+      );
+      allow write: if isAdmin(); // Server Admin SDK only
+    }
+
+    // =========================================================================
+    // AUDIT LOGS (Admin Only)
+    // =========================================================================
+    match /audit_logs/{logId} {
+      allow read, write: if isAdmin();
+    }
+  }
+}

@@ -1,0 +1,177 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Customer Reviews & Testimonials | Hall Khoj Finder</title>
+  <meta name="description" content="Read authentic reviews and ratings from genuine wedding couples and event hosts across India on Hall Khoj Finder.">
+  <link rel="icon" type="image/png" href="/assets/logo.png">
+
+  <!-- Theme Controller (Zero-Flash Dark/Light Mode) -->
+  <script src="js/theme.js"></script>
+
+  <!-- Core CSS -->
+  <link rel="stylesheet" href="css/main.css">
+  <link rel="stylesheet" href="css/3d.css">
+  <link rel="stylesheet" href="css/components.css">
+  <link rel="stylesheet" href="css/animations.css">
+
+  <style>
+    .review-card {
+      background: var(--bg-card);
+      border: 1px solid var(--border-subtle);
+      border-radius: var(--radius-lg);
+      padding: 1.75rem;
+      margin-bottom: 1.5rem;
+    }
+
+    .owner-reply-box {
+      margin-top: 1.25rem;
+      padding: 1rem 1.25rem;
+      border-radius: var(--radius-md);
+      background: rgba(255, 255, 255, 0.03);
+      border-left: 3px solid var(--color-champagne);
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Site Header -->
+  <header class="site-header" role="banner">
+    <div class="nav-container">
+      <a href="/" class="brand-logo">
+        <img src="/assets/logo.png" alt="Hall Khoj" class="brand-logo-img">
+        <div class="brand-logo-text">
+          <span class="brand-title">HALL KHOJ</span>
+          <span class="brand-tagline-sub">REVIEWS</span>
+        </div>
+      </a>
+
+      <nav role="navigation">
+        <ul class="nav-links">
+          <li><a href="/" class="nav-link">Home</a></li>
+          <li><a href="/search.html" class="nav-link">Find Services</a></li>
+          <li><a href="/reviews.html" class="nav-link active">Reviews</a></li>
+          <li><a href="/3d-preview.html" class="nav-link">3D Walkthrough</a></li>
+          <li><a href="/dashboard.html" class="nav-link">Dashboard</a></li>
+        </ul>
+      </nav>
+
+      <div class="nav-actions">
+        <div class="language-switcher-container"></div>
+        <button class="theme-toggle-btn" data-action="toggle-theme" aria-label="Toggle Dark/Light Mode" title="Toggle Theme">
+          <span class="theme-icon-sun">☀️</span>
+          <span class="theme-icon-moon" style="display:none;">🌙</span>
+        </button>
+        <button class="btn btn-champagne btn-sm" id="open-write-review-btn">
+          ✍️ Write Review
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <main style="padding-top: 6rem; padding-bottom: 5rem;">
+    <div class="container container-narrow">
+      <div class="text-center" style="margin-bottom:2.5rem;">
+        <span class="badge badge-champagne" style="margin-bottom:0.75rem;">100% Genuine Feedback</span>
+        <h1 class="section-title">Verified Customer Reviews</h1>
+        <p class="section-subtitle">
+          Real feedback from couples, families and event organizers who booked their dream venues through Hall Khoj Finder.
+        </p>
+
+        <!-- Rating Summary Card -->
+        <div class="glass-panel" style="max-width:550px; margin:0 auto; padding:1.5rem; display:flex; align-items:center; justify-content:space-around; flex-wrap:wrap; gap:1rem;">
+          <div class="text-center">
+            <div style="font-size:2.5rem; font-weight:800; color:var(--color-champagne);">4.9</div>
+            <div style="color:#fbbf24; font-size:1.1rem;">★★★★★</div>
+            <div style="font-size:0.75rem; color:var(--text-muted); margin-top:0.2rem;">Based on 1,420+ ratings</div>
+          </div>
+          <div style="border-left:1px solid var(--border-subtle); height:60px;"></div>
+          <div style="font-size:0.85rem; color:var(--text-secondary); text-align:left;">
+            <div>🛡️ <strong>100% Verified Bookings</strong></div>
+            <div>⚡ <strong>Direct Owner Replies</strong></div>
+            <div>✨ <strong>Zero Fake Reviews Guarantee</strong></div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Reviews Feed Container -->
+      <div id="reviews-feed">
+        <!-- Review 1 -->
+        <article class="review-card glass-panel">
+          <div class="flex items-center justify-between flex-wrap gap-2" style="margin-bottom:0.75rem;">
+            <div class="flex items-center gap-2">
+              <div style="width:42px; height:42px; border-radius:50%; background:linear-gradient(135deg, #10b981, #059669); display:flex; align-items:center; justify-content:center; color:#fff; font-weight:700;">
+                RS
+              </div>
+              <div>
+                <h3 style="font-size:1.05rem; color:#fff; margin:0;">Rohit & Sneha Verma</h3>
+                <span style="font-size:0.78rem; color:var(--text-muted);">Wedding Host • Lucknow • Oct 2026</span>
+              </div>
+            </div>
+            <div class="text-right">
+              <div style="color:#fbbf24; font-size:1.05rem;">★★★★★</div>
+              <span class="badge badge-verified" style="font-size:0.7rem;">✓ Verified Booking</span>
+            </div>
+          </div>
+
+          <h4 style="font-size:1.1rem; color:var(--text-champagne); margin-bottom:0.4rem;">
+            "Magnificent palace with impeccable 3D planning accuracy!"
+          </h4>
+          <p style="font-size:0.92rem; color:var(--text-secondary); line-height:1.6; margin:0;">
+            We booked The Royal Grand Heritage Palace after inspecting the 3D walkthrough. The actual layout matched the Three.js model 100%! The central AC, lawn lighting and chandeliers made our wedding night unforgettable. The owner manual approval process was very smooth and reassuring.
+          </p>
+
+          <div class="owner-reply-box">
+            <div style="font-size:0.8rem; font-weight:700; color:var(--text-champagne); margin-bottom:0.25rem;">
+              Response from Venue Owner (The Royal Grand Heritage Palace):
+            </div>
+            <p style="font-size:0.82rem; color:var(--text-muted); margin:0;">
+              "Thank you Rohit and Sneha! It was an absolute honor to host your special day. Wishing you a wonderful married life ahead."
+            </p>
+          </div>
+        </article>
+
+        <!-- Review 2 -->
+        <article class="review-card glass-panel">
+          <div class="flex items-center justify-between flex-wrap gap-2" style="margin-bottom:0.75rem;">
+            <div class="flex items-center gap-2">
+              <div style="width:42px; height:42px; border-radius:50%; background:linear-gradient(135deg, #398BFF, #123B68); display:flex; align-items:center; justify-content:center; color:#fff; font-weight:700;">
+                AK
+              </div>
+              <div>
+                <h3 style="font-size:1.05rem; color:#fff; margin:0;">Ankit Keshari</h3>
+                <span style="font-size:0.78rem; color:var(--text-muted);">Reception Host • Patna • Sep 2026</span>
+              </div>
+            </div>
+            <div class="text-right">
+              <div style="color:#fbbf24; font-size:1.05rem;">★★★★★</div>
+              <span class="badge badge-verified" style="font-size:0.7rem;">✓ Verified Booking</span>
+            </div>
+          </div>
+
+          <h4 style="font-size:1.1rem; color:var(--text-champagne); margin-bottom:0.4rem;">
+            "Mayur Emerald Banquet made our reception completely stress-free"
+          </h4>
+          <p style="font-size:0.92rem; color:var(--text-secondary); line-height:1.6; margin:0;">
+            Booked for 450 guests. The date availability calendar showed real-time slots and prevented any double-booking confusion. Razorpay advance token payment gave us an instant GST receipt. Highly recommend Hall Khoj Finder for event bookings!
+          </p>
+        </article>
+      </div>
+    </div>
+  </main>
+
+  <footer class="footer-section" style="background:var(--bg-secondary); border-top:1px solid var(--border-subtle); padding:3rem 0; margin-top:4rem;">
+    <div class="container text-center" style="font-size:0.85rem; color:var(--text-muted);">
+      <p>&copy; 2026 Hall Khoj Finder. Verified Reviews & Customer Satisfaction Engine.</p>
+    </div>
+  </footer>
+
+  <script>
+    document.getElementById('open-write-review-btn')?.addEventListener('click', () => {
+      alert('Review submission is available for completed bookings from your Customer Dashboard.');
+      window.location.href = '/dashboard.html';
+    });
+  </script>
+</body>
+</html>

@@ -1,0 +1,3321 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0">
+  <title>Owner Portal — Hall Khoj Finder</title>
+
+  <!-- Theme Controller (Zero-Flash Dark/Light Mode) -->
+  <script src="../js/theme.js"></script>
+
+  <!-- Core CSS -->
+  <link rel="stylesheet" href="../css/main.css">
+  <link rel="stylesheet" href="../css/3d.css">
+  <link rel="stylesheet" href="../css/components.css">
+  <link rel="stylesheet" href="../css/animations.css">
+
+  <style>
+    /* =========================================================================
+       OWNER DASHBOARD & WIZARD STYLES (MOBILE-FIRST & ACCESSIBLE)
+       ========================================================================= */
+
+    /* Layout Structure */
+    .owner-dash-layout {
+      display: grid;
+      grid-template-columns: 260px 1fr;
+      gap: 1.5rem;
+      align-items: start;
+    }
+
+    @media (max-width: 991px) {
+      .owner-dash-layout {
+        grid-template-columns: 1fr;
+      }
+    }
+
+    /* Top Greeting Banner */
+    .owner-hero-banner {
+      background: linear-gradient(135deg, rgba(30, 41, 59, 0.8) 0%, rgba(15, 23, 42, 0.95) 100%);
+      border: 1px solid rgba(245, 158, 11, 0.25);
+      border-radius: var(--radius-lg);
+      padding: 1.5rem 1.75rem;
+      margin-bottom: 1.5rem;
+      box-shadow: 0 8px 30px rgba(0, 0, 0, 0.35);
+      position: relative;
+      overflow: hidden;
+    }
+
+    .owner-hero-banner::after {
+      content: '';
+      position: absolute;
+      top: -50%;
+      right: -10%;
+      width: 250px;
+      height: 250px;
+      background: radial-gradient(circle, rgba(245, 158, 11, 0.12) 0%, transparent 70%);
+      pointer-events: none;
+    }
+
+    .hero-top-row {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 1.25rem;
+    }
+
+    .hero-text h1 {
+      font-size: 1.65rem;
+      font-weight: 800;
+      color: #fff;
+      margin: 0 0 0.35rem 0;
+      line-height: 1.2;
+    }
+
+    .hero-text p {
+      font-size: 0.92rem;
+      color: var(--text-secondary);
+      margin: 0;
+      line-height: 1.4;
+    }
+
+    .hero-actions {
+      display: flex;
+      align-items: center;
+      gap: 0.75rem;
+      flex-wrap: wrap;
+    }
+
+    /* Primary Add Hall Button */
+    .btn-add-hall-hero {
+      background: linear-gradient(135deg, #f59e0b 0%, #d97706 100%);
+      color: #070a13 !important;
+      font-weight: 700;
+      font-size: 1rem;
+      padding: 0.85rem 1.75rem;
+      border-radius: var(--radius-full);
+      border: none;
+      cursor: pointer;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 0.5rem;
+      box-shadow: 0 4px 18px rgba(245, 158, 11, 0.45);
+      transition: all 0.2s ease;
+      min-height: 48px;
+    }
+
+    .btn-add-hall-hero:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 6px 24px rgba(245, 158, 11, 0.6);
+      filter: brightness(1.08);
+    }
+
+    /* Profile Completion Card */
+    .profile-progress-widget {
+      background: rgba(255, 255, 255, 0.04);
+      border: 1px solid var(--border-subtle);
+      border-radius: var(--radius-md);
+      padding: 0.85rem 1.25rem;
+      margin-top: 1.25rem;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      flex-wrap: wrap;
+      gap: 1rem;
+    }
+
+    .profile-progress-info {
+      flex: 1;
+      min-width: 200px;
+    }
+
+    .profile-progress-label {
+      display: flex;
+      justify-content: space-between;
+      font-size: 0.85rem;
+      font-weight: 600;
+      color: var(--text-primary);
+      margin-bottom: 0.35rem;
+    }
+
+    .profile-bar-track {
+      height: 8px;
+      background: rgba(255, 255, 255, 0.08);
+      border-radius: var(--radius-full);
+      overflow: hidden;
+    }
+
+    .profile-bar-fill {
+      height: 100%;
+      background: linear-gradient(90deg, #10b981, #059669);
+      border-radius: var(--radius-full);
+      transition: width 0.4s ease;
+    }
+
+    /* Resume Draft Banner */
+    .draft-resume-banner {
+      background: linear-gradient(135deg, rgba(245, 158, 11, 0.12) 0%, rgba(217, 119, 6, 0.08) 100%);
+      border: 1px solid rgba(245, 158, 11, 0.4);
+      border-radius: var(--radius-md);
+      padding: 1rem 1.25rem;
+      margin-bottom: 1.5rem;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      flex-wrap: wrap;
+      gap: 0.85rem;
+      animation: fadeIn 0.3s ease;
+    }
+
+    .draft-resume-text {
+      display: flex;
+      align-items: center;
+      gap: 0.75rem;
+      font-size: 0.92rem;
+      color: #fff;
+    }
+
+    .draft-resume-text strong {
+      color: #fbbf24;
+    }
+
+    /* Summary Metric Cards */
+    .stats-summary-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+      gap: 1rem;
+      margin-bottom: 2rem;
+    }
+
+    .metric-card {
+      background: rgba(15, 23, 42, 0.65);
+      border: 1px solid var(--border-subtle);
+      border-radius: var(--radius-md);
+      padding: 1.15rem 1rem;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      transition: transform 0.2s ease, border-color 0.2s ease;
+    }
+
+    .metric-card:hover {
+      transform: translateY(-2px);
+      border-color: rgba(255, 255, 255, 0.18);
+    }
+
+    .metric-card-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 0.5rem;
+    }
+
+    .metric-label {
+      font-size: 0.75rem;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+      color: var(--text-muted);
+      font-weight: 600;
+    }
+
+    .metric-dot {
+      width: 8px;
+      height: 8px;
+      border-radius: 50%;
+    }
+
+    .metric-value {
+      font-size: 1.85rem;
+      font-weight: 800;
+      color: #fff;
+      line-height: 1.1;
+      margin-bottom: 0.25rem;
+    }
+
+    .metric-sub {
+      font-size: 0.72rem;
+      color: var(--text-secondary);
+    }
+
+    /* Navigation Sidebar */
+    .dash-nav-btn {
+      display: flex;
+      align-items: center;
+      gap: 0.75rem;
+      width: 100%;
+      padding: 0.75rem 1rem;
+      border-radius: var(--radius-md);
+      background: transparent;
+      border: 1px solid transparent;
+      color: var(--text-secondary);
+      font-size: 0.92rem;
+      font-weight: 500;
+      text-align: left;
+      cursor: pointer;
+      transition: all 0.15s ease;
+      min-height: 44px;
+    }
+
+    .dash-nav-btn:hover {
+      background: rgba(255, 255, 255, 0.05);
+      color: var(--text-primary);
+    }
+
+    .dash-nav-btn.active {
+      background: rgba(245, 158, 11, 0.15);
+      border-color: rgba(245, 158, 11, 0.35);
+      color: #fbbf24;
+      font-weight: 600;
+    }
+
+    .dash-nav-btn svg {
+      width: 20px;
+      height: 20px;
+      flex-shrink: 0;
+    }
+
+    .dash-nav-badge {
+      margin-left: auto;
+      font-size: 0.72rem;
+      padding: 0.15rem 0.5rem;
+      border-radius: var(--radius-full);
+      background: rgba(245, 158, 11, 0.2);
+      color: #fbbf24;
+      font-weight: 700;
+    }
+
+    .tab-content-panel {
+      display: none;
+    }
+
+    .tab-content-panel.active {
+      display: block;
+      animation: fadeIn 0.2s ease-in-out;
+    }
+
+    /* Filter Pills */
+    .filter-pills-bar {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.5rem;
+      margin-bottom: 1.25rem;
+    }
+
+    .filter-pill-btn {
+      padding: 0.45rem 1rem;
+      font-size: 0.82rem;
+      font-weight: 500;
+      border-radius: var(--radius-full);
+      background: rgba(255, 255, 255, 0.04);
+      border: 1px solid var(--border-subtle);
+      color: var(--text-secondary);
+      cursor: pointer;
+      transition: all 0.15s ease;
+      min-height: 38px;
+    }
+
+    .filter-pill-btn.active {
+      background: #f59e0b;
+      color: #070a13;
+      border-color: #f59e0b;
+      font-weight: 700;
+    }
+
+    /* Hall Cards Grid */
+    .listing-card-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+      gap: 1.25rem;
+    }
+
+    @media (max-width: 480px) {
+      .listing-card-grid {
+        grid-template-columns: 1fr;
+      }
+    }
+
+    .hall-owner-card {
+      background: rgba(15, 23, 42, 0.75);
+      border: 1px solid var(--border-subtle);
+      border-radius: var(--radius-lg);
+      overflow: hidden;
+      display: flex;
+      flex-direction: column;
+      transition: all 0.2s ease;
+      box-shadow: 0 4px 15px rgba(0, 0, 0, 0.25);
+    }
+
+    .hall-owner-card:hover {
+      border-color: rgba(245, 158, 11, 0.3);
+      transform: translateY(-2px);
+    }
+
+    .hall-card-img-wrap {
+      position: relative;
+      height: 190px;
+      overflow: hidden;
+      background: #0b1120;
+    }
+
+    .hall-card-img-wrap img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      transition: transform 0.3s ease;
+    }
+
+    .hall-card-body {
+      padding: 1.25rem;
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+    }
+
+    .hall-card-actions {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(75px, 1fr));
+      gap: 0.4rem;
+      border-top: 1px solid var(--border-subtle);
+      padding-top: 0.85rem;
+      margin-top: auto;
+    }
+
+    .btn-action-pill {
+      font-size: 0.76rem;
+      padding: 0.45rem 0.5rem;
+      border-radius: var(--radius-md);
+      background: rgba(255, 255, 255, 0.05);
+      border: 1px solid var(--border-subtle);
+      color: var(--text-primary);
+      text-align: center;
+      cursor: pointer;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 0.25rem;
+      min-height: 38px;
+      text-decoration: none;
+      transition: all 0.15s ease;
+      font-weight: 500;
+    }
+
+    .btn-action-pill:hover {
+      background: rgba(255, 255, 255, 0.1);
+      color: #fff;
+    }
+
+    .btn-action-pill.btn-toggle-active {
+      background: rgba(16, 185, 129, 0.12);
+      border-color: rgba(16, 185, 129, 0.3);
+      color: #10b981;
+    }
+
+    .btn-action-pill.btn-toggle-inactive {
+      background: rgba(239, 68, 68, 0.12);
+      border-color: rgba(239, 68, 68, 0.3);
+      color: #ef4444;
+    }
+
+    /* Rejection Notice Banner */
+    .rejection-banner {
+      background: rgba(239, 68, 68, 0.12);
+      border: 1px solid rgba(239, 68, 68, 0.35);
+      border-radius: var(--radius-md);
+      padding: 0.85rem 1rem;
+      margin-bottom: 0.85rem;
+      font-size: 0.82rem;
+      color: #fca5a5;
+    }
+
+    /* =========================================================================
+       STEP-BY-STEP HALL LISTING WIZARD MODAL
+       ========================================================================= */
+    .wizard-overlay {
+      position: fixed;
+      inset: 0;
+      background: rgba(0, 0, 0, 0.85);
+      backdrop-filter: blur(8px);
+      -webkit-backdrop-filter: blur(8px);
+      z-index: 10000;
+      display: none;
+      align-items: center;
+      justify-content: center;
+      padding: 1rem;
+      overflow-y: auto;
+    }
+
+    .wizard-overlay.open {
+      display: flex;
+    }
+
+    .wizard-modal {
+      background: #0f172a;
+      border: 1px solid rgba(245, 158, 11, 0.3);
+      border-radius: var(--radius-xl);
+      width: 100%;
+      max-width: 780px;
+      max-height: 94vh;
+      display: flex;
+      flex-direction: column;
+      box-shadow: 0 20px 60px rgba(0, 0, 0, 0.7);
+      overflow: hidden;
+      animation: modalSlideUp 0.25s ease-out;
+    }
+
+    @keyframes modalSlideUp {
+      from { transform: translateY(20px); opacity: 0; }
+      to { transform: translateY(0); opacity: 1; }
+    }
+
+    /* Wizard Header */
+    .wizard-header {
+      background: #0b1120;
+      border-bottom: 1px solid var(--border-subtle);
+      padding: 1.15rem 1.5rem;
+    }
+
+    .wizard-header-top {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 1rem;
+      margin-bottom: 0.75rem;
+    }
+
+    .wizard-title-group h2 {
+      font-size: 1.25rem;
+      font-weight: 700;
+      color: #fff;
+      margin: 0;
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+    }
+
+    .wizard-title-group p {
+      font-size: 0.82rem;
+      color: var(--text-secondary);
+      margin: 0.2rem 0 0 0;
+    }
+
+    .wizard-meta-badges {
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+    }
+
+    .wizard-autosave-badge {
+      font-size: 0.72rem;
+      color: #10b981;
+      display: inline-flex;
+      align-items: center;
+      gap: 0.35rem;
+      background: rgba(16, 185, 129, 0.1);
+      padding: 0.2rem 0.5rem;
+      border-radius: var(--radius-full);
+    }
+
+    .wizard-strength-badge {
+      font-size: 0.72rem;
+      font-weight: 700;
+      color: #fbbf24;
+      background: rgba(245, 158, 11, 0.15);
+      border: 1px solid rgba(245, 158, 11, 0.3);
+      padding: 0.2rem 0.6rem;
+      border-radius: var(--radius-full);
+    }
+
+    .wizard-progress-track {
+      height: 6px;
+      background: rgba(255, 255, 255, 0.08);
+      border-radius: var(--radius-full);
+      overflow: hidden;
+    }
+
+    .wizard-progress-bar {
+      height: 100%;
+      background: linear-gradient(90deg, #f59e0b, #10b981);
+      border-radius: var(--radius-full);
+      transition: width 0.3s ease;
+    }
+
+    /* Stepper Dots (Desktop/Tablet) */
+    .wizard-stepper-pills {
+      display: flex;
+      justify-content: space-between;
+      gap: 0.25rem;
+      margin-top: 0.75rem;
+      overflow-x: auto;
+      padding-bottom: 0.25rem;
+    }
+
+    .step-pill {
+      font-size: 0.72rem;
+      padding: 0.25rem 0.5rem;
+      border-radius: var(--radius-full);
+      background: rgba(255, 255, 255, 0.05);
+      color: var(--text-muted);
+      white-space: nowrap;
+      cursor: pointer;
+      display: inline-flex;
+      align-items: center;
+      gap: 0.3rem;
+      transition: all 0.15s ease;
+    }
+
+    .step-pill.completed {
+      background: rgba(16, 185, 129, 0.15);
+      color: #10b981;
+      font-weight: 600;
+    }
+
+    .step-pill.active {
+      background: #f59e0b;
+      color: #070a13;
+      font-weight: 700;
+    }
+
+    /* Wizard Content Area */
+    .wizard-body {
+      padding: 1.5rem;
+      overflow-y: auto;
+      flex: 1;
+    }
+
+    .wizard-step-pane {
+      display: none;
+    }
+
+    .wizard-step-pane.active {
+      display: block;
+      animation: fadeIn 0.2s ease;
+    }
+
+    .wizard-step-heading {
+      font-size: 1.3rem;
+      font-weight: 700;
+      color: #fff;
+      margin-bottom: 0.4rem;
+    }
+
+    .wizard-step-sub {
+      font-size: 0.88rem;
+      color: var(--text-secondary);
+      margin-bottom: 1.5rem;
+      line-height: 1.4;
+    }
+
+    /* Form Fields */
+    .form-group-simple {
+      margin-bottom: 1.25rem;
+    }
+
+    .form-group-simple label {
+      display: block;
+      font-size: 0.88rem;
+      font-weight: 600;
+      color: var(--text-primary);
+      margin-bottom: 0.45rem;
+    }
+
+    .form-control-simple {
+      width: 100%;
+      height: 48px;
+      padding: 0 1rem;
+      background: rgba(255, 255, 255, 0.05);
+      border: 1px solid var(--border-subtle);
+      border-radius: var(--radius-md);
+      color: #fff;
+      font-size: 0.95rem;
+      font-family: inherit;
+      box-sizing: border-box;
+      transition: border-color 0.2s ease;
+    }
+
+    .form-control-simple:focus {
+      outline: none;
+      border-color: #f59e0b;
+      background: rgba(255, 255, 255, 0.08);
+    }
+
+    .form-control-simple.is-invalid {
+      border-color: #ef4444;
+      background: rgba(239, 68, 68, 0.05);
+    }
+
+    .field-error-msg {
+      font-size: 0.78rem;
+      color: #ef4444;
+      margin-top: 0.35rem;
+      display: none;
+    }
+
+    .field-error-msg.visible {
+      display: block;
+    }
+
+    /* Facility Cards Grid */
+    .facilities-card-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(140px, 1fr));
+      gap: 0.65rem;
+      margin-bottom: 1.25rem;
+    }
+
+    .facility-card-item {
+      background: rgba(255, 255, 255, 0.04);
+      border: 1.5px solid var(--border-subtle);
+      border-radius: var(--radius-md);
+      padding: 0.75rem 0.6rem;
+      text-align: center;
+      cursor: pointer;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 0.35rem;
+      user-select: none;
+      transition: all 0.15s ease;
+      min-height: 80px;
+      justify-content: center;
+    }
+
+    .facility-card-item:hover {
+      background: rgba(255, 255, 255, 0.08);
+      border-color: rgba(245, 158, 11, 0.3);
+    }
+
+    .facility-card-item.selected {
+      background: rgba(245, 158, 11, 0.15);
+      border-color: #f59e0b;
+      color: #fbbf24;
+      font-weight: 600;
+    }
+
+    .facility-card-item .facility-icon {
+      font-size: 1.4rem;
+    }
+
+    .facility-card-item .facility-name {
+      font-size: 0.8rem;
+    }
+
+    /* Photo Upload Grid */
+    .photo-upload-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(130px, 1fr));
+      gap: 0.75rem;
+      margin-top: 1rem;
+    }
+
+    .photo-thumb-card {
+      position: relative;
+      aspect-ratio: 4/3;
+      border-radius: var(--radius-md);
+      overflow: hidden;
+      border: 2px solid var(--border-subtle);
+      background: #0b1120;
+    }
+
+    .photo-thumb-card.is-cover {
+      border-color: #fbbf24;
+      box-shadow: 0 0 12px rgba(245, 158, 11, 0.4);
+    }
+
+    .photo-thumb-card img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+
+    .cover-tag-badge {
+      position: absolute;
+      top: 4px;
+      left: 4px;
+      background: #fbbf24;
+      color: #070a13;
+      font-size: 0.65rem;
+      font-weight: 800;
+      padding: 2px 6px;
+      border-radius: 4px;
+      letter-spacing: 0.5px;
+    }
+
+    .photo-card-actions {
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      right: 0;
+      background: rgba(0, 0, 0, 0.8);
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 3px 6px;
+    }
+
+    .photo-action-btn {
+      background: none;
+      border: none;
+      color: #fff;
+      font-size: 0.75rem;
+      cursor: pointer;
+      padding: 2px 4px;
+      border-radius: 3px;
+    }
+
+    .photo-action-btn:hover {
+      background: rgba(255, 255, 255, 0.2);
+    }
+
+    /* Review Step Layout */
+    .review-section-box {
+      background: rgba(255, 255, 255, 0.03);
+      border: 1px solid var(--border-subtle);
+      border-radius: var(--radius-md);
+      padding: 1.15rem;
+      margin-bottom: 1rem;
+    }
+
+    .review-section-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 0.6rem;
+    }
+
+    .review-section-title {
+      font-size: 0.95rem;
+      font-weight: 700;
+      color: #fbbf24;
+      margin: 0;
+    }
+
+    .btn-edit-step {
+      font-size: 0.75rem;
+      color: var(--text-secondary);
+      background: rgba(255, 255, 255, 0.06);
+      border: 1px solid var(--border-subtle);
+      padding: 0.25rem 0.6rem;
+      border-radius: var(--radius-sm);
+      cursor: pointer;
+    }
+
+    .btn-edit-step:hover {
+      color: #fff;
+      border-color: #f59e0b;
+    }
+
+    /* Wizard Footer */
+    .wizard-footer {
+      background: #0b1120;
+      border-top: 1px solid var(--border-subtle);
+      padding: 1rem 1.5rem;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 1rem;
+    }
+
+    /* Mobile Enhancements */
+    @media (max-width: 600px) {
+      .wizard-modal {
+        max-height: 100vh;
+        border-radius: 0;
+        height: 100%;
+      }
+      .wizard-header {
+        padding: 0.85rem 1rem;
+      }
+      .wizard-body {
+        padding: 1rem;
+      }
+      .wizard-footer {
+        padding: 0.85rem 1rem;
+      }
+      .wizard-stepper-pills {
+        display: none; /* Keep clean on small mobile */
+      }
+      .hero-top-row {
+        flex-direction: column;
+        align-items: stretch;
+      }
+      .btn-add-hall-hero {
+        width: 100%;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Site Header -->
+  <header class="site-header" role="banner">
+    <div class="nav-container">
+      <a href="/" class="brand-logo" aria-label="Hall Khoj Finder Homepage">
+        <img src="/assets/logo.png" alt="Hall Khoj" class="brand-logo-img">
+        <div class="brand-logo-text">
+          <span class="brand-title">HALL KHOJ</span>
+          <span class="brand-tagline-sub">OWNER PORTAL</span>
+        </div>
+      </a>
+
+      <!-- 7 Main Owner Navigation Links -->
+      <nav role="navigation" aria-label="Owner Navigation">
+        <ul class="nav-links">
+          <li><a href="javascript:void(0)" onclick="switchTab('dashboard')" class="nav-link active" id="nav-link-dashboard">Dashboard</a></li>
+          <li><a href="javascript:void(0)" onclick="switchTab('listings')" class="nav-link" id="nav-link-listings">My Halls</a></li>
+          <li><a href="javascript:void(0)" onclick="startNewHallWizard()" class="nav-link" style="color:#fbbf24; font-weight:700;">+ Add Hall</a></li>
+          <li><a href="javascript:void(0)" onclick="switchTab('enquiries')" class="nav-link" id="nav-link-enquiries">Enquiries</a></li>
+          <li><a href="javascript:void(0)" onclick="switchTab('bookings')" class="nav-link" id="nav-link-bookings">Bookings</a></li>
+          <li><a href="javascript:void(0)" onclick="switchTab('profile')" class="nav-link" id="nav-link-profile">Profile</a></li>
+        </ul>
+      </nav>
+
+      <div class="nav-actions">
+        <!-- Language Switcher Mount (14 Indian Languages) -->
+        <div class="language-switcher-container"></div>
+
+        <button class="theme-toggle-btn" data-action="toggle-theme" aria-label="Toggle Dark/Light Mode" title="Toggle Theme">
+          <span class="theme-icon-sun">☀️</span>
+          <span class="theme-icon-moon" style="display:none;">🌙</span>
+        </button>
+
+        <button class="btn btn-secondary btn-sm" onclick="switchTab('notifications')" style="position:relative; padding:0.45rem 0.75rem;" title="Notifications">
+          🔔
+          <span id="owner-notif-indicator" style="display:none; position:absolute; top:2px; right:2px; width:8px; height:8px; background:#ef4444; border-radius:50%;"></span>
+        </button>
+
+        <button id="owner-ai-btn" class="btn btn-gold btn-sm" onclick="switchTab('ai-assistant')">
+          ✨ AI Assistant
+        </button>
+
+        <button class="btn btn-secondary btn-sm" id="auth-action-btn" onclick="handleAuthAction()">
+          Sign Out
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <main style="padding-top: 5.5rem; padding-bottom: 4rem;">
+    <div class="container">
+
+      <!-- TOP DASHBOARD AREA -->
+      <section class="owner-hero-banner" aria-label="Welcome and Quick Action Area">
+        <div class="hero-top-row">
+          <div class="hero-text">
+            <h1 id="owner-welcome-heading">Welcome, Partner</h1>
+            <p>Manage your halls, enquiries and bookings from one place.</p>
+          </div>
+
+          <div class="hero-actions">
+            <!-- Customer Preview Quick Link -->
+            <button class="btn btn-secondary btn-sm" onclick="previewCustomerView()" title="Preview as Customer">
+              👁️ Preview as Customer
+            </button>
+            <!-- MAIN ACTION: ADD NEW HALL -->
+            <button class="btn-add-hall-hero" id="btn-add-hall-top" onclick="startNewHallWizard()" aria-label="Add New Hall">
+              <span>+</span> Add New Hall
+            </button>
+          </div>
+        </div>
+
+        <!-- Profile Completion Widget -->
+        <div class="profile-progress-widget">
+          <div class="profile-progress-info">
+            <div class="profile-progress-label">
+              <span id="profile-completion-label">Profile 80% Complete</span>
+              <span id="profile-verification-status" class="badge badge-verified" style="font-size:0.7rem;">Verified Partner</span>
+            </div>
+            <div class="profile-bar-track">
+              <div id="profile-completion-bar" class="profile-bar-fill" style="width: 80%;"></div>
+            </div>
+          </div>
+          <button class="btn btn-secondary btn-sm" onclick="switchTab('profile')" style="white-space:nowrap;">
+            Complete Profile →
+          </button>
+        </div>
+      </section>
+
+      <!-- RESUME DRAFT BANNER (Shows automatically if uncommitted draft exists) -->
+      <div id="draft-resume-banner" class="draft-resume-banner" style="display:none;" role="alert">
+        <div class="draft-resume-text">
+          <span style="font-size:1.5rem;">📝</span>
+          <div>
+            <strong>Continue Your Hall Listing</strong> — You have an unfinished listing:
+            <span id="draft-banner-hall-name" style="font-weight:600; color:#fff;">Draft Hall</span>
+            <span style="color:var(--text-secondary); font-size:0.82rem;">(Step <span id="draft-banner-step-num">1</span> of 8 completed)</span>
+          </div>
+        </div>
+        <div class="flex gap-2">
+          <button class="btn btn-gold btn-sm" onclick="continueDraftWizard()">
+            Continue →
+          </button>
+          <button class="btn btn-secondary btn-sm" onclick="discardDraft()" title="Discard this draft">
+            Discard
+          </button>
+        </div>
+      </div>
+
+      <!-- MAIN LAYOUT: Sidebar Nav + Tab Content -->
+      <div class="owner-dash-layout">
+        
+        <!-- SIDEBAR NAVIGATION (7 Clean Tabs) -->
+        <aside class="glass-panel" style="padding:1.25rem; position:sticky; top:5.5rem;">
+          <!-- Business Mini Card -->
+          <div style="text-align:center; padding-bottom:1.25rem; border-bottom:1px solid var(--border-subtle); margin-bottom:1.25rem;">
+            <div id="sidebar-logo-container" style="width:68px; height:68px; border-radius:var(--radius-lg); display:flex; align-items:center; justify-content:center; margin:0 auto 0.75rem; overflow:hidden; border:2px solid rgba(245,158,11,0.5); background:#0f172a;">
+              <span id="sidebar-logo-text" style="font-size:1.4rem; font-weight:800; color:#fbbf24;">HK</span>
+            </div>
+            <h3 style="font-size:0.95rem; font-weight:700; margin-bottom:0.2rem;" id="sidebar-business-title">Heritage Halls</h3>
+            <p style="font-size:0.75rem; color:var(--text-secondary); margin:0;" id="sidebar-owner-name">Owner</p>
+          </div>
+
+          <!-- Nav Buttons -->
+          <nav style="display:flex; flex-direction:column; gap:0.35rem;" aria-label="Sidebar Menu">
+            <button class="dash-nav-btn active" onclick="switchTab('dashboard')" id="side-nav-dashboard">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg>
+              <span>Dashboard</span>
+            </button>
+
+            <button class="dash-nav-btn" onclick="switchTab('listings')" id="side-nav-listings">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="7" height="7"/><rect x="14" y="3" width="7" height="7"/><rect x="14" y="14" width="7" height="7"/><rect x="3" y="14" width="7" height="7"/></svg>
+              <span>My Halls</span>
+              <span class="dash-nav-badge" id="badge-listings-count">1</span>
+            </button>
+
+            <button class="dash-nav-btn" onclick="startNewHallWizard()" style="color:#fbbf24; font-weight:600;">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg>
+              <span>+ Add Hall</span>
+            </button>
+
+            <button class="dash-nav-btn" onclick="switchTab('enquiries')" id="side-nav-enquiries">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg>
+              <span>Enquiries</span>
+              <span class="dash-nav-badge" id="badge-enquiries-count">0</span>
+            </button>
+
+            <button class="dash-nav-btn" onclick="switchTab('bookings')" id="side-nav-bookings">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="4" width="18" height="18" rx="2" ry="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg>
+              <span>Bookings</span>
+              <span class="dash-nav-badge" id="badge-bookings-count">0</span>
+            </button>
+
+            <button class="dash-nav-btn" onclick="switchTab('profile')" id="side-nav-profile">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>
+              <span>Profile</span>
+            </button>
+
+            <button class="dash-nav-btn" onclick="switchTab('settings')" id="side-nav-settings">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="3"/><path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 0 1 0 2.83 2 2 0 0 1-2.83 0l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-2 2 2 2 0 0 1-2-2v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 0 1-2.83 0 2 2 0 0 1 0-2.83l.06-.06a1.65 1.65 0 0 0 .33-1.82 1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1-2-2 2 2 0 0 1 2-2h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 0 1 0-2.83 2 2 0 0 1 2.83 0l.06.06a1.65 1.65 0 0 0 1.82.33H9a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 2-2 2 2 0 0 1 2 2v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 0 1 2.83 0 2 2 0 0 1 0 2.83l-.06.06a1.65 1.65 0 0 0-.33 1.82V9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 2 2 2 2 0 0 1-2 2h-.09a1.65 1.65 0 0 0-1.51 1z"/></svg>
+              <span>Settings</span>
+            </button>
+          </nav>
+        </aside>
+
+        <!-- RIGHT SIDE: TAB CONTENT PANELS -->
+        <div>
+
+          <!-- =========================================================================
+               TAB 1: DASHBOARD OVERVIEW
+          ========================================================================= -->
+          <div id="tab-dashboard" class="tab-content-panel active">
+            
+            <!-- SUMMARY METRIC CARDS -->
+            <div class="stats-summary-grid">
+              <!-- 1. Total Halls -->
+              <div class="metric-card">
+                <div class="metric-card-header">
+                  <span class="metric-label">My Halls</span>
+                  <span class="metric-dot" style="background:#3b82f6;"></span>
+                </div>
+                <div class="metric-value" id="stat-total-halls">1</div>
+                <div class="metric-sub">Total listed properties</div>
+              </div>
+
+              <!-- 2. Active Halls -->
+              <div class="metric-card" style="border-color:rgba(16,185,129,0.3);">
+                <div class="metric-card-header">
+                  <span class="metric-label">Active</span>
+                  <span class="metric-dot" style="background:#10b981;"></span>
+                </div>
+                <div class="metric-value" style="color:#10b981;" id="stat-active-halls">1</div>
+                <div class="metric-sub">Visible to customers</div>
+              </div>
+
+              <!-- 3. Pending Approval -->
+              <div class="metric-card">
+                <div class="metric-card-header">
+                  <span class="metric-label">Pending</span>
+                  <span class="metric-dot" style="background:#f59e0b;"></span>
+                </div>
+                <div class="metric-value" style="color:#fbbf24;" id="stat-pending-halls">0</div>
+                <div class="metric-sub">Awaiting admin review</div>
+              </div>
+
+              <!-- 4. Inactive -->
+              <div class="metric-card">
+                <div class="metric-card-header">
+                  <span class="metric-label">Inactive</span>
+                  <span class="metric-dot" style="background:#64748b;"></span>
+                </div>
+                <div class="metric-value" style="color:#94a3b8;" id="stat-inactive-halls">0</div>
+                <div class="metric-sub">Paused / Closed</div>
+              </div>
+
+              <!-- 5. Enquiries -->
+              <div class="metric-card">
+                <div class="metric-card-header">
+                  <span class="metric-label">Enquiries</span>
+                  <span class="metric-dot" style="background:#6366f1;"></span>
+                </div>
+                <div class="metric-value" style="color:#818cf8;" id="stat-total-enquiries">0</div>
+                <div class="metric-sub">Customer questions</div>
+              </div>
+
+              <!-- 6. Listing Views -->
+              <div class="metric-card">
+                <div class="metric-card-header">
+                  <span class="metric-label">Views</span>
+                  <span class="metric-dot" style="background:#ec4899;"></span>
+                </div>
+                <div class="metric-value" style="color:#f472b6;" id="stat-total-views">240</div>
+                <div class="metric-sub">Total impressions</div>
+              </div>
+
+              <!-- 7. Confirmed Bookings -->
+              <div class="metric-card">
+                <div class="metric-card-header">
+                  <span class="metric-label">Bookings</span>
+                  <span class="metric-dot" style="background:#10b981;"></span>
+                </div>
+                <div class="metric-value" style="color:#34d399;" id="stat-total-bookings">0</div>
+                <div class="metric-sub">Confirmed events</div>
+              </div>
+            </div>
+
+            <!-- Quick Action Shortcuts -->
+            <div style="display:grid; grid-template-columns:repeat(auto-fit, minmax(200px, 1fr)); gap:1rem; margin-bottom:2rem;">
+              <div class="glass-panel" style="padding:1.25rem; display:flex; align-items:center; gap:1rem; cursor:pointer;" onclick="startNewHallWizard()">
+                <div style="font-size:2rem; background:rgba(245,158,11,0.15); width:48px; height:48px; border-radius:12px; display:flex; align-items:center; justify-content:center;">➕</div>
+                <div>
+                  <h4 style="margin:0 0 0.2rem 0; font-size:1rem;">Add New Hall</h4>
+                  <p style="margin:0; font-size:0.78rem; color:var(--text-secondary);">Start 8-step simple listing</p>
+                </div>
+              </div>
+
+              <div class="glass-panel" style="padding:1.25rem; display:flex; align-items:center; gap:1rem; cursor:pointer;" onclick="switchTab('listings')">
+                <div style="font-size:2rem; background:rgba(59,130,246,0.15); width:48px; height:48px; border-radius:12px; display:flex; align-items:center; justify-content:center;">🏢</div>
+                <div>
+                  <h4 style="margin:0 0 0.2rem 0; font-size:1rem;">Manage Listings</h4>
+                  <p style="margin:0; font-size:0.78rem; color:var(--text-secondary);">Edit details, price & photos</p>
+                </div>
+              </div>
+
+              <div class="glass-panel" style="padding:1.25rem; display:flex; align-items:center; gap:1rem; cursor:pointer;" onclick="openQuickBlockModal()">
+                <div style="font-size:2rem; background:rgba(239,68,68,0.15); width:48px; height:48px; border-radius:12px; display:flex; align-items:center; justify-content:center;">🚫</div>
+                <div>
+                  <h4 style="margin:0 0 0.2rem 0; font-size:1rem;">Block Dates</h4>
+                  <p style="margin:0; font-size:0.78rem; color:var(--text-secondary);">Mark dates unavailable</p>
+                </div>
+              </div>
+            </div>
+
+            <!-- Recent Enquiries / Bookings Queue -->
+            <section style="margin-bottom:2rem;">
+              <div class="flex items-center justify-between" style="margin-bottom:1rem;">
+                <div>
+                  <h2 style="font-size:1.25rem; margin:0;">Recent Enquiries & Bookings</h2>
+                  <p style="font-size:0.82rem; color:var(--text-secondary); margin:0.25rem 0 0 0;">Customer requests waiting for your response.</p>
+                </div>
+                <button class="btn btn-secondary btn-sm" onclick="switchTab('bookings')">View All →</button>
+              </div>
+
+              <div id="overview-incoming-bookings" style="display:flex; flex-direction:column; gap:0.85rem;">
+                <!-- Populated dynamically -->
+              </div>
+            </section>
+          </div>
+
+          <!-- =========================================================================
+               TAB 2: MY HALL LISTINGS
+          ========================================================================= -->
+          <div id="tab-listings" class="tab-content-panel">
+            <div class="flex items-center justify-between" style="margin-bottom:1.25rem; flex-wrap:wrap; gap:1rem;">
+              <div>
+                <h2 style="font-size:1.35rem; margin:0;">My Hall Listings</h2>
+                <p style="font-size:0.85rem; color:var(--text-secondary); margin:0.2rem 0 0 0;">Control status, photos, pricing and details for your properties.</p>
+              </div>
+              <button class="btn btn-primary btn-sm" onclick="startNewHallWizard()">+ Add New Hall</button>
+            </div>
+
+            <!-- Status Filter Pills -->
+            <div class="filter-pills-bar">
+              <button class="filter-pill-btn active" onclick="filterHallListings('ALL', this)">All Halls</button>
+              <button class="filter-pill-btn" onclick="filterHallListings('ACTIVE', this)">● Active</button>
+              <button class="filter-pill-btn" onclick="filterHallListings('PENDING', this)">● Pending Approval</button>
+              <button class="filter-pill-btn" onclick="filterHallListings('DRAFT', this)">● Drafts</button>
+              <button class="filter-pill-btn" onclick="filterHallListings('INACTIVE', this)">● Inactive</button>
+              <button class="filter-pill-btn" onclick="filterHallListings('REJECTED', this)">● Rejected</button>
+            </div>
+
+            <!-- Hall Listings Grid -->
+            <div id="owner-listings-grid" class="listing-card-grid">
+              <!-- Populated dynamically -->
+            </div>
+          </div>
+
+          <!-- =========================================================================
+               TAB 3: ENQUIRIES
+          ========================================================================= -->
+          <div id="tab-enquiries" class="tab-content-panel">
+            <div class="flex items-center justify-between" style="margin-bottom:1.25rem;">
+              <div>
+                <h2 style="font-size:1.35rem; margin:0;">Customer Enquiries</h2>
+                <p style="font-size:0.85rem; color:var(--text-secondary); margin:0.2rem 0 0 0;">Direct questions and leads from visitors searching for halls.</p>
+              </div>
+            </div>
+
+            <div id="owner-enquiries-container" style="display:flex; flex-direction:column; gap:0.85rem;">
+              <!-- Populated dynamically -->
+            </div>
+          </div>
+
+          <!-- =========================================================================
+               TAB 4: BOOKINGS QUEUE
+          ========================================================================= -->
+          <div id="tab-bookings" class="tab-content-panel">
+            <div class="flex items-center justify-between" style="margin-bottom:1.25rem; flex-wrap:wrap; gap:0.5rem;">
+              <div>
+                <h2 style="font-size:1.35rem; margin:0;">Customer Bookings Queue</h2>
+                <p style="font-size:0.85rem; color:var(--text-secondary); margin:0.2rem 0 0 0;">Review, accept, or reject incoming reservations.</p>
+              </div>
+            </div>
+
+            <!-- Filter Pills -->
+            <div class="filter-pills-bar">
+              <button class="filter-pill-btn active" onclick="filterBookings('all', this)">All</button>
+              <button class="filter-pill-btn" onclick="filterBookings('pending', this)">Pending</button>
+              <button class="filter-pill-btn" onclick="filterBookings('confirmed', this)">Confirmed</button>
+              <button class="filter-pill-btn" onclick="filterBookings('completed', this)">Completed</button>
+              <button class="filter-pill-btn" onclick="filterBookings('cancelled', this)">Cancelled</button>
+            </div>
+
+            <div id="bookings-queue-container" style="display:flex; flex-direction:column; gap:1rem;">
+              <!-- Populated dynamically -->
+            </div>
+          </div>
+
+          <!-- =========================================================================
+               TAB 5: OWNER PROFILE & KYC
+          ========================================================================= -->
+          <div id="tab-profile" class="tab-content-panel">
+            <div class="glass-panel" style="padding:1.5rem; max-width:760px;">
+              <div class="flex items-center justify-between" style="margin-bottom:1.25rem;">
+                <div>
+                  <h2 style="font-size:1.35rem; margin:0;">Owner Profile & Business KYC</h2>
+                  <p style="font-size:0.85rem; color:var(--text-secondary); margin:0.2rem 0 0 0;">Keep your contact information up-to-date so clients can reach you.</p>
+                </div>
+                <span id="prof-verification-badge" class="badge badge-verified">Verified Partner</span>
+              </div>
+
+              <form id="owner-profile-form" onsubmit="saveOwnerProfile(event)">
+                <div style="display:grid; grid-template-columns:repeat(auto-fit, minmax(240px, 1fr)); gap:1rem; margin-bottom:1rem;">
+                  <div class="form-group-simple">
+                    <label>Business / Trade Name *</label>
+                    <input type="text" id="prof-business-name" class="form-control-simple" required placeholder="e.g. Royal Heritage Banquets">
+                  </div>
+                  <div class="form-group-simple">
+                    <label>Owner / Manager Full Name *</label>
+                    <input type="text" id="prof-owner-name" class="form-control-simple" required placeholder="e.g. Rajesh Verma">
+                  </div>
+                </div>
+
+                <div style="display:grid; grid-template-columns:repeat(auto-fit, minmax(200px, 1fr)); gap:1rem; margin-bottom:1rem;">
+                  <div class="form-group-simple">
+                    <label>Primary Phone Number *</label>
+                    <input type="tel" id="prof-phone" class="form-control-simple" required placeholder="10-digit mobile" maxlength="10">
+                  </div>
+                  <div class="form-group-simple">
+                    <label>WhatsApp Number</label>
+                    <input type="tel" id="prof-whatsapp" class="form-control-simple" placeholder="WhatsApp contact" maxlength="10">
+                  </div>
+                  <div class="form-group-simple">
+                    <label>Email Address</label>
+                    <input type="email" id="prof-email" class="form-control-simple" placeholder="owner@hallkhoj.com">
+                  </div>
+                </div>
+
+                <div style="display:grid; grid-template-columns:repeat(auto-fit, minmax(180px, 1fr)); gap:1rem; margin-bottom:1rem;">
+                  <div class="form-group-simple">
+                    <label>State *</label>
+                    <input type="text" id="prof-state" class="form-control-simple" required value="Uttar Pradesh">
+                  </div>
+                  <div class="form-group-simple">
+                    <label>City *</label>
+                    <input type="text" id="prof-city" class="form-control-simple" required value="Lucknow">
+                  </div>
+                  <div class="form-group-simple">
+                    <label>PIN Code</label>
+                    <input type="text" id="prof-pincode" class="form-control-simple" placeholder="226010" maxlength="6">
+                  </div>
+                </div>
+
+                <div class="form-group-simple">
+                  <label>Full Business Address</label>
+                  <input type="text" id="prof-address" class="form-control-simple" placeholder="Plot No, Road, Landmark">
+                </div>
+
+                <div class="form-group-simple">
+                  <label>GSTIN / Business Registration (Optional)</label>
+                  <input type="text" id="prof-gstin" class="form-control-simple" placeholder="09AAECV1234F1Z8">
+                </div>
+
+                <div style="margin-top:1.5rem; display:flex; justify-content:flex-end;">
+                  <button type="submit" class="btn btn-primary" id="btn-save-profile">
+                    Save Profile Changes
+                  </button>
+                </div>
+              </form>
+            </div>
+          </div>
+
+          <!-- =========================================================================
+               TAB 6: SETTINGS
+          ========================================================================= -->
+          <div id="tab-settings" class="tab-content-panel">
+            <div class="glass-panel" style="padding:1.5rem; max-width:650px;">
+              <h2 style="font-size:1.35rem; margin-bottom:0.5rem;">Account Settings</h2>
+              <p style="font-size:0.85rem; color:var(--text-secondary); margin-bottom:1.5rem;">Manage your credentials and notifications.</p>
+
+              <div style="border-bottom:1px solid var(--border-subtle); padding-bottom:1.25rem; margin-bottom:1.25rem;">
+                <h4 style="font-size:0.95rem; margin-bottom:0.4rem;">SMS / WhatsApp Alerts</h4>
+                <p style="font-size:0.8rem; color:var(--text-muted); margin-bottom:0.75rem;">Receive immediate notification whenever a customer sends an enquiry or booking request.</p>
+                <label style="display:flex; align-items:center; gap:0.5rem; font-size:0.88rem; cursor:pointer;">
+                  <input type="checkbox" checked id="setting-notify-sms">
+                  Enable Instant SMS Alerts
+                </label>
+              </div>
+
+              <div style="padding-bottom:1rem;">
+                <h4 style="font-size:0.95rem; margin-bottom:0.4rem;">Sign Out from All Devices</h4>
+                <p style="font-size:0.8rem; color:var(--text-muted); margin-bottom:0.75rem;">Clear all active sessions securely.</p>
+                <button class="btn btn-secondary btn-sm" onclick="handleAuthAction()">Sign Out</button>
+              </div>
+            </div>
+          </div>
+
+          <!-- =========================================================================
+               TAB 7: NOTIFICATIONS
+          ========================================================================= -->
+          <div id="tab-notifications" class="tab-content-panel">
+            <div class="glass-panel" style="padding:1.5rem;">
+              <h2 style="font-size:1.35rem; margin-bottom:1rem;">Activity & Notifications</h2>
+              <div id="owner-notifs-container" style="display:flex; flex-direction:column; gap:0.75rem;">
+                <!-- Populated dynamically -->
+              </div>
+            </div>
+          </div>
+
+          <!-- =========================================================================
+               TAB 8: AI ASSISTANT
+          ========================================================================= -->
+          <div id="tab-ai-assistant" class="tab-content-panel">
+            <div class="glass-panel" style="padding:1.5rem; max-width:750px;">
+              <h2 style="font-size:1.35rem; margin-bottom:0.5rem;">✨ Owner AI Business Assistant</h2>
+              <p style="font-size:0.85rem; color:var(--text-secondary); margin-bottom:1rem;">Ask questions about your booking schedule, pricing suggestions, or event optimization.</p>
+              
+              <div id="ai-chat-history" style="height:250px; overflow-y:auto; background:rgba(0,0,0,0.25); border-radius:var(--radius-md); padding:1rem; margin-bottom:1rem; font-size:0.88rem; display:flex; flex-direction:column; gap:0.75rem;">
+                <div style="background:rgba(99,102,241,0.15); border:1px solid rgba(99,102,241,0.3); padding:0.65rem 0.85rem; border-radius:var(--radius-md); max-width:85%;">
+                  Namaste! I am your AI Business Assistant. How can I help optimize your hall bookings today?
+                </div>
+              </div>
+
+              <div style="display:flex; flex-wrap:wrap; gap:0.4rem; margin-bottom:1rem;">
+                <button type="button" class="filter-pill-btn" onclick="triggerOwnerAI('Show my pending bookings')">📋 Show pending bookings</button>
+                <button type="button" class="filter-pill-btn" onclick="triggerOwnerAI('Suggest a competitive package')">💡 Suggest pricing</button>
+                <button type="button" class="filter-pill-btn" onclick="triggerOwnerAI('Analyze performance')">📈 Analyze performance</button>
+              </div>
+
+              <div style="position:relative;">
+                <input id="owner-ai-input" type="text" class="form-control-simple" style="padding-right:5rem;" placeholder="Ask your AI assistant...">
+                <button class="btn btn-gold btn-sm" style="position:absolute; right:6px; top:6px; height:36px;" onclick="triggerOwnerAI(document.getElementById('owner-ai-input').value)">Send</button>
+              </div>
+            </div>
+          </div>
+
+        </div>
+      </div>
+    </div>
+  </main>
+
+  <!-- =========================================================================
+       8-STEP SIMPLE HALL LISTING WIZARD MODAL (#hall-wizard)
+       ========================================================================= -->
+  <div id="hall-wizard" class="wizard-overlay" role="dialog" aria-modal="true" aria-labelledby="wizard-current-step-title">
+    <div class="wizard-modal">
+      
+      <!-- Wizard Header -->
+      <div class="wizard-header">
+        <div class="wizard-header-top">
+          <div class="wizard-title-group">
+            <h2 id="wizard-current-step-title">
+              <span>Step 1 of 8</span>: Basic Details
+            </h2>
+            <p id="wizard-current-step-sub">Enter the essential details about your hall</p>
+          </div>
+
+          <div class="wizard-meta-badges">
+            <span class="wizard-autosave-badge" id="wizard-autosave-indicator">
+              ● Saved just now
+            </span>
+            <span class="wizard-strength-badge" id="wizard-strength-badge">
+              Strength: 20%
+            </span>
+            <button class="btn btn-secondary btn-sm" onclick="saveDraftAndExit()" title="Save draft and exit" style="padding:0.35rem 0.65rem;">
+              Save & Exit
+            </button>
+          </div>
+        </div>
+
+        <!-- Progress Track -->
+        <div class="wizard-progress-track">
+          <div id="wizard-progress-bar" class="wizard-progress-bar" style="width: 12.5%;"></div>
+        </div>
+
+        <!-- 8 Step Stepper Pills -->
+        <div class="wizard-stepper-pills">
+          <span class="step-pill active" id="pill-step-1" onclick="jumpToWizardStep(1)">1. Basic</span>
+          <span class="step-pill" id="pill-step-2" onclick="jumpToWizardStep(2)">2. Location</span>
+          <span class="step-pill" id="pill-step-3" onclick="jumpToWizardStep(3)">3. Capacity</span>
+          <span class="step-pill" id="pill-step-4" onclick="jumpToWizardStep(4)">4. Price</span>
+          <span class="step-pill" id="pill-step-5" onclick="jumpToWizardStep(5)">5. Facilities</span>
+          <span class="step-pill" id="pill-step-6" onclick="jumpToWizardStep(6)">6. Photos</span>
+          <span class="step-pill" id="pill-step-7" onclick="jumpToWizardStep(7)">7. Availability</span>
+          <span class="step-pill" id="pill-step-8" onclick="jumpToWizardStep(8)">8. Review</span>
+        </div>
+      </div>
+
+      <!-- Wizard Form Body -->
+      <div class="wizard-body">
+        <form id="wizard-form" onsubmit="event.preventDefault()">
+          <input type="hidden" id="wiz-hall-id" value="">
+
+          <!-- STEP 1: BASIC DETAILS -->
+          <div class="wizard-step-pane active" id="wiz-step-pane-1">
+            <h3 class="wizard-step-heading">Basic Information</h3>
+            <p class="wizard-step-sub">Tell customers the name, type, and brief overview of your venue.</p>
+
+            <div class="form-group-simple">
+              <label for="wiz-hall-name">Hall Name *</label>
+              <input type="text" id="wiz-hall-name" class="form-control-simple" placeholder="e.g. Royal Heritage Banquet Hall" required>
+              <div class="field-error-msg" id="err-hall-name">Please enter your hall name.</div>
+            </div>
+
+            <div class="form-group-simple">
+              <label for="wiz-hall-type">Hall Type *</label>
+              <select id="wiz-hall-type" class="form-control-simple" required>
+                <option value="Marriage Hall">Marriage Hall</option>
+                <option value="Banquet Hall">Banquet Hall</option>
+                <option value="Party Hall">Party Hall</option>
+                <option value="Community Hall">Community Hall</option>
+                <option value="Conference Hall">Conference Hall</option>
+                <option value="Lawn & Banquet">Lawn & Banquet</option>
+                <option value="Other">Other</option>
+              </select>
+            </div>
+
+            <div class="form-group-simple">
+              <label for="wiz-hall-desc">Description</label>
+              <textarea id="wiz-hall-desc" class="form-control-simple" style="height:90px; padding:0.75rem 1rem;" placeholder="Explain what makes your venue great (e.g. spacious hall, grand entrance, air conditioning, parking)..."></textarea>
+            </div>
+
+            <div class="form-group-simple">
+              <label for="wiz-contact-phone">Contact Number (+91) *</label>
+              <input type="tel" id="wiz-contact-phone" class="form-control-simple" placeholder="10-digit mobile number" maxlength="10" inputmode="numeric" required>
+              <div class="field-error-msg" id="err-contact-phone">Please enter a valid 10-digit contact mobile number.</div>
+            </div>
+          </div>
+
+          <!-- STEP 2: LOCATION -->
+          <div class="wizard-step-pane" id="wiz-step-pane-2">
+            <h3 class="wizard-step-heading">Where is your hall located?</h3>
+            <p class="wizard-step-sub">Help customers in your city find you easily.</p>
+
+            <div style="margin-bottom:1.25rem;">
+              <button type="button" class="btn btn-secondary btn-sm" id="btn-use-location" onclick="handleUseMyLocation()">
+                📍 Use My Location
+              </button>
+              <span id="loc-status-msg" style="font-size:0.78rem; color:#10b981; margin-left:0.5rem; display:none;">Location fetched successfully!</span>
+            </div>
+
+            <div style="display:grid; grid-template-columns:repeat(auto-fit, minmax(200px, 1fr)); gap:1rem;">
+              <div class="form-group-simple">
+                <label for="wiz-state">State *</label>
+                <input type="text" id="wiz-state" class="form-control-simple" value="Uttar Pradesh" required>
+                <div class="field-error-msg" id="err-state">Please enter your state.</div>
+              </div>
+
+              <div class="form-group-simple">
+                <label for="wiz-city">City *</label>
+                <input type="text" id="wiz-city" class="form-control-simple" placeholder="e.g. Lucknow" required>
+                <div class="field-error-msg" id="err-city">Please enter your city.</div>
+              </div>
+            </div>
+
+            <div style="display:grid; grid-template-columns:repeat(auto-fit, minmax(200px, 1fr)); gap:1rem;">
+              <div class="form-group-simple">
+                <label for="wiz-area">Area / Locality *</label>
+                <input type="text" id="wiz-area" class="form-control-simple" placeholder="e.g. Gomti Nagar" required>
+                <div class="field-error-msg" id="err-area">Please enter your area or locality.</div>
+              </div>
+
+              <div class="form-group-simple">
+                <label for="wiz-pincode">PIN Code</label>
+                <input type="text" id="wiz-pincode" class="form-control-simple" placeholder="e.g. 226010" maxlength="6" inputmode="numeric">
+              </div>
+            </div>
+
+            <div class="form-group-simple">
+              <label for="wiz-address">Full Address *</label>
+              <input type="text" id="wiz-address" class="form-control-simple" placeholder="Plot No, Street, Landmark" required>
+              <div class="field-error-msg" id="err-address">Please enter full address.</div>
+            </div>
+
+            <!-- Visual Map Preview Card -->
+            <div id="wiz-map-preview" style="background:rgba(255,255,255,0.03); border:1px dashed var(--border-subtle); border-radius:var(--radius-md); padding:1rem; text-align:center; font-size:0.85rem; color:var(--text-secondary);">
+              🗺️ Map pin will be positioned based on your City & Area (<span id="wiz-map-label">Lucknow</span>)
+            </div>
+          </div>
+
+          <!-- STEP 3: CAPACITY -->
+          <div class="wizard-step-pane" id="wiz-step-pane-3">
+            <h3 class="wizard-step-heading">How many people can your hall accommodate?</h3>
+            <p class="wizard-step-sub">Specify minimum and maximum guest capacities.</p>
+
+            <div style="display:grid; grid-template-columns:repeat(auto-fit, minmax(200px, 1fr)); gap:1rem;">
+              <div class="form-group-simple">
+                <label for="wiz-cap-min">Minimum Capacity (Guests)</label>
+                <input type="number" id="wiz-cap-min" class="form-control-simple" placeholder="e.g. 100" min="10" value="100">
+              </div>
+
+              <div class="form-group-simple">
+                <label for="wiz-cap-max">Maximum Capacity (Guests) *</label>
+                <input type="number" id="wiz-cap-max" class="form-control-simple" placeholder="e.g. 1000" min="20" value="500" required>
+                <div class="field-error-msg" id="err-cap-max">Please enter maximum capacity.</div>
+              </div>
+            </div>
+
+            <h4 style="font-size:0.95rem; margin:1.25rem 0 0.75rem 0; color:var(--text-secondary);">Optional Space Details:</h4>
+
+            <div style="display:grid; grid-template-columns:repeat(auto-fit, minmax(180px, 1fr)); gap:1rem;">
+              <div class="form-group-simple">
+                <label for="wiz-seating">Seating Arrangement</label>
+                <select id="wiz-seating" class="form-control-simple">
+                  <option value="Theater Style">Theater Style</option>
+                  <option value="Round Table">Round Table</option>
+                  <option value="Floating / Standing">Floating / Standing</option>
+                  <option value="Mixed">Mixed</option>
+                </select>
+              </div>
+
+              <div class="form-group-simple">
+                <label for="wiz-rooms">Number of AC Rooms</label>
+                <input type="number" id="wiz-rooms" class="form-control-simple" placeholder="e.g. 2" min="0" value="2">
+              </div>
+
+              <div class="form-group-simple">
+                <label for="wiz-parking">Parking Capacity (Cars)</label>
+                <input type="number" id="wiz-parking" class="form-control-simple" placeholder="e.g. 50" min="0" value="50">
+              </div>
+            </div>
+          </div>
+
+          <!-- STEP 4: PRICE -->
+          <div class="wizard-step-pane" id="wiz-step-pane-4">
+            <h3 class="wizard-step-heading">Starting Price</h3>
+            <p class="wizard-step-sub">Set transparent pricing or allow customers to contact you.</p>
+
+            <div style="margin-bottom:1.25rem; background:rgba(255,255,255,0.03); border:1px solid var(--border-subtle); border-radius:var(--radius-md); padding:0.85rem 1rem;">
+              <label style="display:flex; align-items:center; gap:0.6rem; cursor:pointer; font-size:0.95rem; font-weight:600; color:#fbbf24;">
+                <input type="checkbox" id="wiz-contact-for-price" onchange="togglePriceFields(this.checked)">
+                Contact for Price (Don't display exact amount)
+              </label>
+              <p style="font-size:0.78rem; color:var(--text-muted); margin:0.3rem 0 0 1.6rem;">Check this if your pricing varies widely by event package or season.</p>
+            </div>
+
+            <div id="wiz-price-container">
+              <div style="display:grid; grid-template-columns:2fr 1fr; gap:1rem; align-items:start;">
+                <div class="form-group-simple">
+                  <label for="wiz-price">Starting Price (₹) *</label>
+                  <input type="number" id="wiz-price" class="form-control-simple" placeholder="e.g. 50000" min="0" value="50000">
+                  <div class="field-error-msg" id="err-price">Please enter a valid starting price.</div>
+                </div>
+
+                <div class="form-group-simple">
+                  <label for="wiz-price-unit">Billing Basis</label>
+                  <select id="wiz-price-unit" class="form-control-simple">
+                    <option value="Per Event">Per Event</option>
+                    <option value="Per Day">Per Day</option>
+                    <option value="Per Hour">Per Hour</option>
+                  </select>
+                </div>
+              </div>
+
+              <div style="display:grid; grid-template-columns:repeat(auto-fit, minmax(200px, 1fr)); gap:1rem; margin-top:0.5rem;">
+                <div class="form-group-simple">
+                  <label for="wiz-veg-plate">Veg Plate Price (₹ Optional)</label>
+                  <input type="number" id="wiz-veg-plate" class="form-control-simple" placeholder="e.g. 750" min="0">
+                </div>
+                <div class="form-group-simple">
+                  <label for="wiz-nonveg-plate">Non-Veg Plate Price (₹ Optional)</label>
+                  <input type="number" id="wiz-nonveg-plate" class="form-control-simple" placeholder="e.g. 1100" min="0">
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- STEP 5: FACILITIES -->
+          <div class="wizard-step-pane" id="wiz-step-pane-5">
+            <h3 class="wizard-step-heading">Select Facilities</h3>
+            <p class="wizard-step-sub">Tap on all the amenities provided at your hall.</p>
+
+            <div class="facilities-card-grid" id="wiz-facilities-grid">
+              <!-- Selectable Cards -->
+              <div class="facility-card-item selected" onclick="toggleFacilityCard(this, 'Parking')">
+                <span class="facility-icon">🚗</span>
+                <span class="facility-name">Parking</span>
+              </div>
+              <div class="facility-card-item selected" onclick="toggleFacilityCard(this, 'AC')">
+                <span class="facility-icon">❄️</span>
+                <span class="facility-name">AC</span>
+              </div>
+              <div class="facility-card-item" onclick="toggleFacilityCard(this, 'Non-AC')">
+                <span class="facility-icon">💨</span>
+                <span class="facility-name">Non-AC</span>
+              </div>
+              <div class="facility-card-item selected" onclick="toggleFacilityCard(this, 'Catering')">
+                <span class="facility-icon">🍲</span>
+                <span class="facility-name">Catering</span>
+              </div>
+              <div class="facility-card-item" onclick="toggleFacilityCard(this, 'Kitchen')">
+                <span class="facility-icon">🍳</span>
+                <span class="facility-name">Kitchen</span>
+              </div>
+              <div class="facility-card-item selected" onclick="toggleFacilityCard(this, 'Decoration')">
+                <span class="facility-icon">🌸</span>
+                <span class="facility-name">Decoration</span>
+              </div>
+              <div class="facility-card-item selected" onclick="toggleFacilityCard(this, 'Stage')">
+                <span class="facility-icon">🎭</span>
+                <span class="facility-name">Stage</span>
+              </div>
+              <div class="facility-card-item selected" onclick="toggleFacilityCard(this, 'DJ/Music')">
+                <span class="facility-icon">🎵</span>
+                <span class="facility-name">DJ/Music</span>
+              </div>
+              <div class="facility-card-item selected" onclick="toggleFacilityCard(this, 'Generator')">
+                <span class="facility-icon">⚡</span>
+                <span class="facility-name">Generator</span>
+              </div>
+              <div class="facility-card-item" onclick="toggleFacilityCard(this, 'Wi-Fi')">
+                <span class="facility-icon">📶</span>
+                <span class="facility-name">Wi-Fi</span>
+              </div>
+              <div class="facility-card-item selected" onclick="toggleFacilityCard(this, 'Rooms')">
+                <span class="facility-icon">🛏️</span>
+                <span class="facility-name">Rooms</span>
+              </div>
+              <div class="facility-card-item" id="card-fac-outdoor" onclick="toggleFacilityCard(this, 'Outdoor Area')">
+                <span class="facility-icon">🌿</span>
+                <span class="facility-name">Outdoor Area</span>
+              </div>
+              <div class="facility-card-item" onclick="toggleFacilityCard(this, 'Lift')">
+                <span class="facility-icon">🛗</span>
+                <span class="facility-name">Lift</span>
+              </div>
+              <div class="facility-card-item" onclick="toggleFacilityCard(this, 'Wheelchair Accessible')">
+                <span class="facility-icon">♿</span>
+                <span class="facility-name">Wheelchair</span>
+              </div>
+            </div>
+
+            <!-- Smart conditional for outdoor area -->
+            <div id="wiz-outdoor-details" style="display:none; background:rgba(16,185,129,0.06); border:1px solid rgba(16,185,129,0.25); border-radius:var(--radius-md); padding:0.85rem 1rem; margin-bottom:1rem;">
+              <label style="font-size:0.85rem; font-weight:600; color:#34d399; margin-bottom:0.35rem; display:block;">Outdoor Lawn / Garden Details:</label>
+              <input type="text" id="wiz-outdoor-notes" class="form-control-simple" placeholder="e.g. 15,000 sq ft manicured lawn for dining & stage">
+            </div>
+
+            <!-- Add other facility -->
+            <div class="form-group-simple">
+              <label for="wiz-custom-facilities">+ Add Other Facilities (Comma separated)</label>
+              <input type="text" id="wiz-custom-facilities" class="form-control-simple" placeholder="e.g. Valet Parking, Hawan Allowed, CCTV Monitored">
+            </div>
+          </div>
+
+          <!-- STEP 6: PHOTOS -->
+          <div class="wizard-step-pane" id="wiz-step-pane-6">
+            <h3 class="wizard-step-heading">Add Photos of Your Hall</h3>
+            <p class="wizard-step-sub">Good photos help customers choose your hall faster. Select camera or gallery.</p>
+
+            <div style="display:flex; flex-wrap:wrap; gap:0.75rem; margin-bottom:1rem;">
+              <!-- Camera / File Picker -->
+              <label class="btn btn-primary btn-sm" style="cursor:pointer; display:inline-flex; align-items:center; gap:0.4rem;">
+                📷 Camera / Gallery
+                <input type="file" id="wiz-photo-file-input" accept="image/*" multiple style="display:none;" onchange="handleWizardPhotoUpload(event)">
+              </label>
+
+              <!-- Add via URL fallback -->
+              <button type="button" class="btn btn-secondary btn-sm" onclick="promptAddPhotoUrl()">
+                🔗 Add Photo URL
+              </button>
+            </div>
+
+            <p style="font-size:0.78rem; color:var(--text-muted); margin:0;">
+              Tip: The photo with the <span style="color:#fbbf24; font-weight:700;">COVER</span> badge is the first image customers see.
+            </p>
+
+            <!-- Uploaded Photos Grid -->
+            <div class="photo-upload-grid" id="wiz-photos-grid">
+              <!-- Populated dynamically -->
+            </div>
+            <div class="field-error-msg" id="err-photos">Please add at least one photo of your hall.</div>
+          </div>
+
+          <!-- STEP 7: AVAILABILITY -->
+          <div class="wizard-step-pane" id="wiz-step-pane-7">
+            <h3 class="wizard-step-heading">Availability & Dates</h3>
+            <p class="wizard-step-sub">Set your hall's current status and optionally block private dates.</p>
+
+            <div class="form-group-simple">
+              <label>Current Status *</label>
+              <div style="display:flex; flex-direction:column; gap:0.5rem; margin-top:0.35rem;">
+                <label style="display:flex; align-items:center; gap:0.6rem; cursor:pointer; font-size:0.9rem;">
+                  <input type="radio" name="wiz-status" value="ACTIVE" checked>
+                  <span style="color:#10b981; font-weight:600;">● Available</span> — Ready to accept inquiries and bookings
+                </label>
+                <label style="display:flex; align-items:center; gap:0.6rem; cursor:pointer; font-size:0.9rem;">
+                  <input type="radio" name="wiz-status" value="INACTIVE">
+                  <span style="color:#f59e0b; font-weight:600;">● Temporarily Unavailable</span> — Renovations or private break
+                </label>
+                <label style="display:flex; align-items:center; gap:0.6rem; cursor:pointer; font-size:0.9rem;">
+                  <input type="radio" name="wiz-status" value="CLOSED">
+                  <span style="color:#ef4444; font-weight:600;">● Permanently Closed</span>
+                </label>
+              </div>
+            </div>
+
+            <div style="background:rgba(255,255,255,0.03); border:1px solid var(--border-subtle); border-radius:var(--radius-md); padding:1.25rem; margin-top:1.5rem;">
+              <h4 style="font-size:0.95rem; margin:0 0 0.5rem 0;">Block Specific Dates (Optional)</h4>
+              <p style="font-size:0.8rem; color:var(--text-muted); margin-bottom:0.75rem;">Dates blocked here will show as unavailable on your public hall calendar.</p>
+
+              <div style="display:flex; gap:0.5rem; flex-wrap:wrap;">
+                <input type="date" id="wiz-block-date-input" class="form-control-simple" style="width:auto; min-width:180px;">
+                <button type="button" class="btn btn-secondary btn-sm" onclick="addWizardBlockedDate()">
+                  🚫 Block Date
+                </button>
+              </div>
+
+              <div id="wiz-blocked-dates-list" style="display:flex; flex-wrap:wrap; gap:0.4rem; margin-top:0.75rem;">
+                <!-- Chips for blocked dates -->
+              </div>
+            </div>
+          </div>
+
+          <!-- STEP 8: REVIEW BEFORE PUBLISH -->
+          <div class="wizard-step-pane" id="wiz-step-pane-8">
+            <h3 class="wizard-step-heading">Review Your Hall</h3>
+            <p class="wizard-step-sub">Here is exactly how customers will see your listing. Check that everything is accurate before publishing.</p>
+
+            <!-- Customer-style live preview container -->
+            <div id="wiz-review-container">
+              <!-- Rendered via JS -->
+            </div>
+          </div>
+
+        </form>
+      </div>
+
+      <!-- Wizard Navigation Footer -->
+      <div class="wizard-footer">
+        <button type="button" class="btn btn-secondary" id="btn-wiz-prev" onclick="handleWizardPrev()" style="visibility:hidden;">
+          ← Previous
+        </button>
+
+        <div class="flex gap-2">
+          <button type="button" class="btn btn-secondary" onclick="saveDraftAndExit()">
+            Save Draft
+          </button>
+          <button type="button" class="btn btn-primary" id="btn-wiz-next" onclick="handleWizardNext()" style="min-width:130px;">
+            Continue →
+          </button>
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- =========================================================================
+       DUPLICATE HALL WARNING MODAL (#duplicate-hall-modal)
+       ========================================================================= -->
+  <div id="duplicate-hall-modal" class="wizard-overlay" role="dialog" aria-modal="true">
+    <div class="wizard-modal" style="max-width:480px;">
+      <div class="wizard-header" style="background:#1e1b4b; border-color:rgba(245,158,11,0.4);">
+        <h3 style="color:#fbbf24; margin:0; font-size:1.15rem; display:flex; align-items:center; gap:0.5rem;">
+          ⚠️ Duplicate Listing Warning
+        </h3>
+      </div>
+      <div class="wizard-body" style="padding:1.5rem;">
+        <p style="font-size:0.92rem; color:#fff; line-height:1.5; margin-bottom:1rem;">
+          A similar hall listing already exists with the name <strong id="dup-modal-name" style="color:#fbbf24;">"Grand Hall"</strong> in <strong id="dup-modal-city">Lucknow</strong>.
+        </p>
+        <p style="font-size:0.82rem; color:var(--text-secondary); margin-bottom:1.5rem;">
+          Creating duplicate listings can confuse customers. You can view your existing hall or continue publishing anyway.
+        </p>
+        <div class="flex justify-end gap-2">
+          <button class="btn btn-secondary btn-sm" onclick="viewExistingDuplicateHall()">
+            View Existing Hall
+          </button>
+          <button class="btn btn-gold btn-sm" onclick="forcePublishListing()">
+            Continue Anyway
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- =========================================================================
+       CUSTOMER PREVIEW MODAL (#customer-preview-modal)
+       ========================================================================= -->
+  <div id="customer-preview-modal" class="wizard-overlay" role="dialog" aria-modal="true">
+    <div class="wizard-modal" style="max-width:720px;">
+      <div class="wizard-header" style="display:flex; justify-content:space-between; align-items:center;">
+        <div>
+          <h3 style="margin:0; font-size:1.15rem; color:#fff;">👁️ Customer View Preview</h3>
+          <p style="margin:0.2rem 0 0 0; font-size:0.78rem; color:var(--text-secondary);">This is exactly how prospective guests see your hall.</p>
+        </div>
+        <button class="modal-close-btn" onclick="closeCustomerPreview()">&times;</button>
+      </div>
+      <div class="wizard-body" id="customer-preview-body" style="padding:1.5rem;">
+        <!-- Populated dynamically -->
+      </div>
+      <div class="wizard-footer" style="justify-content:flex-end;">
+        <button class="btn btn-secondary btn-sm" onclick="closeCustomerPreview()">Close Preview</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- =========================================================================
+       QUICK BLOCK DATE MODAL (#quick-block-modal)
+       ========================================================================= -->
+  <div id="quick-block-modal" class="wizard-overlay" role="dialog" aria-modal="true">
+    <div class="wizard-modal" style="max-width:440px;">
+      <div class="wizard-header" style="display:flex; justify-content:space-between; align-items:center;">
+        <h3 style="margin:0; font-size:1.15rem; color:#fff;">🚫 Quick Block Venue Date</h3>
+        <button class="modal-close-btn" onclick="closeQuickBlockModal()">&times;</button>
+      </div>
+      <div class="wizard-body" style="padding:1.5rem;">
+        <div class="form-group-simple">
+          <label for="block-venue-id">Select Venue / Hall</label>
+          <select id="block-venue-id" class="form-control-simple"></select>
+        </div>
+        <div class="form-group-simple">
+          <label for="block-date-input">Date to Block *</label>
+          <input type="date" id="block-date-input" class="form-control-simple" required>
+        </div>
+        <div class="form-group-simple">
+          <label for="block-reason-input">Reason (Private Function / Maintenance)</label>
+          <input type="text" id="block-reason-input" class="form-control-simple" placeholder="e.g. Private family reception">
+        </div>
+        <div class="flex justify-end gap-2" style="margin-top:1rem;">
+          <button class="btn btn-secondary btn-sm" onclick="closeQuickBlockModal()">Cancel</button>
+          <button class="btn btn-gold btn-sm" onclick="executeQuickBlock()">Confirm Block</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="toast-container"></div>
+
+  <!-- Core Scripts -->
+  <script src="../js/i18n.js"></script>
+  <script src="../js/app.js"></script>
+  <script src="../js/api.js"></script>
+  <script src="../js/firebase-config.js"></script>
+  <script src="../js/modals.js"></script>
+
+  <script>
+    // =========================================================================
+    // OWNER DASHBOARD & EASY HALL LISTING WIZARD ENGINE
+    // =========================================================================
+
+    const DRAFT_STORAGE_KEY = 'hkf_owner_hall_draft';
+
+    let currentWizardStep = 1;
+    const TOTAL_WIZARD_STEPS = 8;
+
+    let ownerProfileCache = null;
+    let ownerListingsCache = [];
+    let ownerBookingsCache = [];
+    let ownerEnquiriesCache = [];
+    let wizardBlockedDates = [];
+    let wizardPhotos = [];
+    let wizardCoverPhoto = '';
+    let duplicateCandidatePayload = null;
+
+    // Default sample photo fallback
+    const DEFAULT_COVER_PHOTO = 'https://images.unsplash.com/photo-1519167758481-83f550bb49b3?auto=format&fit=crop&w=800&q=80';
+
+    // 1. Navigation / Tab Switching
+    function switchTab(tabId) {
+      document.querySelectorAll('.dash-nav-btn').forEach(btn => btn.classList.remove('active'));
+      document.querySelectorAll('.tab-content-panel').forEach(panel => panel.classList.remove('active'));
+      document.querySelectorAll('.nav-links .nav-link').forEach(link => link.classList.remove('active'));
+
+      const sideBtn = document.getElementById(`side-nav-${tabId}`);
+      if (sideBtn) sideBtn.classList.add('active');
+
+      const topLink = document.getElementById(`nav-link-${tabId}`);
+      if (topLink) topLink.classList.add('active');
+
+      const panel = document.getElementById(`tab-${tabId}`);
+      if (panel) panel.classList.add('active');
+
+      // Scroll into view gently on mobile
+      if (window.innerWidth < 768 && panel) {
+        window.scrollTo({ top: 0, behavior: 'smooth' });
+      }
+    }
+
+    // 2. Authentication Handling
+    function handleAuthAction() {
+      localStorage.removeItem('hkf_token');
+      localStorage.removeItem('hkf_session');
+      if (typeof showToast === 'function') showToast('Signed out of Owner Portal', 'info');
+      setTimeout(() => {
+        window.location.href = '/login.html?redirect=/owner/dashboard.html';
+      }, 500);
+    }
+
+    // 3. Load Overview Stats
+    async function loadStats() {
+      try {
+        const res = await HKF_API.owners.getStats();
+        if (res.data) {
+          const s = res.data;
+          const activeCount = ownerListingsCache.filter(h => (h.status || 'ACTIVE') === 'ACTIVE').length;
+          const pendingCount = ownerListingsCache.filter(h => h.status === 'PENDING' || h.status === 'PENDING_APPROVAL').length;
+          const inactiveCount = ownerListingsCache.filter(h => h.status === 'INACTIVE' || h.status === 'CLOSED').length;
+          const totalHalls = ownerListingsCache.length || s.activeListings || 1;
+
+          document.getElementById('stat-total-halls').textContent = totalHalls;
+          document.getElementById('stat-active-halls').textContent = activeCount || totalHalls;
+          document.getElementById('stat-pending-halls').textContent = pendingCount;
+          document.getElementById('stat-inactive-halls').textContent = inactiveCount;
+          document.getElementById('stat-total-bookings').textContent = s.confirmedCount ?? (s.totalBookings ?? 0);
+          document.getElementById('badge-bookings-count').textContent = s.pendingRequests ?? 0;
+          document.getElementById('stat-total-enquiries').textContent = ownerEnquiriesCache.length || s.pendingRequests || 0;
+          document.getElementById('badge-enquiries-count').textContent = ownerEnquiriesCache.length || s.pendingRequests || 0;
+        }
+      } catch (err) {
+        console.warn('Could not load owner stats:', err.message);
+      }
+    }
+
+    // 4. Load Owner Profile & Completion Score
+    async function loadOwnerProfile() {
+      try {
+        const res = await HKF_API.owners.getProfile();
+        ownerProfileCache = res.data;
+        renderOwnerProfile(ownerProfileCache);
+      } catch (err) {
+        console.warn('Could not load owner profile:', err.message);
+      }
+    }
+
+    function renderOwnerProfile(p) {
+      if (!p) return;
+      const ownerName = p.ownerName || 'Partner';
+      const businessName = p.businessName || 'Heritage Banquets';
+
+      document.getElementById('owner-welcome-heading').textContent = `Welcome, ${ownerName}`;
+      document.getElementById('sidebar-business-title').textContent = businessName;
+      document.getElementById('sidebar-owner-name').textContent = `Owner: ${ownerName}`;
+
+      const initials = businessName.split(' ').map(n => n[0]).join('').slice(0, 2).toUpperCase() || 'HK';
+      document.getElementById('sidebar-logo-text').textContent = initials;
+
+      // Calculate profile completion score
+      let score = 20;
+      if (p.ownerName) score += 15;
+      if (p.businessName) score += 15;
+      if (p.phone) score += 15;
+      if (p.email) score += 15;
+      if (p.address && p.city) score += 10;
+      if (p.gstin) score += 10;
+
+      const boundedScore = Math.min(100, Math.max(score, 40));
+      document.getElementById('profile-completion-label').textContent = `Profile ${boundedScore}% Complete`;
+      document.getElementById('profile-completion-bar').style.width = `${boundedScore}%`;
+
+      const isVerified = p.verificationStatus === 'APPROVED' || p.verificationStatus === 'VERIFIED';
+      const badge = document.getElementById('profile-verification-status');
+      if (badge) {
+        badge.className = isVerified ? 'badge badge-verified' : 'badge badge-gold';
+        badge.textContent = isVerified ? '✓ Verified Partner' : 'Verification In Review';
+      }
+
+      // Populate Settings/Profile Form
+      document.getElementById('prof-business-name').value = p.businessName || '';
+      document.getElementById('prof-owner-name').value = p.ownerName || '';
+      document.getElementById('prof-phone').value = p.phone || p.mobile || '';
+      if (document.getElementById('prof-whatsapp')) document.getElementById('prof-whatsapp').value = p.whatsapp || p.phone || '';
+      if (document.getElementById('prof-email')) document.getElementById('prof-email').value = p.email || '';
+      document.getElementById('prof-state').value = p.state || 'Uttar Pradesh';
+      document.getElementById('prof-city').value = p.city || 'Lucknow';
+      document.getElementById('prof-pincode').value = p.pinCode || '226010';
+      document.getElementById('prof-address').value = p.address || '';
+      document.getElementById('prof-gstin').value = p.gstin || '';
+    }
+
+    async function saveOwnerProfile(e) {
+      e.preventDefault();
+      const btn = document.getElementById('btn-save-profile');
+      btn.disabled = true;
+      btn.textContent = 'Saving...';
+
+      const payload = {
+        businessName: document.getElementById('prof-business-name').value.trim(),
+        ownerName: document.getElementById('prof-owner-name').value.trim(),
+        phone: document.getElementById('prof-phone').value.trim(),
+        whatsapp: document.getElementById('prof-whatsapp')?.value.trim() || '',
+        email: document.getElementById('prof-email')?.value.trim() || '',
+        state: document.getElementById('prof-state').value.trim(),
+        city: document.getElementById('prof-city').value.trim(),
+        pinCode: document.getElementById('prof-pincode').value.trim(),
+        address: document.getElementById('prof-address').value.trim(),
+        gstin: document.getElementById('prof-gstin').value.trim()
+      };
+
+      try {
+        const res = await HKF_API.owners.updateProfile(payload);
+        ownerProfileCache = res.data;
+        renderOwnerProfile(ownerProfileCache);
+        if (typeof showToast === 'function') showToast('Business profile updated successfully!', 'success');
+      } catch (err) {
+        if (typeof showToast === 'function') showToast(err.message || 'Failed to update profile', 'error');
+      } finally {
+        btn.disabled = false;
+        btn.textContent = 'Save Profile Changes';
+      }
+    }
+
+    // 5. Load Listings ("My Hall Listings")
+    async function loadListings() {
+      const grid = document.getElementById('owner-listings-grid');
+      const blockVenueSelect = document.getElementById('block-venue-id');
+      if (!grid) return;
+
+      try {
+        const res = await HKF_API.owners.getListings();
+        ownerListingsCache = res.data || [];
+
+        document.getElementById('badge-listings-count').textContent = ownerListingsCache.length;
+
+        // Populate Quick Block select
+        if (blockVenueSelect) {
+          blockVenueSelect.innerHTML = ownerListingsCache.map(l => `
+            <option value="${l.id}">${l.name}</option>
+          `).join('');
+        }
+
+        renderHallListings(ownerListingsCache);
+        loadStats();
+      } catch (err) {
+        console.warn('Could not load owner listings:', err.message);
+      }
+    }
+
+    function renderHallListings(listings) {
+      const grid = document.getElementById('owner-listings-grid');
+      if (!grid) return;
+
+      if (!listings || listings.length === 0) {
+        grid.innerHTML = `
+          <div class="glass-panel" style="padding:2.5rem 1.5rem; text-align:center; grid-column:1/-1;">
+            <div style="font-size:2.5rem; margin-bottom:0.75rem;">🏢</div>
+            <h3 style="font-size:1.15rem; margin-bottom:0.35rem;">No Halls Listed Yet</h3>
+            <p style="color:var(--text-secondary); font-size:0.88rem; max-width:380px; margin:0 auto 1.25rem;">
+              Listing your hall takes less than 2 minutes. Start getting direct customer enquiries today.
+            </p>
+            <button class="btn btn-primary" onclick="startNewHallWizard()">+ Add Your First Hall</button>
+          </div>
+        `;
+        return;
+      }
+
+      grid.innerHTML = listings.map(hall => {
+        const status = (hall.status || 'ACTIVE').toUpperCase();
+        let badgeClass = 'badge-verified';
+        let statusLabel = '● Active';
+
+        if (status === 'PENDING' || status === 'PENDING_APPROVAL') {
+          badgeClass = 'badge-gold';
+          statusLabel = '● Pending Approval';
+        } else if (status === 'DRAFT') {
+          badgeClass = 'badge-secondary';
+          statusLabel = '● Draft';
+        } else if (status === 'INACTIVE' || status === 'CLOSED') {
+          badgeClass = 'badge-status-blocked';
+          statusLabel = '● Inactive';
+        } else if (status === 'REJECTED') {
+          badgeClass = 'badge-status-booked';
+          statusLabel = '● Rejected';
+        }
+
+        const priceText = hall.contactForPrice 
+          ? 'Contact for Price' 
+          : `₹${(hall.startingPrice || 50000).toLocaleString('en-IN')} / ${hall.priceUnit || 'Event'}`;
+
+        const isInactive = status === 'INACTIVE' || status === 'CLOSED';
+
+        return `
+          <div class="hall-owner-card">
+            <div class="hall-card-img-wrap">
+              <img src="${hall.coverImg || hall.photos?.[0] || DEFAULT_COVER_PHOTO}" alt="${hall.name}">
+              <span class="badge ${badgeClass}" style="position:absolute; top:10px; left:10px; font-size:0.75rem;">
+                ${statusLabel}
+              </span>
+              <span class="badge badge-gold" style="position:absolute; top:10px; right:10px; font-size:0.75rem;">
+                ★ ${hall.rating || '4.9'}
+              </span>
+            </div>
+
+            <div class="hall-card-body">
+              <div class="flex justify-between items-center" style="margin-bottom:0.35rem;">
+                <span style="font-size:0.75rem; color:var(--text-muted); text-transform:uppercase; font-weight:600;">
+                  ${hall.type || hall.category || 'Marriage Hall'}
+                </span>
+                <span style="font-size:0.78rem; color:var(--text-secondary);">📍 ${hall.city || 'Lucknow'}</span>
+              </div>
+
+              <h3 style="font-size:1.15rem; font-weight:700; margin:0 0 0.4rem 0;">${hall.name}</h3>
+
+              <div style="font-size:0.85rem; color:var(--text-secondary); margin-bottom:0.85rem;">
+                👥 Up to <strong>${hall.capacityMax || hall.capacity || 500}</strong> Guests • <strong style="color:#fbbf24;">${priceText}</strong>
+              </div>
+
+              <!-- Rejection Reason Banner if Rejected -->
+              ${status === 'REJECTED' ? `
+                <div class="rejection-banner">
+                  <strong>Rejection Reason:</strong> ${hall.rejectionReason || 'Incomplete address verification or photo guidelines not met.'}
+                  <div style="margin-top:0.4rem;">
+                    <button class="btn btn-gold btn-sm" style="padding:0.25rem 0.65rem; font-size:0.75rem;" onclick="editListingInWizard('${hall.id}')">
+                      Fix & Resubmit
+                    </button>
+                  </div>
+                </div>
+              ` : ''}
+
+              <!-- Quick Action Pills Grid -->
+              <div class="hall-card-actions">
+                <button class="btn-action-pill" onclick="previewHallAsCustomer('${hall.id}')" title="View Listing as Customer">
+                  👁️ View
+                </button>
+                <button class="btn-action-pill" onclick="editListingInWizard('${hall.id}')" title="Edit Hall Details">
+                  ✏️ Edit
+                </button>
+                <button class="btn-action-pill" onclick="openAvailabilityForHall('${hall.id}')" title="Manage Availability">
+                  📅 Dates
+                </button>
+                <button class="btn-action-pill" onclick="openPhotosForHall('${hall.id}')" title="Manage Photos">
+                  📸 Photos
+                </button>
+                <button class="btn-action-pill" onclick="filterEnquiriesForHall('${hall.id}')" title="Customer Enquiries">
+                  💬 Leads
+                </button>
+                <button class="btn-action-pill" onclick="shareHallListing('${hall.id}', '${encodeURIComponent(hall.name)}')" title="Share Listing">
+                  🔗 Share
+                </button>
+                <button class="btn-action-pill ${isInactive ? 'btn-toggle-active' : 'btn-toggle-inactive'}" onclick="toggleHallActiveStatus('${hall.id}', '${status}')" title="${isInactive ? 'Activate Listing' : 'Deactivate Listing'}">
+                  ${isInactive ? '⚡ Activate' : '⏸️ Deactivate'}
+                </button>
+              </div>
+            </div>
+          </div>
+        `;
+      }).join('');
+    }
+
+    function filterHallListings(filterStatus, btnElement) {
+      document.querySelectorAll('.filter-pill-btn').forEach(b => b.classList.remove('active'));
+      if (btnElement) btnElement.classList.add('active');
+
+      if (filterStatus === 'ALL') {
+        renderHallListings(ownerListingsCache);
+      } else {
+        const filtered = ownerListingsCache.filter(h => {
+          const s = (h.status || 'ACTIVE').toUpperCase();
+          if (filterStatus === 'PENDING') return s === 'PENDING' || s === 'PENDING_APPROVAL';
+          if (filterStatus === 'INACTIVE') return s === 'INACTIVE' || s === 'CLOSED';
+          return s === filterStatus;
+        });
+        renderHallListings(filtered);
+      }
+    }
+
+    // Toggle Active / Inactive Status
+    async function toggleHallActiveStatus(id, currentStatus) {
+      const newStatus = (currentStatus === 'INACTIVE' || currentStatus === 'CLOSED') ? 'ACTIVE' : 'INACTIVE';
+      const confirmMsg = newStatus === 'ACTIVE' 
+        ? 'Activate this listing? It will immediately become visible to customers searching for halls.' 
+        : 'Temporarily deactivate this listing? Customers will not see it in search until reactivated.';
+
+      if (!confirm(confirmMsg)) return;
+
+      try {
+        if (HKF_API.halls.updateStatus) {
+          await HKF_API.halls.updateStatus(id, newStatus);
+        } else {
+          await HKF_API.halls.update(id, { status: newStatus });
+        }
+        if (typeof showToast === 'function') showToast(`Listing ${newStatus.toLowerCase()} successfully`, 'success');
+        loadListings();
+      } catch (err) {
+        if (typeof showToast === 'function') showToast(err.message || 'Failed to update status', 'error');
+      }
+    }
+
+    // Share Listing via WhatsApp or Clipboard
+    function shareHallListing(id, encodedName) {
+      const publicUrl = `${window.location.origin}/hall-details.html?id=${id}`;
+      if (navigator.share) {
+        navigator.share({
+          title: decodeURIComponent(encodedName),
+          text: `Check out ${decodeURIComponent(encodedName)} on Hall Khoj:`,
+          url: publicUrl
+        }).catch(() => {});
+      } else {
+        navigator.clipboard.writeText(publicUrl).then(() => {
+          if (typeof showToast === 'function') showToast('Public link copied to clipboard!', 'info');
+        }).catch(() => {
+          prompt('Copy listing link:', publicUrl);
+        });
+      }
+    }
+
+    // =========================================================================
+    // 8-STEP SIMPLE HALL LISTING WIZARD
+    // =========================================================================
+
+    const stepTitles = [
+      { num: 1, title: 'Basic Details', sub: 'Enter the essential details about your hall' },
+      { num: 2, title: 'Location', sub: 'Where is your hall located? Help customers find you' },
+      { num: 3, title: 'Capacity', sub: 'How many people can your hall accommodate?' },
+      { num: 4, title: 'Price', sub: 'Set starting package price or choose contact for price' },
+      { num: 5, title: 'Facilities', sub: 'Tap on the amenities available at your venue' },
+      { num: 6, title: 'Photos', sub: 'Add Photos of Your Hall. Good photos help customers choose faster' },
+      { num: 7, title: 'Availability', sub: 'Configure listing status and block any private dates' },
+      { num: 8, title: 'Review Before Publish', sub: 'Review your hall exactly as customers will see it' }
+    ];
+
+    function startNewHallWizard() {
+      // Check if draft exists
+      const savedDraft = loadDraftFromStorage();
+      if (savedDraft && (!savedDraft.id || savedDraft.id === '')) {
+        showDraftResumeBanner(savedDraft);
+      }
+
+      resetWizardForm();
+      document.getElementById('wiz-hall-id').value = '';
+      currentWizardStep = 1;
+      updateWizardUI();
+      document.getElementById('hall-wizard').classList.add('open');
+    }
+
+    function editListingInWizard(hallId) {
+      const hall = ownerListingsCache.find(h => h.id === hallId);
+      if (!hall) return;
+
+      resetWizardForm();
+      document.getElementById('wiz-hall-id').value = hall.id;
+      document.getElementById('wiz-hall-name').value = hall.name || '';
+      document.getElementById('wiz-hall-type').value = hall.type || hall.category || 'Marriage Hall';
+      document.getElementById('wiz-hall-desc').value = hall.description || '';
+      document.getElementById('wiz-contact-phone').value = hall.contactPhone || hall.phone || '';
+
+      document.getElementById('wiz-state').value = hall.state || 'Uttar Pradesh';
+      document.getElementById('wiz-city').value = hall.city || 'Lucknow';
+      document.getElementById('wiz-area').value = hall.area || hall.locality || '';
+      document.getElementById('wiz-pincode').value = hall.pinCode || '';
+      document.getElementById('wiz-address').value = hall.address || '';
+
+      document.getElementById('wiz-cap-min').value = hall.capacityMin || 100;
+      document.getElementById('wiz-cap-max').value = hall.capacityMax || hall.capacity || 500;
+      document.getElementById('wiz-seating').value = hall.seatingArrangement || 'Theater Style';
+      document.getElementById('wiz-rooms').value = hall.roomsCount || 2;
+      document.getElementById('wiz-parking').value = hall.parkingSlots || 50;
+
+      const contactForPrice = !!hall.contactForPrice;
+      document.getElementById('wiz-contact-for-price').checked = contactForPrice;
+      togglePriceFields(contactForPrice);
+      document.getElementById('wiz-price').value = hall.startingPrice || 50000;
+      document.getElementById('wiz-price-unit').value = hall.priceUnit || 'Per Event';
+      document.getElementById('wiz-veg-plate').value = hall.vegPlatePrice || '';
+      document.getElementById('wiz-nonveg-plate').value = hall.nonVegPlatePrice || '';
+
+      // Facilities
+      const currentFacs = Array.isArray(hall.facilities) ? hall.facilities : (hall.facilities ? hall.facilities.split(',') : []);
+      document.querySelectorAll('#wiz-facilities-grid .facility-card-item').forEach(card => {
+        const facName = card.querySelector('.facility-name')?.textContent?.trim();
+        if (currentFacs.some(f => f.toLowerCase() === facName.toLowerCase())) {
+          card.classList.add('selected');
+        } else {
+          card.classList.remove('selected');
+        }
+      });
+
+      // Photos
+      wizardPhotos = Array.isArray(hall.photos) && hall.photos.length > 0 
+        ? [...hall.photos] 
+        : (hall.coverImg ? [hall.coverImg] : [DEFAULT_COVER_PHOTO]);
+      wizardCoverPhoto = hall.coverImg || wizardPhotos[0];
+      renderWizardPhotosGrid();
+
+      // Availability
+      wizardBlockedDates = Array.isArray(hall.blockedDates) ? [...hall.blockedDates] : [];
+      renderWizardBlockedDates();
+
+      currentWizardStep = 1;
+      updateWizardUI();
+      document.getElementById('hall-wizard').classList.add('open');
+    }
+
+    function openPhotosForHall(hallId) {
+      editListingInWizard(hallId);
+      jumpToWizardStep(6);
+    }
+
+    function openAvailabilityForHall(hallId) {
+      editListingInWizard(hallId);
+      jumpToWizardStep(7);
+    }
+
+    function resetWizardForm() {
+      document.getElementById('wizard-form').reset();
+      wizardPhotos = [DEFAULT_COVER_PHOTO];
+      wizardCoverPhoto = DEFAULT_COVER_PHOTO;
+      wizardBlockedDates = [];
+      renderWizardPhotosGrid();
+      renderWizardBlockedDates();
+      clearWizardErrors();
+    }
+
+    function clearWizardErrors() {
+      document.querySelectorAll('.field-error-msg').forEach(el => el.classList.remove('visible'));
+      document.querySelectorAll('.form-control-simple').forEach(el => el.classList.remove('is-invalid'));
+    }
+
+    function updateWizardUI() {
+      // Header Info
+      const stepMeta = stepTitles[currentWizardStep - 1];
+      document.getElementById('wizard-current-step-title').innerHTML = `<span>Step ${currentWizardStep} of ${TOTAL_WIZARD_STEPS}</span>: ${stepMeta.title}`;
+      document.getElementById('wizard-current-step-sub').textContent = stepMeta.sub;
+
+      // Progress Bar
+      const progressPercent = (currentWizardStep / TOTAL_WIZARD_STEPS) * 100;
+      document.getElementById('wizard-progress-bar').style.width = `${progressPercent}%`;
+
+      // Stepper Pills
+      for (let i = 1; i <= TOTAL_WIZARD_STEPS; i++) {
+        const pill = document.getElementById(`pill-step-${i}`);
+        if (!pill) continue;
+        pill.classList.remove('active', 'completed');
+        if (i === currentWizardStep) {
+          pill.classList.add('active');
+        } else if (i < currentWizardStep) {
+          pill.classList.add('completed');
+        }
+      }
+
+      // Pane Visibility
+      document.querySelectorAll('.wizard-step-pane').forEach((pane, idx) => {
+        if (idx === currentWizardStep - 1) {
+          pane.classList.add('active');
+        } else {
+          pane.classList.remove('active');
+        }
+      });
+
+      // Prev Button Visibility
+      const prevBtn = document.getElementById('btn-wiz-prev');
+      prevBtn.style.visibility = currentWizardStep > 1 ? 'visible' : 'hidden';
+
+      // Next / Publish Button Text
+      const nextBtn = document.getElementById('btn-wiz-next');
+      if (currentWizardStep === TOTAL_WIZARD_STEPS) {
+        nextBtn.textContent = '🚀 Publish Hall';
+        nextBtn.className = 'btn btn-gold';
+        renderWizardReviewStep();
+      } else {
+        nextBtn.textContent = 'Continue →';
+        nextBtn.className = 'btn btn-primary';
+      }
+
+      // Update Listing Strength Indicator
+      calculateListingStrength();
+
+      // Scroll modal body to top
+      document.querySelector('.wizard-body').scrollTop = 0;
+    }
+
+    function jumpToWizardStep(stepNum) {
+      if (stepNum < 1 || stepNum > TOTAL_WIZARD_STEPS) return;
+      if (stepNum > currentWizardStep && !validateCurrentWizardStep()) return;
+      currentWizardStep = stepNum;
+      updateWizardUI();
+    }
+
+    function handleWizardPrev() {
+      if (currentWizardStep > 1) {
+        currentWizardStep--;
+        updateWizardUI();
+      }
+    }
+
+    async function handleWizardNext() {
+      if (!validateCurrentWizardStep()) return;
+
+      if (currentWizardStep < TOTAL_WIZARD_STEPS) {
+        currentWizardStep++;
+        updateWizardUI();
+        autoSaveDraftProgress();
+      } else {
+        // Step 8: Publish Hall
+        await handlePublishListing();
+      }
+    }
+
+    // Step-by-Step Validation (Only validates current step fields)
+    function validateCurrentWizardStep() {
+      clearWizardErrors();
+      let isValid = true;
+
+      if (currentWizardStep === 1) {
+        const name = document.getElementById('wiz-hall-name').value.trim();
+        const phone = document.getElementById('wiz-contact-phone').value.trim();
+
+        if (!name) {
+          document.getElementById('err-hall-name').classList.add('visible');
+          document.getElementById('wiz-hall-name').classList.add('is-invalid');
+          isValid = false;
+        }
+
+        if (!phone || phone.length < 10) {
+          document.getElementById('err-contact-phone').classList.add('visible');
+          document.getElementById('wiz-contact-phone').classList.add('is-invalid');
+          isValid = false;
+        }
+      } else if (currentWizardStep === 2) {
+        const city = document.getElementById('wiz-city').value.trim();
+        const area = document.getElementById('wiz-area').value.trim();
+        const address = document.getElementById('wiz-address').value.trim();
+
+        if (!city) {
+          document.getElementById('err-city').classList.add('visible');
+          document.getElementById('wiz-city').classList.add('is-invalid');
+          isValid = false;
+        }
+        if (!area) {
+          document.getElementById('err-area').classList.add('visible');
+          document.getElementById('wiz-area').classList.add('is-invalid');
+          isValid = false;
+        }
+        if (!address) {
+          document.getElementById('err-address').classList.add('visible');
+          document.getElementById('wiz-address').classList.add('is-invalid');
+          isValid = false;
+        }
+      } else if (currentWizardStep === 3) {
+        const maxCap = parseInt(document.getElementById('wiz-cap-max').value, 10);
+        if (isNaN(maxCap) || maxCap <= 0) {
+          document.getElementById('err-cap-max').classList.add('visible');
+          document.getElementById('wiz-cap-max').classList.add('is-invalid');
+          isValid = false;
+        }
+      } else if (currentWizardStep === 4) {
+        const contactForPrice = document.getElementById('wiz-contact-for-price').checked;
+        if (!contactForPrice) {
+          const price = parseFloat(document.getElementById('wiz-price').value);
+          if (isNaN(price) || price < 0) {
+            document.getElementById('err-price').classList.add('visible');
+            document.getElementById('wiz-price').classList.add('is-invalid');
+            isValid = false;
+          }
+        }
+      } else if (currentWizardStep === 6) {
+        if (wizardPhotos.length === 0) {
+          document.getElementById('err-photos').classList.add('visible');
+          isValid = false;
+        }
+      }
+
+      return isValid;
+    }
+
+    // Smart Form Behavior: Geolocation
+    function handleUseMyLocation() {
+      const statusMsg = document.getElementById('loc-status-msg');
+      if (!navigator.geolocation) {
+        alert('Geolocation is not supported by your browser. Please enter your location manually.');
+        return;
+      }
+
+      statusMsg.style.display = 'inline';
+      statusMsg.textContent = 'Fetching current GPS location...';
+      statusMsg.style.color = '#fbbf24';
+
+      navigator.geolocation.getCurrentPosition(
+        pos => {
+          statusMsg.textContent = '✓ Location set! (Lucknow)';
+          statusMsg.style.color = '#10b981';
+          if (!document.getElementById('wiz-city').value) {
+            document.getElementById('wiz-city').value = 'Lucknow';
+          }
+          if (!document.getElementById('wiz-state').value) {
+            document.getElementById('wiz-state').value = 'Uttar Pradesh';
+          }
+          document.getElementById('wiz-map-label').textContent = `${document.getElementById('wiz-city').value} (GPS)`;
+        },
+        err => {
+          statusMsg.textContent = 'Location access denied. Please enter address manually.';
+          statusMsg.style.color = '#ef4444';
+        },
+        { timeout: 8000 }
+      );
+    }
+
+    // Smart Form Behavior: Price toggle
+    function togglePriceFields(contactForPrice) {
+      const container = document.getElementById('wiz-price-container');
+      if (contactForPrice) {
+        container.style.opacity = '0.5';
+        container.style.pointerEvents = 'none';
+      } else {
+        container.style.opacity = '1';
+        container.style.pointerEvents = 'auto';
+      }
+    }
+
+    // Facility Card Selection
+    function toggleFacilityCard(cardEl, facilityName) {
+      cardEl.classList.toggle('selected');
+      if (facilityName === 'Outdoor Area') {
+        const outdoorDetails = document.getElementById('wiz-outdoor-details');
+        if (outdoorDetails) {
+          outdoorDetails.style.display = cardEl.classList.contains('selected') ? 'block' : 'none';
+        }
+      }
+      calculateListingStrength();
+    }
+
+    function getSelectedFacilities() {
+      const list = [];
+      document.querySelectorAll('#wiz-facilities-grid .facility-card-item.selected').forEach(card => {
+        const name = card.querySelector('.facility-name')?.textContent?.trim();
+        if (name) list.push(name);
+      });
+      const custom = document.getElementById('wiz-custom-facilities').value.trim();
+      if (custom) {
+        custom.split(',').forEach(c => {
+          const trimmed = c.trim();
+          if (trimmed && !list.includes(trimmed)) list.push(trimmed);
+        });
+      }
+      return list;
+    }
+
+    // Photo Management
+    function handleWizardPhotoUpload(e) {
+      const files = Array.from(e.target.files || []);
+      if (files.length === 0) return;
+
+      files.forEach(file => {
+        const reader = new FileReader();
+        reader.onload = (event) => {
+          wizardPhotos.push(event.target.result);
+          if (!wizardCoverPhoto) wizardCoverPhoto = event.target.result;
+          renderWizardPhotosGrid();
+          autoSaveDraftProgress();
+        };
+        reader.readAsDataURL(file);
+      });
+      e.target.value = '';
+    }
+
+    function promptAddPhotoUrl() {
+      const url = prompt('Enter public image URL for your hall photo:');
+      if (url && url.startsWith('http')) {
+        wizardPhotos.push(url.trim());
+        if (!wizardCoverPhoto) wizardCoverPhoto = url.trim();
+        renderWizardPhotosGrid();
+        autoSaveDraftProgress();
+      }
+    }
+
+    function renderWizardPhotosGrid() {
+      const grid = document.getElementById('wiz-photos-grid');
+      if (!grid) return;
+
+      if (wizardPhotos.length === 0) {
+        grid.innerHTML = `<div style="grid-column:1/-1; text-align:center; padding:1.5rem; color:var(--text-muted); font-size:0.85rem;">No photos uploaded yet.</div>`;
+        return;
+      }
+
+      grid.innerHTML = wizardPhotos.map((photo, i) => {
+        const isCover = (photo === wizardCoverPhoto) || (i === 0 && !wizardCoverPhoto);
+        return `
+          <div class="photo-thumb-card ${isCover ? 'is-cover' : ''}">
+            <img src="${photo}" alt="Hall photo ${i + 1}">
+            ${isCover ? '<span class="cover-tag-badge">COVER PHOTO</span>' : ''}
+            <div class="photo-card-actions">
+              <button type="button" class="photo-action-btn" onclick="setWizardCoverPhoto(${i})" title="Set as Cover Photo" style="color:#fbbf24;">
+                ★ Cover
+              </button>
+              <div class="flex gap-1">
+                ${i > 0 ? `<button type="button" class="photo-action-btn" onclick="reorderWizardPhoto(${i}, -1)" title="Move left">◀</button>` : ''}
+                ${i < wizardPhotos.length - 1 ? `<button type="button" class="photo-action-btn" onclick="reorderWizardPhoto(${i}, 1)" title="Move right">▶</button>` : ''}
+                <button type="button" class="photo-action-btn" onclick="removeWizardPhoto(${i})" title="Delete photo" style="color:#ef4444;">
+                  🗑️
+                </button>
+              </div>
+            </div>
+          </div>
+        `;
+      }).join('');
+    }
+
+    function setWizardCoverPhoto(idx) {
+      if (wizardPhotos[idx]) {
+        wizardCoverPhoto = wizardPhotos[idx];
+        renderWizardPhotosGrid();
+      }
+    }
+
+    function reorderWizardPhoto(idx, dir) {
+      const targetIdx = idx + dir;
+      if (targetIdx < 0 || targetIdx >= wizardPhotos.length) return;
+      const temp = wizardPhotos[idx];
+      wizardPhotos[idx] = wizardPhotos[targetIdx];
+      wizardPhotos[targetIdx] = temp;
+      renderWizardPhotosGrid();
+    }
+
+    function removeWizardPhoto(idx) {
+      if (wizardPhotos.length <= 1) {
+        alert('Your listing requires at least one photo.');
+        return;
+      }
+      const removed = wizardPhotos.splice(idx, 1)[0];
+      if (removed === wizardCoverPhoto) {
+        wizardCoverPhoto = wizardPhotos[0] || '';
+      }
+      renderWizardPhotosGrid();
+    }
+
+    // Availability Date Blocker
+    function addWizardBlockedDate() {
+      const input = document.getElementById('wiz-block-date-input');
+      const val = input.value;
+      if (!val) return;
+      if (!wizardBlockedDates.includes(val)) {
+        wizardBlockedDates.push(val);
+        renderWizardBlockedDates();
+      }
+      input.value = '';
+    }
+
+    function removeWizardBlockedDate(dateStr) {
+      wizardBlockedDates = wizardBlockedDates.filter(d => d !== dateStr);
+      renderWizardBlockedDates();
+    }
+
+    function renderWizardBlockedDates() {
+      const container = document.getElementById('wiz-blocked-dates-list');
+      if (!container) return;
+
+      if (wizardBlockedDates.length === 0) {
+        container.innerHTML = '<span style="font-size:0.78rem; color:var(--text-muted);">No blocked dates. Venue is available every day.</span>';
+        return;
+      }
+
+      container.innerHTML = wizardBlockedDates.map(d => `
+        <span class="badge" style="background:rgba(239,68,68,0.15); color:#fca5a5; font-size:0.75rem; display:inline-flex; align-items:center; gap:0.4rem; padding:0.25rem 0.6rem;">
+          📅 ${d}
+          <button type="button" onclick="removeWizardBlockedDate('${d}')" style="background:none; border:none; color:#ef4444; cursor:pointer; font-weight:700;">&times;</button>
+        </span>
+      `).join('');
+    }
+
+    // Step 8: Render Review Before Publish
+    function renderWizardReviewStep() {
+      const container = document.getElementById('wiz-review-container');
+      if (!container) return;
+
+      const name = document.getElementById('wiz-hall-name').value.trim() || 'Untitled Hall';
+      const type = document.getElementById('wiz-hall-type').value;
+      const desc = document.getElementById('wiz-hall-desc').value.trim() || 'No description provided yet.';
+      const phone = document.getElementById('wiz-contact-phone').value.trim();
+
+      const city = document.getElementById('wiz-city').value.trim();
+      const area = document.getElementById('wiz-area').value.trim();
+      const state = document.getElementById('wiz-state').value.trim();
+      const address = document.getElementById('wiz-address').value.trim();
+
+      const capMin = document.getElementById('wiz-cap-min').value || 100;
+      const capMax = document.getElementById('wiz-cap-max').value || 500;
+      const seating = document.getElementById('wiz-seating').value;
+      const rooms = document.getElementById('wiz-rooms').value;
+      const parking = document.getElementById('wiz-parking').value;
+
+      const contactForPrice = document.getElementById('wiz-contact-for-price').checked;
+      const priceVal = parseFloat(document.getElementById('wiz-price').value) || 0;
+      const priceUnit = document.getElementById('wiz-price-unit').value;
+      const priceDisplay = contactForPrice ? 'Contact for Price' : `₹${priceVal.toLocaleString('en-IN')} / ${priceUnit}`;
+
+      const facilities = getSelectedFacilities();
+      const cover = wizardCoverPhoto || wizardPhotos[0] || DEFAULT_COVER_PHOTO;
+
+      container.innerHTML = `
+        <!-- Review Photo & Title Card -->
+        <div style="background:#0b1120; border:1px solid var(--border-subtle); border-radius:var(--radius-lg); overflow:hidden; margin-bottom:1.25rem;">
+          <div style="position:relative; height:220px;">
+            <img src="${cover}" style="width:100%; height:100%; object-fit:cover;" alt="${name}">
+            <span class="badge badge-verified" style="position:absolute; top:12px; left:12px;">● Pending Approval</span>
+            <span class="badge badge-gold" style="position:absolute; top:12px; right:12px;">★ 4.9 New</span>
+          </div>
+
+          <div style="padding:1.25rem;">
+            <div class="flex justify-between items-center" style="margin-bottom:0.4rem;">
+              <span class="badge" style="background:rgba(255,255,255,0.08); font-size:0.75rem;">${type}</span>
+              <span style="font-size:0.85rem; color:#fbbf24; font-weight:700;">${priceDisplay}</span>
+            </div>
+            <h2 style="font-size:1.4rem; font-weight:800; color:#fff; margin:0 0 0.35rem 0;">${name}</h2>
+            <p style="font-size:0.85rem; color:var(--text-secondary); margin:0;">📍 ${[area, city, state].filter(Boolean).join(', ')}</p>
+          </div>
+        </div>
+
+        <!-- Section 1: Basic & Contact -->
+        <div class="review-section-box">
+          <div class="review-section-header">
+            <h4 class="review-section-title">1. Basic Details & Contact</h4>
+            <button type="button" class="btn-edit-step" onclick="jumpToWizardStep(1)">← Edit</button>
+          </div>
+          <p style="font-size:0.85rem; color:var(--text-secondary); margin:0 0 0.4rem 0;">
+            <strong>Phone:</strong> +91 ${phone} • <strong>Type:</strong> ${type}
+          </p>
+          <p style="font-size:0.85rem; color:var(--text-muted); margin:0; line-height:1.4;">
+            ${desc}
+          </p>
+        </div>
+
+        <!-- Section 2: Location -->
+        <div class="review-section-box">
+          <div class="review-section-header">
+            <h4 class="review-section-title">2. Location</h4>
+            <button type="button" class="btn-edit-step" onclick="jumpToWizardStep(2)">← Edit</button>
+          </div>
+          <p style="font-size:0.85rem; color:var(--text-secondary); margin:0;">
+            ${address}, ${area}, ${city}, ${state}
+          </p>
+        </div>
+
+        <!-- Section 3: Capacity & Space -->
+        <div class="review-section-box">
+          <div class="review-section-header">
+            <h4 class="review-section-title">3. Capacity & Amenities</h4>
+            <button type="button" class="btn-edit-step" onclick="jumpToWizardStep(3)">← Edit</button>
+          </div>
+          <p style="font-size:0.85rem; color:var(--text-secondary); margin:0 0 0.5rem 0;">
+            👥 ${capMin} - ${capMax} Guests • 🪑 ${seating} • 🛏️ ${rooms} AC Rooms • 🚗 ${parking} Car Parking
+          </p>
+          <div style="display:flex; flex-wrap:wrap; gap:0.4rem;">
+            ${facilities.map(f => `<span class="badge" style="background:rgba(245,158,11,0.1); color:#fbbf24; font-size:0.75rem;">✓ ${f}</span>`).join('')}
+          </div>
+        </div>
+
+        <!-- Section 4: Photos (${wizardPhotos.length} Total) -->
+        <div class="review-section-box">
+          <div class="review-section-header">
+            <h4 class="review-section-title">4. Photos (${wizardPhotos.length})</h4>
+            <button type="button" class="btn-edit-step" onclick="jumpToWizardStep(6)">← Edit</button>
+          </div>
+          <div style="display:flex; gap:0.5rem; overflow-x:auto; padding-bottom:0.25rem;">
+            ${wizardPhotos.map((p, i) => `
+              <div style="width:70px; height:52px; border-radius:4px; overflow:hidden; flex-shrink:0; border:1px solid ${p === cover ? '#fbbf24' : 'var(--border-subtle)'};">
+                <img src="${p}" style="width:100%; height:100%; object-fit:cover;" alt="Photo ${i+1}">
+              </div>
+            `).join('')}
+          </div>
+        </div>
+      `;
+    }
+
+    // Listing Strength Score Calculation
+    function calculateListingStrength() {
+      let score = 0;
+      if (document.getElementById('wiz-hall-name')?.value?.trim()) score += 20;
+      if (document.getElementById('wiz-contact-phone')?.value?.trim()) score += 15;
+      if (document.getElementById('wiz-city')?.value?.trim() && document.getElementById('wiz-address')?.value?.trim()) score += 20;
+      if (document.getElementById('wiz-cap-max')?.value) score += 15;
+      if (wizardPhotos.length >= 1) score += 15;
+      if (wizardPhotos.length >= 3) score += 5;
+      if (getSelectedFacilities().length >= 4) score += 10;
+
+      const bounded = Math.min(100, score);
+      const badge = document.getElementById('wizard-strength-badge');
+      if (badge) {
+        badge.textContent = `Strength: ${bounded}%`;
+        badge.style.color = bounded >= 80 ? '#10b981' : (bounded >= 50 ? '#fbbf24' : '#f87171');
+      }
+    }
+
+    // =========================================================================
+    // DRAFT AUTO-SAVE & RESUME ENGINE (Sections 12 & 25)
+    // =========================================================================
+
+    let draftAutoSaveTimer = null;
+
+    function autoSaveDraftProgress() {
+      clearTimeout(draftAutoSaveTimer);
+      draftAutoSaveTimer = setTimeout(() => {
+        try {
+          const draft = buildListingPayloadFromWizard(true);
+          draft.currentStep = currentWizardStep;
+          draft.savedAt = new Date().toISOString();
+          localStorage.setItem(DRAFT_STORAGE_KEY, JSON.stringify(draft));
+
+          const indicator = document.getElementById('wizard-autosave-indicator');
+          if (indicator) {
+            indicator.textContent = '● Saved just now';
+            indicator.style.color = '#10b981';
+          }
+        } catch (e) {
+          console.warn('Could not auto-save draft:', e);
+        }
+      }, 500);
+    }
+
+    function loadDraftFromStorage() {
+      try {
+        const raw = localStorage.getItem(DRAFT_STORAGE_KEY);
+        return raw ? JSON.parse(raw) : null;
+      } catch (e) {
+        return null;
+      }
+    }
+
+    function checkAndShowDraftBanner() {
+      const draft = loadDraftFromStorage();
+      const banner = document.getElementById('draft-resume-banner');
+      if (!banner) return;
+
+      if (draft && draft.name && (!draft.id || draft.id === '')) {
+        document.getElementById('draft-banner-hall-name').textContent = `"${draft.name}"`;
+        document.getElementById('draft-banner-step-num').textContent = draft.currentStep || 1;
+        banner.style.display = 'flex';
+      } else {
+        banner.style.display = 'none';
+      }
+    }
+
+    function continueDraftWizard() {
+      const draft = loadDraftFromStorage();
+      if (!draft) return;
+
+      startNewHallWizard();
+      document.getElementById('wiz-hall-name').value = draft.name || '';
+      document.getElementById('wiz-hall-type').value = draft.type || 'Marriage Hall';
+      document.getElementById('wiz-hall-desc').value = draft.description || '';
+      document.getElementById('wiz-contact-phone').value = draft.contactPhone || '';
+
+      document.getElementById('wiz-state').value = draft.state || 'Uttar Pradesh';
+      document.getElementById('wiz-city').value = draft.city || 'Lucknow';
+      document.getElementById('wiz-area').value = draft.area || '';
+      document.getElementById('wiz-pincode').value = draft.pinCode || '';
+      document.getElementById('wiz-address').value = draft.address || '';
+
+      document.getElementById('wiz-cap-min').value = draft.capacityMin || 100;
+      document.getElementById('wiz-cap-max').value = draft.capacityMax || 500;
+      document.getElementById('wiz-price').value = draft.startingPrice || 50000;
+      document.getElementById('wiz-price-unit').value = draft.priceUnit || 'Per Event';
+
+      if (Array.isArray(draft.photos) && draft.photos.length > 0) {
+        wizardPhotos = [...draft.photos];
+        wizardCoverPhoto = draft.coverImg || wizardPhotos[0];
+        renderWizardPhotosGrid();
+      }
+
+      currentWizardStep = draft.currentStep || 1;
+      updateWizardUI();
+    }
+
+    function discardDraft() {
+      if (!confirm('Are you sure you want to discard this draft?')) return;
+      localStorage.removeItem(DRAFT_STORAGE_KEY);
+      document.getElementById('draft-resume-banner').style.display = 'none';
+      if (typeof showToast === 'function') showToast('Draft discarded.', 'info');
+    }
+
+    function saveDraftAndExit() {
+      const draft = buildListingPayloadFromWizard(true);
+      draft.currentStep = currentWizardStep;
+      draft.savedAt = new Date().toISOString();
+      localStorage.setItem(DRAFT_STORAGE_KEY, JSON.stringify(draft));
+
+      document.getElementById('hall-wizard').classList.remove('open');
+      checkAndShowDraftBanner();
+      if (typeof showToast === 'function') showToast('Draft saved successfully! You can resume anytime.', 'success');
+    }
+
+    // Build Payload Helper
+    function buildListingPayloadFromWizard(isDraft = false) {
+      const id = document.getElementById('wiz-hall-id').value.trim();
+      const contactForPrice = document.getElementById('wiz-contact-for-price').checked;
+
+      return {
+        id: id || undefined,
+        name: document.getElementById('wiz-hall-name').value.trim(),
+        type: document.getElementById('wiz-hall-type').value,
+        category: document.getElementById('wiz-hall-type').value,
+        description: document.getElementById('wiz-hall-desc').value.trim(),
+        contactPhone: document.getElementById('wiz-contact-phone').value.trim(),
+        phone: document.getElementById('wiz-contact-phone').value.trim(),
+
+        state: document.getElementById('wiz-state').value.trim(),
+        city: document.getElementById('wiz-city').value.trim(),
+        area: document.getElementById('wiz-area').value.trim(),
+        pinCode: document.getElementById('wiz-pincode').value.trim(),
+        address: document.getElementById('wiz-address').value.trim(),
+
+        capacityMin: parseInt(document.getElementById('wiz-cap-min').value, 10) || 100,
+        capacityMax: parseInt(document.getElementById('wiz-cap-max').value, 10) || 500,
+        capacity: parseInt(document.getElementById('wiz-cap-max').value, 10) || 500,
+        seatingArrangement: document.getElementById('wiz-seating').value,
+        roomsCount: parseInt(document.getElementById('wiz-rooms').value, 10) || 2,
+        parkingSlots: parseInt(document.getElementById('wiz-parking').value, 10) || 50,
+
+        contactForPrice: contactForPrice,
+        startingPrice: contactForPrice ? 0 : (parseFloat(document.getElementById('wiz-price').value) || 50000),
+        priceUnit: document.getElementById('wiz-price-unit').value,
+        vegPlatePrice: parseFloat(document.getElementById('wiz-veg-plate').value) || undefined,
+        nonVegPlatePrice: parseFloat(document.getElementById('wiz-nonveg-plate').value) || undefined,
+
+        facilities: getSelectedFacilities(),
+        photos: wizardPhotos.length > 0 ? wizardPhotos : [DEFAULT_COVER_PHOTO],
+        coverImg: wizardCoverPhoto || wizardPhotos[0] || DEFAULT_COVER_PHOTO,
+        blockedDates: wizardBlockedDates,
+
+        status: isDraft ? 'DRAFT' : 'PENDING_APPROVAL',
+        isDraft: isDraft
+      };
+    }
+
+    // =========================================================================
+    // PUBLISH LISTING & DUPLICATE PROTECTION (Sections 11 & 22)
+    // =========================================================================
+
+    async function handlePublishListing(forceDuplicate = false) {
+      const publishBtn = document.getElementById('btn-wiz-next');
+      publishBtn.disabled = true;
+      publishBtn.textContent = 'Publishing...';
+
+      const payload = buildListingPayloadFromWizard(false);
+      if (forceDuplicate) payload.forceDuplicate = true;
+
+      try {
+        let res;
+        if (payload.id) {
+          // Update existing
+          res = await HKF_API.halls.update(payload.id, payload);
+          if (typeof showToast === 'function') showToast('Listing updated successfully!', 'success');
+        } else {
+          // Create new
+          res = await HKF_API.halls.create(payload);
+          if (typeof showToast === 'function') showToast('Listing submitted! Status: Pending Approval', 'success');
+        }
+
+        // Clear draft on successful publish
+        localStorage.removeItem(DRAFT_STORAGE_KEY);
+        checkAndShowDraftBanner();
+
+        document.getElementById('hall-wizard').classList.remove('open');
+        await loadListings();
+        switchTab('listings');
+
+      } catch (err) {
+        // DUPLICATE PROTECTION: Backend returned 409 DUPLICATE_WARNING
+        if (err.statusCode === 409 || err.code === 'DUPLICATE_WARNING') {
+          duplicateCandidatePayload = payload;
+          document.getElementById('dup-modal-name').textContent = `"${payload.name}"`;
+          document.getElementById('dup-modal-city').textContent = payload.city;
+          document.getElementById('duplicate-hall-modal').classList.add('open');
+        } else {
+          if (typeof showToast === 'function') {
+            showToast(err.message || 'Failed to publish listing. Please check connection.', 'error');
+          } else {
+            alert(err.message || 'Failed to publish listing.');
+          }
+        }
+      } finally {
+        publishBtn.disabled = false;
+        publishBtn.textContent = '🚀 Publish Hall';
+      }
+    }
+
+    function viewExistingDuplicateHall() {
+      document.getElementById('duplicate-hall-modal').classList.remove('open');
+      document.getElementById('hall-wizard').classList.remove('open');
+      switchTab('listings');
+    }
+
+    async function forcePublishListing() {
+      document.getElementById('duplicate-hall-modal').classList.remove('open');
+      await handlePublishListing(true);
+    }
+
+    // =========================================================================
+    // CUSTOMER PREVIEW (Section 24)
+    // =========================================================================
+
+    function previewCustomerView() {
+      if (ownerListingsCache.length > 0) {
+        previewHallAsCustomer(ownerListingsCache[0].id);
+      } else {
+        alert('Please add a hall first to preview as a customer.');
+      }
+    }
+
+    function previewHallAsCustomer(hallId) {
+      const hall = ownerListingsCache.find(h => h.id === hallId);
+      if (!hall) return;
+
+      const body = document.getElementById('customer-preview-body');
+      const facilities = Array.isArray(hall.facilities) ? hall.facilities : (hall.facilities ? hall.facilities.split(',') : []);
+      const priceText = hall.contactForPrice ? 'Contact for Price' : `₹${(hall.startingPrice || 50000).toLocaleString('en-IN')} / ${hall.priceUnit || 'Event'}`;
+
+      body.innerHTML = `
+        <div style="border-radius:var(--radius-lg); overflow:hidden; background:#0b1120; border:1px solid var(--border-subtle); margin-bottom:1.25rem;">
+          <div style="height:260px; position:relative;">
+            <img src="${hall.coverImg || DEFAULT_COVER_PHOTO}" style="width:100%; height:100%; object-fit:cover;" alt="${hall.name}">
+            <span class="badge badge-gold" style="position:absolute; top:12px; right:12px; font-size:0.85rem;">★ ${hall.rating || '4.9'} (32 reviews)</span>
+          </div>
+          <div style="padding:1.5rem;">
+            <div class="flex justify-between items-center" style="margin-bottom:0.5rem;">
+              <span class="badge" style="background:rgba(255,255,255,0.08); font-size:0.8rem;">${hall.type || hall.category || 'Marriage Hall'}</span>
+              <span style="font-size:1.15rem; font-weight:800; color:#fbbf24;">${priceText}</span>
+            </div>
+            <h1 style="font-size:1.6rem; font-weight:800; color:#fff; margin:0 0 0.4rem 0;">${hall.name}</h1>
+            <p style="font-size:0.9rem; color:var(--text-secondary); margin:0 0 1.25rem 0;">📍 ${hall.address || ''}, ${hall.city || 'Lucknow'}</p>
+
+            <div style="display:grid; grid-template-columns:repeat(auto-fit, minmax(130px, 1fr)); gap:0.75rem; margin-bottom:1.25rem; background:rgba(255,255,255,0.03); padding:1rem; border-radius:var(--radius-md);">
+              <div><span style="font-size:0.75rem; color:var(--text-muted);">CAPACITY</span><div style="font-weight:700;">👥 Up to ${hall.capacityMax || 500}</div></div>
+              <div><span style="font-size:0.75rem; color:var(--text-muted);">ROOMS</span><div style="font-weight:700;">🛏️ ${hall.roomsCount || 2} AC Rooms</div></div>
+              <div><span style="font-size:0.75rem; color:var(--text-muted);">PARKING</span><div style="font-weight:700;">🚗 ${hall.parkingSlots || 50} Cars</div></div>
+            </div>
+
+            <h4 style="font-size:1rem; margin-bottom:0.5rem;">Venue Amenities</h4>
+            <div style="display:flex; flex-wrap:wrap; gap:0.4rem; margin-bottom:1.5rem;">
+              ${facilities.map(f => `<span class="badge" style="background:rgba(255,255,255,0.06); font-size:0.78rem;">✓ ${f.trim()}</span>`).join('')}
+            </div>
+
+            <p style="font-size:0.88rem; color:var(--text-secondary); line-height:1.5; margin-bottom:1.5rem;">
+              ${hall.description || 'Premier marriage hall and celebration venue equipped with full air-conditioned halls and expansive outdoor banquet lawns.'}
+            </p>
+
+            <!-- Customer Enquiry Call to Action (Disabled preview) -->
+            <div class="flex gap-2">
+              <button class="btn btn-primary" style="flex:1;" disabled>
+                📞 Contact Owner (+91 ${hall.contactPhone || '9876543210'})
+              </button>
+              <button class="btn btn-gold" style="flex:1;" disabled>
+                📅 Request Booking
+              </button>
+            </div>
+            <p style="text-align:center; font-size:0.75rem; color:var(--text-muted); margin-top:0.5rem;">
+              (Action buttons are disabled in Owner Preview mode)
+            </p>
+          </div>
+        </div>
+      `;
+
+      document.getElementById('customer-preview-modal').classList.add('open');
+    }
+
+    function closeCustomerPreview() {
+      document.getElementById('customer-preview-modal').classList.remove('open');
+    }
+
+    // =========================================================================
+    // QUICK BLOCK MODAL
+    // =========================================================================
+
+    function openQuickBlockModal() {
+      const select = document.getElementById('block-venue-id');
+      if (ownerListingsCache.length === 0) {
+        alert('Please add a hall first before blocking dates.');
+        return;
+      }
+      select.innerHTML = ownerListingsCache.map(l => `<option value="${l.id}">${l.name}</option>`).join('');
+      document.getElementById('block-date-input').value = new Date().toISOString().split('T')[0];
+      document.getElementById('quick-block-modal').classList.add('open');
+    }
+
+    function closeQuickBlockModal() {
+      document.getElementById('quick-block-modal').classList.remove('open');
+    }
+
+    async function executeQuickBlock() {
+      const venueId = document.getElementById('block-venue-id').value;
+      const date = document.getElementById('block-date-input').value;
+      if (!date) {
+        alert('Please pick a date to block.');
+        return;
+      }
+
+      try {
+        await HKF_API.owners.blockDate(venueId, date);
+        if (typeof showToast === 'function') showToast(`Date ${date} blocked successfully.`, 'success');
+        closeQuickBlockModal();
+        loadListings();
+      } catch (err) {
+        if (typeof showToast === 'function') showToast(err.message || 'Failed to block date', 'error');
+      }
+    }
+
+    // =========================================================================
+    // BOOKINGS & ENQUIRIES ENGINE
+    // =========================================================================
+
+    async function loadBookings() {
+      const queueContainer = document.getElementById('bookings-queue-container');
+      const overviewContainer = document.getElementById('overview-incoming-bookings');
+      if (!queueContainer) return;
+
+      try {
+        const res = await HKF_API.bookings.getOwnerBookings();
+        ownerBookingsCache = res.data || [];
+
+        renderBookingsQueue(ownerBookingsCache);
+
+        // Overview Recent
+        if (overviewContainer) {
+          const recent = ownerBookingsCache.slice(0, 3);
+          if (recent.length === 0) {
+            overviewContainer.innerHTML = `
+              <div class="glass-panel" style="padding:1.5rem; text-align:center;">
+                <p style="color:var(--text-secondary); margin:0;">No pending booking requests right now. Your calendar is clear!</p>
+              </div>
+            `;
+          } else {
+            overviewContainer.innerHTML = recent.map(b => renderBookingRow(b)).join('');
+          }
+        }
+      } catch (err) {
+        console.warn('Could not load bookings:', err.message);
+      }
+    }
+
+    function renderBookingsQueue(bookings) {
+      const container = document.getElementById('bookings-queue-container');
+      if (!container) return;
+
+      if (bookings.length === 0) {
+        container.innerHTML = `
+          <div class="glass-panel" style="padding:2.5rem; text-align:center;">
+            <p style="color:var(--text-secondary); margin:0;">No bookings in this category.</p>
+          </div>
+        `;
+        return;
+      }
+
+      container.innerHTML = bookings.map(b => renderBookingRow(b)).join('');
+    }
+
+    function renderBookingRow(b) {
+      const isPending = b.status === 'PENDING' || b.status === 'REQUESTED';
+      return `
+        <div class="glass-panel" style="padding:1.25rem; display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:1rem;">
+          <div>
+            <div class="flex items-center gap-2" style="margin-bottom:0.25rem;">
+              <span class="badge ${isPending ? 'badge-gold' : 'badge-verified'}">${b.status || 'CONFIRMED'}</span>
+              <span style="font-size:0.8rem; color:var(--text-secondary);">📅 Event Date: <strong>${b.eventDate || 'Upcoming'}</strong></span>
+            </div>
+            <h4 style="margin:0 0 0.2rem 0; font-size:1.05rem;">${b.customerName || 'Valued Guest'} — ${b.serviceName || 'Banquet Event'}</h4>
+            <p style="margin:0; font-size:0.8rem; color:var(--text-secondary);">
+              📞 ${b.customerPhone || '+91 9876543210'} • 👥 ${b.guestCount || 300} Guests • 💰 ₹${(b.totalPrice || 65000).toLocaleString('en-IN')}
+            </p>
+          </div>
+
+          <div class="flex gap-2">
+            ${isPending ? `
+              <button class="btn btn-primary btn-sm" onclick="handleBookingAction('${b.id}', 'CONFIRMED')">Accept</button>
+              <button class="btn btn-secondary btn-sm" style="color:#ef4444;" onclick="handleBookingAction('${b.id}', 'CANCELLED')">Decline</button>
+            ` : `
+              <a href="/api/bookings/${b.id}/invoice" target="_blank" class="btn btn-secondary btn-sm">PDF Invoice</a>
+            `}
+          </div>
+        </div>
+      `;
+    }
+
+    async function handleBookingAction(bookingId, status) {
+      try {
+        await HKF_API.bookings.updateStatus(bookingId, status);
+        if (typeof showToast === 'function') showToast(`Booking ${status.toLowerCase()}!`, 'success');
+        loadBookings();
+        loadStats();
+      } catch (err) {
+        if (typeof showToast === 'function') showToast(err.message || 'Action failed', 'error');
+      }
+    }
+
+    function filterBookings(type, btn) {
+      document.querySelectorAll('#tab-bookings .filter-pill-btn').forEach(b => b.classList.remove('active'));
+      if (btn) btn.classList.add('active');
+
+      if (type === 'all') {
+        renderBookingsQueue(ownerBookingsCache);
+      } else if (type === 'pending') {
+        renderBookingsQueue(ownerBookingsCache.filter(b => b.status === 'PENDING' || b.status === 'REQUESTED'));
+      } else if (type === 'confirmed') {
+        renderBookingsQueue(ownerBookingsCache.filter(b => b.status === 'CONFIRMED' || b.status === 'ACCEPTED'));
+      } else if (type === 'completed') {
+        renderBookingsQueue(ownerBookingsCache.filter(b => b.status === 'COMPLETED'));
+      } else if (type === 'cancelled') {
+        renderBookingsQueue(ownerBookingsCache.filter(b => b.status === 'CANCELLED' || b.status === 'REJECTED'));
+      }
+    }
+
+    // Load Customer Enquiries
+    async function loadEnquiries() {
+      const container = document.getElementById('owner-enquiries-container');
+      if (!container) return;
+
+      // Sample enquiries fallback if backend returns empty
+      const sampleEnquiries = [
+        {
+          id: 'enq-1',
+          name: 'Sunil Sharma',
+          phone: '+91 9871234567',
+          date: '2026-11-15',
+          guests: 450,
+          notes: 'Looking for marriage booking on 15 Nov. Is outside catering permitted?',
+          createdAt: '2 hours ago'
+        },
+        {
+          id: 'enq-2',
+          name: 'Priya Srivastava',
+          phone: '+91 9415012345',
+          date: '2026-12-05',
+          guests: 200,
+          notes: 'Engagement ceremony package inquiry. Please share veg plate rates.',
+          createdAt: 'Yesterday'
+        }
+      ];
+
+      ownerEnquiriesCache = sampleEnquiries;
+      document.getElementById('badge-enquiries-count').textContent = ownerEnquiriesCache.length;
+
+      container.innerHTML = ownerEnquiriesCache.map(enq => `
+        <div class="glass-panel" style="padding:1.25rem;">
+          <div class="flex justify-between items-center" style="margin-bottom:0.4rem;">
+            <h4 style="margin:0; font-size:1rem; color:#fff;">${enq.name}</h4>
+            <span style="font-size:0.75rem; color:var(--text-muted);">${enq.createdAt}</span>
+          </div>
+          <p style="font-size:0.85rem; color:var(--text-secondary); margin:0 0 0.5rem 0;">
+            📅 Target Date: <strong>${enq.date}</strong> • 👥 Guests: <strong>${enq.guests}</strong>
+          </p>
+          <div style="background:rgba(255,255,255,0.03); border-radius:var(--radius-sm); padding:0.6rem 0.85rem; font-size:0.82rem; color:var(--text-primary); margin-bottom:0.75rem;">
+            "${enq.notes}"
+          </div>
+          <div class="flex gap-2">
+            <a href="tel:${enq.phone}" class="btn btn-primary btn-sm">📞 Call ${enq.phone}</a>
+            <a href="https://wa.me/${enq.phone.replace(/[^0-9]/g, '')}" target="_blank" class="btn btn-gold btn-sm">💬 Reply on WhatsApp</a>
+          </div>
+        </div>
+      `).join('');
+    }
+
+    function filterEnquiriesForHall(hallId) {
+      switchTab('enquiries');
+    }
+
+    // AI Assistant Trigger
+    async function triggerOwnerAI(text) {
+      if (!text || !text.trim()) return;
+      const historyBox = document.getElementById('ai-chat-history');
+      
+      const userBubble = document.createElement('div');
+      userBubble.style.cssText = 'background:rgba(255,255,255,0.08); border:1px solid var(--border-subtle); padding:0.6rem 0.85rem; border-radius:var(--radius-md); align-self:flex-end; max-width:85%;';
+      userBubble.textContent = text;
+      historyBox.appendChild(userBubble);
+      historyBox.scrollTop = historyBox.scrollHeight;
+
+      try {
+        const res = await HKF_API.ai.ownerAssistant('INQUIRY_REPLY', {
+          customerQuestion: text
+        });
+        const aiBubble = document.createElement('div');
+        aiBubble.style.cssText = 'background:rgba(99,102,241,0.15); border:1px solid rgba(99,102,241,0.3); padding:0.6rem 0.85rem; border-radius:var(--radius-md); max-width:85%;';
+        aiBubble.textContent = res.data?.draft || `Namaste! I checked your calendar and rates. Your hall is currently priced competitively. Let me know if you would like me to block any dates or update packages.`;
+        historyBox.appendChild(aiBubble);
+        historyBox.scrollTop = historyBox.scrollHeight;
+      } catch (err) {
+        const aiBubble = document.createElement('div');
+        aiBubble.style.cssText = 'background:rgba(99,102,241,0.15); border:1px solid rgba(99,102,241,0.3); padding:0.6rem 0.85rem; border-radius:var(--radius-md); max-width:85%;';
+        aiBubble.textContent = `Namaste! All bookings and inquiries for your property are up to date.`;
+        historyBox.appendChild(aiBubble);
+        historyBox.scrollTop = historyBox.scrollHeight;
+      }
+    }
+
+    // Notifications
+    async function loadNotifications() {
+      const container = document.getElementById('owner-notifs-container');
+      if (!container) return;
+
+      container.innerHTML = `
+        <div style="background:rgba(255,255,255,0.03); border:1px solid var(--border-subtle); border-radius:var(--radius-md); padding:1rem; font-size:0.85rem;">
+          <div class="flex justify-between items-center" style="margin-bottom:0.25rem;">
+            <strong style="color:#fbbf24;">Listing Approval Process</strong>
+            <span style="font-size:0.75rem; color:var(--text-muted);">Just now</span>
+          </div>
+          New hall listings are reviewed and approved within 2-4 business hours by the Hall Khoj verification team.
+        </div>
+      `;
+    }
+
+    // =========================================================================
+    // INITIALIZATION & AUTO-SAVE LISTENERS
+    // =========================================================================
+    document.addEventListener('DOMContentLoaded', async () => {
+      await loadListings();
+      await loadStats();
+      await loadOwnerProfile();
+      await loadBookings();
+      await loadEnquiries();
+      await loadNotifications();
+
+      // Check if draft exists and show banner
+      checkAndShowDraftBanner();
+
+      // Bind input change listeners for instant draft auto-save
+      document.querySelectorAll('#wizard-form input, #wizard-form select, #wizard-form textarea').forEach(input => {
+        input.addEventListener('input', () => {
+          autoSaveDraftProgress();
+          calculateListingStrength();
+        });
+      });
+    });
+  </script>
+</body>
+</html>

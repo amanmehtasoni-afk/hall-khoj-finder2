@@ -1,0 +1,226 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>My Shortlisted & Favorite Venues | Hall Khoj Finder</title>
+  <meta name="description" content="View and manage your shortlisted marriage halls, banquet venues and luxury wedding vendors on Hall Khoj Finder.">
+  <link rel="icon" type="image/png" href="/assets/logo.png">
+
+  <!-- Theme Controller (Zero-Flash Dark/Light Mode) -->
+  <script src="js/theme.js"></script>
+
+  <!-- Core CSS -->
+  <link rel="stylesheet" href="css/main.css">
+  <link rel="stylesheet" href="css/3d.css">
+  <link rel="stylesheet" href="css/components.css">
+  <link rel="stylesheet" href="css/animations.css">
+</head>
+<body>
+
+  <!-- Site Header -->
+  <header class="site-header" role="banner">
+    <div class="nav-container">
+      <a href="/" class="brand-logo">
+        <img src="/assets/logo.png" alt="Hall Khoj" class="brand-logo-img">
+        <div class="brand-logo-text">
+          <span class="brand-title">HALL KHOJ</span>
+          <span class="brand-tagline-sub">FAVORITES</span>
+        </div>
+      </a>
+
+      <nav role="navigation">
+        <ul class="nav-links">
+          <li><a href="/" class="nav-link">Home</a></li>
+          <li><a href="/search.html" class="nav-link">Find Services</a></li>
+          <li><a href="/favorites.html" class="nav-link active">Favorites</a></li>
+          <li><a href="/compare.html" class="nav-link">Compare</a></li>
+          <li><a href="/dashboard.html" class="nav-link">My Dashboard</a></li>
+        </ul>
+      </nav>
+
+      <div class="nav-actions">
+        <div class="language-switcher-container"></div>
+        <button class="theme-toggle-btn" data-action="toggle-theme" aria-label="Toggle Dark/Light Mode" title="Toggle Theme">
+          <span class="theme-icon-sun">☀️</span>
+          <span class="theme-icon-moon" style="display:none;">🌙</span>
+        </button>
+        <a href="/search.html" class="btn btn-secondary btn-sm">Explore More</a>
+      </div>
+    </div>
+  </header>
+
+  <main style="padding-top: 6rem; padding-bottom: 5rem;">
+    <div class="container">
+      <div class="flex items-center justify-between flex-wrap gap-2" style="margin-bottom: 2rem;">
+        <div>
+          <span class="badge badge-champagne" style="margin-bottom:0.5rem;">Shortlist</span>
+          <h1 style="font-size: 2rem; margin:0;">Saved Venues & Vendors</h1>
+          <p style="color:var(--text-secondary); margin:0.25rem 0 0 0;">Keep track of your dream wedding locations and compare them before booking.</p>
+        </div>
+        <div class="flex items-center gap-2">
+          <button id="clear-favs-btn" class="btn btn-secondary btn-sm" style="color:#ef4444; border-color:rgba(239,68,68,0.3);">
+            Clear Shortlist
+          </button>
+          <a href="/compare.html" class="btn btn-champagne btn-sm">
+            Compare Shortlisted
+          </a>
+        </div>
+      </div>
+
+      <!-- Favorites Grid -->
+      <div id="favorites-grid" class="cards-grid" style="display:grid; grid-template-columns:repeat(auto-fill, minmax(320px, 1fr)); gap:1.75rem;">
+        <!-- Dynamically rendered -->
+      </div>
+
+      <!-- Empty State -->
+      <div id="empty-fav-view" class="glass-panel text-center" style="display:none; padding:4rem 2rem; max-width:600px; margin:2rem auto;">
+        <div style="font-size:3.5rem; margin-bottom:1rem;">❤️</div>
+        <h2 style="font-size:1.5rem; margin-bottom:0.5rem; color:#fff;">No Shortlisted Venues Yet</h2>
+        <p style="color:var(--text-secondary); margin-bottom:1.75rem; font-size:0.95rem;">
+          Browse marriage halls, wedding palaces, and event services and click the heart icon on any venue card to save them here.
+        </p>
+        <a href="/search.html" class="btn btn-primary btn-lg">Explore All Venues</a>
+      </div>
+    </div>
+  </main>
+
+  <footer class="footer-section" style="background:var(--bg-secondary); border-top:1px solid var(--border-subtle); padding:3rem 0; margin-top:4rem;">
+    <div class="container text-center" style="font-size:0.85rem; color:var(--text-muted);">
+      <p>&copy; 2026 Hall Khoj Finder. All Rights Reserved.</p>
+    </div>
+  </footer>
+
+  <script>
+    (function initFavoritesPage() {
+      const STORAGE_KEY = 'hkf_favorites';
+      const container = document.getElementById('favorites-grid');
+      const emptyView = document.getElementById('empty-fav-view');
+      const clearBtn = document.getElementById('clear-favs-btn');
+
+      // Sample dataset for fallback if local favorites list contains IDs
+      const ALL_VENUES = [
+        {
+          id: 'h-101',
+          name: 'The Royal Grand Heritage Palace',
+          city: 'Lucknow',
+          area: 'Gomti Nagar',
+          price: '₹65,000',
+          rating: '5.0',
+          reviews: '152',
+          capacity: '200–1200 Guests',
+          img: 'https://images.unsplash.com/photo-1519167758481-83f550bb49b3?auto=format&fit=crop&w=800&q=80',
+          status: 'AVAILABLE'
+        },
+        {
+          id: 'h-102',
+          name: 'Mayur Emerald Banquet & Lawn',
+          city: 'Patna',
+          area: 'Boring Road',
+          price: '₹55,000',
+          rating: '4.8',
+          reviews: '98',
+          capacity: '150–800 Guests',
+          img: 'https://images.unsplash.com/photo-1545232979-fbf68fe9b1af?auto=format&fit=crop&w=800&q=80',
+          status: 'AVAILABLE'
+        },
+        {
+          id: 'h-103',
+          name: 'Sanskriti Luxury Resort & Lawn',
+          city: 'Varanasi',
+          area: 'Cantt',
+          price: '₹85,000',
+          rating: '4.9',
+          reviews: '210',
+          capacity: '300–1800 Guests',
+          img: 'https://images.unsplash.com/photo-1465495976277-4387d4b0b4c6?auto=format&fit=crop&w=800&q=80',
+          status: 'AVAILABLE'
+        }
+      ];
+
+      function getFavIds() {
+        try {
+          const raw = localStorage.getItem(STORAGE_KEY);
+          return raw ? JSON.parse(raw) : ['h-101', 'h-103']; // Default starter shortlist
+        } catch (e) {
+          return ['h-101', 'h-103'];
+        }
+      }
+
+      function saveFavIds(ids) {
+        localStorage.setItem(STORAGE_KEY, JSON.stringify(ids));
+      }
+
+      function render() {
+        const ids = getFavIds();
+        if (ids.length === 0) {
+          container.style.display = 'none';
+          emptyView.style.display = 'block';
+          return;
+        }
+
+        container.style.display = 'grid';
+        emptyView.style.display = 'none';
+
+        const displayed = ALL_VENUES.filter(v => ids.includes(v.id));
+
+        container.innerHTML = displayed.map(v => `
+          <article class="listing-card card-3d">
+            <div class="listing-media">
+              <img src="${v.img}" alt="${v.name}" class="listing-img" loading="lazy">
+              <div class="listing-badges">
+                <span class="badge badge-verified">✓ Verified</span>
+                <span class="badge badge-status-available">🟢 Available</span>
+              </div>
+              <button class="listing-fav-btn remove-fav-btn" data-id="${v.id}" title="Remove from Favorites" style="background:#ef4444; color:#fff;">
+                ✕
+              </button>
+            </div>
+            <div class="listing-body">
+              <div class="listing-header-row">
+                <h3 class="listing-title">${v.name}</h3>
+                <div class="listing-rating">★ ${v.rating} <span style="font-size:0.75rem; color:var(--text-muted);">(${v.reviews})</span></div>
+              </div>
+              <div class="listing-location-row">
+                <span>📍 ${v.area}, ${v.city}</span>
+              </div>
+              <div class="listing-amenities-row">
+                <span class="amenity-chip">👥 ${v.capacity}</span>
+                <span class="amenity-chip">🎮 3D Layout Ready</span>
+              </div>
+              <div class="listing-footer-row">
+                <div class="listing-price-box">
+                  <span class="listing-price-label">Starting From</span>
+                  <span class="listing-price-val">${v.price}</span>
+                </div>
+                <div class="listing-actions-row">
+                  <a href="/3d-preview.html" class="btn btn-secondary btn-sm">3D</a>
+                  <a href="/booking.html?hallId=${v.id}" class="btn btn-primary btn-sm">Book</a>
+                </div>
+              </div>
+            </div>
+          </article>
+        `).join('');
+
+        // Wire remove buttons
+        container.querySelectorAll('.remove-fav-btn').forEach(btn => {
+          btn.addEventListener('click', (e) => {
+            e.stopPropagation();
+            const removeId = btn.getAttribute('data-id');
+            const updated = getFavIds().filter(id => id !== removeId);
+            saveFavIds(updated);
+            render();
+          });
+        });
+      }
+
+      clearBtn.addEventListener('click', () => {
+        saveFavIds([]);
+        render();
+      });
+
+      render();
+    })();
+  </script>
+</body>
+</html>

@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Terms and Conditions | Hall Khoj Finder</title>
+  <meta name="description" content="Terms of Service, booking policies, mandatory manual owner approval rules, payment standards and venue agreements on Hall Khoj Finder.">
+  <link rel="icon" type="image/png" href="/assets/logo.png">
+
+  <!-- Theme Controller (Zero-Flash Dark/Light Mode) -->
+  <script src="js/theme.js"></script>
+
+  <!-- Core CSS -->
+  <link rel="stylesheet" href="css/main.css">
+  <link rel="stylesheet" href="css/3d.css">
+  <link rel="stylesheet" href="css/components.css">
+  <link rel="stylesheet" href="css/animations.css">
+</head>
+<body>
+
+  <!-- Site Header -->
+  <header class="site-header" role="banner">
+    <div class="nav-container">
+      <a href="/" class="brand-logo">
+        <img src="/assets/logo.png" alt="Hall Khoj" class="brand-logo-img">
+        <div class="brand-logo-text">
+          <span class="brand-title">HALL KHOJ</span>
+          <span class="brand-tagline-sub">TERMS OF SERVICE</span>
+        </div>
+      </a>
+
+      <nav role="navigation">
+        <ul class="nav-links">
+          <li><a href="/" class="nav-link">Home</a></li>
+          <li><a href="/search.html" class="nav-link">Find Services</a></li>
+          <li><a href="/terms.html" class="nav-link active">Terms</a></li>
+          <li><a href="/privacy.html" class="nav-link">Privacy</a></li>
+          <li><a href="/help.html" class="nav-link">Help</a></li>
+        </ul>
+      </nav>
+
+      <div class="nav-actions">
+        <div class="language-switcher-container"></div>
+        <button class="theme-toggle-btn" data-action="toggle-theme" aria-label="Toggle Dark/Light Mode" title="Toggle Theme">
+          <span class="theme-icon-sun">☀️</span>
+          <span class="theme-icon-moon" style="display:none;">🌙</span>
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <main style="padding-top: 6rem; padding-bottom: 5rem;">
+    <div class="container container-narrow">
+      <div class="glass-panel" style="padding:3rem 2.5rem;">
+        <span class="badge badge-champagne" style="margin-bottom:0.75rem;">Effective Date: November 2026</span>
+        <h1 style="font-size:2.2rem; color:#fff; margin-bottom:1.5rem;">Terms and Conditions</h1>
+
+        <div style="color:var(--text-secondary); line-height:1.8; font-size:0.95rem; display:flex; flex-direction:column; gap:1.25rem;">
+          <p>
+            Please read these Terms and Conditions carefully before using the <strong>Hall Khoj Finder</strong> platform, website, and related applications.
+          </p>
+
+          <h2 style="color:var(--text-champagne); font-size:1.3rem; margin-top:1rem;">1. Mandatory Manual Owner Approval Workflow</h2>
+          <p>
+            <strong>CRITICAL BUSINESS RULE:</strong> Hall Khoj Finder operates under a strict manual approval protocol. Submitting a booking request on this website does NOT constitute a confirmed booking. 
+          </p>
+          <ul style="padding-left:1.5rem;">
+            <li>All booking requests enter a <code>PENDING_OWNER_APPROVAL</code> state.</li>
+            <li>Venue owners reserve the right to accept or decline any reservation request based on availability, event type, or scheduling conflicts.</li>
+            <li>Advance token payments are unlocked strictly <em>after</em> explicit owner approval has been granted.</li>
+          </ul>
+
+          <h2 style="color:var(--text-champagne); font-size:1.3rem; margin-top:1rem;">2. Advance Token Payments & Verification</h2>
+          <p>
+            All advance token payments are processed securely through Razorpay. Server-side HMAC-SHA256 signature verification is performed for every transaction before marking a booking as <code>CONFIRMED</code>. An official GST tax invoice is generated upon successful payment.
+          </p>
+
+          <h2 style="color:var(--text-champagne); font-size:1.3rem; margin-top:1rem;">3. 3D Architectural Preview Disclaimer</h2>
+          <p>
+            Interactive 3D walkthroughs provided via Three.js represent architectural simulations designed to give hosts a spatial understanding of stage, seating, and lighting layouts. While we strive for realistic accuracy, slight variations in actual physical venue decor, seasonal floral setups, and furniture styles may occur.
+          </p>
+
+          <h2 style="color:var(--text-champagne); font-size:1.3rem; margin-top:1rem;">4. Venue Owner Obligations</h2>
+          <p>
+            Registered business owners represent and warrant that their listed venues, capacities, license numbers, GST details, and pricing structures are accurate, authentic, and compliant with all local laws and safety standards.
+          </p>
+
+          <h2 style="color:var(--text-champagne); font-size:1.3rem; margin-top:1rem;">5. Governing Law & Dispute Resolution</h2>
+          <p>
+            These terms are governed by the laws of India. Any legal disputes arising out of the use of this service shall be subject to the exclusive jurisdiction of the courts of Lucknow, Uttar Pradesh.
+          </p>
+        </div>
+      </div>
+    </div>
+  </main>
+
+  <footer class="footer-section" style="background:var(--bg-secondary); border-top:1px solid var(--border-subtle); padding:3rem 0; margin-top:4rem;">
+    <div class="container text-center" style="font-size:0.85rem; color:var(--text-muted);">
+      <p>&copy; 2026 Hall Khoj Finder. Legal Agreements & Operational Standards.</p>
+    </div>
+  </footer>
+</body>
+</html>

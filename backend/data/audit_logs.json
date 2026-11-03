@@ -1,0 +1,422 @@
+[
+  {
+    "id": "aud_1789831434025_1zpvp4",
+    "actorId": "usr_admin_master",
+    "actorName": "Platform Administrator",
+    "action": "VERIFY_OWNER",
+    "targetId": "owner_usr_1789831433970_hvqtv3",
+    "details": {
+      "status": "APPROVED"
+    },
+    "timestamp": "2026-09-19T15:23:54.025Z",
+    "updatedAt": "2026-09-19T15:23:54.025Z",
+    "createdAt": "2026-09-19T15:23:54.025Z"
+  },
+  {
+    "id": "aud_1789831434039_zynijj",
+    "actorId": "usr_admin_master",
+    "actorName": "Platform Administrator",
+    "action": "SUSPEND_USER",
+    "targetId": "usr_1789831433819_4mlqwt",
+    "details": {
+      "status": "SUSPENDED",
+      "reason": "Repeated cancellation of confirmed venues"
+    },
+    "timestamp": "2026-09-19T15:23:54.039Z",
+    "updatedAt": "2026-09-19T15:23:54.039Z",
+    "createdAt": "2026-09-19T15:23:54.039Z"
+  },
+  {
+    "id": "aud_1789831434204_wd2xun",
+    "actorId": "usr_admin_master",
+    "actorName": "Platform Administrator",
+    "action": "ACTIVATE_USER",
+    "targetId": "usr_1789831433819_4mlqwt",
+    "details": {
+      "status": "ACTIVE"
+    },
+    "timestamp": "2026-09-19T15:23:54.204Z",
+    "updatedAt": "2026-09-19T15:23:54.205Z",
+    "createdAt": "2026-09-19T15:23:54.205Z"
+  },
+  {
+    "id": "aud_1789831434354_jsumkh",
+    "actorId": "usr_admin_master",
+    "actorName": "Platform Administrator",
+    "action": "MODERATE_LISTING",
+    "targetId": "h_1789831434340_jibfb8",
+    "details": {
+      "status": "APPROVED",
+      "collectionName": "halls",
+      "moderationNote": "Verified high quality venue photos and premises"
+    },
+    "timestamp": "2026-09-19T15:23:54.354Z",
+    "updatedAt": "2026-09-19T15:23:54.354Z",
+    "createdAt": "2026-09-19T15:23:54.354Z"
+  },
+  {
+    "id": "aud_1789831434360_vxexpm",
+    "actorId": "usr_admin_master",
+    "actorName": "Platform Administrator",
+    "action": "MODERATE_LISTING",
+    "targetId": "h_1789831434340_jibfb8",
+    "details": {
+      "status": "FLAGGED",
+      "collectionName": "halls",
+      "moderationNote": "Incomplete fire safety certificate submitted"
+    },
+    "timestamp": "2026-09-19T15:23:54.360Z",
+    "updatedAt": "2026-09-19T15:23:54.360Z",
+    "createdAt": "2026-09-19T15:23:54.361Z"
+  },
+  {
+    "id": "aud_1789831805442_yo7e0c",
+    "actorId": "usr_admin_master",
+    "actorName": "Platform Administrator",
+    "action": "VERIFY_OWNER",
+    "targetId": "owner_usr_1789831805324_brxjc7",
+    "details": {
+      "status": "APPROVED"
+    },
+    "timestamp": "2026-09-19T15:30:05.442Z",
+    "updatedAt": "2026-09-19T15:30:05.442Z",
+    "createdAt": "2026-09-19T15:30:05.442Z"
+  },
+  {
+    "id": "aud_1789831805475_r2f0m1",
+    "actorId": "usr_admin_master",
+    "actorName": "Platform Administrator",
+    "action": "SUSPEND_USER",
+    "targetId": "usr_1789831805117_z3radv",
+    "details": {
+      "status": "SUSPENDED",
+      "reason": "Repeated cancellation of confirmed venues"
+    },
+    "timestamp": "2026-09-19T15:30:05.475Z",
+    "updatedAt": "2026-09-19T15:30:05.475Z",
+    "createdAt": "2026-09-19T15:30:05.475Z"
+  },
+  {
+    "id": "aud_1789831805706_16ry6c",
+    "actorId": "usr_admin_master",
+    "actorName": "Platform Administrator",
+    "action": "ACTIVATE_USER",
+    "targetId": "usr_1789831805117_z3radv",
+    "details": {
+      "status": "ACTIVE"
+    },
+    "timestamp": "2026-09-19T15:30:05.706Z",
+    "updatedAt": "2026-09-19T15:30:05.706Z",
+    "createdAt": "2026-09-19T15:30:05.706Z"
+  },
+  {
+    "id": "aud_1789831805936_my6d3l",
+    "actorId": "usr_admin_master",
+    "actorName": "Platform Administrator",
+    "action": "MODERATE_LISTING",
+    "targetId": "h_1789831805913_xhpfn8",
+    "details": {
+      "status": "APPROVED",
+      "collectionName": "halls",
+      "moderationNote": "Verified high quality venue photos and premises"
+    },
+    "timestamp": "2026-09-19T15:30:05.936Z",
+    "updatedAt": "2026-09-19T15:30:05.936Z",
+    "createdAt": "2026-09-19T15:30:05.936Z"
+  },
+  {
+    "id": "aud_1789831805952_yh771h",
+    "actorId": "usr_admin_master",
+    "actorName": "Platform Administrator",
+    "action": "MODERATE_LISTING",
+    "targetId": "h_1789831805913_xhpfn8",
+    "details": {
+      "status": "FLAGGED",
+      "collectionName": "halls",
+      "moderationNote": "Incomplete fire safety certificate submitted"
+    },
+    "timestamp": "2026-09-19T15:30:05.952Z",
+    "updatedAt": "2026-09-19T15:30:05.952Z",
+    "createdAt": "2026-09-19T15:30:05.952Z"
+  },
+  {
+    "id": "aud_1789832777328_inbegj",
+    "actorId": "usr_admin_master",
+    "actorName": "Platform Administrator",
+    "action": "VERIFY_OWNER",
+    "targetId": "owner_usr_1789832777214_8rjou7",
+    "details": {
+      "status": "APPROVED"
+    },
+    "timestamp": "2026-09-19T15:46:17.328Z",
+    "updatedAt": "2026-09-19T15:46:17.328Z",
+    "createdAt": "2026-09-19T15:46:17.328Z"
+  },
+  {
+    "id": "aud_1789832777361_52u3zb",
+    "actorId": "usr_admin_master",
+    "actorName": "Platform Administrator",
+    "action": "SUSPEND_USER",
+    "targetId": "usr_1789832776989_ctddgh",
+    "details": {
+      "status": "SUSPENDED",
+      "reason": "Repeated cancellation of confirmed venues"
+    },
+    "timestamp": "2026-09-19T15:46:17.361Z",
+    "updatedAt": "2026-09-19T15:46:17.361Z",
+    "createdAt": "2026-09-19T15:46:17.361Z"
+  },
+  {
+    "id": "aud_1789832777610_5b4qvx",
+    "actorId": "usr_admin_master",
+    "actorName": "Platform Administrator",
+    "action": "ACTIVATE_USER",
+    "targetId": "usr_1789832776989_ctddgh",
+    "details": {
+      "status": "ACTIVE"
+    },
+    "timestamp": "2026-09-19T15:46:17.610Z",
+    "updatedAt": "2026-09-19T15:46:17.610Z",
+    "createdAt": "2026-09-19T15:46:17.610Z"
+  },
+  {
+    "id": "aud_1789832777975_f2yyv2",
+    "actorId": "usr_admin_master",
+    "actorName": "Platform Administrator",
+    "action": "MODERATE_LISTING",
+    "targetId": "h_1789832777894_mmxrcd",
+    "details": {
+      "status": "APPROVED",
+      "collectionName": "halls",
+      "moderationNote": "Verified high quality venue photos and premises"
+    },
+    "timestamp": "2026-09-19T15:46:17.975Z",
+    "updatedAt": "2026-09-19T15:46:17.975Z",
+    "createdAt": "2026-09-19T15:46:17.975Z"
+  },
+  {
+    "id": "aud_1789832777995_m63ev5",
+    "actorId": "usr_admin_master",
+    "actorName": "Platform Administrator",
+    "action": "MODERATE_LISTING",
+    "targetId": "h_1789832777894_mmxrcd",
+    "details": {
+      "status": "FLAGGED",
+      "collectionName": "halls",
+      "moderationNote": "Incomplete fire safety certificate submitted"
+    },
+    "timestamp": "2026-09-19T15:46:17.995Z",
+    "updatedAt": "2026-09-19T15:46:17.995Z",
+    "createdAt": "2026-09-19T15:46:17.995Z"
+  },
+  {
+    "id": "aud_1789834545517_58jkfk",
+    "actorId": "usr_admin_master",
+    "actorName": "Platform Administrator",
+    "action": "VERIFY_OWNER",
+    "targetId": "owner_usr_1789834545350_c7yjx2",
+    "details": {
+      "status": "APPROVED"
+    },
+    "timestamp": "2026-09-19T16:15:45.517Z",
+    "updatedAt": "2026-09-19T16:15:45.517Z",
+    "createdAt": "2026-09-19T16:15:45.517Z"
+  },
+  {
+    "id": "aud_1789834545540_g8dx12",
+    "actorId": "usr_admin_master",
+    "actorName": "Platform Administrator",
+    "action": "SUSPEND_USER",
+    "targetId": "usr_1789834545161_cndb1e",
+    "details": {
+      "status": "SUSPENDED",
+      "reason": "Repeated cancellation of confirmed venues"
+    },
+    "timestamp": "2026-09-19T16:15:45.540Z",
+    "updatedAt": "2026-09-19T16:15:45.540Z",
+    "createdAt": "2026-09-19T16:15:45.540Z"
+  },
+  {
+    "id": "aud_1789834545740_y137ej",
+    "actorId": "usr_admin_master",
+    "actorName": "Platform Administrator",
+    "action": "ACTIVATE_USER",
+    "targetId": "usr_1789834545161_cndb1e",
+    "details": {
+      "status": "ACTIVE"
+    },
+    "timestamp": "2026-09-19T16:15:45.740Z",
+    "updatedAt": "2026-09-19T16:15:45.740Z",
+    "createdAt": "2026-09-19T16:15:45.740Z"
+  },
+  {
+    "id": "aud_1789834545963_bg7440",
+    "actorId": "usr_admin_master",
+    "actorName": "Platform Administrator",
+    "action": "MODERATE_LISTING",
+    "targetId": "h_1789834545923_bod0f1",
+    "details": {
+      "status": "APPROVED",
+      "collectionName": "halls",
+      "moderationNote": "Verified high quality venue photos and premises"
+    },
+    "timestamp": "2026-09-19T16:15:45.963Z",
+    "updatedAt": "2026-09-19T16:15:45.963Z",
+    "createdAt": "2026-09-19T16:15:45.963Z"
+  },
+  {
+    "id": "aud_1789834545981_3hdwwg",
+    "actorId": "usr_admin_master",
+    "actorName": "Platform Administrator",
+    "action": "MODERATE_LISTING",
+    "targetId": "h_1789834545923_bod0f1",
+    "details": {
+      "status": "FLAGGED",
+      "collectionName": "halls",
+      "moderationNote": "Incomplete fire safety certificate submitted"
+    },
+    "timestamp": "2026-09-19T16:15:45.981Z",
+    "updatedAt": "2026-09-19T16:15:45.981Z",
+    "createdAt": "2026-09-19T16:15:45.981Z"
+  },
+  {
+    "id": "aud_1789898196625_jd5aj5",
+    "actorId": "usr_admin_master",
+    "actorName": "Platform Administrator",
+    "action": "VERIFY_OWNER",
+    "targetId": "owner_usr_1789898196570_ws8wdc",
+    "details": {
+      "status": "APPROVED"
+    },
+    "timestamp": "2026-09-20T09:56:36.625Z",
+    "updatedAt": "2026-09-20T09:56:36.625Z",
+    "createdAt": "2026-09-20T09:56:36.625Z"
+  },
+  {
+    "id": "aud_1789898196642_whcjko",
+    "actorId": "usr_admin_master",
+    "actorName": "Platform Administrator",
+    "action": "SUSPEND_USER",
+    "targetId": "usr_1789898196411_367tj5",
+    "details": {
+      "status": "SUSPENDED",
+      "reason": "Repeated cancellation of confirmed venues"
+    },
+    "timestamp": "2026-09-20T09:56:36.642Z",
+    "updatedAt": "2026-09-20T09:56:36.642Z",
+    "createdAt": "2026-09-20T09:56:36.642Z"
+  },
+  {
+    "id": "aud_1789898196843_swzh5y",
+    "actorId": "usr_admin_master",
+    "actorName": "Platform Administrator",
+    "action": "ACTIVATE_USER",
+    "targetId": "usr_1789898196411_367tj5",
+    "details": {
+      "status": "ACTIVE"
+    },
+    "timestamp": "2026-09-20T09:56:36.843Z",
+    "updatedAt": "2026-09-20T09:56:36.843Z",
+    "createdAt": "2026-09-20T09:56:36.843Z"
+  },
+  {
+    "id": "aud_1789898197093_fy3gta",
+    "actorId": "usr_admin_master",
+    "actorName": "Platform Administrator",
+    "action": "MODERATE_LISTING",
+    "targetId": "h_1789898197076_j7pct8",
+    "details": {
+      "status": "APPROVED",
+      "collectionName": "halls",
+      "moderationNote": "Verified high quality venue photos and premises"
+    },
+    "timestamp": "2026-09-20T09:56:37.093Z",
+    "updatedAt": "2026-09-20T09:56:37.094Z",
+    "createdAt": "2026-09-20T09:56:37.094Z"
+  },
+  {
+    "id": "aud_1789898197102_m63avd",
+    "actorId": "usr_admin_master",
+    "actorName": "Platform Administrator",
+    "action": "MODERATE_LISTING",
+    "targetId": "h_1789898197076_j7pct8",
+    "details": {
+      "status": "FLAGGED",
+      "collectionName": "halls",
+      "moderationNote": "Incomplete fire safety certificate submitted"
+    },
+    "timestamp": "2026-09-20T09:56:37.102Z",
+    "updatedAt": "2026-09-20T09:56:37.102Z",
+    "createdAt": "2026-09-20T09:56:37.102Z"
+  },
+  {
+    "id": "aud_1789900127046_m80u7f",
+    "actorId": "usr_admin_master",
+    "actorName": "Platform Administrator",
+    "action": "VERIFY_OWNER",
+    "targetId": "owner_usr_1789900126983_6yssd4",
+    "details": {
+      "status": "APPROVED"
+    },
+    "timestamp": "2026-09-20T10:28:47.046Z",
+    "updatedAt": "2026-09-20T10:28:47.046Z",
+    "createdAt": "2026-09-20T10:28:47.046Z"
+  },
+  {
+    "id": "aud_1789900127063_34kism",
+    "actorId": "usr_admin_master",
+    "actorName": "Platform Administrator",
+    "action": "SUSPEND_USER",
+    "targetId": "usr_1789900126721_d45ee6",
+    "details": {
+      "status": "SUSPENDED",
+      "reason": "Repeated cancellation of confirmed venues"
+    },
+    "timestamp": "2026-09-20T10:28:47.063Z",
+    "updatedAt": "2026-09-20T10:28:47.063Z",
+    "createdAt": "2026-09-20T10:28:47.063Z"
+  },
+  {
+    "id": "aud_1789900127300_z41nxj",
+    "actorId": "usr_admin_master",
+    "actorName": "Platform Administrator",
+    "action": "ACTIVATE_USER",
+    "targetId": "usr_1789900126721_d45ee6",
+    "details": {
+      "status": "ACTIVE"
+    },
+    "timestamp": "2026-09-20T10:28:47.300Z",
+    "updatedAt": "2026-09-20T10:28:47.301Z",
+    "createdAt": "2026-09-20T10:28:47.301Z"
+  },
+  {
+    "id": "aud_1789900127451_28bat6",
+    "actorId": "usr_admin_master",
+    "actorName": "Platform Administrator",
+    "action": "MODERATE_LISTING",
+    "targetId": "h_1789900127431_wjk3b1",
+    "details": {
+      "status": "APPROVED",
+      "collectionName": "halls",
+      "moderationNote": "Verified high quality venue photos and premises"
+    },
+    "timestamp": "2026-09-20T10:28:47.451Z",
+    "updatedAt": "2026-09-20T10:28:47.451Z",
+    "createdAt": "2026-09-20T10:28:47.451Z"
+  },
+  {
+    "id": "aud_1789900127463_4me66f",
+    "actorId": "usr_admin_master",
+    "actorName": "Platform Administrator",
+    "action": "MODERATE_LISTING",
+    "targetId": "h_1789900127431_wjk3b1",
+    "details": {
+      "status": "FLAGGED",
+      "collectionName": "halls",
+      "moderationNote": "Incomplete fire safety certificate submitted"
+    },
+    "timestamp": "2026-09-20T10:28:47.463Z",
+    "updatedAt": "2026-09-20T10:28:47.463Z",
+    "createdAt": "2026-09-20T10:28:47.463Z"
+  }
+]

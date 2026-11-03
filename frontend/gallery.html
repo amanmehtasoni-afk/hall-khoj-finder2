@@ -1,0 +1,256 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Venue Photo Gallery & Visual Showcase | Hall Khoj Finder</title>
+  <meta name="description" content="Explore high-definition wedding hall photos, banquet halls, floral stages, mandaps, lighting setups and luxury car galleries across India.">
+  <link rel="icon" type="image/png" href="/assets/logo.png">
+
+  <!-- Theme Controller (Zero-Flash Dark/Light Mode) -->
+  <script src="js/theme.js"></script>
+
+  <!-- Core CSS -->
+  <link rel="stylesheet" href="css/main.css">
+  <link rel="stylesheet" href="css/3d.css">
+  <link rel="stylesheet" href="css/components.css">
+  <link rel="stylesheet" href="css/animations.css">
+
+  <style>
+    .gallery-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+      gap: 1.5rem;
+    }
+
+    .gallery-item {
+      position: relative;
+      border-radius: var(--radius-lg);
+      overflow: hidden;
+      aspect-ratio: 4 / 3;
+      cursor: pointer;
+      border: 1px solid var(--border-subtle);
+      background: var(--bg-card);
+      transition: transform var(--transition-normal), box-shadow var(--transition-normal);
+    }
+
+    .gallery-item:hover {
+      transform: translateY(-4px) scale(1.02);
+      box-shadow: 0 12px 30px rgba(0, 0, 0, 0.4), 0 0 20px var(--primary-glow);
+      border-color: var(--primary-light);
+    }
+
+    .gallery-item img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      transition: transform 0.5s ease;
+    }
+
+    .gallery-item:hover img {
+      transform: scale(1.08);
+    }
+
+    .gallery-overlay {
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(180deg, transparent 40%, rgba(7, 20, 38, 0.92) 100%);
+      display: flex;
+      flex-direction: column;
+      justify-content: flex-end;
+      padding: 1.25rem;
+      color: #fff;
+      opacity: 0.9;
+      transition: opacity var(--transition-fast);
+    }
+
+    .lightbox-modal {
+      display: none;
+      position: fixed;
+      inset: 0;
+      z-index: 9999;
+      background: rgba(7, 20, 38, 0.95);
+      backdrop-filter: blur(12px);
+      align-items: center;
+      justify-content: center;
+      padding: 1.5rem;
+    }
+
+    .lightbox-modal.active {
+      display: flex;
+    }
+
+    .lightbox-content {
+      max-width: 900px;
+      max-height: 90vh;
+      display: flex;
+      flex-direction: column;
+      gap: 1rem;
+    }
+
+    .lightbox-img {
+      max-width: 100%;
+      max-height: 70vh;
+      border-radius: var(--radius-md);
+      object-fit: contain;
+      box-shadow: var(--shadow-lg);
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Site Header -->
+  <header class="site-header" role="banner">
+    <div class="nav-container">
+      <a href="/" class="brand-logo">
+        <img src="/assets/logo.png" alt="Hall Khoj" class="brand-logo-img">
+        <div class="brand-logo-text">
+          <span class="brand-title">HALL KHOJ</span>
+          <span class="brand-tagline-sub">GALLERY</span>
+        </div>
+      </a>
+
+      <nav role="navigation">
+        <ul class="nav-links">
+          <li><a href="/" class="nav-link">Home</a></li>
+          <li><a href="/search.html" class="nav-link">Find Services</a></li>
+          <li><a href="/gallery.html" class="nav-link active">Gallery</a></li>
+          <li><a href="/3d-preview.html" class="nav-link">3D Walkthrough</a></li>
+          <li><a href="/compare.html" class="nav-link">Compare</a></li>
+        </ul>
+      </nav>
+
+      <div class="nav-actions">
+        <div class="language-switcher-container"></div>
+        <button class="theme-toggle-btn" data-action="toggle-theme" aria-label="Toggle Dark/Light Mode" title="Toggle Theme">
+          <span class="theme-icon-sun">☀️</span>
+          <span class="theme-icon-moon" style="display:none;">🌙</span>
+        </button>
+        <a href="/search.html" class="btn btn-secondary btn-sm">Explore Venues</a>
+        <a href="/register.html?role=owner" class="btn btn-champagne btn-sm">List Your Venue</a>
+      </div>
+    </div>
+  </header>
+
+  <main style="padding-top: 6rem; padding-bottom: 5rem;">
+    <div class="container">
+      <!-- Page Header -->
+      <div class="text-center" style="margin-bottom: 2.5rem;">
+        <span class="badge badge-champagne" style="margin-bottom:0.75rem;">Verified Visual Showcase</span>
+        <h1 class="section-title">Palace & Banquet Visual Gallery</h1>
+        <p class="section-subtitle">
+          Browse authentic photographs of luxury marriage palaces, illuminated grand stages, royal banquet layouts and bridal suites across India.
+        </p>
+
+        <!-- Category Filters -->
+        <div style="display:flex; flex-wrap:wrap; justify-content:center; gap:0.5rem; margin-top:1.5rem;">
+          <button class="adv-chip active" data-filter="all">All Photos</button>
+          <button class="adv-chip" data-filter="palace">Heritage Palaces</button>
+          <button class="adv-chip" data-filter="stage">Mandap & Stages</button>
+          <button class="adv-chip" data-filter="banquet">Indoor Banquets</button>
+          <button class="adv-chip" data-filter="lawn">Open Lawns</button>
+          <button class="adv-chip" data-filter="cars">Wedding Cars</button>
+          <button class="adv-chip" data-filter="decor">Floral Decor</button>
+        </div>
+      </div>
+
+      <!-- Gallery Grid -->
+      <div class="gallery-grid" id="gallery-container">
+        <!-- Rendered via JavaScript from authentic datasets -->
+      </div>
+    </div>
+  </main>
+
+  <!-- Lightbox Modal -->
+  <div class="lightbox-modal" id="lightbox-modal">
+    <div class="lightbox-content glass-panel" style="padding:1.5rem; position:relative;">
+      <button id="lightbox-close" style="position:absolute; top:1rem; right:1.25rem; background:transparent; border:none; color:#fff; font-size:1.75rem; cursor:pointer;">&times;</button>
+      <img id="lightbox-img" src="" alt="Enlarged Venue Photo" class="lightbox-img">
+      <div class="flex items-center justify-between flex-wrap gap-2" style="margin-top:0.5rem;">
+        <div>
+          <h3 id="lightbox-title" style="font-size:1.2rem; color:#fff; margin-bottom:0.25rem;">Venue Image</h3>
+          <p id="lightbox-desc" style="font-size:0.85rem; color:var(--text-secondary); margin:0;">Location & Facility Details</p>
+        </div>
+        <div class="flex items-center gap-2">
+          <a href="/3d-preview.html" class="btn btn-secondary btn-sm">Inspect 3D</a>
+          <a href="/booking.html?hallId=h-101" id="lightbox-book-btn" class="btn btn-primary btn-sm">Book Venue</a>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <footer class="footer-section" style="background:var(--bg-secondary); border-top:1px solid var(--border-subtle); padding:3rem 0; margin-top:4rem;">
+    <div class="container text-center" style="font-size:0.85rem; color:var(--text-muted);">
+      <p>&copy; 2026 Hall Khoj Finder. All Rights Reserved. India's Premier 3D Event Services Marketplace.</p>
+    </div>
+  </footer>
+
+  <script>
+    (function initGallery() {
+      const PHOTOS = [
+        { title: 'The Royal Grand Heritage Palace', cat: 'palace', city: 'Lucknow, UP', img: 'https://images.unsplash.com/photo-1519167758481-83f550bb49b3?auto=format&fit=crop&w=1200&q=80', id: 'h-101' },
+        { title: 'Royal Mandap Stage & Floral Arch', cat: 'stage', city: 'Lucknow, UP', img: 'https://images.unsplash.com/photo-1519741497674-611481863552?auto=format&fit=crop&w=1200&q=80', id: 'h-101' },
+        { title: 'Mayur Emerald Grand Banquet', cat: 'banquet', city: 'Patna, Bihar', img: 'https://images.unsplash.com/photo-1545232979-fbf68fe9b1af?auto=format&fit=crop&w=1200&q=80', id: 'h-102' },
+        { title: 'Sanskriti Luxury Resort & Open Lawn', cat: 'lawn', city: 'Varanasi, UP', img: 'https://images.unsplash.com/photo-1465495976277-4387d4b0b4c6?auto=format&fit=crop&w=1200&q=80', id: 'h-103' },
+        { title: 'Mercedes-Benz E-Class Wedding Car', cat: 'cars', city: 'Delhi NCR', img: 'https://images.unsplash.com/photo-1563720223185-11003d516935?auto=format&fit=crop&w=1200&q=80', id: 'car-101' },
+        { title: 'Crystal Chandelier Ballroom Gala', cat: 'banquet', city: 'Jaipur, Rajasthan', img: 'https://images.unsplash.com/photo-1511795409834-ef04bbd61622?auto=format&fit=crop&w=1200&q=80', id: 'h-104' },
+        { title: 'Waterproof German Hanger Shamiana', cat: 'lawn', city: 'Patna, Bihar', img: 'https://images.unsplash.com/photo-1520854221256-17451cc331bf?auto=format&fit=crop&w=1200&q=80', id: 'tent-101' },
+        { title: 'Gourmet Royal Catering & Live Buffet', cat: 'decor', city: 'Lucknow, UP', img: 'https://images.unsplash.com/photo-1555244162-803834f70033?auto=format&fit=crop&w=1200&q=80', id: 'serv-101' },
+        { title: 'Destination Palace Fireworks & Lighting', cat: 'palace', city: 'Udaipur, Rajasthan', img: 'https://images.unsplash.com/photo-1532712938310-34cb3982ef74?auto=format&fit=crop&w=1200&q=80', id: 'h-105' }
+      ];
+
+      const container = document.getElementById('gallery-container');
+      const modal = document.getElementById('lightbox-modal');
+      const lightImg = document.getElementById('lightbox-img');
+      const lightTitle = document.getElementById('lightbox-title');
+      const lightDesc = document.getElementById('lightbox-desc');
+      const lightBook = document.getElementById('lightbox-book-btn');
+      const closeBtn = document.getElementById('lightbox-close');
+
+      function render(items) {
+        container.innerHTML = items.map(p => `
+          <div class="gallery-item" data-cat="${p.cat}" data-title="${p.title}" data-city="${p.city}" data-src="${p.img}" data-id="${p.id}">
+            <img src="${p.img}" alt="${p.title}" loading="lazy">
+            <div class="gallery-overlay">
+              <span class="badge badge-champagne" style="width:fit-content; margin-bottom:0.35rem;">${p.cat.toUpperCase()}</span>
+              <h3 style="font-size:1.05rem; margin:0 0 0.2rem 0; font-weight:700;">${p.title}</h3>
+              <p style="font-size:0.8rem; margin:0; color:var(--text-secondary);">📍 ${p.city}</p>
+            </div>
+          </div>
+        `).join('');
+
+        container.querySelectorAll('.gallery-item').forEach(el => {
+          el.addEventListener('click', () => {
+            lightImg.src = el.getAttribute('data-src');
+            lightTitle.textContent = el.getAttribute('data-title');
+            lightDesc.textContent = `📍 ${el.getAttribute('data-city')} • Category: ${el.getAttribute('data-cat').toUpperCase()}`;
+            lightBook.href = `/booking.html?hallId=${el.getAttribute('data-id')}`;
+            modal.classList.add('active');
+          });
+        });
+      }
+
+      render(PHOTOS);
+
+      // Category filter buttons
+      document.querySelectorAll('.adv-chip').forEach(btn => {
+        btn.addEventListener('click', (e) => {
+          document.querySelectorAll('.adv-chip').forEach(b => b.classList.remove('active'));
+          e.target.classList.add('active');
+          const f = e.target.getAttribute('data-filter');
+          if (f === 'all') {
+            render(PHOTOS);
+          } else {
+            render(PHOTOS.filter(p => p.cat === f));
+          }
+        });
+      });
+
+      closeBtn.addEventListener('click', () => modal.classList.remove('active'));
+      modal.addEventListener('click', (e) => {
+        if (e.target === modal) modal.classList.remove('active');
+      });
+    })();
+  </script>
+</body>
+</html>

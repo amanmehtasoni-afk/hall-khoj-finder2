@@ -1,0 +1,192 @@
+[
+  {
+    "id": "marriage-hall",
+    "name": "Marriage Hall",
+    "hindiName": "विवाह भवन / मैरिज हॉल",
+    "slug": "marriage-hall",
+    "icon": "🏰",
+    "description": "Expansive marriage palaces and banquet gardens with AC rooms, mandap, and reception halls.",
+    "priceType": "per day",
+    "startingPrice": 65000
+  },
+  {
+    "id": "banquet-hall",
+    "name": "Banquet Hall",
+    "hindiName": "बैंक्वेट हॉल",
+    "slug": "banquet-hall",
+    "icon": "🏛️",
+    "description": "Climate-controlled luxury banquet halls ideal for weddings, sangeet, and large celebrations.",
+    "priceType": "per day",
+    "startingPrice": 50000
+  },
+  {
+    "id": "party-hall",
+    "name": "Party Hall",
+    "hindiName": "पार्टी हॉल",
+    "slug": "party-hall",
+    "icon": "🎉",
+    "description": "Cozy indoor halls perfect for birthday parties, anniversaries, ring ceremonies, and kitty parties.",
+    "priceType": "per event",
+    "startingPrice": 25000
+  },
+  {
+    "id": "wedding-venue",
+    "name": "Wedding Venue",
+    "hindiName": "वेडिंग वेन्यू",
+    "slug": "wedding-venue",
+    "icon": "💍",
+    "description": "Full-destination wedding properties with bridal villas, vast parking, and pre-wedding photoshoot lawns.",
+    "priceType": "per day",
+    "startingPrice": 95000
+  },
+  {
+    "id": "resort",
+    "name": "Resort",
+    "hindiName": "रिसॉर्ट",
+    "slug": "resort",
+    "icon": "🌴",
+    "description": "Scenic luxury resorts with swimming pools, cottages, and sprawling outdoor event lawns.",
+    "priceType": "per day",
+    "startingPrice": 120000
+  },
+  {
+    "id": "community-hall",
+    "name": "Community Hall",
+    "hindiName": "सामुदायिक भवन",
+    "slug": "community-hall",
+    "icon": "🏢",
+    "description": "Affordable municipal and community centers suited for neighborhood events and cultural functions.",
+    "priceType": "per day",
+    "startingPrice": 15000
+  },
+  {
+    "id": "tent-house",
+    "name": "Tent House",
+    "hindiName": "टेंट हाउस",
+    "slug": "tent-house",
+    "icon": "🎪",
+    "description": "Waterproof German hangers, elegant shamianas, VIP carpets, and regal canopy structures.",
+    "priceType": "per event",
+    "startingPrice": 25000
+  },
+  {
+    "id": "decoration",
+    "name": "Decoration",
+    "hindiName": "डेकोरेशन / मंडप सजावट",
+    "slug": "decoration",
+    "icon": "✨",
+    "description": "Bespoke stage decoration, floral entry gates, fairy-light tunnels, and theme backdrops.",
+    "priceType": "per event",
+    "startingPrice": 20000
+  },
+  {
+    "id": "catering",
+    "name": "Catering",
+    "hindiName": "कैटरिंग सेवा",
+    "slug": "catering",
+    "icon": "🍲",
+    "description": "Authentic North Indian, Awadhi, pure veg, and multi-cuisine buffet spreads with live counters.",
+    "priceType": "per plate",
+    "startingPrice": 650
+  },
+  {
+    "id": "photography",
+    "name": "Photography",
+    "hindiName": "फोटोग्राफी",
+    "slug": "photography",
+    "icon": "📸",
+    "description": "Candid wedding photography, pre-wedding couple shoots, and luxury photo albums.",
+    "priceType": "per event",
+    "startingPrice": 35000
+  },
+  {
+    "id": "videography",
+    "name": "Videography",
+    "hindiName": "वीडियोग्राफी / सिनेमैटिक",
+    "slug": "videography",
+    "icon": "🎥",
+    "description": "Cinematic 4K teaser films, drone aerial coverage, live LED broadcast, and traditional video.",
+    "priceType": "per event",
+    "startingPrice": 40000
+  },
+  {
+    "id": "dj",
+    "name": "DJ",
+    "hindiName": "डीजे सर्विस",
+    "slug": "dj",
+    "icon": "🎧",
+    "description": "Celebrity club DJs, Bollywood sangeet mixes, bass rumbles, and energetic dance floor vibes.",
+    "priceType": "per event",
+    "startingPrice": 18000
+  },
+  {
+    "id": "sound-system",
+    "name": "Sound System",
+    "hindiName": "साउंड सिस्टम",
+    "slug": "sound-system",
+    "icon": "🔊",
+    "description": "Line-array acoustic speakers, wireless cordless microphones, subwoofers, and audio mixers.",
+    "priceType": "per event",
+    "startingPrice": 12000
+  },
+  {
+    "id": "lighting",
+    "name": "Lighting",
+    "hindiName": "लाइटिंग सेटअप",
+    "slug": "lighting",
+    "icon": "💡",
+    "description": "Sharpy beam moving heads, warm ambient halogen halters, par cans, and architectural wash lights.",
+    "priceType": "per event",
+    "startingPrice": 15000
+  },
+  {
+    "id": "flower-decoration",
+    "name": "Flower Decoration",
+    "hindiName": "फूल सजावट",
+    "slug": "flower-decoration",
+    "icon": "🌸",
+    "description": "Fresh orchids, marigold cascades, Kolkata roses, and carnations for stage, mandap, and car decor.",
+    "priceType": "per event",
+    "startingPrice": 18000
+  },
+  {
+    "id": "furniture",
+    "name": "Furniture",
+    "hindiName": "फर्नीचर रेंटल",
+    "slug": "furniture",
+    "icon": "🪑",
+    "description": "Maharaja sofa sets, chiavari banquet chairs, round banquet tables, and bar stools.",
+    "priceType": "per event",
+    "startingPrice": 10000
+  },
+  {
+    "id": "event-staff",
+    "name": "Event Staff",
+    "hindiName": "इवेंट स्टाफ / कोऑर्डिनेटर",
+    "slug": "event-staff",
+    "icon": "👔",
+    "description": "Bilingual event hosts, trained uniform waiters, bouncers, security guards, and valet parking team.",
+    "priceType": "per day",
+    "startingPrice": 8000
+  },
+  {
+    "id": "wedding-car",
+    "name": "Wedding Car",
+    "hindiName": "वेडिंग कार / दूल्हा गाड़ी",
+    "slug": "wedding-car",
+    "icon": "🚗",
+    "description": "Decorated Mercedes, Audi, BMW, and vintage luxury convertibles for baraat and vidaai.",
+    "priceType": "per event",
+    "startingPrice": 15000
+  },
+  {
+    "id": "other-services",
+    "name": "Other Event Services",
+    "hindiName": "अन्य इवेंट सेवाएं",
+    "slug": "other-services",
+    "icon": "🎪",
+    "description": "Band baaja, dholak troupe, firework displays, mehndi artists, and event generators.",
+    "priceType": "per event",
+    "startingPrice": 10000
+  }
+]

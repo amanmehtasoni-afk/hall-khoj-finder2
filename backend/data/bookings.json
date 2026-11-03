@@ -1,0 +1,2762 @@
+[
+  {
+    "id": "HKF-2026-312920",
+    "bookingId": "HKF-2026-312920",
+    "serviceId": "h-101",
+    "serviceName": "The Royal Grand Heritage Palace",
+    "serviceType": "Marriage Hall",
+    "ownerId": "owner_101",
+    "customerId": "usr_1789828782168_4zegag",
+    "customerName": "Test Customer",
+    "customerMobile": "9876543210",
+    "customerEmail": "test_1789828781990@hallkhoj.com",
+    "eventDate": "2026-11-20",
+    "timeSlot": "Evening",
+    "guestCount": 500,
+    "requirements": "Grand entrance flower arch",
+    "pricing": {
+      "basePrice": 85000,
+      "cleaningFee": 2500,
+      "discount": 5000,
+      "gstTax": 14850,
+      "totalAmount": 97350,
+      "advanceRequired": 24338
+    },
+    "status": "REQUESTED",
+    "createdAt": "2026-09-19T14:39:42.399Z",
+    "updatedAt": "2026-09-19T14:39:42.399Z"
+  },
+  {
+    "id": "HKF-2026-352160",
+    "bookingId": "HKF-2026-352160",
+    "serviceId": "h-101",
+    "serviceName": "The Royal Grand Heritage Palace",
+    "serviceType": "Marriage Hall",
+    "ownerId": "owner_101",
+    "customerId": "usr_1789829894822_uwma9j",
+    "customerName": "Test Customer",
+    "customerMobile": "9876543210",
+    "customerEmail": "test_1789829894663@hallkhoj.com",
+    "eventDate": "2026-11-20",
+    "timeSlot": "Evening",
+    "guestCount": 500,
+    "requirements": "Grand entrance flower arch",
+    "pricing": {
+      "basePrice": 85000,
+      "cleaningFee": 2500,
+      "discount": 5000,
+      "gstTax": 14850,
+      "totalAmount": 97350,
+      "advanceRequired": 24338
+    },
+    "status": "REQUESTED",
+    "createdAt": "2026-09-19T14:58:15.006Z",
+    "updatedAt": "2026-09-19T14:58:15.006Z"
+  },
+  {
+    "id": "HKF-2026-415243",
+    "bookingId": "HKF-2026-415243",
+    "serviceId": "h-101",
+    "serviceName": "The Royal Grand Heritage Palace",
+    "serviceType": "Marriage Hall",
+    "ownerId": "owner_101",
+    "customerId": "usr_1789830696032_5zexhe",
+    "customerName": "Rohan Verma",
+    "customerMobile": "9876259636",
+    "customerEmail": "9876259636@hallkhoj.phone",
+    "eventDate": "2026-11-20",
+    "timeSlot": "Evening",
+    "guestCount": 350,
+    "requirements": "",
+    "pricing": {
+      "basePrice": 85000,
+      "cleaningFee": 2500,
+      "discount": 5000,
+      "gstTax": 14850,
+      "totalAmount": 97350,
+      "advanceRequired": 24338
+    },
+    "status": "REQUESTED",
+    "createdAt": "2026-09-19T15:11:36.700Z",
+    "updatedAt": "2026-09-19T15:11:36.701Z"
+  },
+  {
+    "id": "HKF-2026-825315",
+    "bookingId": "HKF-2026-825315",
+    "serviceId": "h-101",
+    "serviceName": "The Royal Grand Heritage Palace",
+    "serviceType": "Marriage Hall",
+    "ownerId": "owner_101",
+    "customerId": "usr_1789830715076_syf33h",
+    "customerName": "Test Customer",
+    "customerMobile": "9876543210",
+    "customerEmail": "test_1789830714934@hallkhoj.com",
+    "eventDate": "2026-11-20",
+    "timeSlot": "Evening",
+    "guestCount": 500,
+    "requirements": "Grand entrance flower arch",
+    "pricing": {
+      "basePrice": 85000,
+      "cleaningFee": 2500,
+      "discount": 5000,
+      "gstTax": 14850,
+      "totalAmount": 97350,
+      "advanceRequired": 24338
+    },
+    "status": "REQUESTED",
+    "createdAt": "2026-09-19T15:11:55.242Z",
+    "updatedAt": "2026-09-19T15:11:55.242Z"
+  },
+  {
+    "id": "HKF-2026-119646",
+    "bookingId": "HKF-2026-119646",
+    "serviceId": "h_1789831213707_yp3dnc",
+    "serviceName": "Sanskriti Lawn & Grand Banquet",
+    "serviceType": "Marriage Hall",
+    "ownerId": "usr_1789831213492_07ozs1",
+    "customerId": "usr_1789831213670_wizmse",
+    "customerName": "Sunita Customer",
+    "customerMobile": "9123456780",
+    "customerEmail": "cust_p5_1789831213242@hallkhoj.com",
+    "eventDate": "2026-12-10",
+    "timeSlot": "Evening",
+    "guestCount": 400,
+    "requirements": "Need red floral stage setup and bridal lounge",
+    "pricing": {
+      "basePrice": 85000,
+      "cleaningFee": 2500,
+      "discount": 5000,
+      "gstTax": 14850,
+      "totalAmount": 97350,
+      "advanceRequired": 24338
+    },
+    "status": "CONFIRMED",
+    "createdAt": "2026-09-19T15:20:13.756Z",
+    "updatedAt": "2026-09-19T15:20:13.769Z"
+  },
+  {
+    "id": "HKF-2026-560837",
+    "bookingId": "HKF-2026-560837",
+    "serviceId": "h-101",
+    "serviceName": "The Royal Grand Heritage Palace",
+    "serviceType": "Marriage Hall",
+    "ownerId": "owner_101",
+    "customerId": "usr_1789831238055_qdwhup",
+    "customerName": "Rohan Verma",
+    "customerMobile": "9876120342",
+    "customerEmail": "9876120342@hallkhoj.phone",
+    "eventDate": "2026-11-20",
+    "timeSlot": "Evening",
+    "guestCount": 350,
+    "requirements": "",
+    "pricing": {
+      "basePrice": 85000,
+      "cleaningFee": 2500,
+      "discount": 5000,
+      "gstTax": 14850,
+      "totalAmount": 97350,
+      "advanceRequired": 24338
+    },
+    "status": "REQUESTED",
+    "createdAt": "2026-09-19T15:20:38.536Z",
+    "updatedAt": "2026-09-19T15:20:38.536Z"
+  },
+  {
+    "id": "HKF-2026-133802",
+    "bookingId": "HKF-2026-133802",
+    "serviceId": "h-101",
+    "serviceName": "The Royal Grand Heritage Palace",
+    "serviceType": "Marriage Hall",
+    "ownerId": "owner_101",
+    "customerId": "usr_1789831448894_fptkqu",
+    "customerName": "Rohan Verma",
+    "customerMobile": "9876666503",
+    "customerEmail": "9876666503@hallkhoj.phone",
+    "eventDate": "2026-11-20",
+    "timeSlot": "Evening",
+    "guestCount": 350,
+    "requirements": "",
+    "pricing": {
+      "basePrice": 85000,
+      "cleaningFee": 2500,
+      "discount": 5000,
+      "gstTax": 14850,
+      "totalAmount": 97350,
+      "advanceRequired": 24338
+    },
+    "status": "REQUESTED",
+    "createdAt": "2026-09-19T15:24:09.384Z",
+    "updatedAt": "2026-09-19T15:24:09.384Z"
+  },
+  {
+    "id": "HKF-2026-647370",
+    "bookingId": "HKF-2026-647370",
+    "serviceId": "h_1789831457232_5e5qxe",
+    "serviceName": "Sanskriti Lawn & Grand Banquet",
+    "serviceType": "Marriage Hall",
+    "ownerId": "usr_1789831457038_j5jksm",
+    "customerId": "usr_1789831457199_7p5lva",
+    "customerName": "Sunita Customer",
+    "customerMobile": "9123456780",
+    "customerEmail": "cust_p5_1789831456827@hallkhoj.com",
+    "eventDate": "2026-12-10",
+    "timeSlot": "Evening",
+    "guestCount": 400,
+    "requirements": "Need red floral stage setup and bridal lounge",
+    "pricing": {
+      "basePrice": 85000,
+      "cleaningFee": 2500,
+      "discount": 5000,
+      "gstTax": 14850,
+      "totalAmount": 97350,
+      "advanceRequired": 24338
+    },
+    "status": "CONFIRMED",
+    "createdAt": "2026-09-19T15:24:17.265Z",
+    "updatedAt": "2026-09-19T15:24:17.279Z"
+  },
+  {
+    "id": "HKF-2026-801070",
+    "bookingId": "HKF-2026-801070",
+    "serviceId": "srv-cat-401",
+    "serviceName": "Awadh Shahi Royal Catering & Live Counters",
+    "serviceType": "Catering",
+    "ownerId": "owner_101",
+    "customerId": "guest_customer",
+    "customerName": "Vikas Malhotra",
+    "customerMobile": "9876500000",
+    "customerEmail": "vikas@malhotra.com",
+    "eventDate": "2026-11-28",
+    "timeSlot": "Evening",
+    "guestCount": 300,
+    "requirements": "Awadhi dinner buffet with live dessert jalebi counter",
+    "pricing": {
+      "basePrice": 750,
+      "cleaningFee": 2500,
+      "discount": 5000,
+      "gstTax": 0,
+      "totalAmount": 0,
+      "advanceRequired": 0
+    },
+    "status": "REQUESTED",
+    "createdAt": "2026-09-19T15:27:25.078Z",
+    "updatedAt": "2026-09-19T15:27:25.078Z"
+  },
+  {
+    "id": "HKF-2026-401383",
+    "bookingId": "HKF-2026-401383",
+    "serviceId": "srv-cat-401",
+    "serviceName": "Awadh Shahi Royal Catering & Live Counters",
+    "serviceType": "Catering",
+    "ownerId": "owner_101",
+    "customerId": "guest_customer",
+    "customerName": "Vikas Malhotra",
+    "customerMobile": "9876500000",
+    "customerEmail": "vikas@malhotra.com",
+    "eventDate": "2026-11-28",
+    "timeSlot": "Evening",
+    "guestCount": 300,
+    "requirements": "Awadhi dinner buffet with live dessert jalebi counter",
+    "pricing": {
+      "basePrice": 750,
+      "cleaningFee": 2500,
+      "discount": 5000,
+      "gstTax": 0,
+      "totalAmount": 0,
+      "advanceRequired": 0
+    },
+    "status": "REQUESTED",
+    "createdAt": "2026-09-19T15:28:41.486Z",
+    "updatedAt": "2026-09-19T15:28:41.486Z"
+  },
+  {
+    "id": "HKF-2026-308822",
+    "bookingId": "HKF-2026-308822",
+    "serviceId": "srv-cat-401",
+    "serviceName": "Awadh Shahi Royal Catering & Live Counters",
+    "serviceType": "Catering",
+    "ownerId": "owner_101",
+    "customerId": "guest_customer",
+    "customerName": "Vikas Malhotra",
+    "customerMobile": "9876500000",
+    "customerEmail": "vikas@malhotra.com",
+    "eventDate": "2026-11-28",
+    "timeSlot": "Evening",
+    "guestCount": 300,
+    "requirements": "Awadhi dinner buffet with live dessert jalebi counter",
+    "pricing": {
+      "basePrice": 750,
+      "cleaningFee": 2500,
+      "discount": 5000,
+      "gstTax": 0,
+      "totalAmount": 0,
+      "advanceRequired": 0
+    },
+    "status": "REQUESTED",
+    "createdAt": "2026-09-19T15:29:14.515Z",
+    "updatedAt": "2026-09-19T15:29:14.516Z"
+  },
+  {
+    "id": "HKF-2026-317424",
+    "bookingId": "HKF-2026-317424",
+    "serviceId": "h-101",
+    "serviceName": "The Royal Grand Heritage Palace",
+    "serviceType": "Marriage Hall",
+    "ownerId": "owner_101",
+    "customerId": "usr_1789831780006_gch1n8",
+    "customerName": "Rohan Verma",
+    "customerMobile": "9876895567",
+    "customerEmail": "9876895567@hallkhoj.phone",
+    "eventDate": "2026-11-20",
+    "timeSlot": "Evening",
+    "guestCount": 350,
+    "requirements": "",
+    "pricing": {
+      "basePrice": 85000,
+      "cleaningFee": 2500,
+      "discount": 5000,
+      "gstTax": 14850,
+      "totalAmount": 97350,
+      "advanceRequired": 24338
+    },
+    "status": "REQUESTED",
+    "createdAt": "2026-09-19T15:29:41.477Z",
+    "updatedAt": "2026-09-19T15:29:41.477Z"
+  },
+  {
+    "id": "HKF-2026-996009",
+    "bookingId": "HKF-2026-996009",
+    "serviceId": "h_1789831794385_kzupf7",
+    "serviceName": "Sanskriti Lawn & Grand Banquet",
+    "serviceType": "Marriage Hall",
+    "ownerId": "usr_1789831794094_dkokb9",
+    "customerId": "usr_1789831794322_6qyun5",
+    "customerName": "Sunita Customer",
+    "customerMobile": "9123456780",
+    "customerEmail": "cust_p5_1789831793838@hallkhoj.com",
+    "eventDate": "2026-12-10",
+    "timeSlot": "Evening",
+    "guestCount": 400,
+    "requirements": "Need red floral stage setup and bridal lounge",
+    "pricing": {
+      "basePrice": 85000,
+      "cleaningFee": 2500,
+      "discount": 5000,
+      "gstTax": 14850,
+      "totalAmount": 97350,
+      "advanceRequired": 24338
+    },
+    "status": "CONFIRMED",
+    "createdAt": "2026-09-19T15:29:54.470Z",
+    "updatedAt": "2026-09-19T15:29:54.486Z"
+  },
+  {
+    "id": "HKF-2026-745957",
+    "bookingId": "HKF-2026-745957",
+    "serviceId": "h-101",
+    "serviceName": "The Royal Grand Heritage Palace",
+    "serviceType": "Marriage Hall",
+    "ownerId": "owner_101",
+    "customerId": "usr_1789832747620_ydoo7l",
+    "customerName": "Rohan Verma",
+    "customerMobile": "9876195872",
+    "customerEmail": "9876195872@hallkhoj.phone",
+    "eventDate": "2026-11-20",
+    "timeSlot": "Evening",
+    "guestCount": 350,
+    "requirements": "",
+    "pricing": {
+      "basePrice": 85000,
+      "cleaningFee": 2500,
+      "discount": 5000,
+      "gstTax": 14850,
+      "totalAmount": 97350,
+      "advanceRequired": 24338
+    },
+    "status": "REQUESTED",
+    "createdAt": "2026-09-19T15:45:48.418Z",
+    "updatedAt": "2026-09-19T15:45:48.418Z"
+  },
+  {
+    "id": "HKF-2026-651144",
+    "bookingId": "HKF-2026-651144",
+    "serviceId": "h_1789832761873_jyuy3k",
+    "serviceName": "Sanskriti Lawn & Grand Banquet",
+    "serviceType": "Marriage Hall",
+    "ownerId": "usr_1789832761569_lglotr",
+    "customerId": "usr_1789832761760_k2qus9",
+    "customerName": "Sunita Customer",
+    "customerMobile": "9123456780",
+    "customerEmail": "cust_p5_1789832761322@hallkhoj.com",
+    "eventDate": "2026-12-10",
+    "timeSlot": "Evening",
+    "guestCount": 400,
+    "requirements": "Need red floral stage setup and bridal lounge",
+    "pricing": {
+      "basePrice": 85000,
+      "cleaningFee": 2500,
+      "discount": 5000,
+      "gstTax": 14850,
+      "totalAmount": 97350,
+      "advanceRequired": 24338
+    },
+    "status": "CONFIRMED",
+    "createdAt": "2026-09-19T15:46:02.014Z",
+    "updatedAt": "2026-09-19T15:46:02.064Z"
+  },
+  {
+    "id": "HKF-2026-572108",
+    "bookingId": "HKF-2026-572108",
+    "serviceId": "srv-cat-401",
+    "serviceName": "Awadh Shahi Royal Catering & Live Counters",
+    "serviceType": "Catering",
+    "ownerId": "owner_101",
+    "customerId": "guest_customer",
+    "customerName": "Vikas Malhotra",
+    "customerMobile": "9876500000",
+    "customerEmail": "vikas@malhotra.com",
+    "eventDate": "2026-11-28",
+    "timeSlot": "Evening",
+    "guestCount": 300,
+    "requirements": "Awadhi dinner buffet with live dessert jalebi counter",
+    "pricing": {
+      "basePrice": 750,
+      "cleaningFee": 2500,
+      "discount": 5000,
+      "gstTax": 0,
+      "totalAmount": 0,
+      "advanceRequired": 0
+    },
+    "status": "REQUESTED",
+    "createdAt": "2026-09-19T15:46:28.361Z",
+    "updatedAt": "2026-09-19T15:46:28.362Z"
+  },
+  {
+    "id": "HKF-2026-222829",
+    "bookingId": "HKF-2026-222829",
+    "serviceId": "h_1789833130879_h1y0cp",
+    "serviceName": "Rajput Royal Palace & Garden",
+    "serviceType": "Marriage Hall",
+    "ownerId": "usr_1789833130861_eqve8e",
+    "customerId": "usr_1789833130515_wdsio6",
+    "customerName": "Rahul Customer",
+    "customerMobile": "9876543210",
+    "customerEmail": "rahul_1789833130263@example.com",
+    "eventDate": "2026-12-18",
+    "timeSlot": "Evening",
+    "guestCount": 600,
+    "requirements": "Central AC on full blast, 2 bridal suites",
+    "pricing": {
+      "basePrice": 75000,
+      "cleaningFee": 2500,
+      "discount": 5000,
+      "gstTax": 13050,
+      "totalAmount": 85550,
+      "advanceRequired": 21388
+    },
+    "status": "COMPLETED",
+    "statusHistory": [
+      {
+        "status": "REQUESTED",
+        "timestamp": "2026-09-19T15:52:10.988Z",
+        "actorId": "usr_1789833130515_wdsio6",
+        "actorRole": "customer",
+        "note": "Booking request created by customer"
+      },
+      {
+        "status": "ACCEPTED",
+        "timestamp": "2026-09-19T15:52:11.061Z",
+        "actorId": "usr_1789833130861_eqve8e",
+        "actorRole": "owner",
+        "note": "Deposit terms aligned, booking accepted."
+      },
+      {
+        "status": "CONFIRMED",
+        "timestamp": "2026-09-19T15:52:11.103Z",
+        "actorId": "usr_1789833130861_eqve8e",
+        "actorRole": "owner",
+        "note": "25% advance payment verified via bank transfer."
+      },
+      {
+        "status": "COMPLETED",
+        "timestamp": "2026-09-19T15:52:11.139Z",
+        "actorId": "usr_1789833130861_eqve8e",
+        "actorRole": "owner",
+        "note": "Wedding ceremony concluded successfully."
+      }
+    ],
+    "createdAt": "2026-09-19T15:52:10.988Z",
+    "updatedAt": "2026-09-19T15:52:11.139Z"
+  },
+  {
+    "id": "HKF-2026-583540",
+    "bookingId": "HKF-2026-583540",
+    "serviceId": "h_1789833130879_h1y0cp",
+    "serviceName": "Rajput Royal Palace & Garden",
+    "serviceType": "Marriage Hall",
+    "ownerId": "usr_1789833130861_eqve8e",
+    "customerId": "usr_1789833130515_wdsio6",
+    "customerName": "Rahul Customer",
+    "customerMobile": "9876543210",
+    "customerEmail": "rahul_1789833130263@example.com",
+    "eventDate": "2026-11-23",
+    "timeSlot": "Morning",
+    "guestCount": 300,
+    "requirements": "",
+    "pricing": {
+      "basePrice": 52500,
+      "cleaningFee": 2500,
+      "discount": 5000,
+      "gstTax": 9000,
+      "totalAmount": 59000,
+      "advanceRequired": 14750
+    },
+    "status": "CANCELLED",
+    "statusHistory": [
+      {
+        "status": "REQUESTED",
+        "timestamp": "2026-09-19T15:52:11.164Z",
+        "actorId": "usr_1789833130515_wdsio6",
+        "actorRole": "customer",
+        "note": "Booking request created by customer"
+      },
+      {
+        "status": "ACCEPTED",
+        "timestamp": "2026-09-19T15:52:11.187Z",
+        "actorId": "usr_1789833130861_eqve8e",
+        "actorRole": "owner",
+        "note": "Status transitioned to ACCEPTED"
+      },
+      {
+        "status": "CANCELLED",
+        "timestamp": "2026-09-19T15:52:11.209Z",
+        "actorId": "usr_1789833130515_wdsio6",
+        "actorRole": "user",
+        "note": "Family changed wedding venue location to Varanasi"
+      }
+    ],
+    "createdAt": "2026-09-19T15:52:11.164Z",
+    "updatedAt": "2026-09-19T15:52:11.209Z",
+    "cancellationReason": "Family changed wedding venue location to Varanasi",
+    "cancelledAt": "2026-09-19T15:52:11.209Z"
+  },
+  {
+    "id": "HKF-2026-524200",
+    "bookingId": "HKF-2026-524200",
+    "serviceId": "h_1789833638840_l2hjig",
+    "serviceName": "Sunil Grand Imperial Banquet",
+    "serviceType": "Banquet Hall",
+    "ownerId": "usr_1789833638575_ghjk2h",
+    "customerId": "usr_1789833638306_oc3kuc",
+    "customerName": "Aman Customer",
+    "customerMobile": "9876543210",
+    "customerEmail": "aman_cust_1789833637874@example.com",
+    "eventDate": "2026-12-15",
+    "timeSlot": "Evening",
+    "guestCount": 400,
+    "requirements": "",
+    "pricing": {
+      "basePrice": 60000,
+      "cleaningFee": 2500,
+      "discount": 5000,
+      "gstTax": 10350,
+      "totalAmount": 67850,
+      "advanceRequired": 16963
+    },
+    "status": "REQUESTED",
+    "statusHistory": [
+      {
+        "status": "REQUESTED",
+        "timestamp": "2026-09-19T16:00:38.876Z",
+        "actorId": "usr_1789833638306_oc3kuc",
+        "actorRole": "customer",
+        "note": "Booking request created by customer"
+      }
+    ],
+    "createdAt": "2026-09-19T16:00:38.876Z",
+    "updatedAt": "2026-09-19T16:00:38.876Z"
+  },
+  {
+    "id": "HKF-2026-870923",
+    "bookingId": "HKF-2026-870923",
+    "serviceId": "h_1789833736674_hx90w6",
+    "serviceName": "Sunil Grand Imperial Banquet",
+    "serviceType": "Banquet Hall",
+    "ownerId": "usr_1789833736464_qo788k",
+    "customerId": "usr_1789833736200_1841fc",
+    "customerName": "Aman Customer",
+    "customerMobile": "9876543210",
+    "customerEmail": "aman_cust_1789833735816@example.com",
+    "eventDate": "2026-12-15",
+    "timeSlot": "Evening",
+    "guestCount": 400,
+    "requirements": "",
+    "pricing": {
+      "basePrice": 60000,
+      "cleaningFee": 2500,
+      "discount": 5000,
+      "gstTax": 10350,
+      "totalAmount": 67850,
+      "advanceRequired": 16963
+    },
+    "status": "REQUESTED",
+    "statusHistory": [
+      {
+        "status": "REQUESTED",
+        "timestamp": "2026-09-19T16:02:16.699Z",
+        "actorId": "usr_1789833736200_1841fc",
+        "actorRole": "customer",
+        "note": "Booking request created by customer"
+      }
+    ],
+    "createdAt": "2026-09-19T16:02:16.699Z",
+    "updatedAt": "2026-09-19T16:02:16.699Z"
+  },
+  {
+    "id": "HKF-2026-104164",
+    "bookingId": "HKF-2026-104164",
+    "serviceId": "h_1789833811464_79k578",
+    "serviceName": "Manoj Royal Heritage Lawn",
+    "serviceType": "Marriage Hall",
+    "ownerId": "usr_1789833811224_oy2xrc",
+    "customerId": "usr_1789833810806_e8v8zr",
+    "customerName": "Kavita Verma",
+    "customerMobile": "9876543210",
+    "customerEmail": "kavita_1789833810518@example.com",
+    "eventDate": "2026-12-28",
+    "timeSlot": "Evening",
+    "guestCount": 500,
+    "requirements": "",
+    "pricing": {
+      "basePrice": 70000,
+      "cleaningFee": 2500,
+      "discount": 5000,
+      "gstTax": 12150,
+      "totalAmount": 79650,
+      "advanceRequired": 19913
+    },
+    "status": "COMPLETED",
+    "statusHistory": [
+      {
+        "status": "REQUESTED",
+        "timestamp": "2026-09-19T16:03:31.500Z",
+        "actorId": "usr_1789833810806_e8v8zr",
+        "actorRole": "customer",
+        "note": "Booking request created by customer"
+      },
+      {
+        "status": "ACCEPTED",
+        "timestamp": "2026-09-19T16:03:31.604Z",
+        "actorId": "usr_1789833811224_oy2xrc",
+        "actorRole": "owner",
+        "note": "Status transitioned to ACCEPTED"
+      },
+      {
+        "status": "CONFIRMED",
+        "timestamp": "2026-09-19T16:03:31.651Z",
+        "actorId": "usr_1789833811224_oy2xrc",
+        "actorRole": "owner",
+        "note": "Status transitioned to CONFIRMED"
+      },
+      {
+        "status": "COMPLETED",
+        "timestamp": "2026-09-19T16:03:31.707Z",
+        "actorId": "usr_1789833811224_oy2xrc",
+        "actorRole": "owner",
+        "note": "Grand wedding reception successfully concluded."
+      }
+    ],
+    "createdAt": "2026-09-19T16:03:31.500Z",
+    "updatedAt": "2026-09-19T16:03:31.707Z"
+  },
+  {
+    "id": "HKF-2026-742153",
+    "bookingId": "HKF-2026-742153",
+    "serviceId": "h_1789833857210_ccanm7",
+    "serviceName": "Manoj Royal Heritage Lawn",
+    "serviceType": "Marriage Hall",
+    "ownerId": "usr_1789833856997_te2mji",
+    "customerId": "usr_1789833856463_2uqycr",
+    "customerName": "Kavita Verma",
+    "customerMobile": "9876543210",
+    "customerEmail": "kavita_1789833856065@example.com",
+    "eventDate": "2026-12-28",
+    "timeSlot": "Evening",
+    "guestCount": 500,
+    "requirements": "",
+    "pricing": {
+      "basePrice": 70000,
+      "cleaningFee": 2500,
+      "discount": 5000,
+      "gstTax": 12150,
+      "totalAmount": 79650,
+      "advanceRequired": 19913
+    },
+    "status": "COMPLETED",
+    "statusHistory": [
+      {
+        "status": "REQUESTED",
+        "timestamp": "2026-09-19T16:04:17.230Z",
+        "actorId": "usr_1789833856463_2uqycr",
+        "actorRole": "customer",
+        "note": "Booking request created by customer"
+      },
+      {
+        "status": "ACCEPTED",
+        "timestamp": "2026-09-19T16:04:17.314Z",
+        "actorId": "usr_1789833856997_te2mji",
+        "actorRole": "owner",
+        "note": "Status transitioned to ACCEPTED"
+      },
+      {
+        "status": "CONFIRMED",
+        "timestamp": "2026-09-19T16:04:17.338Z",
+        "actorId": "usr_1789833856997_te2mji",
+        "actorRole": "owner",
+        "note": "Status transitioned to CONFIRMED"
+      },
+      {
+        "status": "COMPLETED",
+        "timestamp": "2026-09-19T16:04:17.360Z",
+        "actorId": "usr_1789833856997_te2mji",
+        "actorRole": "owner",
+        "note": "Grand wedding reception successfully concluded."
+      }
+    ],
+    "createdAt": "2026-09-19T16:04:17.230Z",
+    "updatedAt": "2026-09-19T16:04:17.361Z"
+  },
+  {
+    "id": "HKF-2026-243280",
+    "bookingId": "HKF-2026-243280",
+    "serviceId": "h_1789833867389_liwbt1",
+    "serviceName": "Sunil Grand Imperial Banquet",
+    "serviceType": "Banquet Hall",
+    "ownerId": "usr_1789833867029_1sh1ub",
+    "customerId": "usr_1789833866642_6j4rih",
+    "customerName": "Aman Customer",
+    "customerMobile": "9876543210",
+    "customerEmail": "aman_cust_1789833866394@example.com",
+    "eventDate": "2026-12-15",
+    "timeSlot": "Evening",
+    "guestCount": 400,
+    "requirements": "",
+    "pricing": {
+      "basePrice": 60000,
+      "cleaningFee": 2500,
+      "discount": 5000,
+      "gstTax": 10350,
+      "totalAmount": 67850,
+      "advanceRequired": 16963
+    },
+    "status": "REQUESTED",
+    "statusHistory": [
+      {
+        "status": "REQUESTED",
+        "timestamp": "2026-09-19T16:04:27.591Z",
+        "actorId": "usr_1789833866642_6j4rih",
+        "actorRole": "customer",
+        "note": "Booking request created by customer"
+      }
+    ],
+    "createdAt": "2026-09-19T16:04:27.591Z",
+    "updatedAt": "2026-09-19T16:04:27.591Z"
+  },
+  {
+    "id": "HKF-2026-253130",
+    "bookingId": "HKF-2026-253130",
+    "serviceId": "h_1789834399369_k1h9dz",
+    "serviceName": "Sunil Grand Imperial Banquet",
+    "serviceType": "Banquet Hall",
+    "ownerId": "usr_1789834399196_xq36oo",
+    "customerId": "usr_1789834399008_sgdq2s",
+    "customerName": "Aman Customer",
+    "customerMobile": "9876543210",
+    "customerEmail": "aman_cust_1789834398796@example.com",
+    "eventDate": "2026-12-15",
+    "timeSlot": "Evening",
+    "guestCount": 400,
+    "requirements": "",
+    "pricing": {
+      "basePrice": 60000,
+      "cleaningFee": 2500,
+      "discount": 5000,
+      "gstTax": 10350,
+      "totalAmount": 67850,
+      "advanceRequired": 16963
+    },
+    "status": "REQUESTED",
+    "statusHistory": [
+      {
+        "status": "REQUESTED",
+        "timestamp": "2026-09-19T16:13:19.391Z",
+        "actorId": "usr_1789834399008_sgdq2s",
+        "actorRole": "customer",
+        "note": "Booking request created by customer"
+      }
+    ],
+    "createdAt": "2026-09-19T16:13:19.391Z",
+    "updatedAt": "2026-09-19T16:13:19.391Z"
+  },
+  {
+    "id": "HKF-2026-753946",
+    "bookingId": "HKF-2026-753946",
+    "serviceId": "h_1789834409620_tjot28",
+    "serviceName": "Manoj Royal Heritage Lawn",
+    "serviceType": "Marriage Hall",
+    "ownerId": "usr_1789834409446_de4q6o",
+    "customerId": "usr_1789834409095_sedzg7",
+    "customerName": "Kavita Verma",
+    "customerMobile": "9876543210",
+    "customerEmail": "kavita_1789834408837@example.com",
+    "eventDate": "2026-12-28",
+    "timeSlot": "Evening",
+    "guestCount": 500,
+    "requirements": "",
+    "pricing": {
+      "basePrice": 70000,
+      "cleaningFee": 2500,
+      "discount": 5000,
+      "gstTax": 12150,
+      "totalAmount": 79650,
+      "advanceRequired": 19913
+    },
+    "status": "COMPLETED",
+    "statusHistory": [
+      {
+        "status": "REQUESTED",
+        "timestamp": "2026-09-19T16:13:29.630Z",
+        "actorId": "usr_1789834409095_sedzg7",
+        "actorRole": "customer",
+        "note": "Booking request created by customer"
+      },
+      {
+        "status": "ACCEPTED",
+        "timestamp": "2026-09-19T16:13:29.676Z",
+        "actorId": "usr_1789834409446_de4q6o",
+        "actorRole": "owner",
+        "note": "Status transitioned to ACCEPTED"
+      },
+      {
+        "status": "CONFIRMED",
+        "timestamp": "2026-09-19T16:13:29.709Z",
+        "actorId": "usr_1789834409446_de4q6o",
+        "actorRole": "owner",
+        "note": "Status transitioned to CONFIRMED"
+      },
+      {
+        "status": "COMPLETED",
+        "timestamp": "2026-09-19T16:13:29.719Z",
+        "actorId": "usr_1789834409446_de4q6o",
+        "actorRole": "owner",
+        "note": "Grand wedding reception successfully concluded."
+      }
+    ],
+    "createdAt": "2026-09-19T16:13:29.630Z",
+    "updatedAt": "2026-09-19T16:13:29.719Z"
+  },
+  {
+    "id": "HKF-2026-402836",
+    "bookingId": "HKF-2026-402836",
+    "serviceId": "h_1789834519443_5o1vv8",
+    "serviceName": "Rajput Royal Palace & Garden",
+    "serviceType": "Marriage Hall",
+    "ownerId": "usr_1789834519435_wc5rs0",
+    "customerId": "usr_1789834519089_n23arn",
+    "customerName": "Rahul Customer",
+    "customerMobile": "9876543210",
+    "customerEmail": "rahul_1789834518810@example.com",
+    "eventDate": "2026-12-11",
+    "timeSlot": "Evening",
+    "guestCount": 600,
+    "requirements": "Central AC on full blast, 2 bridal suites",
+    "pricing": {
+      "basePrice": 75000,
+      "cleaningFee": 2500,
+      "discount": 5000,
+      "gstTax": 13050,
+      "totalAmount": 85550,
+      "advanceRequired": 21388
+    },
+    "status": "COMPLETED",
+    "statusHistory": [
+      {
+        "status": "REQUESTED",
+        "timestamp": "2026-09-19T16:15:19.519Z",
+        "actorId": "usr_1789834519089_n23arn",
+        "actorRole": "customer",
+        "note": "Booking request created by customer"
+      },
+      {
+        "status": "ACCEPTED",
+        "timestamp": "2026-09-19T16:15:19.575Z",
+        "actorId": "usr_1789834519435_wc5rs0",
+        "actorRole": "owner",
+        "note": "Deposit terms aligned, booking accepted."
+      },
+      {
+        "status": "CONFIRMED",
+        "timestamp": "2026-09-19T16:15:19.628Z",
+        "actorId": "usr_1789834519435_wc5rs0",
+        "actorRole": "owner",
+        "note": "25% advance payment verified via bank transfer."
+      },
+      {
+        "status": "COMPLETED",
+        "timestamp": "2026-09-19T16:15:19.681Z",
+        "actorId": "usr_1789834519435_wc5rs0",
+        "actorRole": "owner",
+        "note": "Wedding ceremony concluded successfully."
+      }
+    ],
+    "createdAt": "2026-09-19T16:15:19.519Z",
+    "updatedAt": "2026-09-19T16:15:19.681Z"
+  },
+  {
+    "id": "HKF-2026-776537",
+    "bookingId": "HKF-2026-776537",
+    "serviceId": "h_1789834519443_5o1vv8",
+    "serviceName": "Rajput Royal Palace & Garden",
+    "serviceType": "Marriage Hall",
+    "ownerId": "usr_1789834519435_wc5rs0",
+    "customerId": "usr_1789834519089_n23arn",
+    "customerName": "Rahul Customer",
+    "customerMobile": "9876543210",
+    "customerEmail": "rahul_1789834518810@example.com",
+    "eventDate": "2026-11-21",
+    "timeSlot": "Morning",
+    "guestCount": 300,
+    "requirements": "",
+    "pricing": {
+      "basePrice": 52500,
+      "cleaningFee": 2500,
+      "discount": 5000,
+      "gstTax": 9000,
+      "totalAmount": 59000,
+      "advanceRequired": 14750
+    },
+    "status": "CANCELLED",
+    "statusHistory": [
+      {
+        "status": "REQUESTED",
+        "timestamp": "2026-09-19T16:15:19.734Z",
+        "actorId": "usr_1789834519089_n23arn",
+        "actorRole": "customer",
+        "note": "Booking request created by customer"
+      },
+      {
+        "status": "ACCEPTED",
+        "timestamp": "2026-09-19T16:15:19.752Z",
+        "actorId": "usr_1789834519435_wc5rs0",
+        "actorRole": "owner",
+        "note": "Status transitioned to ACCEPTED"
+      },
+      {
+        "status": "CANCELLED",
+        "timestamp": "2026-09-19T16:15:19.789Z",
+        "actorId": "usr_1789834519089_n23arn",
+        "actorRole": "user",
+        "note": "Family changed wedding venue location to Varanasi"
+      }
+    ],
+    "createdAt": "2026-09-19T16:15:19.734Z",
+    "updatedAt": "2026-09-19T16:15:19.789Z",
+    "cancellationReason": "Family changed wedding venue location to Varanasi",
+    "cancelledAt": "2026-09-19T16:15:19.789Z"
+  },
+  {
+    "id": "HKF-2026-369378",
+    "bookingId": "HKF-2026-369378",
+    "serviceId": "srv-cat-401",
+    "serviceName": "Awadh Shahi Royal Catering & Live Counters",
+    "serviceType": "Catering",
+    "ownerId": "owner_101",
+    "customerId": "guest_customer",
+    "customerName": "Vikas Malhotra",
+    "customerMobile": "9876500000",
+    "customerEmail": "vikas@malhotra.com",
+    "eventDate": "2026-11-28",
+    "timeSlot": "Evening",
+    "guestCount": 300,
+    "requirements": "Awadhi dinner buffet with live dessert jalebi counter",
+    "pricing": {
+      "basePrice": 750,
+      "cleaningFee": 2500,
+      "discount": 5000,
+      "gstTax": 0,
+      "totalAmount": 0,
+      "advanceRequired": 0
+    },
+    "status": "REQUESTED",
+    "statusHistory": [
+      {
+        "status": "REQUESTED",
+        "timestamp": "2026-09-19T16:15:30.975Z",
+        "actorId": "guest_customer",
+        "actorRole": "customer",
+        "note": "Booking request created by customer"
+      }
+    ],
+    "createdAt": "2026-09-19T16:15:30.975Z",
+    "updatedAt": "2026-09-19T16:15:30.975Z"
+  },
+  {
+    "id": "HKF-2026-159000",
+    "bookingId": "HKF-2026-159000",
+    "serviceId": "h_1789896538276_v0ex0u",
+    "serviceName": "Royal Heritage Grand Palace",
+    "hallId": "h_1789896538276_v0ex0u",
+    "hallName": "Royal Heritage Grand Palace",
+    "serviceType": "Marriage Halls",
+    "ownerId": "usr_1789896537979_6cvpqc",
+    "customerId": "usr_1789896538246_bye3tw",
+    "customerName": "Customer AI Test",
+    "customerMobile": "9876543211",
+    "customerEmail": "cust_ai_5315@test.com",
+    "eventDate": "2026-11-25",
+    "timeSlot": "Evening",
+    "guestCount": 400,
+    "requirements": "",
+    "pricing": {
+      "basePrice": 150000,
+      "cleaningFee": 2500,
+      "discount": 5000,
+      "gstTax": 26550,
+      "totalAmount": 174050,
+      "advanceRequired": 43513
+    },
+    "totalPrice": 174050,
+    "advanceRequired": 43513,
+    "status": "REQUESTED",
+    "statusHistory": [
+      {
+        "status": "REQUESTED",
+        "timestamp": "2026-09-20T09:28:58.517Z",
+        "actorId": "usr_1789896538246_bye3tw",
+        "actorRole": "customer",
+        "note": "Booking request created by customer"
+      }
+    ],
+    "createdAt": "2026-09-20T09:28:58.517Z",
+    "updatedAt": "2026-09-20T09:28:58.517Z"
+  },
+  {
+    "id": "HKF-2026-656966",
+    "bookingId": "HKF-2026-656966",
+    "serviceId": "h_1789896587524_lqfwrg",
+    "serviceName": "Royal Heritage Grand Palace",
+    "hallId": "h_1789896587524_lqfwrg",
+    "hallName": "Royal Heritage Grand Palace",
+    "serviceType": "Marriage Halls",
+    "ownerId": "usr_1789896587231_5g53yq",
+    "customerId": "usr_1789896587499_irnukt",
+    "customerName": "Customer AI Test",
+    "customerMobile": "9876543211",
+    "customerEmail": "cust_ai_8175@test.com",
+    "eventDate": "2026-11-25",
+    "timeSlot": "Evening",
+    "guestCount": 400,
+    "requirements": "",
+    "pricing": {
+      "basePrice": 150000,
+      "cleaningFee": 2500,
+      "discount": 5000,
+      "gstTax": 26550,
+      "totalAmount": 174050,
+      "advanceRequired": 43513
+    },
+    "totalPrice": 174050,
+    "advanceRequired": 43513,
+    "status": "REQUESTED",
+    "statusHistory": [
+      {
+        "status": "REQUESTED",
+        "timestamp": "2026-09-20T09:29:47.630Z",
+        "actorId": "usr_1789896587499_irnukt",
+        "actorRole": "customer",
+        "note": "Booking request created by customer"
+      }
+    ],
+    "createdAt": "2026-09-20T09:29:47.630Z",
+    "updatedAt": "2026-09-20T09:29:47.630Z"
+  },
+  {
+    "id": "HKF-2026-467807",
+    "bookingId": "HKF-2026-467807",
+    "serviceId": "h_1789896695438_rfexnb",
+    "serviceName": "Royal Heritage Grand Palace",
+    "hallId": "h_1789896695438_rfexnb",
+    "hallName": "Royal Heritage Grand Palace",
+    "serviceType": "Marriage Halls",
+    "ownerId": "usr_1789896693423_f2382w",
+    "customerId": "usr_1789896695125_8gnsa1",
+    "customerName": "Customer AI Test",
+    "customerMobile": "9876543211",
+    "customerEmail": "cust_ai_2966@test.com",
+    "eventDate": "2026-11-25",
+    "timeSlot": "Evening",
+    "guestCount": 400,
+    "requirements": "",
+    "pricing": {
+      "basePrice": 150000,
+      "cleaningFee": 2500,
+      "discount": 5000,
+      "gstTax": 26550,
+      "totalAmount": 174050,
+      "advanceRequired": 43513
+    },
+    "totalPrice": 174050,
+    "advanceRequired": 43513,
+    "status": "CANCELLED",
+    "statusHistory": [
+      {
+        "status": "REQUESTED",
+        "timestamp": "2026-09-20T09:31:36.701Z",
+        "actorId": "usr_1789896695125_8gnsa1",
+        "actorRole": "customer",
+        "note": "Booking request created by customer"
+      }
+    ],
+    "createdAt": "2026-09-20T09:31:36.701Z",
+    "updatedAt": "2026-09-20T09:31:36.788Z",
+    "paymentStatus": "REFUNDED",
+    "advancePaid": 43513,
+    "remainingAmount": 130537,
+    "transactionId": "tran_1789896696738_rpu63i",
+    "paymentId": "pay_mock_1789896696741",
+    "orderId": "order_hkf_1789896696738_06r8ol",
+    "paidAt": "2026-09-20T09:31:36.756Z",
+    "refundAmount": 43513,
+    "refundTransactionId": "tran_1789896696787_u8wk9o",
+    "cancelledAt": "2026-09-20T09:31:36.788Z",
+    "cancelReason": "Customer rescheduled family event"
+  },
+  {
+    "id": "HKF-2026-685035",
+    "bookingId": "HKF-2026-685035",
+    "serviceId": "h_1789897398353_6vzr1r",
+    "serviceName": "Royal Heritage Grand Palace",
+    "hallId": "h_1789897398353_6vzr1r",
+    "hallName": "Royal Heritage Grand Palace",
+    "serviceType": "Marriage Halls",
+    "ownerId": "usr_1789897397987_p0spl1",
+    "customerId": "usr_1789897398339_96r2at",
+    "customerName": "Customer AI Test",
+    "customerMobile": "9876543211",
+    "customerEmail": "cust_ai_7127@test.com",
+    "eventDate": "2026-11-25",
+    "timeSlot": "Evening",
+    "guestCount": 400,
+    "requirements": "",
+    "pricing": {
+      "basePrice": 150000,
+      "cleaningFee": 2500,
+      "discount": 5000,
+      "gstTax": 26550,
+      "totalAmount": 174050,
+      "advanceRequired": 43513
+    },
+    "totalPrice": 174050,
+    "advanceRequired": 43513,
+    "status": "CANCELLED",
+    "statusHistory": [
+      {
+        "status": "REQUESTED",
+        "timestamp": "2026-09-20T09:43:18.491Z",
+        "actorId": "usr_1789897398339_96r2at",
+        "actorRole": "customer",
+        "note": "Booking request created by customer"
+      }
+    ],
+    "createdAt": "2026-09-20T09:43:18.491Z",
+    "updatedAt": "2026-09-20T09:43:18.583Z",
+    "paymentStatus": "REFUNDED",
+    "advancePaid": 43513,
+    "remainingAmount": 130537,
+    "transactionId": "tran_1789897398512_pbzl97",
+    "paymentId": "pay_mock_1789897398517",
+    "orderId": "order_hkf_1789897398512_8dblfv",
+    "paidAt": "2026-09-20T09:43:18.539Z",
+    "refundAmount": 43513,
+    "refundTransactionId": "tran_1789897398581_piopd6",
+    "cancelledAt": "2026-09-20T09:43:18.583Z",
+    "cancelReason": "Customer rescheduled family event"
+  },
+  {
+    "id": "HKF-2026-798774",
+    "bookingId": "HKF-2026-798774",
+    "serviceId": "h_1789897408306_67w7jv",
+    "serviceName": "Rajput Royal Palace & Garden",
+    "hallId": "h_1789897408306_67w7jv",
+    "hallName": "Rajput Royal Palace & Garden",
+    "serviceType": "Marriage Hall",
+    "ownerId": "usr_1789897408294_sukqre",
+    "customerId": "usr_1789897407682_frcf1h",
+    "customerName": "Rahul Customer",
+    "customerMobile": "9876543210",
+    "customerEmail": "rahul_1789897407316@example.com",
+    "eventDate": "2026-12-16",
+    "timeSlot": "Evening",
+    "guestCount": 600,
+    "requirements": "Central AC on full blast, 2 bridal suites",
+    "pricing": {
+      "basePrice": 75000,
+      "cleaningFee": 2500,
+      "discount": 5000,
+      "gstTax": 13050,
+      "totalAmount": 85550,
+      "advanceRequired": 21388
+    },
+    "totalPrice": 85550,
+    "advanceRequired": 21388,
+    "status": "COMPLETED",
+    "statusHistory": [
+      {
+        "status": "REQUESTED",
+        "timestamp": "2026-09-20T09:43:28.375Z",
+        "actorId": "usr_1789897407682_frcf1h",
+        "actorRole": "customer",
+        "note": "Booking request created by customer"
+      },
+      {
+        "status": "ACCEPTED",
+        "timestamp": "2026-09-20T09:43:28.422Z",
+        "actorId": "usr_1789897408294_sukqre",
+        "actorRole": "owner",
+        "note": "Deposit terms aligned, booking accepted."
+      },
+      {
+        "status": "CONFIRMED",
+        "timestamp": "2026-09-20T09:43:28.467Z",
+        "actorId": "usr_1789897408294_sukqre",
+        "actorRole": "owner",
+        "note": "25% advance payment verified via bank transfer."
+      },
+      {
+        "status": "COMPLETED",
+        "timestamp": "2026-09-20T09:43:28.489Z",
+        "actorId": "usr_1789897408294_sukqre",
+        "actorRole": "owner",
+        "note": "Wedding ceremony concluded successfully."
+      }
+    ],
+    "createdAt": "2026-09-20T09:43:28.375Z",
+    "updatedAt": "2026-09-20T09:43:28.489Z"
+  },
+  {
+    "id": "HKF-2026-382626",
+    "bookingId": "HKF-2026-382626",
+    "serviceId": "h_1789897408306_67w7jv",
+    "serviceName": "Rajput Royal Palace & Garden",
+    "hallId": "h_1789897408306_67w7jv",
+    "hallName": "Rajput Royal Palace & Garden",
+    "serviceType": "Marriage Hall",
+    "ownerId": "usr_1789897408294_sukqre",
+    "customerId": "usr_1789897407682_frcf1h",
+    "customerName": "Rahul Customer",
+    "customerMobile": "9876543210",
+    "customerEmail": "rahul_1789897407316@example.com",
+    "eventDate": "2026-11-21",
+    "timeSlot": "Morning",
+    "guestCount": 300,
+    "requirements": "",
+    "pricing": {
+      "basePrice": 52500,
+      "cleaningFee": 2500,
+      "discount": 5000,
+      "gstTax": 9000,
+      "totalAmount": 59000,
+      "advanceRequired": 14750
+    },
+    "totalPrice": 59000,
+    "advanceRequired": 14750,
+    "status": "CANCELLED",
+    "statusHistory": [
+      {
+        "status": "REQUESTED",
+        "timestamp": "2026-09-20T09:43:28.513Z",
+        "actorId": "usr_1789897407682_frcf1h",
+        "actorRole": "customer",
+        "note": "Booking request created by customer"
+      },
+      {
+        "status": "ACCEPTED",
+        "timestamp": "2026-09-20T09:43:28.567Z",
+        "actorId": "usr_1789897408294_sukqre",
+        "actorRole": "owner",
+        "note": "Status transitioned to ACCEPTED"
+      },
+      {
+        "status": "CANCELLED",
+        "timestamp": "2026-09-20T09:43:28.639Z",
+        "actorId": "usr_1789897407682_frcf1h",
+        "actorRole": "user",
+        "note": "Family changed wedding venue location to Varanasi"
+      }
+    ],
+    "createdAt": "2026-09-20T09:43:28.513Z",
+    "updatedAt": "2026-09-20T09:43:28.639Z",
+    "cancellationReason": "Family changed wedding venue location to Varanasi",
+    "cancelledAt": "2026-09-20T09:43:28.639Z"
+  },
+  {
+    "id": "HKF-2026-143656",
+    "bookingId": "HKF-2026-143656",
+    "serviceId": "h_1789897418614_pmlf1q",
+    "serviceName": "Sunil Grand Imperial Banquet",
+    "hallId": "h_1789897418614_pmlf1q",
+    "hallName": "Sunil Grand Imperial Banquet",
+    "serviceType": "Banquet Hall",
+    "ownerId": "usr_1789897418328_47zpop",
+    "customerId": "usr_1789897418093_yzdqnu",
+    "customerName": "Aman Customer",
+    "customerMobile": "9876543210",
+    "customerEmail": "aman_cust_1789897417807@example.com",
+    "eventDate": "2026-12-15",
+    "timeSlot": "Evening",
+    "guestCount": 400,
+    "requirements": "",
+    "pricing": {
+      "basePrice": 60000,
+      "cleaningFee": 2500,
+      "discount": 5000,
+      "gstTax": 10350,
+      "totalAmount": 67850,
+      "advanceRequired": 16963
+    },
+    "totalPrice": 67850,
+    "advanceRequired": 16963,
+    "status": "REQUESTED",
+    "statusHistory": [
+      {
+        "status": "REQUESTED",
+        "timestamp": "2026-09-20T09:43:38.627Z",
+        "actorId": "usr_1789897418093_yzdqnu",
+        "actorRole": "customer",
+        "note": "Booking request created by customer"
+      }
+    ],
+    "createdAt": "2026-09-20T09:43:38.627Z",
+    "updatedAt": "2026-09-20T09:43:38.627Z"
+  },
+  {
+    "id": "HKF-2026-341209",
+    "bookingId": "HKF-2026-341209",
+    "serviceId": "h_1789897426232_9mj1ox",
+    "serviceName": "Manoj Royal Heritage Lawn",
+    "hallId": "h_1789897426232_9mj1ox",
+    "hallName": "Manoj Royal Heritage Lawn",
+    "serviceType": "Marriage Hall",
+    "ownerId": "usr_1789897426087_6do1nj",
+    "customerId": "usr_1789897425735_8jdn1p",
+    "customerName": "Kavita Verma",
+    "customerMobile": "9876543210",
+    "customerEmail": "kavita_1789897425419@example.com",
+    "eventDate": "2026-12-28",
+    "timeSlot": "Evening",
+    "guestCount": 500,
+    "requirements": "",
+    "pricing": {
+      "basePrice": 70000,
+      "cleaningFee": 2500,
+      "discount": 5000,
+      "gstTax": 12150,
+      "totalAmount": 79650,
+      "advanceRequired": 19913
+    },
+    "totalPrice": 79650,
+    "advanceRequired": 19913,
+    "status": "COMPLETED",
+    "statusHistory": [
+      {
+        "status": "REQUESTED",
+        "timestamp": "2026-09-20T09:43:46.240Z",
+        "actorId": "usr_1789897425735_8jdn1p",
+        "actorRole": "customer",
+        "note": "Booking request created by customer"
+      },
+      {
+        "status": "ACCEPTED",
+        "timestamp": "2026-09-20T09:43:46.277Z",
+        "actorId": "usr_1789897426087_6do1nj",
+        "actorRole": "owner",
+        "note": "Status transitioned to ACCEPTED"
+      },
+      {
+        "status": "CONFIRMED",
+        "timestamp": "2026-09-20T09:43:46.296Z",
+        "actorId": "usr_1789897426087_6do1nj",
+        "actorRole": "owner",
+        "note": "Status transitioned to CONFIRMED"
+      },
+      {
+        "status": "COMPLETED",
+        "timestamp": "2026-09-20T09:43:46.307Z",
+        "actorId": "usr_1789897426087_6do1nj",
+        "actorRole": "owner",
+        "note": "Grand wedding reception successfully concluded."
+      }
+    ],
+    "createdAt": "2026-09-20T09:43:46.240Z",
+    "updatedAt": "2026-09-20T09:43:46.307Z"
+  },
+  {
+    "id": "HKF-2026-585564",
+    "bookingId": "HKF-2026-585564",
+    "serviceId": "h-101",
+    "serviceName": "The Royal Grand Heritage Palace",
+    "hallId": "h-101",
+    "hallName": "The Royal Grand Heritage Palace",
+    "serviceType": "Marriage Halls",
+    "ownerId": "owner_101",
+    "customerId": "usr_1789898159910_zahe52",
+    "customerName": "Rohan Verma",
+    "customerMobile": "9876101963",
+    "customerEmail": "9876101963@hallkhoj.phone",
+    "eventDate": "2026-11-20",
+    "timeSlot": "Evening",
+    "guestCount": 350,
+    "requirements": "",
+    "pricing": {
+      "basePrice": 85000,
+      "cleaningFee": 2500,
+      "discount": 5000,
+      "gstTax": 14850,
+      "totalAmount": 97350,
+      "advanceRequired": 24338
+    },
+    "totalPrice": 97350,
+    "advanceRequired": 24338,
+    "status": "REQUESTED",
+    "statusHistory": [
+      {
+        "status": "REQUESTED",
+        "timestamp": "2026-09-20T09:56:00.589Z",
+        "actorId": "usr_1789898159910_zahe52",
+        "actorRole": "customer",
+        "note": "Booking request created by customer"
+      }
+    ],
+    "createdAt": "2026-09-20T09:56:00.589Z",
+    "updatedAt": "2026-09-20T09:56:00.589Z"
+  },
+  {
+    "id": "HKF-2026-772124",
+    "bookingId": "HKF-2026-772124",
+    "serviceId": "h_1789898168450_vwc6lk",
+    "serviceName": "Sanskriti Lawn & Grand Banquet",
+    "hallId": "h_1789898168450_vwc6lk",
+    "hallName": "Sanskriti Lawn & Grand Banquet",
+    "serviceType": "Marriage Halls",
+    "ownerId": "usr_1789898168259_5ua16f",
+    "customerId": "usr_1789898168414_6ml02b",
+    "customerName": "Sunita Customer",
+    "customerMobile": "9123456780",
+    "customerEmail": "cust_p5_1789898168036@hallkhoj.com",
+    "eventDate": "2026-12-10",
+    "timeSlot": "Evening",
+    "guestCount": 400,
+    "requirements": "Need red floral stage setup and bridal lounge",
+    "pricing": {
+      "basePrice": 85000,
+      "cleaningFee": 2500,
+      "discount": 5000,
+      "gstTax": 14850,
+      "totalAmount": 97350,
+      "advanceRequired": 24338
+    },
+    "totalPrice": 97350,
+    "advanceRequired": 24338,
+    "status": "REQUESTED",
+    "statusHistory": [
+      {
+        "status": "REQUESTED",
+        "timestamp": "2026-09-20T09:56:08.488Z",
+        "actorId": "usr_1789898168414_6ml02b",
+        "actorRole": "customer",
+        "note": "Booking request created by customer"
+      }
+    ],
+    "createdAt": "2026-09-20T09:56:08.488Z",
+    "updatedAt": "2026-09-20T09:56:08.488Z"
+  },
+  {
+    "id": "HKF-2026-750826",
+    "bookingId": "HKF-2026-750826",
+    "serviceId": "h_1789898188206_iiv3w9",
+    "serviceName": "Sanskriti Lawn & Grand Banquet",
+    "hallId": "h_1789898188206_iiv3w9",
+    "hallName": "Sanskriti Lawn & Grand Banquet",
+    "serviceType": "Marriage Halls",
+    "ownerId": "usr_1789898187967_b6cgyr",
+    "customerId": "usr_1789898188164_bdrh4o",
+    "customerName": "Sunita Customer",
+    "customerMobile": "9123456780",
+    "customerEmail": "cust_p5_1789898187705@hallkhoj.com",
+    "eventDate": "2026-12-10",
+    "timeSlot": "Evening",
+    "guestCount": 400,
+    "requirements": "Need red floral stage setup and bridal lounge",
+    "pricing": {
+      "basePrice": 85000,
+      "cleaningFee": 2500,
+      "discount": 5000,
+      "gstTax": 14850,
+      "totalAmount": 97350,
+      "advanceRequired": 24338
+    },
+    "totalPrice": 97350,
+    "advanceRequired": 24338,
+    "status": "ACCEPTED",
+    "statusHistory": [
+      {
+        "status": "REQUESTED",
+        "timestamp": "2026-09-20T09:56:28.239Z",
+        "actorId": "usr_1789898188164_bdrh4o",
+        "actorRole": "customer",
+        "note": "Booking request created by customer"
+      },
+      {
+        "status": "ACCEPTED",
+        "timestamp": "2026-09-20T09:56:28.255Z",
+        "actorId": "usr_1789898187967_b6cgyr",
+        "actorRole": "owner",
+        "note": "Status transitioned to ACCEPTED"
+      }
+    ],
+    "createdAt": "2026-09-20T09:56:28.239Z",
+    "updatedAt": "2026-09-20T09:56:28.255Z"
+  },
+  {
+    "id": "HKF-2026-552482",
+    "bookingId": "HKF-2026-552482",
+    "serviceId": "srv-cat-401",
+    "serviceName": "Awadh Shahi Royal Catering & Live Counters",
+    "hallId": "srv-cat-401",
+    "hallName": "Awadh Shahi Royal Catering & Live Counters",
+    "serviceType": "Catering",
+    "ownerId": "owner_101",
+    "customerId": "guest_customer",
+    "customerName": "Vikas Malhotra",
+    "customerMobile": "9876500000",
+    "customerEmail": "vikas@malhotra.com",
+    "eventDate": "2026-11-28",
+    "timeSlot": "Evening",
+    "guestCount": 300,
+    "requirements": "Awadhi dinner buffet with live dessert jalebi counter",
+    "pricing": {
+      "basePrice": 750,
+      "cleaningFee": 2500,
+      "discount": 5000,
+      "gstTax": 0,
+      "totalAmount": 0,
+      "advanceRequired": 0
+    },
+    "totalPrice": 0,
+    "advanceRequired": 0,
+    "status": "REQUESTED",
+    "statusHistory": [
+      {
+        "status": "REQUESTED",
+        "timestamp": "2026-09-20T09:56:44.752Z",
+        "actorId": "guest_customer",
+        "actorRole": "customer",
+        "note": "Booking request created by customer"
+      }
+    ],
+    "createdAt": "2026-09-20T09:56:44.752Z",
+    "updatedAt": "2026-09-20T09:56:44.752Z"
+  },
+  {
+    "id": "HKF-2026-110252",
+    "bookingId": "HKF-2026-110252",
+    "serviceId": "h_1789899546500_yf6qmu",
+    "serviceName": "Royal Kohinoor Palace Lucknow",
+    "hallId": "h_1789899546500_yf6qmu",
+    "hallName": "Royal Kohinoor Palace Lucknow",
+    "serviceType": "Marriage Hall",
+    "ownerId": "usr_1789899546480_16e2xo",
+    "customerId": "usr_1789899546297_lqkcuo",
+    "customerName": "E2E Test Customer",
+    "customerMobile": "9876500001",
+    "customerEmail": "e2e_cust_1789899546063@test.com",
+    "eventDate": "2026-11-20",
+    "timeSlot": "Full Day",
+    "guestCount": 600,
+    "requirements": "",
+    "pricing": {
+      "basePrice": 180000,
+      "cleaningFee": 2500,
+      "discount": 5000,
+      "gstTax": 31950,
+      "totalAmount": 209450,
+      "advanceRequired": 52363
+    },
+    "totalPrice": 209450,
+    "advanceRequired": 52363,
+    "status": "ACCEPTED",
+    "statusHistory": [
+      {
+        "status": "REQUESTED",
+        "timestamp": "2026-09-20T10:19:06.594Z",
+        "actorId": "usr_1789899546297_lqkcuo",
+        "actorRole": "customer",
+        "note": "Booking request created by customer"
+      },
+      {
+        "status": "ACCEPTED",
+        "timestamp": "2026-09-20T10:19:06.612Z",
+        "actorId": "usr_1789899546480_16e2xo",
+        "actorRole": "owner",
+        "note": "Status transitioned to ACCEPTED"
+      }
+    ],
+    "createdAt": "2026-09-20T10:19:06.594Z",
+    "updatedAt": "2026-09-20T10:19:06.612Z"
+  },
+  {
+    "id": "HKF-2026-581753",
+    "bookingId": "HKF-2026-581753",
+    "serviceId": "h_1789899628892_wvz0jc",
+    "serviceName": "Royal Kohinoor Palace Lucknow",
+    "hallId": "h_1789899628892_wvz0jc",
+    "hallName": "Royal Kohinoor Palace Lucknow",
+    "serviceType": "Marriage Hall",
+    "ownerId": "usr_1789899628684_gmhztj",
+    "customerId": "usr_1789899628262_x211j6",
+    "customerName": "E2E Test Customer",
+    "customerMobile": "9876500001",
+    "customerEmail": "e2e_cust_1789899627529@test.com",
+    "eventDate": "2026-11-20",
+    "timeSlot": "Full Day",
+    "guestCount": 600,
+    "requirements": "",
+    "pricing": {
+      "basePrice": 180000,
+      "cleaningFee": 2500,
+      "discount": 5000,
+      "gstTax": 31950,
+      "totalAmount": 209450,
+      "advanceRequired": 52363
+    },
+    "totalPrice": 209450,
+    "advanceRequired": 52363,
+    "status": "ACCEPTED",
+    "statusHistory": [
+      {
+        "status": "REQUESTED",
+        "timestamp": "2026-09-20T10:20:29.473Z",
+        "actorId": "usr_1789899628262_x211j6",
+        "actorRole": "customer",
+        "note": "Booking request created by customer"
+      },
+      {
+        "status": "ACCEPTED",
+        "timestamp": "2026-09-20T10:20:29.489Z",
+        "actorId": "usr_1789899628684_gmhztj",
+        "actorRole": "owner",
+        "note": "Status transitioned to ACCEPTED"
+      }
+    ],
+    "createdAt": "2026-09-20T10:20:29.473Z",
+    "updatedAt": "2026-09-20T10:20:29.490Z"
+  },
+  {
+    "id": "HKF-2026-403979",
+    "bookingId": "HKF-2026-403979",
+    "serviceId": "h_1789899648447_ehcm7l",
+    "serviceName": "Royal Kohinoor Palace Lucknow",
+    "hallId": "h_1789899648447_ehcm7l",
+    "hallName": "Royal Kohinoor Palace Lucknow",
+    "serviceType": "Marriage Hall",
+    "ownerId": "usr_1789899648379_gny0al",
+    "customerId": "usr_1789899647832_mn00ml",
+    "customerName": "E2E Test Customer",
+    "customerMobile": "9876500001",
+    "customerEmail": "e2e_cust_1789899647320@test.com",
+    "eventDate": "2026-11-20",
+    "timeSlot": "Full Day",
+    "guestCount": 600,
+    "requirements": "",
+    "pricing": {
+      "basePrice": 180000,
+      "cleaningFee": 2500,
+      "discount": 5000,
+      "gstTax": 31950,
+      "totalAmount": 209450,
+      "advanceRequired": 52363
+    },
+    "totalPrice": 209450,
+    "advanceRequired": 52363,
+    "status": "CONFIRMED",
+    "statusHistory": [
+      {
+        "status": "REQUESTED",
+        "timestamp": "2026-09-20T10:20:48.585Z",
+        "actorId": "usr_1789899647832_mn00ml",
+        "actorRole": "customer",
+        "note": "Booking request created by customer"
+      },
+      {
+        "status": "ACCEPTED",
+        "timestamp": "2026-09-20T10:20:48.695Z",
+        "actorId": "usr_1789899648379_gny0al",
+        "actorRole": "owner",
+        "note": "Status transitioned to ACCEPTED"
+      }
+    ],
+    "createdAt": "2026-09-20T10:20:48.585Z",
+    "updatedAt": "2026-09-20T10:20:48.728Z",
+    "paymentStatus": "ADVANCE_PAID",
+    "advancePaid": 52363,
+    "remainingAmount": 157087,
+    "transactionId": "tran_1789899648715_guuylh",
+    "paymentId": "pay_e2e_1789899647320",
+    "orderId": "order_hkf_1789899648715_zw7ruw",
+    "paidAt": "2026-09-20T10:20:48.728Z"
+  },
+  {
+    "id": "HKF-2026-616053",
+    "bookingId": "HKF-2026-616053",
+    "serviceId": "h_1789899692313_gvxxks",
+    "serviceName": "Royal Kohinoor Palace Lucknow",
+    "hallId": "h_1789899692313_gvxxks",
+    "hallName": "Royal Kohinoor Palace Lucknow",
+    "serviceType": "Marriage Hall",
+    "ownerId": "usr_1789899692305_dh9xow",
+    "customerId": "usr_1789899691899_i4y20i",
+    "customerName": "E2E Test Customer",
+    "customerMobile": "9876500001",
+    "customerEmail": "e2e_cust_1789899691559@test.com",
+    "eventDate": "2026-11-20",
+    "timeSlot": "Full Day",
+    "guestCount": 600,
+    "requirements": "",
+    "pricing": {
+      "basePrice": 180000,
+      "cleaningFee": 2500,
+      "discount": 5000,
+      "gstTax": 31950,
+      "totalAmount": 209450,
+      "advanceRequired": 52363
+    },
+    "totalPrice": 209450,
+    "advanceRequired": 52363,
+    "status": "COMPLETED",
+    "statusHistory": [
+      {
+        "status": "REQUESTED",
+        "timestamp": "2026-09-20T10:21:32.332Z",
+        "actorId": "usr_1789899691899_i4y20i",
+        "actorRole": "customer",
+        "note": "Booking request created by customer"
+      },
+      {
+        "status": "ACCEPTED",
+        "timestamp": "2026-09-20T10:21:32.345Z",
+        "actorId": "usr_1789899692305_dh9xow",
+        "actorRole": "owner",
+        "note": "Status transitioned to ACCEPTED"
+      },
+      {
+        "status": "COMPLETED",
+        "timestamp": "2026-09-20T10:21:32.378Z",
+        "actorId": "usr_1789899692305_dh9xow",
+        "actorRole": "owner",
+        "note": "Status transitioned to COMPLETED"
+      }
+    ],
+    "createdAt": "2026-09-20T10:21:32.332Z",
+    "updatedAt": "2026-09-20T10:21:32.378Z",
+    "paymentStatus": "ADVANCE_PAID",
+    "advancePaid": 52363,
+    "remainingAmount": 157087,
+    "transactionId": "tran_1789899692356_ji3egs",
+    "paymentId": "pay_e2e_1789899691559",
+    "orderId": "order_hkf_1789899692356_4xmiom",
+    "paidAt": "2026-09-20T10:21:32.364Z"
+  },
+  {
+    "id": "HKF-2026-476694",
+    "bookingId": "HKF-2026-476694",
+    "serviceId": "h-101",
+    "serviceName": "The Royal Grand Heritage Palace",
+    "hallId": "h-101",
+    "hallName": "The Royal Grand Heritage Palace",
+    "serviceType": "Marriage Halls",
+    "ownerId": "owner_101",
+    "customerId": "usr_1789899761382_4tu3d9",
+    "customerName": "Rohan Sharma",
+    "customerMobile": "9876543210",
+    "customerEmail": "prod_cust_1789899757000@hallkhoj.in",
+    "eventDate": "2026-11-28",
+    "timeSlot": "Evening",
+    "guestCount": 500,
+    "requirements": "Mandap, bridal suite & red floral entrance",
+    "pricing": {
+      "basePrice": 85000,
+      "cleaningFee": 2500,
+      "discount": 5000,
+      "gstTax": 14850,
+      "totalAmount": 97350,
+      "advanceRequired": 24338
+    },
+    "totalPrice": 97350,
+    "advanceRequired": 24338,
+    "status": "CONFIRMED",
+    "statusHistory": [
+      {
+        "status": "REQUESTED",
+        "timestamp": "2026-09-20T10:22:41.996Z",
+        "actorId": "usr_1789899761382_4tu3d9",
+        "actorRole": "customer",
+        "note": "Booking request created by customer"
+      },
+      {
+        "status": "ACCEPTED",
+        "timestamp": "2026-09-20T10:22:42.369Z",
+        "actorId": "usr_1789899762327_ltqwr1",
+        "actorRole": "owner",
+        "note": "Status transitioned to ACCEPTED"
+      }
+    ],
+    "createdAt": "2026-09-20T10:22:41.996Z",
+    "updatedAt": "2026-09-20T10:22:42.471Z",
+    "paymentStatus": "ADVANCE_PAID",
+    "advancePaid": 24338,
+    "remainingAmount": 73012,
+    "transactionId": "tran_1789899762402_gqq3lq",
+    "paymentId": "pay_prod_1789899757000",
+    "orderId": "order_hkf_1789899762402_k3mx5z",
+    "paidAt": "2026-09-20T10:22:42.471Z"
+  },
+  {
+    "id": "HKF-2026-468209",
+    "bookingId": "HKF-2026-468209",
+    "serviceId": "h-101",
+    "serviceName": "The Royal Grand Heritage Palace",
+    "hallId": "h-101",
+    "hallName": "The Royal Grand Heritage Palace",
+    "serviceType": "Marriage Halls",
+    "ownerId": "owner_101",
+    "customerId": "usr_1789899841763_foqjbt",
+    "customerName": "Rohan Sharma",
+    "customerMobile": "9876543210",
+    "customerEmail": "prod_cust_1789899841500@hallkhoj.in",
+    "eventDate": "2026-11-15",
+    "timeSlot": "Evening",
+    "guestCount": 500,
+    "requirements": "Mandap, bridal suite & red floral entrance",
+    "pricing": {
+      "basePrice": 85000,
+      "cleaningFee": 2500,
+      "discount": 5000,
+      "gstTax": 14850,
+      "totalAmount": 97350,
+      "advanceRequired": 24338
+    },
+    "totalPrice": 97350,
+    "advanceRequired": 24338,
+    "status": "COMPLETED",
+    "statusHistory": [
+      {
+        "status": "REQUESTED",
+        "timestamp": "2026-09-20T10:24:01.978Z",
+        "actorId": "usr_1789899841763_foqjbt",
+        "actorRole": "customer",
+        "note": "Booking request created by customer"
+      },
+      {
+        "status": "ACCEPTED",
+        "timestamp": "2026-09-20T10:24:02.174Z",
+        "actorId": "usr_1789899842148_buws5h",
+        "actorRole": "owner",
+        "note": "Status transitioned to ACCEPTED"
+      },
+      {
+        "status": "COMPLETED",
+        "timestamp": "2026-09-20T10:24:02.290Z",
+        "actorId": "usr_1789899842148_buws5h",
+        "actorRole": "owner",
+        "note": "Status transitioned to COMPLETED"
+      }
+    ],
+    "createdAt": "2026-09-20T10:24:01.978Z",
+    "updatedAt": "2026-09-20T10:24:02.290Z",
+    "paymentStatus": "ADVANCE_PAID",
+    "advancePaid": 24338,
+    "remainingAmount": 73012,
+    "transactionId": "tran_1789899842190_siephg",
+    "paymentId": "pay_prod_1789899841500",
+    "orderId": "order_hkf_1789899842190_dv4vo6",
+    "paidAt": "2026-09-20T10:24:02.207Z"
+  },
+  {
+    "id": "HKF-2026-658008",
+    "bookingId": "HKF-2026-658008",
+    "serviceId": "h-101",
+    "serviceName": "The Royal Grand Heritage Palace",
+    "hallId": "h-101",
+    "hallName": "The Royal Grand Heritage Palace",
+    "serviceType": "Marriage Halls",
+    "ownerId": "owner_101",
+    "customerId": "usr_1789899888473_omrl5k",
+    "customerName": "Rohan Sharma",
+    "customerMobile": "9876543210",
+    "customerEmail": "prod_cust_1789899888088@hallkhoj.in",
+    "eventDate": "2027-08-15",
+    "timeSlot": "Evening",
+    "guestCount": 500,
+    "requirements": "Mandap, bridal suite & red floral entrance",
+    "pricing": {
+      "basePrice": 85000,
+      "cleaningFee": 2500,
+      "discount": 5000,
+      "gstTax": 14850,
+      "totalAmount": 97350,
+      "advanceRequired": 24338
+    },
+    "totalPrice": 97350,
+    "advanceRequired": 24338,
+    "status": "COMPLETED",
+    "statusHistory": [
+      {
+        "status": "REQUESTED",
+        "timestamp": "2026-09-20T10:24:49.026Z",
+        "actorId": "usr_1789899888473_omrl5k",
+        "actorRole": "customer",
+        "note": "Booking request created by customer"
+      },
+      {
+        "status": "ACCEPTED",
+        "timestamp": "2026-09-20T10:24:49.403Z",
+        "actorId": "usr_1789899889269_g2y7ot",
+        "actorRole": "owner",
+        "note": "Status transitioned to ACCEPTED"
+      },
+      {
+        "status": "COMPLETED",
+        "timestamp": "2026-09-20T10:24:49.792Z",
+        "actorId": "usr_1789899889269_g2y7ot",
+        "actorRole": "owner",
+        "note": "Status transitioned to COMPLETED"
+      }
+    ],
+    "createdAt": "2026-09-20T10:24:49.026Z",
+    "updatedAt": "2026-09-20T10:24:49.792Z",
+    "paymentStatus": "ADVANCE_PAID",
+    "advancePaid": 24338,
+    "remainingAmount": 73012,
+    "transactionId": "tran_1789899889722_rel9gh",
+    "paymentId": "pay_prod_1789899888088",
+    "orderId": "order_hkf_1789899889722_iuwke3",
+    "paidAt": "2026-09-20T10:24:49.742Z"
+  },
+  {
+    "id": "HKF-2026-336486",
+    "bookingId": "HKF-2026-336486",
+    "serviceId": "h-101",
+    "serviceName": "The Royal Grand Heritage Palace",
+    "hallId": "h-101",
+    "hallName": "The Royal Grand Heritage Palace",
+    "serviceType": "Marriage Halls",
+    "ownerId": "owner_101",
+    "customerId": "usr_1789899964607_cejy9n",
+    "customerName": "Rohan Sharma",
+    "customerMobile": "9876543210",
+    "customerEmail": "prod_cust_1789899964242@hallkhoj.in",
+    "eventDate": "2027-06-29",
+    "timeSlot": "Evening",
+    "guestCount": 500,
+    "requirements": "Mandap, bridal suite & red floral entrance",
+    "pricing": {
+      "basePrice": 85000,
+      "cleaningFee": 2500,
+      "discount": 5000,
+      "gstTax": 14850,
+      "totalAmount": 97350,
+      "advanceRequired": 24338
+    },
+    "totalPrice": 97350,
+    "advanceRequired": 24338,
+    "status": "COMPLETED",
+    "statusHistory": [
+      {
+        "status": "REQUESTED",
+        "timestamp": "2026-09-20T10:26:04.901Z",
+        "actorId": "usr_1789899964607_cejy9n",
+        "actorRole": "customer",
+        "note": "Booking request created by customer"
+      },
+      {
+        "status": "ACCEPTED",
+        "timestamp": "2026-09-20T10:26:05.092Z",
+        "actorId": "usr_1789899965071_f1f7u8",
+        "actorRole": "owner",
+        "note": "Status transitioned to ACCEPTED"
+      },
+      {
+        "status": "COMPLETED",
+        "timestamp": "2026-09-20T10:26:05.221Z",
+        "actorId": "usr_1789899965071_f1f7u8",
+        "actorRole": "owner",
+        "note": "Status transitioned to COMPLETED"
+      }
+    ],
+    "createdAt": "2026-09-20T10:26:04.901Z",
+    "updatedAt": "2026-09-20T10:26:05.221Z",
+    "paymentStatus": "ADVANCE_PAID",
+    "advancePaid": 24338,
+    "remainingAmount": 73012,
+    "transactionId": "tran_1789899965108_ebgbqd",
+    "paymentId": "pay_prod_1789899964242",
+    "orderId": "order_hkf_1789899965108_z4xzoq",
+    "paidAt": "2026-09-20T10:26:05.122Z"
+  },
+  {
+    "id": "HKF-2026-997720",
+    "bookingId": "HKF-2026-997720",
+    "serviceId": "h_1789899996734_x1cirn",
+    "serviceName": "Royal Kohinoor Palace Lucknow",
+    "hallId": "h_1789899996734_x1cirn",
+    "hallName": "Royal Kohinoor Palace Lucknow",
+    "serviceType": "Marriage Hall",
+    "ownerId": "usr_1789899996717_fn9upt",
+    "customerId": "usr_1789899996559_u6bybo",
+    "customerName": "E2E Test Customer",
+    "customerMobile": "9876500001",
+    "customerEmail": "e2e_cust_1789899996399@test.com",
+    "eventDate": "2026-11-20",
+    "timeSlot": "Full Day",
+    "guestCount": 600,
+    "requirements": "",
+    "pricing": {
+      "basePrice": 180000,
+      "cleaningFee": 2500,
+      "discount": 5000,
+      "gstTax": 31950,
+      "totalAmount": 209450,
+      "advanceRequired": 52363
+    },
+    "totalPrice": 209450,
+    "advanceRequired": 52363,
+    "status": "COMPLETED",
+    "statusHistory": [
+      {
+        "status": "REQUESTED",
+        "timestamp": "2026-09-20T10:26:36.757Z",
+        "actorId": "usr_1789899996559_u6bybo",
+        "actorRole": "customer",
+        "note": "Booking request created by customer"
+      },
+      {
+        "status": "ACCEPTED",
+        "timestamp": "2026-09-20T10:26:36.773Z",
+        "actorId": "usr_1789899996717_fn9upt",
+        "actorRole": "owner",
+        "note": "Status transitioned to ACCEPTED"
+      },
+      {
+        "status": "COMPLETED",
+        "timestamp": "2026-09-20T10:26:36.821Z",
+        "actorId": "usr_1789899996717_fn9upt",
+        "actorRole": "owner",
+        "note": "Status transitioned to COMPLETED"
+      }
+    ],
+    "createdAt": "2026-09-20T10:26:36.757Z",
+    "updatedAt": "2026-09-20T10:26:36.821Z",
+    "paymentStatus": "ADVANCE_PAID",
+    "advancePaid": 52363,
+    "remainingAmount": 157087,
+    "transactionId": "tran_1789899996789_ttvup9",
+    "paymentId": "pay_e2e_1789899996399",
+    "orderId": "order_hkf_1789899996789_rkunvg",
+    "paidAt": "2026-09-20T10:26:36.798Z"
+  },
+  {
+    "id": "HKF-2026-417134",
+    "bookingId": "HKF-2026-417134",
+    "serviceId": "h_1789900007511_t47ibc",
+    "serviceName": "Royal Heritage Grand Palace",
+    "hallId": "h_1789900007511_t47ibc",
+    "hallName": "Royal Heritage Grand Palace",
+    "serviceType": "Marriage Halls",
+    "ownerId": "usr_1789900007178_wiahmr",
+    "customerId": "usr_1789900007496_orvxgq",
+    "customerName": "Customer AI Test",
+    "customerMobile": "9876543211",
+    "customerEmail": "cust_ai_5712@test.com",
+    "eventDate": "2026-11-25",
+    "timeSlot": "Evening",
+    "guestCount": 400,
+    "requirements": "",
+    "pricing": {
+      "basePrice": 150000,
+      "cleaningFee": 2500,
+      "discount": 5000,
+      "gstTax": 26550,
+      "totalAmount": 174050,
+      "advanceRequired": 43513
+    },
+    "totalPrice": 174050,
+    "advanceRequired": 43513,
+    "status": "CONFIRMED",
+    "statusHistory": [
+      {
+        "status": "REQUESTED",
+        "timestamp": "2026-09-20T10:26:47.691Z",
+        "actorId": "usr_1789900007496_orvxgq",
+        "actorRole": "customer",
+        "note": "Booking request created by customer"
+      }
+    ],
+    "createdAt": "2026-09-20T10:26:47.691Z",
+    "updatedAt": "2026-09-20T10:26:47.977Z",
+    "paymentStatus": "ADVANCE_PAID",
+    "advancePaid": 43513,
+    "remainingAmount": 130537,
+    "transactionId": "tran_1789900007756_45nadb",
+    "paymentId": "pay_mock_1789900007812",
+    "orderId": "order_hkf_1789900007755_fppx0a",
+    "paidAt": "2026-09-20T10:26:47.975Z"
+  },
+  {
+    "id": "HKF-2026-165162",
+    "bookingId": "HKF-2026-165162",
+    "serviceId": "h_1789900080879_nukfdd",
+    "serviceName": "Royal Heritage Grand Palace",
+    "hallId": "h_1789900080879_nukfdd",
+    "hallName": "Royal Heritage Grand Palace",
+    "serviceType": "Marriage Halls",
+    "ownerId": "usr_1789900080560_mxniqm",
+    "customerId": "usr_1789900080864_xilqkj",
+    "customerName": "Customer AI Test",
+    "customerMobile": "9876543211",
+    "customerEmail": "cust_ai_6905@test.com",
+    "eventDate": "2026-11-25",
+    "timeSlot": "Evening",
+    "guestCount": 400,
+    "requirements": "",
+    "pricing": {
+      "basePrice": 150000,
+      "cleaningFee": 2500,
+      "discount": 5000,
+      "gstTax": 26550,
+      "totalAmount": 174050,
+      "advanceRequired": 43513
+    },
+    "totalPrice": 174050,
+    "advanceRequired": 43513,
+    "status": "CANCELLED",
+    "statusHistory": [
+      {
+        "status": "REQUESTED",
+        "timestamp": "2026-09-20T10:28:01.012Z",
+        "actorId": "usr_1789900080864_xilqkj",
+        "actorRole": "customer",
+        "note": "Booking request created by customer"
+      }
+    ],
+    "createdAt": "2026-09-20T10:28:01.012Z",
+    "updatedAt": "2026-09-20T10:28:01.076Z",
+    "paymentStatus": "REFUNDED",
+    "advancePaid": 43513,
+    "remainingAmount": 130537,
+    "transactionId": "tran_1789900081026_pucuk7",
+    "paymentId": "pay_mock_1789900081030",
+    "orderId": "order_hkf_1789900081026_0waa3p",
+    "paidAt": "2026-09-20T10:28:01.045Z",
+    "refundAmount": 43513,
+    "refundTransactionId": "tran_1789900081074_6hxy6w",
+    "cancelledAt": "2026-09-20T10:28:01.076Z",
+    "cancelReason": "Customer rescheduled family event"
+  },
+  {
+    "id": "HKF-2026-237296",
+    "bookingId": "HKF-2026-237296",
+    "serviceId": "h-101",
+    "serviceName": "The Royal Grand Heritage Palace",
+    "hallId": "h-101",
+    "hallName": "The Royal Grand Heritage Palace",
+    "serviceType": "Marriage Halls",
+    "ownerId": "owner_101",
+    "customerId": "usr_1789900086065_loq54k",
+    "customerName": "Rohan Sharma",
+    "customerMobile": "9876543210",
+    "customerEmail": "prod_cust_1789900085893@hallkhoj.in",
+    "eventDate": "2027-05-08",
+    "timeSlot": "Evening",
+    "guestCount": 500,
+    "requirements": "Mandap, bridal suite & red floral entrance",
+    "pricing": {
+      "basePrice": 85000,
+      "cleaningFee": 2500,
+      "discount": 5000,
+      "gstTax": 14850,
+      "totalAmount": 97350,
+      "advanceRequired": 24338
+    },
+    "totalPrice": 97350,
+    "advanceRequired": 24338,
+    "status": "COMPLETED",
+    "statusHistory": [
+      {
+        "status": "REQUESTED",
+        "timestamp": "2026-09-20T10:28:06.232Z",
+        "actorId": "usr_1789900086065_loq54k",
+        "actorRole": "customer",
+        "note": "Booking request created by customer"
+      },
+      {
+        "status": "ACCEPTED",
+        "timestamp": "2026-09-20T10:28:06.370Z",
+        "actorId": "usr_1789900086355_y351mc",
+        "actorRole": "owner",
+        "note": "Status transitioned to ACCEPTED"
+      },
+      {
+        "status": "COMPLETED",
+        "timestamp": "2026-09-20T10:28:06.419Z",
+        "actorId": "usr_1789900086355_y351mc",
+        "actorRole": "owner",
+        "note": "Status transitioned to COMPLETED"
+      }
+    ],
+    "createdAt": "2026-09-20T10:28:06.232Z",
+    "updatedAt": "2026-09-20T10:28:06.420Z",
+    "paymentStatus": "ADVANCE_PAID",
+    "advancePaid": 24338,
+    "remainingAmount": 73012,
+    "transactionId": "tran_1789900086383_5cgejr",
+    "paymentId": "pay_prod_1789900085893",
+    "orderId": "order_hkf_1789900086383_ky95i6",
+    "paidAt": "2026-09-20T10:28:06.392Z"
+  },
+  {
+    "id": "HKF-2026-981415",
+    "bookingId": "HKF-2026-981415",
+    "serviceId": "h_1789900092472_q58484",
+    "serviceName": "Sunil Grand Imperial Banquet",
+    "hallId": "h_1789900092472_q58484",
+    "hallName": "Sunil Grand Imperial Banquet",
+    "serviceType": "Banquet Hall",
+    "ownerId": "usr_1789900092319_g0ipj5",
+    "customerId": "usr_1789900092151_ibjcb9",
+    "customerName": "Aman Customer",
+    "customerMobile": "9876543210",
+    "customerEmail": "aman_cust_1789900091942@example.com",
+    "eventDate": "2026-12-15",
+    "timeSlot": "Evening",
+    "guestCount": 400,
+    "requirements": "",
+    "pricing": {
+      "basePrice": 60000,
+      "cleaningFee": 2500,
+      "discount": 5000,
+      "gstTax": 10350,
+      "totalAmount": 67850,
+      "advanceRequired": 16963
+    },
+    "totalPrice": 67850,
+    "advanceRequired": 16963,
+    "status": "REQUESTED",
+    "statusHistory": [
+      {
+        "status": "REQUESTED",
+        "timestamp": "2026-09-20T10:28:12.486Z",
+        "actorId": "usr_1789900092151_ibjcb9",
+        "actorRole": "customer",
+        "note": "Booking request created by customer"
+      }
+    ],
+    "createdAt": "2026-09-20T10:28:12.486Z",
+    "updatedAt": "2026-09-20T10:28:12.487Z"
+  },
+  {
+    "id": "HKF-2026-526330",
+    "bookingId": "HKF-2026-526330",
+    "serviceId": "h_1789900100642_ey6ujy",
+    "serviceName": "Manoj Royal Heritage Lawn",
+    "hallId": "h_1789900100642_ey6ujy",
+    "hallName": "Manoj Royal Heritage Lawn",
+    "serviceType": "Marriage Hall",
+    "ownerId": "usr_1789900100517_btjgbi",
+    "customerId": "usr_1789900100274_9n3ml1",
+    "customerName": "Kavita Verma",
+    "customerMobile": "9876543210",
+    "customerEmail": "kavita_1789900100116@example.com",
+    "eventDate": "2026-12-28",
+    "timeSlot": "Evening",
+    "guestCount": 500,
+    "requirements": "",
+    "pricing": {
+      "basePrice": 70000,
+      "cleaningFee": 2500,
+      "discount": 5000,
+      "gstTax": 12150,
+      "totalAmount": 79650,
+      "advanceRequired": 19913
+    },
+    "totalPrice": 79650,
+    "advanceRequired": 19913,
+    "status": "COMPLETED",
+    "statusHistory": [
+      {
+        "status": "REQUESTED",
+        "timestamp": "2026-09-20T10:28:20.650Z",
+        "actorId": "usr_1789900100274_9n3ml1",
+        "actorRole": "customer",
+        "note": "Booking request created by customer"
+      },
+      {
+        "status": "ACCEPTED",
+        "timestamp": "2026-09-20T10:28:20.674Z",
+        "actorId": "usr_1789900100517_btjgbi",
+        "actorRole": "owner",
+        "note": "Status transitioned to ACCEPTED"
+      },
+      {
+        "status": "CONFIRMED",
+        "timestamp": "2026-09-20T10:28:20.688Z",
+        "actorId": "usr_1789900100517_btjgbi",
+        "actorRole": "owner",
+        "note": "Status transitioned to CONFIRMED"
+      },
+      {
+        "status": "COMPLETED",
+        "timestamp": "2026-09-20T10:28:20.701Z",
+        "actorId": "usr_1789900100517_btjgbi",
+        "actorRole": "owner",
+        "note": "Grand wedding reception successfully concluded."
+      }
+    ],
+    "createdAt": "2026-09-20T10:28:20.650Z",
+    "updatedAt": "2026-09-20T10:28:20.701Z"
+  },
+  {
+    "id": "HKF-2026-348943",
+    "bookingId": "HKF-2026-348943",
+    "serviceId": "h_1789900116350_pdb9xh",
+    "serviceName": "Rajput Royal Palace & Garden",
+    "hallId": "h_1789900116350_pdb9xh",
+    "hallName": "Rajput Royal Palace & Garden",
+    "serviceType": "Marriage Hall",
+    "ownerId": "usr_1789900116338_41lz89",
+    "customerId": "usr_1789900116084_s6mm69",
+    "customerName": "Rahul Customer",
+    "customerMobile": "9876543210",
+    "customerEmail": "rahul_1789900115926@example.com",
+    "eventDate": "2026-12-10",
+    "timeSlot": "Evening",
+    "guestCount": 600,
+    "requirements": "Central AC on full blast, 2 bridal suites",
+    "pricing": {
+      "basePrice": 75000,
+      "cleaningFee": 2500,
+      "discount": 5000,
+      "gstTax": 13050,
+      "totalAmount": 85550,
+      "advanceRequired": 21388
+    },
+    "totalPrice": 85550,
+    "advanceRequired": 21388,
+    "status": "COMPLETED",
+    "statusHistory": [
+      {
+        "status": "REQUESTED",
+        "timestamp": "2026-09-20T10:28:36.374Z",
+        "actorId": "usr_1789900116084_s6mm69",
+        "actorRole": "customer",
+        "note": "Booking request created by customer"
+      },
+      {
+        "status": "ACCEPTED",
+        "timestamp": "2026-09-20T10:28:36.405Z",
+        "actorId": "usr_1789900116338_41lz89",
+        "actorRole": "owner",
+        "note": "Deposit terms aligned, booking accepted."
+      },
+      {
+        "status": "CONFIRMED",
+        "timestamp": "2026-09-20T10:28:36.421Z",
+        "actorId": "usr_1789900116338_41lz89",
+        "actorRole": "owner",
+        "note": "25% advance payment verified via bank transfer."
+      },
+      {
+        "status": "COMPLETED",
+        "timestamp": "2026-09-20T10:28:36.438Z",
+        "actorId": "usr_1789900116338_41lz89",
+        "actorRole": "owner",
+        "note": "Wedding ceremony concluded successfully."
+      }
+    ],
+    "createdAt": "2026-09-20T10:28:36.374Z",
+    "updatedAt": "2026-09-20T10:28:36.438Z"
+  },
+  {
+    "id": "HKF-2026-694268",
+    "bookingId": "HKF-2026-694268",
+    "serviceId": "h_1789900116350_pdb9xh",
+    "serviceName": "Rajput Royal Palace & Garden",
+    "hallId": "h_1789900116350_pdb9xh",
+    "hallName": "Rajput Royal Palace & Garden",
+    "serviceType": "Marriage Hall",
+    "ownerId": "usr_1789900116338_41lz89",
+    "customerId": "usr_1789900116084_s6mm69",
+    "customerName": "Rahul Customer",
+    "customerMobile": "9876543210",
+    "customerEmail": "rahul_1789900115926@example.com",
+    "eventDate": "2026-11-22",
+    "timeSlot": "Morning",
+    "guestCount": 300,
+    "requirements": "",
+    "pricing": {
+      "basePrice": 52500,
+      "cleaningFee": 2500,
+      "discount": 5000,
+      "gstTax": 9000,
+      "totalAmount": 59000,
+      "advanceRequired": 14750
+    },
+    "totalPrice": 59000,
+    "advanceRequired": 14750,
+    "status": "CANCELLED",
+    "statusHistory": [
+      {
+        "status": "REQUESTED",
+        "timestamp": "2026-09-20T10:28:36.453Z",
+        "actorId": "usr_1789900116084_s6mm69",
+        "actorRole": "customer",
+        "note": "Booking request created by customer"
+      },
+      {
+        "status": "ACCEPTED",
+        "timestamp": "2026-09-20T10:28:36.466Z",
+        "actorId": "usr_1789900116338_41lz89",
+        "actorRole": "owner",
+        "note": "Status transitioned to ACCEPTED"
+      },
+      {
+        "status": "CANCELLED",
+        "timestamp": "2026-09-20T10:28:36.483Z",
+        "actorId": "usr_1789900116084_s6mm69",
+        "actorRole": "user",
+        "note": "Family changed wedding venue location to Varanasi"
+      }
+    ],
+    "createdAt": "2026-09-20T10:28:36.453Z",
+    "updatedAt": "2026-09-20T10:28:36.483Z",
+    "cancellationReason": "Family changed wedding venue location to Varanasi",
+    "cancelledAt": "2026-09-20T10:28:36.483Z"
+  },
+  {
+    "id": "HKF-2026-992838",
+    "bookingId": "HKF-2026-992838",
+    "serviceId": "srv-cat-401",
+    "serviceName": "Awadh Shahi Royal Catering & Live Counters",
+    "hallId": "srv-cat-401",
+    "hallName": "Awadh Shahi Royal Catering & Live Counters",
+    "serviceType": "Catering",
+    "ownerId": "owner_101",
+    "customerId": "guest_customer",
+    "customerName": "Vikas Malhotra",
+    "customerMobile": "9876500000",
+    "customerEmail": "vikas@malhotra.com",
+    "eventDate": "2026-11-28",
+    "timeSlot": "Evening",
+    "guestCount": 300,
+    "requirements": "Awadhi dinner buffet with live dessert jalebi counter",
+    "pricing": {
+      "basePrice": 750,
+      "cleaningFee": 2500,
+      "discount": 5000,
+      "gstTax": 0,
+      "totalAmount": 0,
+      "advanceRequired": 0
+    },
+    "totalPrice": 0,
+    "advanceRequired": 0,
+    "status": "CANCELLED",
+    "statusHistory": [
+      {
+        "status": "REQUESTED",
+        "timestamp": "2026-09-20T10:28:56.408Z",
+        "actorId": "guest_customer",
+        "actorRole": "customer",
+        "note": "Booking request created by customer"
+      },
+      {
+        "status": "CANCELLED",
+        "timestamp": "2026-10-05T15:52:23.533Z",
+        "actorId": "usr_1791141988872_m5noyc",
+        "actorRole": "owner",
+        "note": "Status transitioned to CANCELLED"
+      }
+    ],
+    "createdAt": "2026-09-20T10:28:56.408Z",
+    "updatedAt": "2026-10-05T15:52:23.533Z"
+  },
+  {
+    "id": "HKF-2026-512053",
+    "bookingId": "HKF-2026-512053",
+    "serviceId": "h-101",
+    "serviceName": "The Royal Grand Heritage Palace",
+    "hallId": "h-101",
+    "hallName": "The Royal Grand Heritage Palace",
+    "serviceType": "Marriage Halls",
+    "ownerId": "owner_101",
+    "customerId": "guest_customer",
+    "customerName": "Ramesh Sharma",
+    "customerMobile": "6463524268",
+    "customerEmail": "customer@example.com",
+    "eventDate": "2027-03-14",
+    "timeSlot": "Morning",
+    "guestCount": 250,
+    "requirements": "",
+    "pricing": {
+      "basePrice": 65000,
+      "cleaningFee": 2500,
+      "discount": 5000,
+      "gstTax": 11250,
+      "totalAmount": 73750,
+      "advanceRequired": 18438
+    },
+    "totalPrice": 73750,
+    "advanceRequired": 18438,
+    "status": "CANCELLED",
+    "statusHistory": [
+      {
+        "status": "REQUESTED",
+        "timestamp": "2026-09-27T17:59:27.648Z",
+        "actorId": "guest_customer",
+        "actorRole": "customer",
+        "note": "Booking request created by customer"
+      },
+      {
+        "status": "CANCELLED",
+        "timestamp": "2026-10-05T15:52:22.452Z",
+        "actorId": "usr_1791141988872_m5noyc",
+        "actorRole": "owner",
+        "note": "Status transitioned to CANCELLED"
+      }
+    ],
+    "createdAt": "2026-09-27T17:59:27.648Z",
+    "updatedAt": "2026-10-05T15:52:22.452Z"
+  },
+  {
+    "id": "HKF-2026-200654",
+    "bookingId": "HKF-2026-200654",
+    "serviceId": "h-101",
+    "serviceName": "The Royal Grand Heritage Palace",
+    "hallId": "h-101",
+    "hallName": "The Royal Grand Heritage Palace",
+    "serviceType": "Marriage Halls",
+    "ownerId": "owner_101",
+    "customerId": "usr_1791141988872_m5noyc",
+    "customerName": "Manish Kumar",
+    "customerMobile": "6203025057",
+    "customerEmail": "customer@example.com",
+    "eventDate": "2026-11-04",
+    "timeSlot": "Full Day",
+    "guestCount": 351,
+    "requirements": "dghdtgb",
+    "pricing": {
+      "basePrice": 110000,
+      "cleaningFee": 2500,
+      "discount": 5000,
+      "gstTax": 19350,
+      "totalAmount": 126850,
+      "advanceRequired": 31713
+    },
+    "totalPrice": 126850,
+    "advanceRequired": 31713,
+    "status": "CANCELLED",
+    "statusHistory": [
+      {
+        "status": "REQUESTED",
+        "timestamp": "2026-10-05T15:41:09.055Z",
+        "actorId": "usr_1791141988872_m5noyc",
+        "actorRole": "customer",
+        "note": "Booking request created by customer"
+      },
+      {
+        "status": "CANCELLED",
+        "timestamp": "2026-10-05T15:52:18.548Z",
+        "actorId": "usr_1791141988872_m5noyc",
+        "actorRole": "owner",
+        "note": "Status transitioned to CANCELLED"
+      }
+    ],
+    "createdAt": "2026-10-05T15:41:09.055Z",
+    "updatedAt": "2026-10-05T15:52:18.548Z"
+  },
+  {
+    "id": "HKF-2026-939681",
+    "bookingId": "HKF-2026-939681",
+    "serviceId": "h_1791216285413_i7j9ip",
+    "serviceName": "The Diamond Banquet",
+    "hallId": "h_1791216285413_i7j9ip",
+    "hallName": "The Diamond Banquet",
+    "serviceType": "Banquet Hall",
+    "ownerId": "usr_1791141988872_m5noyc",
+    "customerId": "usr_1791141988872_m5noyc",
+    "customerName": "Manish Kumar",
+    "customerMobile": "6203025057",
+    "customerEmail": "customer@example.com",
+    "eventDate": "2026-11-04",
+    "timeSlot": "Evening",
+    "guestCount": 350,
+    "requirements": "",
+    "pricing": {
+      "basePrice": 50000,
+      "cleaningFee": 2500,
+      "discount": 5000,
+      "gstTax": 8550,
+      "totalAmount": 56050,
+      "advanceRequired": 14013
+    },
+    "totalPrice": 56050,
+    "advanceRequired": 14013,
+    "status": "CANCELLED",
+    "statusHistory": [
+      {
+        "status": "REQUESTED",
+        "timestamp": "2026-10-05T16:10:28.820Z",
+        "actorId": "usr_1791141988872_m5noyc",
+        "actorRole": "customer",
+        "note": "Booking request created by customer"
+      },
+      {
+        "status": "CANCELLED",
+        "timestamp": "2026-10-05T16:14:55.631Z",
+        "actorId": "usr_1791141988872_m5noyc",
+        "actorRole": "owner",
+        "note": "Status transitioned to CANCELLED"
+      }
+    ],
+    "createdAt": "2026-10-05T16:10:28.820Z",
+    "updatedAt": "2026-10-05T16:14:55.631Z"
+  },
+  {
+    "id": "HKF-2026-492109",
+    "bookingId": "HKF-2026-492109",
+    "serviceId": "h-101",
+    "serviceName": "The Royal Grand Heritage Palace",
+    "hallId": "h-101",
+    "hallName": "The Royal Grand Heritage Palace",
+    "serviceType": "Marriage Halls",
+    "ownerId": "owner_101",
+    "customerId": "guest_customer",
+    "customerName": "Manish Kumar",
+    "customerMobile": "6203025057",
+    "customerEmail": "customer@example.com",
+    "eventDate": "2026-11-13",
+    "timeSlot": "Evening",
+    "guestCount": 350,
+    "requirements": "",
+    "pricing": {
+      "basePrice": 85000,
+      "cleaningFee": 2500,
+      "discount": 5000,
+      "gstTax": 14850,
+      "totalAmount": 97350,
+      "advanceRequired": 24338
+    },
+    "totalPrice": 97350,
+    "advanceRequired": 24338,
+    "status": "REQUESTED",
+    "statusHistory": [
+      {
+        "status": "REQUESTED",
+        "timestamp": "2026-10-14T09:01:25.907Z",
+        "actorId": "guest_customer",
+        "actorRole": "customer",
+        "note": "Booking request created by customer"
+      }
+    ],
+    "createdAt": "2026-10-14T09:01:25.907Z",
+    "updatedAt": "2026-10-14T09:01:25.907Z"
+  },
+  {
+    "id": "HKF-2026-578235",
+    "bookingId": "HKF-2026-578235",
+    "serviceId": "h-103",
+    "serviceName": "Sanskriti Luxury Resort & Lawn",
+    "hallId": "h-103",
+    "hallName": "Sanskriti Luxury Resort & Lawn",
+    "serviceType": "Marriage Halls",
+    "ownerId": "owner_103",
+    "customerId": "guest_customer",
+    "customerName": "Manish Kumar",
+    "customerMobile": "6203025057",
+    "customerEmail": "customer@example.com",
+    "eventDate": "2026-11-15",
+    "timeSlot": "Morning",
+    "guestCount": 250,
+    "requirements": "new wedding \n",
+    "pricing": {
+      "basePrice": 120000,
+      "cleaningFee": 2500,
+      "discount": 5000,
+      "gstTax": 21150,
+      "totalAmount": 138650,
+      "advanceRequired": 41595
+    },
+    "totalPrice": 138650,
+    "advanceRequired": 41595,
+    "status": "REQUESTED",
+    "statusHistory": [
+      {
+        "status": "REQUESTED",
+        "timestamp": "2026-10-14T09:04:51.678Z",
+        "actorId": "guest_customer",
+        "actorRole": "customer",
+        "note": "Booking request created by customer"
+      }
+    ],
+    "createdAt": "2026-10-14T09:04:51.678Z",
+    "updatedAt": "2026-10-14T09:04:51.678Z"
+  },
+  {
+    "id": "HKF-2026-221427",
+    "bookingId": "HKF-2026-221427",
+    "serviceId": "h-101",
+    "serviceName": "The Royal Grand Heritage Palace",
+    "hallId": "h-101",
+    "hallName": "The Royal Grand Heritage Palace",
+    "serviceType": "Marriage Halls",
+    "ownerId": "owner_101",
+    "customerId": "guest_customer",
+    "customerName": "Manish Kumar",
+    "customerMobile": "6203025057",
+    "customerEmail": "customer@example.com",
+    "eventDate": "2026-12-06",
+    "timeSlot": "Morning",
+    "guestCount": 350,
+    "requirements": "",
+    "pricing": {
+      "basePrice": 65000,
+      "cleaningFee": 2500,
+      "discount": 5000,
+      "gstTax": 11250,
+      "totalAmount": 73750,
+      "advanceRequired": 18438
+    },
+    "totalPrice": 73750,
+    "advanceRequired": 18438,
+    "status": "REQUESTED",
+    "statusHistory": [
+      {
+        "status": "REQUESTED",
+        "timestamp": "2026-10-14T09:07:18.527Z",
+        "actorId": "guest_customer",
+        "actorRole": "customer",
+        "note": "Booking request created by customer"
+      }
+    ],
+    "createdAt": "2026-10-14T09:07:18.527Z",
+    "updatedAt": "2026-10-14T09:07:18.527Z"
+  }
+]

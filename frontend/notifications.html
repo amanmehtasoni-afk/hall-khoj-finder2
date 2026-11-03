@@ -1,0 +1,177 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Notifications & Real-Time Alerts | Hall Khoj Finder</title>
+  <meta name="description" content="Stay updated with live booking confirmations, owner approvals, payment receipts and messages on Hall Khoj Finder.">
+  <link rel="icon" type="image/png" href="/assets/logo.png">
+
+  <!-- Theme Controller (Zero-Flash Dark/Light Mode) -->
+  <script src="js/theme.js"></script>
+
+  <!-- Core CSS -->
+  <link rel="stylesheet" href="css/main.css">
+  <link rel="stylesheet" href="css/3d.css">
+  <link rel="stylesheet" href="css/components.css">
+  <link rel="stylesheet" href="css/animations.css">
+
+  <style>
+    .notif-item {
+      display: flex;
+      align-items: flex-start;
+      gap: 1.25rem;
+      padding: 1.25rem 1.5rem;
+      border-radius: var(--radius-md);
+      background: var(--bg-card);
+      border: 1px solid var(--border-subtle);
+      margin-bottom: 0.85rem;
+      transition: all var(--transition-fast);
+      cursor: pointer;
+    }
+
+    .notif-item:hover {
+      border-color: var(--border-light);
+      transform: translateX(4px);
+    }
+
+    .notif-item.unread {
+      border-left: 4px solid var(--color-electric);
+      background: rgba(57, 139, 255, 0.08);
+    }
+
+    .notif-icon-box {
+      width: 44px;
+      height: 44px;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1.25rem;
+      flex-shrink: 0;
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Site Header -->
+  <header class="site-header" role="banner">
+    <div class="nav-container">
+      <a href="/" class="brand-logo">
+        <img src="/assets/logo.png" alt="Hall Khoj" class="brand-logo-img">
+        <div class="brand-logo-text">
+          <span class="brand-title">HALL KHOJ</span>
+          <span class="brand-tagline-sub">NOTIFICATIONS</span>
+        </div>
+      </a>
+
+      <nav role="navigation">
+        <ul class="nav-links">
+          <li><a href="/" class="nav-link">Home</a></li>
+          <li><a href="/search.html" class="nav-link">Find Services</a></li>
+          <li><a href="/my-bookings.html" class="nav-link">My Bookings</a></li>
+          <li><a href="/dashboard.html" class="nav-link">Dashboard</a></li>
+        </ul>
+      </nav>
+
+      <div class="nav-actions">
+        <div class="language-switcher-container"></div>
+        <button class="theme-toggle-btn" data-action="toggle-theme" aria-label="Toggle Dark/Light Mode" title="Toggle Theme">
+          <span class="theme-icon-sun">☀️</span>
+          <span class="theme-icon-moon" style="display:none;">🌙</span>
+        </button>
+        <a href="/dashboard.html" class="btn btn-secondary btn-sm">My Account</a>
+      </div>
+    </div>
+  </header>
+
+  <main style="padding-top: 6rem; padding-bottom: 5rem;">
+    <div class="container container-narrow">
+      <div class="flex items-center justify-between flex-wrap gap-2" style="margin-bottom:2rem;">
+        <div>
+          <span class="badge badge-champagne" style="margin-bottom:0.5rem;">Live Alerts</span>
+          <h1 style="font-size:2rem; margin:0;">Notifications Center</h1>
+          <p style="color:var(--text-secondary); margin:0.25rem 0 0 0;">Real-time booking and payment updates powered by Supabase Realtime.</p>
+        </div>
+        <div class="flex items-center gap-2">
+          <button id="mark-read-btn" class="btn btn-secondary btn-sm">
+            ✓ Mark All as Read
+          </button>
+        </div>
+      </div>
+
+      <!-- Notifications Feed -->
+      <div id="notif-feed">
+        <!-- Notification 1 -->
+        <div class="notif-item unread">
+          <div class="notif-icon-box" style="background:rgba(16,185,129,0.2); color:#10b981;">
+            🎉
+          </div>
+          <div style="flex:1;">
+            <div class="flex items-center justify-between">
+              <h3 style="font-size:1.05rem; color:#fff; margin:0 0 0.25rem 0;">Booking Request Approved!</h3>
+              <span style="font-size:0.75rem; color:var(--text-muted);">10 mins ago</span>
+            </div>
+            <p style="font-size:0.88rem; color:var(--text-secondary); margin:0 0 0.5rem 0;">
+              Owner of <strong>Mayur Emerald Banquet & Lawn</strong> has accepted your dates for 2026-12-05. Please pay the token advance to confirm.
+            </p>
+            <a href="/my-bookings.html" class="btn btn-primary btn-sm" style="font-size:0.75rem; padding:0.3rem 0.75rem;">
+              View & Pay Token
+            </a>
+          </div>
+        </div>
+
+        <!-- Notification 2 -->
+        <div class="notif-item unread">
+          <div class="notif-icon-box" style="background:rgba(57,139,255,0.2); color:var(--color-electric);">
+            📅
+          </div>
+          <div style="flex:1;">
+            <div class="flex items-center justify-between">
+              <h3 style="font-size:1.05rem; color:#fff; margin:0 0 0.25rem 0;">Booking Request Submitted</h3>
+              <span style="font-size:0.75rem; color:var(--text-muted);">2 hours ago</span>
+            </div>
+            <p style="font-size:0.88rem; color:var(--text-secondary); margin:0;">
+              Your reservation request for <strong>The Royal Grand Heritage Palace</strong> (ID: HKF-2026-8812) has been sent to the owner for manual approval.
+            </p>
+          </div>
+        </div>
+
+        <!-- Notification 3 -->
+        <div class="notif-item">
+          <div class="notif-icon-box" style="background:rgba(217,199,160,0.2); color:var(--color-champagne);">
+            💳
+          </div>
+          <div style="flex:1;">
+            <div class="flex items-center justify-between">
+              <h3 style="font-size:1.05rem; color:#fff; margin:0 0 0.25rem 0;">Payment Verified (₹35,000)</h3>
+              <span style="font-size:0.75rem; color:var(--text-muted);">Yesterday</span>
+            </div>
+            <p style="font-size:0.88rem; color:var(--text-secondary); margin:0 0 0.5rem 0;">
+              Token advance payment of ₹35,000 for <strong>Sanskriti Luxury Resort & Lawn</strong> was confirmed. Tax invoice is ready for download.
+            </p>
+            <a href="/payment-history.html" class="btn btn-secondary btn-sm" style="font-size:0.75rem; padding:0.3rem 0.75rem;">
+              Download Receipt
+            </a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </main>
+
+  <footer class="footer-section" style="background:var(--bg-secondary); border-top:1px solid var(--border-subtle); padding:3rem 0; margin-top:4rem;">
+    <div class="container text-center" style="font-size:0.85rem; color:var(--text-muted);">
+      <p>&copy; 2026 Hall Khoj Finder. Real-Time WebSocket Alerts Engine.</p>
+    </div>
+  </footer>
+
+  <script>
+    document.getElementById('mark-read-btn')?.addEventListener('click', () => {
+      document.querySelectorAll('.notif-item.unread').forEach(el => {
+        el.classList.remove('unread');
+      });
+      alert('All notifications marked as read.');
+    });
+  </script>
+</body>
+</html>

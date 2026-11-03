@@ -1,0 +1,189 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Help Center & Frequently Asked Questions | Hall Khoj Finder</title>
+  <meta name="description" content="Answers to common questions regarding wedding hall reservations, mandatory owner approval, 3D walkthroughs, payments, and cancellations.">
+  <link rel="icon" type="image/png" href="/assets/logo.png">
+
+  <!-- Theme Controller (Zero-Flash Dark/Light Mode) -->
+  <script src="js/theme.js"></script>
+
+  <!-- Core CSS -->
+  <link rel="stylesheet" href="css/main.css">
+  <link rel="stylesheet" href="css/3d.css">
+  <link rel="stylesheet" href="css/components.css">
+  <link rel="stylesheet" href="css/animations.css">
+
+  <style>
+    .faq-item {
+      background: var(--bg-card);
+      border: 1px solid var(--border-subtle);
+      border-radius: var(--radius-md);
+      margin-bottom: 1rem;
+      overflow: hidden;
+      transition: border-color var(--transition-fast);
+    }
+
+    .faq-item:hover {
+      border-color: var(--border-light);
+    }
+
+    .faq-question {
+      padding: 1.25rem 1.5rem;
+      font-weight: 700;
+      font-size: 1.05rem;
+      color: #fff;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      cursor: pointer;
+      user-select: none;
+    }
+
+    .faq-answer {
+      padding: 0 1.5rem 1.25rem 1.5rem;
+      font-size: 0.92rem;
+      color: var(--text-secondary);
+      line-height: 1.6;
+      display: none;
+    }
+
+    .faq-item.active .faq-answer {
+      display: block;
+    }
+
+    .faq-item.active .faq-arrow {
+      transform: rotate(180deg);
+    }
+
+    .faq-arrow {
+      transition: transform var(--transition-fast);
+      color: var(--color-champagne);
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Site Header -->
+  <header class="site-header" role="banner">
+    <div class="nav-container">
+      <a href="/" class="brand-logo">
+        <img src="/assets/logo.png" alt="Hall Khoj" class="brand-logo-img">
+        <div class="brand-logo-text">
+          <span class="brand-title">HALL KHOJ</span>
+          <span class="brand-tagline-sub">HELP CENTER</span>
+        </div>
+      </a>
+
+      <nav role="navigation">
+        <ul class="nav-links">
+          <li><a href="/" class="nav-link">Home</a></li>
+          <li><a href="/search.html" class="nav-link">Find Services</a></li>
+          <li><a href="/help.html" class="nav-link active">Help Center</a></li>
+          <li><a href="/contact.html" class="nav-link">Contact</a></li>
+        </ul>
+      </nav>
+
+      <div class="nav-actions">
+        <div class="language-switcher-container"></div>
+        <button class="theme-toggle-btn" data-action="toggle-theme" aria-label="Toggle Dark/Light Mode" title="Toggle Theme">
+          <span class="theme-icon-sun">☀️</span>
+          <span class="theme-icon-moon" style="display:none;">🌙</span>
+        </button>
+        <a href="/contact.html" class="btn btn-secondary btn-sm">24/7 Concierge</a>
+      </div>
+    </div>
+  </header>
+
+  <main style="padding-top: 6rem; padding-bottom: 5rem;">
+    <div class="container container-narrow">
+      <div class="text-center" style="margin-bottom:3rem;">
+        <span class="badge badge-champagne" style="margin-bottom:0.75rem;">Support & Guidance</span>
+        <h1 class="section-title">Frequently Asked Questions</h1>
+        <p class="section-subtitle">
+          Everything you need to know about reserving venues, 3D layouts, owner approvals, advance payments and security.
+        </p>
+      </div>
+
+      <!-- FAQ Accordion -->
+      <div id="faq-accordion">
+        <div class="faq-item active">
+          <div class="faq-question">
+            <span>Why is Manual Owner Approval mandatory on Hall Khoj Finder?</span>
+            <span class="faq-arrow">▼</span>
+          </div>
+          <div class="faq-answer">
+            Indian wedding dates involve intricate planning, multi-day rituals, and catering coordination. To protect families from catastrophic double bookings or unconfirmed slots, <strong>Hall Khoj Finder strictly mandates owner manual approval</strong>. No booking is ever confirmed automatically until the venue owner personally accepts your event date and slot requirements.
+          </div>
+        </div>
+
+        <div class="faq-item">
+          <div class="faq-question">
+            <span>When do I pay the advance token money?</span>
+            <span class="faq-arrow">▼</span>
+          </div>
+          <div class="faq-answer">
+            You only pay the token advance (typically 25% to 30%) <strong>AFTER the venue owner accepts your booking request</strong>. When the status changes to <code>APPROVED</code>, an online payment link is unlocked in your Customer Dashboard. You can pay securely via Razorpay (UPI, GPay, PhonePe, Cards, NetBanking).
+          </div>
+        </div>
+
+        <div class="faq-item">
+          <div class="faq-question">
+            <span>How does the 3D Venue Walkthrough work?</span>
+            <span class="faq-arrow">▼</span>
+          </div>
+          <div class="faq-answer">
+            Our 3D engine is powered by WebGL and Three.js. You can rotate 360 degrees, zoom in, and toggle between <strong>Daylight</strong>, <strong>Sunset</strong>, and <strong>Night Gala</strong> lighting modes. It visualizes the elevated mandap stage, round banquet tables, and chandeliers. If your device or connection is low-bandwidth, the system automatically falls back to high-resolution 2D photo galleries.
+          </div>
+        </div>
+
+        <div class="faq-item">
+          <div class="faq-question">
+            <span>Can I cancel my booking request if my plans change?</span>
+            <span class="faq-arrow">▼</span>
+          </div>
+          <div class="faq-answer">
+            Yes. Prior to owner approval, you can cancel your request instantly with zero charges from your Customer Dashboard. Once approved and confirmed with an advance token, cancellation and refunds follow the venue's stated cancellation policy visible on their detail page.
+          </div>
+        </div>
+
+        <div class="faq-item">
+          <div class="faq-question">
+            <span>How do venue owners list their marriage halls or services?</span>
+            <span class="faq-arrow">▼</span>
+          </div>
+          <div class="faq-answer">
+            Venue and vendor owners can click <strong>"List Your Venue"</strong> or register as an Owner. You will be prompted to provide hall dimensions, capacity, photos, pricing packages, and GST/KYC verification documents. Once verified by our superadmin team, your venue goes live across India!
+          </div>
+        </div>
+      </div>
+
+      <!-- Still Need Help Box -->
+      <div class="glass-panel text-center" style="margin-top:3rem; padding:2.5rem;">
+        <h3 style="font-size:1.3rem; color:#fff; margin-bottom:0.5rem;">Still Have Questions?</h3>
+        <p style="color:var(--text-secondary); margin-bottom:1.5rem; font-size:0.9rem;">
+          Our wedding concierge team is on standby 24 hours a day to assist you with special requests, custom dates, or technical questions.
+        </p>
+        <a href="/contact.html" class="btn btn-primary btn-lg">Contact 24/7 Concierge</a>
+      </div>
+    </div>
+  </main>
+
+  <footer class="footer-section" style="background:var(--bg-secondary); border-top:1px solid var(--border-subtle); padding:3rem 0; margin-top:4rem;">
+    <div class="container text-center" style="font-size:0.85rem; color:var(--text-muted);">
+      <p>&copy; 2026 Hall Khoj Finder. Support & FAQ Knowledge Base.</p>
+    </div>
+  </footer>
+
+  <script>
+    document.querySelectorAll('.faq-question').forEach(q => {
+      q.addEventListener('click', () => {
+        const item = q.parentElement;
+        item.classList.toggle('active');
+      });
+    });
+  </script>
+</body>
+</html>

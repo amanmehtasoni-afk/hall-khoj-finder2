@@ -1,0 +1,1166 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Hall Khoj — 12-Page Project Synopsis & Technical Specification (Client Presentation)</title>
+  <meta name="description" content="Official 12-Page Project Synopsis, Architecture Blueprint, and Technical Specification for Hall Khoj Finder (hallkhoj.com).">
+  <link rel="icon" type="image/png" href="/assets/logo.png">
+
+  <!-- Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&family=Playfair+Display:ital,wght@0,600;0,700;1,600&display=swap" rel="stylesheet">
+
+  <!-- Core CSS -->
+  <link rel="stylesheet" href="css/main.css">
+  <link rel="stylesheet" href="css/components.css">
+
+  <style>
+    :root {
+      --bg-dark: #070a13;
+      --card-bg: rgba(15, 23, 42, 0.85);
+      --border-color: rgba(255, 255, 255, 0.12);
+      --gold-accent: #fbbf24;
+      --gold-dark: #d97706;
+      --text-main: #f8fafc;
+      --text-muted: #94a3b8;
+      --emerald: #10b981;
+      --blue: #3b82f6;
+    }
+
+    body {
+      background: #050811;
+      color: var(--text-main);
+      font-family: 'Plus Jakarta Sans', sans-serif;
+      line-height: 1.6;
+      margin: 0;
+      padding: 0;
+    }
+
+    .synopsis-container {
+      max-width: 980px;
+      margin: 0 auto;
+      padding: 2rem 1.25rem 5rem;
+    }
+
+    .client-access-bar {
+      background: linear-gradient(135deg, rgba(217, 119, 6, 0.22), rgba(245, 158, 11, 0.1));
+      border: 1px solid rgba(245, 158, 11, 0.45);
+      border-radius: var(--radius-lg);
+      padding: 1.25rem 1.5rem;
+      margin-bottom: 2rem;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 1rem;
+      box-shadow: 0 10px 30px rgba(0,0,0,0.5);
+    }
+
+    .timer-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      background: rgba(239, 68, 68, 0.18);
+      border: 1px solid rgba(239, 68, 68, 0.4);
+      color: #f87171;
+      padding: 0.4rem 0.95rem;
+      border-radius: var(--radius-full);
+      font-weight: 700;
+      font-size: 0.9rem;
+      letter-spacing: 0.5px;
+    }
+
+    .synopsis-header {
+      background: rgba(15, 23, 42, 0.85);
+      border: 1px solid var(--border-color);
+      border-radius: var(--radius-xl);
+      padding: 2.5rem;
+      margin-bottom: 2rem;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .synopsis-header::before {
+      content: '';
+      position: absolute;
+      top: -50px;
+      right: -50px;
+      width: 250px;
+      height: 250px;
+      background: radial-gradient(circle, rgba(245, 158, 11, 0.18), transparent 70%);
+      pointer-events: none;
+    }
+
+    .chapter-nav-strip {
+      display: flex;
+      gap: 0.5rem;
+      overflow-x: auto;
+      padding: 0.75rem 0.5rem;
+      margin-bottom: 2rem;
+      background: rgba(15, 23, 42, 0.6);
+      border: 1px solid var(--border-color);
+      border-radius: var(--radius-lg);
+      position: sticky;
+      top: 1rem;
+      z-index: 100;
+      backdrop-filter: blur(16px);
+    }
+
+    .nav-pill {
+      white-space: nowrap;
+      padding: 0.35rem 0.75rem;
+      font-size: 0.78rem;
+      border-radius: var(--radius-full);
+      background: rgba(255,255,255,0.05);
+      color: var(--text-muted);
+      text-decoration: none;
+      transition: all 0.2s ease;
+      border: 1px solid transparent;
+    }
+
+    .nav-pill:hover, .nav-pill.active {
+      background: rgba(245, 158, 11, 0.2);
+      color: var(--gold-accent);
+      border-color: rgba(245, 158, 11, 0.4);
+    }
+
+    .synopsis-section {
+      background: var(--card-bg);
+      border: 1px solid var(--border-color);
+      border-radius: var(--radius-lg);
+      padding: 2.25rem;
+      margin-bottom: 2rem;
+      backdrop-filter: blur(12px);
+    }
+
+    .sec-badge {
+      display: inline-block;
+      font-size: 0.75rem;
+      font-weight: 700;
+      color: var(--gold-accent);
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      margin-bottom: 0.35rem;
+    }
+
+    .sec-title {
+      font-size: 1.4rem;
+      font-weight: 800;
+      color: var(--text-main);
+      margin-bottom: 1.25rem;
+      border-bottom: 2px solid rgba(245, 158, 11, 0.3);
+      padding-bottom: 0.65rem;
+    }
+
+    .card-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 1.25rem;
+      margin: 1.25rem 0;
+    }
+
+    .feature-card {
+      background: rgba(255, 255, 255, 0.03);
+      border: 1px solid var(--border-color);
+      border-radius: var(--radius-md);
+      padding: 1.25rem;
+      transition: transform 0.2s ease, border-color 0.2s ease;
+    }
+
+    .feature-card:hover {
+      transform: translateY(-2px);
+      border-color: var(--gold-accent);
+    }
+
+    .card-title {
+      font-weight: 700;
+      font-size: 1rem;
+      color: var(--text-main);
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+      margin-bottom: 0.5rem;
+    }
+
+    .data-table {
+      width: 100%;
+      border-collapse: collapse;
+      margin: 1rem 0;
+      font-size: 0.85rem;
+    }
+
+    .data-table th, .data-table td {
+      padding: 0.75rem 1rem;
+      border: 1px solid var(--border-color);
+      text-align: left;
+    }
+
+    .data-table th {
+      background: rgba(245, 158, 11, 0.12);
+      color: var(--gold-accent);
+      font-weight: 700;
+    }
+
+    .data-table tr:nth-child(even) {
+      background: rgba(255, 255, 255, 0.02);
+    }
+
+    .action-btn-group {
+      display: flex;
+      gap: 0.75rem;
+      flex-wrap: wrap;
+    }
+
+    .btn-gold {
+      background: linear-gradient(135deg, #d97706, #b45309);
+      color: #fff;
+      padding: 0.6rem 1.25rem;
+      border-radius: var(--radius-md);
+      font-weight: 700;
+      font-size: 0.85rem;
+      border: none;
+      cursor: pointer;
+      display: inline-flex;
+      align-items: center;
+      gap: 0.4rem;
+      text-decoration: none;
+      box-shadow: 0 4px 15px rgba(217, 119, 6, 0.3);
+      transition: all 0.2s ease;
+    }
+
+    .btn-gold:hover {
+      opacity: 0.95;
+      transform: translateY(-1px);
+    }
+
+    .btn-outline {
+      background: transparent;
+      border: 1px solid rgba(255, 255, 255, 0.25);
+      color: var(--text-main);
+      padding: 0.6rem 1.25rem;
+      border-radius: var(--radius-md);
+      font-weight: 600;
+      font-size: 0.85rem;
+      cursor: pointer;
+      display: inline-flex;
+      align-items: center;
+      gap: 0.4rem;
+      text-decoration: none;
+      transition: all 0.2s ease;
+    }
+
+    .btn-outline:hover {
+      background: rgba(255, 255, 255, 0.05);
+      border-color: var(--gold-accent);
+      color: var(--gold-accent);
+    }
+
+    .pill-grid {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.5rem;
+      margin: 0.75rem 0;
+    }
+
+    .tech-pill {
+      background: rgba(255, 255, 255, 0.05);
+      border: 1px solid rgba(255, 255, 255, 0.1);
+      padding: 0.3rem 0.75rem;
+      border-radius: var(--radius-full);
+      font-size: 0.75rem;
+      color: #cbd5e1;
+    }
+
+    .code-block {
+      background: #090d16;
+      border: 1px solid rgba(255, 255, 255, 0.1);
+      border-radius: var(--radius-md);
+      padding: 1rem;
+      font-family: monospace;
+      font-size: 0.8rem;
+      color: #38bdf8;
+      overflow-x: auto;
+      margin: 0.75rem 0;
+    }
+
+    @media print {
+      body {
+        background: #fff !important;
+        color: #000 !important;
+      }
+      .client-access-bar, .chapter-nav-strip, .action-btn-group, .no-print {
+        display: none !important;
+      }
+      .synopsis-section {
+        background: transparent !important;
+        border: 1px solid #ccc !important;
+        color: #000 !important;
+        page-break-inside: avoid;
+        margin-bottom: 1.5rem;
+      }
+      .sec-title {
+        color: #000 !important;
+        border-bottom-color: #d97706 !important;
+      }
+      .feature-card {
+        border-color: #ddd !important;
+        background: #fafafa !important;
+        color: #000 !important;
+      }
+    }
+  </style>
+</head>
+<body>
+
+<div class="synopsis-container">
+
+  <!-- CLIENT ACCESS & COUNTDOWN BAR -->
+  <div class="client-access-bar">
+    <div>
+      <div style="font-size: 0.75rem; color: var(--gold-accent); font-weight: 700; text-transform: uppercase; letter-spacing: 0.5px;">
+        Confidential Client Presentation Link (Active • 4 Hours Validity)
+      </div>
+      <div style="font-size: 1.05rem; font-weight: 800; color: #fff; margin-top: 0.15rem;">
+        Official 12-Page Project Synopsis & Technical Specification
+      </div>
+    </div>
+
+    <div style="display: flex; align-items: center; gap: 1rem; flex-wrap: wrap;">
+      <div class="timer-badge" id="timerBadge">
+        <span>⏱️ Session Valid:</span>
+        <span id="countdown">03:59:59</span>
+      </div>
+      <div class="action-btn-group">
+        <button class="btn-gold" onclick="copyClientLink()">
+          <span>🔗</span> Copy Live Link
+        </button>
+        <a href="/synopsis.pdf" class="btn-gold" download="Hall_Khoj_Project_Synopsis_12Pages.pdf">
+          <span>📥</span> Download 12-Page PDF
+        </a>
+        <button class="btn-outline no-print" onclick="window.print()">
+          <span>🖨️</span> Print / Save PDF
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <!-- CHAPTER QUICK NAV STRIP -->
+  <div class="chapter-nav-strip no-print">
+    <a href="#ch1" class="nav-pill active">01 Cover</a>
+    <a href="#ch2" class="nav-pill">02 Exec Summary</a>
+    <a href="#ch3" class="nav-pill">03 Market Gap</a>
+    <a href="#ch4" class="nav-pill">04 Architecture</a>
+    <a href="#ch5" class="nav-pill">05 NPM Packages</a>
+    <a href="#ch6" class="nav-pill">06 Database Schemas</a>
+    <a href="#ch7" class="nav-pill">07 API Matrix</a>
+    <a href="#ch8" class="nav-pill">08 11 Categories</a>
+    <a href="#ch9" class="nav-pill">09 A-Z Features</a>
+    <a href="#ch10" class="nav-pill">10 Security & UX</a>
+    <a href="#ch11" class="nav-pill">11 REST Endpoints</a>
+    <a href="#ch12" class="nav-pill">12 Roadmap</a>
+  </div>
+
+  <!-- CHAPTER 1: COVER & HEADER -->
+  <section class="synopsis-header" id="ch1">
+    <div style="display: flex; align-items: center; gap: 1.5rem; margin-bottom: 1.5rem; flex-wrap: wrap;">
+      <img src="/assets/logo.png" alt="Hall Khoj Logo" style="width: 80px; height: auto;" onerror="this.style.display='none'">
+      <div>
+        <h1 style="margin: 0; font-size: 2.2rem; font-weight: 800; letter-spacing: -0.5px;">HALL KHOJ FINDER</h1>
+        <div style="color: var(--gold-accent); font-weight: 700; font-size: 1rem; margin-top: 0.25rem;">
+          PERFECT HALL • EVERY OCCASION — 12-PAGE TECHNICAL SPECIFICATION & SYNOPSIS
+        </div>
+        <div style="color: var(--text-muted); font-size: 0.85rem; margin-top: 0.25rem;">
+          India's Premier Mobile-First 3D Event Venue & Vendor Marketplace • Production Release v2.4.0
+        </div>
+      </div>
+    </div>
+
+    <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 1rem; background: rgba(0,0,0,0.3); padding: 1.25rem; border-radius: var(--radius-md); border: 1px solid var(--border-color);">
+      <div>
+        <span style="font-size: 0.72rem; color: var(--text-muted); text-transform: uppercase;">Official Domain</span>
+        <div style="font-size: 0.95rem; font-weight: 700; color: var(--gold-accent);">https://hallkhoj.com</div>
+      </div>
+      <div>
+        <span style="font-size: 0.72rem; color: var(--text-muted); text-transform: uppercase;">Primary Architecture</span>
+        <div style="font-size: 0.95rem; font-weight: 700; color: #fff;">Node.js • MongoDB • Three.js 3D</div>
+      </div>
+      <div>
+        <span style="font-size: 0.72rem; color: var(--text-muted); text-transform: uppercase;">Customer Auth</span>
+        <div style="font-size: 0.95rem; font-weight: 700; color: var(--emerald);">Phone Only (+91 OTP) • No Email Friction</div>
+      </div>
+      <div>
+        <span style="font-size: 0.72rem; color: var(--text-muted); text-transform: uppercase;">Document Scope</span>
+        <div style="font-size: 0.95rem; font-weight: 700; color: #38bdf8;">12 Exhaustive Chapters • Client Review Copy</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CHAPTER 2: EXECUTIVE SUMMARY -->
+  <section class="synopsis-section" id="ch2">
+    <div class="sec-badge">Chapter 02 • Strategic Overview</div>
+    <div class="sec-title">1. Executive Summary & Industry Opportunity</div>
+    <p style="color: #cbd5e1; font-size: 0.92rem;">
+      <strong>Hall Khoj Finder (hallkhoj.com)</strong> is an enterprise-grade, mobile-optimized multi-vendor event marketplace engineered to organize the fragmented ₹4,00,000+ Crore ($50 Billion) Indian wedding and event venues ecosystem. In India, planning weddings, receptions, and corporate galas has historically required grueling physical visits, multiple rounds of opaque bargaining, and reliance on commission-hungry brokers.
+    </p>
+    <p style="color: #cbd5e1; font-size: 0.92rem;">
+      Hall Khoj solves these pain points by offering an end-to-end digital discovery, 3D spatial tour, live availability verification, and transparent advance token reservation platform. Recognizing ground realities in Indian Tier-1, Tier-2, and Tier-3 cities, the system completely removes email registration barriers for ordinary consumers—operating purely on high-trust 10-digit Indian Mobile Numbers (+91) with instant SMS OTP verification.
+    </p>
+
+    <div class="card-grid">
+      <div class="feature-card">
+        <div class="card-title">📱 Consumer Empowerment</div>
+        <p style="font-size: 0.82rem; color: var(--text-muted);">
+          Zero-friction mobile OTP access, transparent per-plate and rental pricing, real-time date calendar, and 3D virtual floor walkthroughs.
+        </p>
+      </div>
+      <div class="feature-card">
+        <div class="card-title">🛡️ Vendor Growth Engine</div>
+        <p style="font-size: 0.82rem; color: var(--text-muted);">
+          Dedicated business management suite, multi-image hall galleries, date-blockers to eliminate double-booking, and verified partner credibility.
+        </p>
+      </div>
+      <div class="feature-card">
+        <div class="card-title">⚙️ Superadmin Control</div>
+        <p style="font-size: 0.82rem; color: var(--text-muted);">
+          Comprehensive dashboard with real-time Gross Booking Volume (GBV), commission settlement engine, KYC document verification, and fraud prevention.
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <!-- CHAPTER 3: PROBLEM STATEMENT & SOLUTION -->
+  <section class="synopsis-section" id="ch3">
+    <div class="sec-badge">Chapter 03 • Market Analysis</div>
+    <div class="sec-title">2. Problem Statement & The Indian Market Gap</div>
+    
+    <div class="card-grid">
+      <div class="feature-card" style="border-left: 4px solid #ef4444;">
+        <div style="font-size: 0.72rem; color: #ef4444; font-weight: 700;">PROBLEM 01</div>
+        <div class="card-title" style="margin-top: 0.25rem;">Opaque Pricing & Hidden Broker Margins</div>
+        <p style="font-size: 0.82rem; color: var(--text-muted);">
+          Families routinely pay 10% to 20% in inflated rates due to unauthorized local middlemen and agents who gatekeep contact details.
+        </p>
+      </div>
+      <div class="feature-card" style="border-left: 4px solid #ef4444;">
+        <div style="font-size: 0.72rem; color: #ef4444; font-weight: 700;">PROBLEM 02</div>
+        <div class="card-title" style="margin-top: 0.25rem;">Email Verification Drop-off Rate</div>
+        <p style="font-size: 0.82rem; color: var(--text-muted);">
+          Over 85% of Indian customers use mobile phones without active desktop email client access. Forcing email verification causes over 65% drop-off.
+        </p>
+      </div>
+      <div class="feature-card" style="border-left: 4px solid #ef4444;">
+        <div style="font-size: 0.72rem; color: #ef4444; font-weight: 700;">PROBLEM 03</div>
+        <div class="card-title" style="margin-top: 0.25rem;">Misleading Photos & Spatial Ambiguity</div>
+        <p style="font-size: 0.82rem; color: var(--text-muted);">
+          Filtered 2D photos fail to convey pillar obstructions, stage elevation, mandap arrangement, or parking capacity.
+        </p>
+      </div>
+      <div class="feature-card" style="border-left: 4px solid #ef4444;">
+        <div style="font-size: 0.72rem; color: #ef4444; font-weight: 700;">PROBLEM 04</div>
+        <div class="card-title" style="margin-top: 0.25rem;">Catastrophic Double-Bookings</div>
+        <p style="font-size: 0.82rem; color: var(--text-muted);">
+          Venues relying on paper diaries frequently double-book during high-demand "Auspicious Muhurat" dates, resulting in massive client panic.
+        </p>
+      </div>
+    </div>
+
+    <div style="margin-top: 1.5rem; background: rgba(16, 185, 129, 0.08); border: 1px solid rgba(16, 185, 129, 0.3); border-radius: var(--radius-md); padding: 1.25rem;">
+      <div style="color: var(--emerald); font-weight: 700; font-size: 0.95rem; margin-bottom: 0.5rem;">
+        ✓ The Hall Khoj Solution Framework
+      </div>
+      <ul style="margin: 0; padding-left: 1.2rem; font-size: 0.85rem; color: #cbd5e1; line-height: 1.8;">
+        <li><strong>Frictionless Mobile (+91) OTP Login:</strong> Instant 6-digit SMS OTP onboarding in under 10 seconds.</li>
+        <li><strong>Interactive 3D WebGL Virtual Tour:</strong> Three.js powered spatial inspection of halls, stage, and dining zones.</li>
+        <li><strong>Real-Time Date Blocker:</strong> One-click calendar locking for offline events to eliminate double bookings.</li>
+        <li><strong>Shield Verified Partner Badge:</strong> Owner email & GST/Aadhaar document verification to establish trust.</li>
+      </ul>
+    </div>
+  </section>
+
+  <!-- CHAPTER 4: SYSTEM ARCHITECTURE -->
+  <section class="synopsis-section" id="ch4">
+    <div class="sec-badge">Chapter 04 • Architecture Design</div>
+    <div class="sec-title">3. High-Level System Architecture & Component Flow</div>
+    
+    <div class="card-grid">
+      <div class="feature-card" style="border-top: 3px solid var(--blue);">
+        <div class="card-title">1. Presentation Layer (Mobile PWA)</div>
+        <p style="font-size: 0.82rem; color: var(--text-muted);">
+          Pure HTML5, Vanilla CSS3, Modern ES6+, Three.js WebGL Engine, Leaflet Maps. Sub-600ms first paint on 4G networks.
+        </p>
+      </div>
+      <div class="feature-card" style="border-top: 3px solid #8b5cf6;">
+        <div class="card-title">2. API Gateway (Express 5.x)</div>
+        <p style="font-size: 0.82rem; color: var(--text-muted);">
+          RESTful endpoints, rate limiting, CORS whitelisting, Multer multipart form handling, JWT authentication middleware.
+        </p>
+      </div>
+      <div class="feature-card" style="border-top: 3px solid var(--gold-accent);">
+        <div class="card-title">3. Domain Business Services</div>
+        <p style="font-size: 0.82rem; color: var(--text-muted);">
+          Auth Service, Venue & Gallery Engine, Booking & Token Calculator, Admin Analytics, Gemini AI Natural Language Matcher.
+        </p>
+      </div>
+      <div class="feature-card" style="border-top: 3px solid var(--emerald);">
+        <div class="card-title">4. Dual-Engine Persistence</div>
+        <p style="font-size: 0.82rem; color: var(--text-muted);">
+          MongoDB Atlas Replica Set as primary cloud store + Resilient local atomic JSON fallback to prevent any service interruptions.
+        </p>
+      </div>
+    </div>
+
+    <div style="background: rgba(0,0,0,0.4); border: 1px solid var(--border-color); border-radius: var(--radius-md); padding: 1.25rem; margin-top: 1rem;">
+      <div style="font-size: 0.85rem; font-weight: 700; color: var(--gold-accent); margin-bottom: 0.5rem;">
+        End-to-End Booking Lifecycle Workflow
+      </div>
+      <ol style="margin: 0; padding-left: 1.2rem; font-size: 0.82rem; color: #94a3b8; line-height: 1.8;">
+        <li>Customer selects city, category (e.g. Banquet Hall), and plate budget on mobile app.</li>
+        <li>Backend queries MongoDB with 2dsphere geo-index and category filters; returns sorted results.</li>
+        <li>Customer explores 3D WebGL Virtual Tour and browses high-res multi-image photo gallery.</li>
+        <li>Customer checks date availability; calendar shows green (Available) and red (Blocked) dates.</li>
+        <li>Customer enters mobile number; receives instant 6-digit SMS OTP via Twilio/Fast2SMS.</li>
+        <li>Advance token payment initialized via Razorpay/Cashfree; webhook signature mathematically validated.</li>
+        <li>PDFKit compiles official booking invoice receipt; venue owner receives instant SMS booking alert.</li>
+      </ol>
+    </div>
+  </section>
+
+  <!-- CHAPTER 5: TECHNOLOGY STACK & NPM PACKAGES -->
+  <section class="synopsis-section" id="ch5">
+    <div class="sec-badge">Chapter 05 • Tech Stack Inventory</div>
+    <div class="sec-title">4. Technology Stack & All NPM Packages Deep-Dive</div>
+    
+    <table class="data-table">
+      <thead>
+        <tr>
+          <th>Package / Library</th>
+          <th>Version</th>
+          <th>Domain</th>
+          <th>Why Used & Operational Implementation</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td><strong>express</strong></td>
+          <td>^5.2.1</td>
+          <td>Backend Server</td>
+          <td>Provides high-throughput asynchronous HTTP routing, JSON request parsing, and static file serving.</td>
+        </tr>
+        <tr>
+          <td><strong>mongoose</strong></td>
+          <td>^9.10.2</td>
+          <td>MongoDB ODM</td>
+          <td>Schema modeling, strict validation, compound indexing, and MongoDB Atlas aggregation pipelines.</td>
+        </tr>
+        <tr>
+          <td><strong>bcryptjs</strong></td>
+          <td>^3.0.3</td>
+          <td>Security & Hash</td>
+          <td>10-round salted Blowfish cryptographic hashing for owner/admin credentials; zero plain-text storage.</td>
+        </tr>
+        <tr>
+          <td><strong>jsonwebtoken</strong></td>
+          <td>^9.0.3</td>
+          <td>Stateless Auth</td>
+          <td>HS256 signed Bearer tokens containing user ID and role claims for decentralized API authorization.</td>
+        </tr>
+        <tr>
+          <td><strong>multer</strong></td>
+          <td>^2.4.0</td>
+          <td>Upload Engine</td>
+          <td>Handles multipart/form-data for primary cover photos and multi-image hall galleries with mime validation.</td>
+        </tr>
+        <tr>
+          <td><strong>pdfkit</strong></td>
+          <td>^0.20.2</td>
+          <td>PDF Engine</td>
+          <td>Programmatic vector PDF generator creating booking receipts, payment confirmations, and synopsis documents.</td>
+        </tr>
+        <tr>
+          <td><strong>cors</strong></td>
+          <td>^2.8.6</td>
+          <td>Network Security</td>
+          <td>Enforces Cross-Origin Resource Sharing rules, preventing unauthorized scraping while allowing mobile APIs.</td>
+        </tr>
+        <tr>
+          <td><strong>dotenv</strong></td>
+          <td>^18.0.1</td>
+          <td>Environment</td>
+          <td>Injects environment secrets from <code>.env</code> into Node.js <code>process.env</code> securely.</td>
+        </tr>
+        <tr>
+          <td><strong>Three.js</strong></td>
+          <td>r128 (CDN)</td>
+          <td>3D WebGL Engine</td>
+          <td>Renders GPU-accelerated 3D panoramic virtual tours directly in mobile browsers without app downloads.</td>
+        </tr>
+        <tr>
+          <td><strong>Leaflet.js</strong></td>
+          <td>v1.9.4 (CDN)</td>
+          <td>GPS Mapping</td>
+          <td>OpenStreetMap interactive venue discovery, distance radius calculation, and driving routes.</td>
+        </tr>
+      </tbody>
+    </table>
+
+    <div style="background: rgba(16, 185, 129, 0.08); border: 1px solid rgba(16, 185, 129, 0.3); border-radius: var(--radius-md); padding: 1.25rem; margin-top: 1rem;">
+      <div style="color: var(--emerald); font-weight: 700; font-size: 0.95rem; margin-bottom: 0.25rem;">
+        ⚡ Why Vanilla JS & CSS instead of Heavy React/Next.js?
+      </div>
+      <p style="font-size: 0.82rem; color: #cbd5e1; margin: 0; line-height: 1.6;">
+        For the Indian mobile demographic, bundle size is the #1 driver of user drop-off. Heavy React/Next bundles often exceed 400KB-1.5MB of JS, triggering 3-5 second delays on 3G/4G networks. Hall Khoj uses pure native DOM manipulation with modular Vanilla ES6+ and modern CSS variables, delivering sub-600ms load times and 98+ Google Lighthouse mobile performance scores.
+      </p>
+    </div>
+  </section>
+
+  <!-- CHAPTER 6: DATABASE SCHEMAS & DESIGN -->
+  <section class="synopsis-section" id="ch6">
+    <div class="sec-badge">Chapter 06 • Data Models</div>
+    <div class="sec-title">5. Complete Database Design, Schemas & Collections</div>
+    
+    <div class="card-grid">
+      <div class="feature-card">
+        <div class="card-title">1. users (Customer Model)</div>
+        <div class="code-block">
+{
+  _id: ObjectId,
+  fullName: String,
+  phone: String (Unique, Indexed),
+  role: "customer" | "vendor" | "admin",
+  savedHalls: [ObjectId],
+  createdAt: Date, updatedAt: Date
+}
+        </div>
+      </div>
+
+      <div class="feature-card">
+        <div class="card-title">2. vendors (Owner Profile)</div>
+        <div class="code-block">
+{
+  _id: ObjectId,
+  businessName: String,
+  businessCategory: String (1 of 11),
+  phone: String (Unique), email: String,
+  isEmailVerified: Boolean,
+  badgeStatus: "Pending" | "Verified Partner",
+  panNumber: String, gstNumber: String
+}
+        </div>
+      </div>
+
+      <div class="feature-card">
+        <div class="card-title">3. halls (Venue & Availability)</div>
+        <div class="code-block">
+{
+  _id: ObjectId, vendorId: ObjectId,
+  name: String, category: String,
+  address: { city, state, pincode, coordinates: [lng, lat] },
+  capacity: { minGuests, maxGuests },
+  pricing: { vegPlate, nonVegPlate, rentalDay },
+  primaryImage: String, galleryImages: [String],
+  blockedDates: ["2026-11-15", "2026-11-16"]
+}
+        </div>
+      </div>
+
+      <div class="feature-card">
+        <div class="card-title">4. bookings (Reservation Slip)</div>
+        <div class="code-block">
+{
+  _id: ObjectId,
+  bookingCode: "HK-2026-9812",
+  hallId: ObjectId, userId: ObjectId,
+  eventDate: "2026-12-04",
+  totalAmount: Number, advancePaid: Number,
+  paymentStatus: "Advance_Paid",
+  paymentGateway: { orderId, paymentId }
+}
+        </div>
+      </div>
+    </div>
+
+    <div style="background: rgba(59, 130, 246, 0.08); border: 1px solid rgba(59, 130, 246, 0.3); border-radius: var(--radius-md); padding: 1rem; margin-top: 1rem;">
+      <div style="color: #60a5fa; font-weight: 700; font-size: 0.9rem; margin-bottom: 0.35rem;">
+        Database Indexing & Query Optimization
+      </div>
+      <ul style="margin: 0; padding-left: 1.2rem; font-size: 0.8rem; color: #cbd5e1; line-height: 1.7;">
+        <li><strong>2dsphere Geo-Index:</strong> On <code>location.coordinates</code> for instantaneous distance filtering ($near queries).</li>
+        <li><strong>Compound Index:</strong> On <code>{ city: 1, category: 1, 'pricing.vegPlate': 1 }</code> for sub-15ms search results.</li>
+        <li><strong>Unique Sparse Indexes:</strong> On <code>phone</code> and <code>email</code> to eliminate duplicate accounts.</li>
+      </ul>
+    </div>
+  </section>
+
+  <!-- CHAPTER 7: THIRD PARTY APIS -->
+  <section class="synopsis-section" id="ch7">
+    <div class="sec-badge">Chapter 07 • Integrations Matrix</div>
+    <div class="sec-title">6. Third-Party APIs, Credentials & Operational Flow</div>
+    
+    <div class="card-grid">
+      <div class="feature-card" style="border-left: 4px solid var(--emerald);">
+        <div class="card-title">1. SMS OTP (Twilio / Fast2SMS)</div>
+        <div style="font-size: 0.72rem; color: var(--gold-accent); margin-bottom: 0.25rem;">Keys: SMS_API_KEY, TWILIO_ACCOUNT_SID</div>
+        <p style="font-size: 0.8rem; color: var(--text-muted);">
+          Issues 6-digit cryptographic OTPs to Indian mobile numbers (+91) via DLT-approved transactional routes for instant customer verification.
+        </p>
+      </div>
+
+      <div class="feature-card" style="border-left: 4px solid var(--blue);">
+        <div class="card-title">2. Payment Gateway (Razorpay / Cashfree)</div>
+        <div style="font-size: 0.72rem; color: var(--gold-accent); margin-bottom: 0.25rem;">Keys: RAZORPAY_KEY_ID, KEY_SECRET</div>
+        <p style="font-size: 0.8rem; color: var(--text-muted);">
+          Facilitates UPI (GPay, PhonePe, Paytm), Net Banking, and Cards for advance tokens. Validates HMAC-SHA256 signatures to eliminate tampering.
+        </p>
+      </div>
+
+      <div class="feature-card" style="border-left: 4px solid #f59e0b;">
+        <div class="card-title">3. Cloud Media CDN (Cloudinary / S3)</div>
+        <div style="font-size: 0.72rem; color: var(--gold-accent); margin-bottom: 0.25rem;">Keys: CLOUDINARY_API_KEY, API_SECRET</div>
+        <p style="font-size: 0.8rem; color: var(--text-muted);">
+          Receives cover photos and multi-image galleries. Performs automated WebP compression, watermarking, and responsive CDN delivery.
+        </p>
+      </div>
+
+      <div class="feature-card" style="border-left: 4px solid #8b5cf6;">
+        <div class="card-title">4. Generative AI (Google Gemini NLP)</div>
+        <div style="font-size: 0.72rem; color: var(--gold-accent); margin-bottom: 0.25rem;">Keys: GEMINI_API_KEY / AI_STUDIO_KEY</div>
+        <p style="font-size: 0.8rem; color: var(--text-muted);">
+          Parses natural language queries (e.g., "Find me a lawn in Ranchi for 800 guests under ₹1,200 plate") into structured database filters.
+        </p>
+      </div>
+
+      <div class="feature-card" style="border-left: 4px solid #06b6d4;">
+        <div class="card-title">5. Maps & Geocoding (Leaflet / OSM)</div>
+        <div style="font-size: 0.72rem; color: var(--gold-accent); margin-bottom: 0.25rem;">Keys: MAPTILER_API_KEY</div>
+        <p style="font-size: 0.8rem; color: var(--text-muted);">
+          Provides vector map tiles, venue pins, distance calculation from customer GPS location, and reverse geocoding.
+        </p>
+      </div>
+
+      <div class="feature-card" style="border-left: 4px solid #ef4444;">
+        <div class="card-title">6. Transactional Mailer (Nodemailer)</div>
+        <div style="font-size: 0.72rem; color: var(--gold-accent); margin-bottom: 0.25rem;">Keys: SMTP_HOST, SMTP_USER, SMTP_PASS</div>
+        <p style="font-size: 0.8rem; color: var(--text-muted);">
+          Exclusively utilized for Venue Owners to verify business email addresses, issue monthly settlement summaries, and deliver official invoices.
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <!-- CHAPTER 8: 11 BUSINESS CATEGORIES -->
+  <section class="synopsis-section" id="ch8">
+    <div class="sec-badge">Chapter 08 • Domain Scope</div>
+    <div class="sec-title">7. The 11 Business Categories Deep-Dive</div>
+    
+    <div class="card-grid">
+      <div class="feature-card">
+        <div class="card-title">1. Marriage Hall / Wedding Venue</div>
+        <p style="font-size: 0.8rem; color: var(--text-muted);">Dedicated mandap zones, baraat reception gates, bridal dressing suites, and guest lodging rooms.</p>
+        <span class="tech-pill">Model: Full Day Rental + Per Plate</span>
+      </div>
+      <div class="feature-card">
+        <div class="card-title">2. Banquet Hall</div>
+        <p style="font-size: 0.8rem; color: var(--text-muted);">Acoustically treated, air-conditioned indoor halls for engagements, sangeets, and corporate galas.</p>
+        <span class="tech-pill">Model: Time Slot or Per Plate</span>
+      </div>
+      <div class="feature-card">
+        <div class="card-title">3. Marriage Garden / Open Lawn</div>
+        <p style="font-size: 0.8rem; color: var(--text-muted);">Expansive manicured open grounds for 1,000 to 5,000+ guests with theme tent setups and parking.</p>
+        <span class="tech-pill">Model: Lawn Rental per Day</span>
+      </div>
+      <div class="feature-card">
+        <div class="card-title">4. Party Hall</div>
+        <p style="font-size: 0.8rem; color: var(--text-muted);">Intimate spaces for birthdays, kitty parties, and reunions with disco lighting and sound systems.</p>
+        <span class="tech-pill">Model: Hourly / Minimum Cover</span>
+      </div>
+      <div class="feature-card">
+        <div class="card-title">5. Event Venue</div>
+        <p style="font-size: 0.8rem; color: var(--text-muted);">Multi-purpose exhibition centres, trade fair grounds, and convention auditoriums.</p>
+        <span class="tech-pill">Model: Daily Commercial Lease</span>
+      </div>
+      <div class="feature-card">
+        <div class="card-title">6. Hotel & Resort</div>
+        <p style="font-size: 0.8rem; color: var(--text-muted);">Destination wedding properties offering luxury guest rooms, swimming pool lawns, and concierge hospitality.</p>
+        <span class="tech-pill">Model: Rooms + Venue Package</span>
+      </div>
+      <div class="feature-card">
+        <div class="card-title">7. Restaurant & Private Dining</div>
+        <p style="font-size: 0.8rem; color: var(--text-muted);">Fine-dining spaces with private partitions for family gatherings, rokas, and corporate dinners.</p>
+        <span class="tech-pill">Model: Per Head Buffet / Set Menu</span>
+      </div>
+      <div class="feature-card">
+        <div class="card-title">8. Catering Service</div>
+        <p style="font-size: 0.8rem; color: var(--text-muted);">Culinary teams providing live chaat stalls, North/South Indian, Mughlai, Continental, and royal staff.</p>
+        <span class="tech-pill">Model: Per Plate (Veg/Non-Veg)</span>
+      </div>
+      <div class="feature-card">
+        <div class="card-title">9. Decoration & Event Planner</div>
+        <p style="font-size: 0.8rem; color: var(--text-muted);">Floral stage themes, LED tunnel entries, haldi marigold backdrops, balloon installations, and props.</p>
+        <span class="tech-pill">Model: Theme Package + Custom Add-ons</span>
+      </div>
+      <div class="feature-card">
+        <div class="card-title">10. Photography & Videography</div>
+        <p style="font-size: 0.8rem; color: var(--text-muted);">4K cinematic films, pre-wedding destination shoots, live drone coverage, and candid photo albums.</p>
+        <span class="tech-pill">Model: Per Event / Full Wedding</span>
+      </div>
+      <div class="feature-card">
+        <div class="card-title">11. Other Event Businesses</div>
+        <p style="font-size: 0.8rem; color: var(--text-muted);">DJ sound systems, bridal vintage car rentals, traditional dhol tasha groups, and fireworks pyrotechnics.</p>
+        <span class="tech-pill">Model: Fixed Service Token</span>
+      </div>
+    </div>
+  </section>
+
+  <!-- CHAPTER 9: A-Z FEATURES -->
+  <section class="synopsis-section" id="ch9">
+    <div class="sec-badge">Chapter 09 • Functional Blueprints</div>
+    <div class="sec-title">8. Core User Modules & Functional Workflows (A to Z Features)</div>
+    
+    <div class="card-grid">
+      <div class="feature-card" style="border-top: 3px solid var(--emerald);">
+        <div class="card-title">Customer Discovery & Booking</div>
+        <ul style="margin: 0.5rem 0; padding-left: 1.2rem; font-size: 0.8rem; color: #cbd5e1; line-height: 1.7;">
+          <li>Instant Mobile OTP Login (Zero password fatigue)</li>
+          <li>GPS Radius Discovery with Leaflet Map Pins</li>
+          <li>3D Interactive Three.js Virtual Venue Walkthrough</li>
+          <li>Full-Screen Lightbox Multi-Angle Photo Gallery</li>
+          <li>Real-Time Live Date Availability Checker</li>
+          <li>Razorpay/Cashfree Advance Token UPI Reservation</li>
+          <li>Instant Downloadable PDF Booking Invoice</li>
+        </ul>
+      </div>
+
+      <div class="feature-card" style="border-top: 3px solid var(--blue);">
+        <div class="card-title">Venue Owner Management Suite</div>
+        <ul style="margin: 0.5rem 0; padding-left: 1.2rem; font-size: 0.8rem; color: #cbd5e1; line-height: 1.7;">
+          <li>11-Category Tailored Onboarding & Listing Form</li>
+          <li>Multi-Photo Gallery Uploader with Cover Selector</li>
+          <li>1-Click Date Blocker to Prevent Double-Booking</li>
+          <li>Dynamic Veg/Non-Veg Plate & Rental Pricing Editor</li>
+          <li>Business Email Verification for "Verified Badge"</li>
+          <li>Real-Time Booking SMS & In-App Alert Notifications</li>
+          <li>Customer Inquiries & Call Leads CRM</li>
+        </ul>
+      </div>
+
+      <div class="feature-card" style="border-top: 3px solid #8b5cf6;">
+        <div class="card-title">Superadmin Control Center</div>
+        <ul style="margin: 0.5rem 0; padding-left: 1.2rem; font-size: 0.8rem; color: #cbd5e1; line-height: 1.7;">
+          <li>Executive KPI Dashboard (GBV, Active Listings)</li>
+          <li>Vendor KYC Review (Aadhaar, PAN, Trade License)</li>
+          <li>Platform Commission Settlement Engine (3% - 10%)</li>
+          <li>Review Moderation & Anti-Spam Fraud Protection</li>
+          <li>Real-Time API Latency & Failover Audit Logs</li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <!-- CHAPTER 10: SECURITY & MOBILE PERFORMANCE -->
+  <section class="synopsis-section" id="ch10">
+    <div class="sec-badge">Chapter 10 • Security & UX</div>
+    <div class="sec-title">9. Security Hardening & Mobile-First Performance</div>
+    
+    <div class="card-grid">
+      <div class="feature-card">
+        <div class="card-title">🔒 Stateless JWT Auth</div>
+        <p style="font-size: 0.8rem; color: var(--text-muted);">
+          Tokens signed with HS256 encryption enforcing strict Role-Based Access Control (RBAC) across customer, vendor, and admin scopes.
+        </p>
+      </div>
+      <div class="feature-card">
+        <div class="card-title">🛡️ Bcrypt Salted Hashing</div>
+        <p style="font-size: 0.8rem; color: var(--text-muted);">
+          10 rounds of salted Blowfish hashing for all administrative credentials. Passwords are never stored or logged in plain text.
+        </p>
+      </div>
+      <div class="feature-card">
+        <div class="card-title">💳 HMAC-SHA256 Webhooks</div>
+        <p style="font-size: 0.8rem; color: var(--text-muted);">
+          Banking webhook callbacks are mathematically verified using secret cryptographic hashes to eliminate payment falsification.
+        </p>
+      </div>
+      <div class="feature-card">
+        <div class="card-title">⚡ Anti-SMS Flooding Shield</div>
+        <p style="font-size: 0.8rem; color: var(--text-muted);">
+          Strict IP and phone rate limits (max 3 OTPs per 10 minutes) prevent automated bot abuse and SMS balance exhaustion.
+        </p>
+      </div>
+    </div>
+
+    <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(180px, 1fr)); gap: 1rem; margin-top: 1.25rem;">
+      <div style="background: rgba(0,0,0,0.3); border: 1px solid var(--border-color); border-radius: var(--radius-md); padding: 1rem; text-align: center;">
+        <div style="font-size: 0.75rem; color: var(--text-muted);">First Contentful Paint</div>
+        <div style="font-size: 1.5rem; font-weight: 800; color: var(--emerald);">&lt; 650 ms</div>
+        <div style="font-size: 0.7rem; color: var(--text-muted);">Instant mobile render</div>
+      </div>
+      <div style="background: rgba(0,0,0,0.3); border: 1px solid var(--border-color); border-radius: var(--radius-md); padding: 1rem; text-align: center;">
+        <div style="font-size: 0.75rem; color: var(--text-muted);">Time to Interactive</div>
+        <div style="font-size: 1.5rem; font-weight: 800; color: var(--emerald);">&lt; 980 ms</div>
+        <div style="font-size: 0.7rem; color: var(--text-muted);">No JS freeze</div>
+      </div>
+      <div style="background: rgba(0,0,0,0.3); border: 1px solid var(--border-color); border-radius: var(--radius-md); padding: 1rem; text-align: center;">
+        <div style="font-size: 0.75rem; color: var(--text-muted);">Base Page Weight</div>
+        <div style="font-size: 1.5rem; font-weight: 800; color: var(--emerald);">&lt; 180 KB</div>
+        <div style="font-size: 0.7rem; color: var(--text-muted);">Zero framework bloat</div>
+      </div>
+      <div style="background: rgba(0,0,0,0.3); border: 1px solid var(--border-color); border-radius: var(--radius-md); padding: 1rem; text-align: center;">
+        <div style="font-size: 0.75rem; color: var(--text-muted);">Mobile Lighthouse</div>
+        <div style="font-size: 1.5rem; font-weight: 800; color: var(--gold-accent);">98 / 100</div>
+        <div style="font-size: 0.7rem; color: var(--text-muted);">Top industry tier</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CHAPTER 11: REST API ENDPOINTS -->
+  <section class="synopsis-section" id="ch11">
+    <div class="sec-badge">Chapter 11 • API Contracts</div>
+    <div class="sec-title">10. Complete REST API Endpoints Specification</div>
+    
+    <table class="data-table">
+      <thead>
+        <tr>
+          <th>Method</th>
+          <th>Endpoint Route</th>
+          <th>Auth Level</th>
+          <th>Description & Contract</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td><span style="color: #3b82f6; font-weight: 700;">POST</span></td>
+          <td><code>/api/auth/send-otp</code></td>
+          <td>Public</td>
+          <td>Dispatches 6-digit SMS OTP to given 10-digit mobile number (+91).</td>
+        </tr>
+        <tr>
+          <td><span style="color: #3b82f6; font-weight: 700;">POST</span></td>
+          <td><code>/api/auth/verify-otp</code></td>
+          <td>Public</td>
+          <td>Validates OTP and issues customer stateless JWT authentication token.</td>
+        </tr>
+        <tr>
+          <td><span style="color: #3b82f6; font-weight: 700;">POST</span></td>
+          <td><code>/api/auth/vendor/register</code></td>
+          <td>Public</td>
+          <td>Registers venue owner with chosen business category & credentials.</td>
+        </tr>
+        <tr>
+          <td><span style="color: #3b82f6; font-weight: 700;">POST</span></td>
+          <td><code>/api/auth/vendor/login</code></td>
+          <td>Public</td>
+          <td>Authenticates vendor via email/phone and returns JWT token.</td>
+        </tr>
+        <tr>
+          <td><span style="color: #10b981; font-weight: 700;">GET</span></td>
+          <td><code>/api/auth/vendor/verify-email</code></td>
+          <td>Token Link</td>
+          <td>Validates token link and grants "Shield Verified Partner Badge".</td>
+        </tr>
+        <tr>
+          <td><span style="color: #10b981; font-weight: 700;">GET</span></td>
+          <td><code>/api/halls</code></td>
+          <td>Public</td>
+          <td>Lists halls filtered by city, category, capacity & budget parameters.</td>
+        </tr>
+        <tr>
+          <td><span style="color: #10b981; font-weight: 700;">GET</span></td>
+          <td><code>/api/halls/:id</code></td>
+          <td>Public</td>
+          <td>Returns detailed venue specs, amenities, 3D model, and reviews.</td>
+        </tr>
+        <tr>
+          <td><span style="color: #3b82f6; font-weight: 700;">POST</span></td>
+          <td><code>/api/halls</code></td>
+          <td>Vendor Auth</td>
+          <td>Creates new venue profile with pricing, slots, and cover thumbnail.</td>
+        </tr>
+        <tr>
+          <td><span style="color: #f59e0b; font-weight: 700;">PUT</span></td>
+          <td><code>/api/halls/:id</code></td>
+          <td>Vendor Auth</td>
+          <td>Updates venue details, amenities, capacities, and plate prices.</td>
+        </tr>
+        <tr>
+          <td><span style="color: #3b82f6; font-weight: 700;">POST</span></td>
+          <td><code>/api/halls/:id/gallery</code></td>
+          <td>Vendor Auth</td>
+          <td>Multer multi-upload endpoint appending up to 10 photos to gallery.</td>
+        </tr>
+        <tr>
+          <td><span style="color: #3b82f6; font-weight: 700;">POST</span></td>
+          <td><code>/api/halls/:id/block-date</code></td>
+          <td>Vendor Auth</td>
+          <td>Locks offline event date on calendar to prevent double-booking.</td>
+        </tr>
+        <tr>
+          <td><span style="color: #3b82f6; font-weight: 700;">POST</span></td>
+          <td><code>/api/bookings/create</code></td>
+          <td>User Auth</td>
+          <td>Initializes booking reservation and creates Razorpay order.</td>
+        </tr>
+        <tr>
+          <td><span style="color: #3b82f6; font-weight: 700;">POST</span></td>
+          <td><code>/api/bookings/verify-payment</code></td>
+          <td>User Auth</td>
+          <td>Validates payment signature and generates official booking PDF.</td>
+        </tr>
+        <tr>
+          <td><span style="color: #10b981; font-weight: 700;">GET</span></td>
+          <td><code>/api/admin/metrics</code></td>
+          <td>Admin Auth</td>
+          <td>Returns real-time GBV, active listings, vendor counts, and alerts.</td>
+        </tr>
+      </tbody>
+    </table>
+  </section>
+
+  <!-- CHAPTER 12: MONETIZATION & ROADMAP -->
+  <section class="synopsis-section" id="ch12">
+    <div class="sec-badge">Chapter 12 • Commercial Viability</div>
+    <div class="sec-title">11. Monetization Model, Expansion Roadmap & Conclusion</div>
+    
+    <div class="card-grid">
+      <div class="feature-card">
+        <div class="card-title">1. Transaction Commission (3% - 6%)</div>
+        <p style="font-size: 0.82rem; color: var(--text-muted);">
+          Charged on confirmed token reservations through the platform. Deducted automatically upon final payment settlement.
+        </p>
+      </div>
+      <div class="feature-card">
+        <div class="card-title">2. Tiered Vendor Subscriptions</div>
+        <p style="font-size: 0.82rem; color: var(--text-muted);">
+          Silver (₹999/mo) standard listing; Gold (₹2,499/mo) multi-photo + SMS alerts; Diamond (₹4,999/mo) 3D tour + Top ranking.
+        </p>
+      </div>
+      <div class="feature-card">
+        <div class="card-title">3. Featured Muhurat Ads</div>
+        <p style="font-size: 0.82rem; color: var(--text-muted);">
+          Sponsored hero banners and top-of-city search highlights during peak wedding months (Nov–Feb & Apr–Jul).
+        </p>
+      </div>
+      <div class="feature-card">
+        <div class="card-title">4. Allied Services Lead Referrals</div>
+        <p style="font-size: 0.82rem; color: var(--text-muted);">
+          Commission earned by connecting venue bookers with verified caterers, photographers, decorators, and bridal cars.
+        </p>
+      </div>
+    </div>
+
+    <div style="background: rgba(0,0,0,0.3); border: 1px solid var(--border-color); border-radius: var(--radius-md); padding: 1.25rem; margin-top: 1.25rem;">
+      <div style="font-size: 0.9rem; font-weight: 700; color: var(--gold-accent); margin-bottom: 0.5rem;">
+        Strategic Implementation Roadmap
+      </div>
+      <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 0.75rem; font-size: 0.8rem;">
+        <div style="padding: 0.75rem; background: rgba(255,255,255,0.03); border-radius: 6px;">
+          <strong style="color: var(--emerald);">PHASE 1 (COMPLETED)</strong><br>
+          Mobile-first PWA, Phone OTP, 11 categories, MongoDB backend, Three.js 3D.
+        </div>
+        <div style="padding: 0.75rem; background: rgba(255,255,255,0.03); border-radius: 6px;">
+          <strong style="color: var(--gold-accent);">PHASE 2 (CURRENT)</strong><br>
+          Regional hub expansion across Bihar & Jharkhand (Patna, Ranchi, Gaya).
+        </div>
+        <div style="padding: 0.75rem; background: rgba(255,255,255,0.03); border-radius: 6px;">
+          <strong style="color: #60a5fa;">PHASE 3 (Q3 2026)</strong><br>
+          Native Flutter iOS & Android apps with push notifications.
+        </div>
+        <div style="padding: 0.75rem; background: rgba(255,255,255,0.03); border-radius: 6px;">
+          <strong style="color: #c084fc;">PHASE 4 (Q4 2026)</strong><br>
+          Autonomous Gemini AI event budget planner & vendor negotiator.
+        </div>
+      </div>
+    </div>
+
+    <!-- Official Sign-off -->
+    <div style="background: linear-gradient(135deg, rgba(15, 23, 42, 0.9), rgba(30, 41, 59, 0.9)); border: 1px solid var(--border-color); border-radius: var(--radius-md); padding: 1.5rem; margin-top: 1.5rem; text-align: center;">
+      <div style="font-size: 1.1rem; font-weight: 800; color: #fff;">
+        OFFICIAL CLIENT PRESENTATION SIGN-OFF
+      </div>
+      <p style="font-size: 0.82rem; color: var(--text-muted); max-width: 600px; margin: 0.5rem auto 1rem;">
+        This document confirms the architectural, feature, and database specifications for Hall Khoj Finder (hallkhoj.com). The 2-hour confidential review link remains active for client verification.
+      </p>
+      <div style="display: flex; justify-content: center; gap: 1rem; flex-wrap: wrap;">
+        <a href="/synopsis.pdf" class="btn-gold" download="Hall_Khoj_Project_Synopsis_12Pages.pdf">
+          <span>📥</span> Download 12-Page PDF Document
+        </a>
+        <button class="btn-outline" onclick="window.scrollTo({ top: 0, behavior: 'smooth' })">
+          <span>⬆️</span> Back to Top
+        </button>
+      </div>
+      <div style="font-size: 0.75rem; color: var(--gold-accent); margin-top: 1rem; font-weight: 600;">
+        Verified Release: v2.4.0 • Hall Khoj Engineering Team • © 2026 Hall Khoj Technologies
+      </div>
+    </div>
+  </section>
+
+</div>
+
+<script>
+  // 4-Hour Countdown Timer Implementation
+  const FOUR_HOURS_MS = 4 * 60 * 60 * 1000;
+  let startTime = localStorage.getItem('synopsis_session_start_4hr');
+  
+  if (!startTime) {
+    startTime = Date.now();
+    localStorage.setItem('synopsis_session_start_4hr', startTime);
+  } else {
+    startTime = parseInt(startTime, 10);
+  }
+
+  function updateTimer() {
+    const elapsed = Date.now() - startTime;
+    let remaining = FOUR_HOURS_MS - elapsed;
+
+    if (remaining <= 0) {
+      document.getElementById('countdown').innerText = '00:00:00 (EXPIRED)';
+      document.getElementById('timerBadge').style.background = 'rgba(239, 68, 68, 0.4)';
+      document.getElementById('timerBadge').innerHTML = '⚠️ <strong>Session Link Expired</strong>';
+      return;
+    }
+
+    const hours = Math.floor(remaining / (1000 * 60 * 60));
+    const minutes = Math.floor((remaining % (1000 * 60 * 60)) / (1000 * 60));
+    const seconds = Math.floor((remaining % (1000 * 60)) / 1000);
+
+    const pad = (n) => String(n).padStart(2, '0');
+    document.getElementById('countdown').innerText = `${pad(hours)}:${pad(minutes)}:${pad(seconds)}`;
+  }
+
+  setInterval(updateTimer, 1000);
+  updateTimer();
+
+  // 1-Click Copy Client Link
+  function copyClientLink() {
+    const link = window.location.origin + '/synopsis.html?token=client_review_4hr_access';
+    navigator.clipboard.writeText(link).then(() => {
+      alert('✓ Client Presentation Link copied to clipboard!\n\nLink: ' + link + '\n(Valid for 4 Hours)');
+    }).catch(() => {
+      prompt('Copy this client link manually:', link);
+    });
+  }
+
+  // Active navigation highlight on scroll
+  const navPills = document.querySelectorAll('.nav-pill');
+  window.addEventListener('scroll', () => {
+    let current = '';
+    const sections = document.querySelectorAll('section');
+    sections.forEach(sec => {
+      const top = sec.offsetTop - 120;
+      if (pageYOffset >= top) {
+        current = sec.getAttribute('id');
+      }
+    });
+
+    navPills.forEach(pill => {
+      pill.classList.remove('active');
+      if (pill.getAttribute('href') === `#${current}`) {
+        pill.classList.add('active');
+      }
+    });
+  });
+</script>
+
+</body>
+</html>

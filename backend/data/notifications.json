@@ -1,0 +1,2341 @@
+[
+  {
+    "id": "notif_1789833638883_qlzvsk",
+    "userId": "usr_1789833638575_ghjk2h",
+    "type": "BOOKING_REQUEST",
+    "title": "New Booking Request",
+    "message": "Aman Customer has requested to book Sunil Grand Imperial Banquet on 2026-12-15.",
+    "data": {
+      "bookingId": "HKF-2026-524200",
+      "serviceId": "h_1789833638840_l2hjig",
+      "eventDate": "2026-12-15"
+    },
+    "read": true,
+    "createdAt": "2026-09-19T16:00:38.883Z",
+    "readAt": "2026-09-19T16:00:38.930Z",
+    "updatedAt": "2026-09-19T16:00:38.930Z"
+  },
+  {
+    "id": "notif_1789833639026_gczr4c",
+    "userId": "usr_1789833638575_ghjk2h",
+    "type": "MESSAGE",
+    "title": "New Message from Aman Customer",
+    "message": "Namaste Sunil ji, can we arrange a separate Jain food buffet...",
+    "data": {
+      "messageId": "msg_1789833639022_2voz4w",
+      "conversationId": "conv_b_HKF-2026-524200",
+      "bookingId": "HKF-2026-524200",
+      "serviceId": "h_1789833638840_l2hjig",
+      "senderId": "usr_1789833638306_oc3kuc",
+      "senderName": "Aman Customer"
+    },
+    "read": false,
+    "createdAt": "2026-09-19T16:00:39.026Z",
+    "readAt": null,
+    "updatedAt": "2026-09-19T16:00:39.026Z"
+  },
+  {
+    "id": "notif_1789833639081_ufoaxm",
+    "userId": "usr_1789833638306_oc3kuc",
+    "type": "MESSAGE",
+    "title": "New Message from Sunil Owner Partner",
+    "message": "Haan Aman ji, bilkul! We have a dedicated separate vegetaria...",
+    "data": {
+      "messageId": "msg_1789833639079_exsv4l",
+      "conversationId": "conv_b_HKF-2026-524200",
+      "bookingId": "HKF-2026-524200",
+      "serviceId": "h_1789833638840_l2hjig",
+      "senderId": "usr_1789833638575_ghjk2h",
+      "senderName": "Sunil Owner Partner"
+    },
+    "read": false,
+    "createdAt": "2026-09-19T16:00:39.081Z",
+    "readAt": null,
+    "updatedAt": "2026-09-19T16:00:39.081Z"
+  },
+  {
+    "id": "notif_1789833736705_rzwmyo",
+    "userId": "usr_1789833736464_qo788k",
+    "type": "BOOKING_REQUEST",
+    "title": "New Booking Request",
+    "message": "Aman Customer has requested to book Sunil Grand Imperial Banquet on 2026-12-15.",
+    "data": {
+      "bookingId": "HKF-2026-870923",
+      "serviceId": "h_1789833736674_hx90w6",
+      "eventDate": "2026-12-15"
+    },
+    "read": true,
+    "createdAt": "2026-09-19T16:02:16.705Z",
+    "readAt": "2026-09-19T16:02:16.738Z",
+    "updatedAt": "2026-09-19T16:02:16.738Z"
+  },
+  {
+    "id": "notif_1789833736769_7gtb9t",
+    "userId": "usr_1789833736464_qo788k",
+    "type": "MESSAGE",
+    "title": "New Message from Aman Customer",
+    "message": "Namaste Sunil ji, can we arrange a separate Jain food buffet...",
+    "data": {
+      "messageId": "msg_1789833736767_910z68",
+      "conversationId": "conv_b_HKF-2026-870923",
+      "bookingId": "HKF-2026-870923",
+      "serviceId": "h_1789833736674_hx90w6",
+      "senderId": "usr_1789833736200_1841fc",
+      "senderName": "Aman Customer"
+    },
+    "read": false,
+    "createdAt": "2026-09-19T16:02:16.769Z",
+    "readAt": null,
+    "updatedAt": "2026-09-19T16:02:16.769Z"
+  },
+  {
+    "id": "notif_1789833736836_rc41nu",
+    "userId": "usr_1789833736200_1841fc",
+    "type": "MESSAGE",
+    "title": "New Message from Sunil Owner Partner",
+    "message": "Haan Aman ji, bilkul! We have a dedicated separate vegetaria...",
+    "data": {
+      "messageId": "msg_1789833736808_8q9m8c",
+      "conversationId": "conv_b_HKF-2026-870923",
+      "bookingId": "HKF-2026-870923",
+      "serviceId": "h_1789833736674_hx90w6",
+      "senderId": "usr_1789833736464_qo788k",
+      "senderName": "Sunil Owner Partner"
+    },
+    "read": false,
+    "createdAt": "2026-09-19T16:02:16.836Z",
+    "readAt": null,
+    "updatedAt": "2026-09-19T16:02:16.836Z"
+  },
+  {
+    "id": "notif_1789833811503_rlwq7u",
+    "userId": "usr_1789833811224_oy2xrc",
+    "type": "BOOKING_REQUEST",
+    "title": "New Booking Request",
+    "message": "Kavita Verma has requested to book Manoj Royal Heritage Lawn on 2026-12-28.",
+    "data": {
+      "bookingId": "HKF-2026-104164",
+      "serviceId": "h_1789833811464_79k578",
+      "eventDate": "2026-12-28"
+    },
+    "read": false,
+    "createdAt": "2026-09-19T16:03:31.503Z",
+    "readAt": null,
+    "updatedAt": "2026-09-19T16:03:31.503Z"
+  },
+  {
+    "id": "notif_1789833811616_waeh53",
+    "userId": "usr_1789833810806_e8v8zr",
+    "type": "BOOKING_UPDATE",
+    "title": "Booking ACCEPTED",
+    "message": "Your booking HKF-2026-104164 for Manoj Royal Heritage Lawn is now ACCEPTED.",
+    "data": {
+      "bookingId": "HKF-2026-104164",
+      "status": "ACCEPTED"
+    },
+    "read": false,
+    "createdAt": "2026-09-19T16:03:31.616Z",
+    "readAt": null,
+    "updatedAt": "2026-09-19T16:03:31.616Z"
+  },
+  {
+    "id": "notif_1789833811656_lxdvm1",
+    "userId": "usr_1789833810806_e8v8zr",
+    "type": "BOOKING_UPDATE",
+    "title": "Booking CONFIRMED",
+    "message": "Your booking HKF-2026-104164 for Manoj Royal Heritage Lawn is now CONFIRMED.",
+    "data": {
+      "bookingId": "HKF-2026-104164",
+      "status": "CONFIRMED"
+    },
+    "read": false,
+    "createdAt": "2026-09-19T16:03:31.656Z",
+    "readAt": null,
+    "updatedAt": "2026-09-19T16:03:31.656Z"
+  },
+  {
+    "id": "notif_1789833811709_3tp6yi",
+    "userId": "usr_1789833810806_e8v8zr",
+    "type": "BOOKING_UPDATE",
+    "title": "Booking COMPLETED",
+    "message": "Your booking HKF-2026-104164 for Manoj Royal Heritage Lawn is now COMPLETED.",
+    "data": {
+      "bookingId": "HKF-2026-104164",
+      "status": "COMPLETED"
+    },
+    "read": false,
+    "createdAt": "2026-09-19T16:03:31.709Z",
+    "readAt": null,
+    "updatedAt": "2026-09-19T16:03:31.709Z"
+  },
+  {
+    "id": "notif_1789833811742_685s0s",
+    "userId": "usr_1789833811224_oy2xrc",
+    "type": "BOOKING_UPDATE",
+    "title": "New 5★ Review Received!",
+    "message": "Kavita Verma Customer left a 5-star review for Manoj Royal Heritage Lawn: \"Magical Royal Wedding Experience!\".",
+    "data": {
+      "reviewId": "rev_1789833811719_zeg1e0",
+      "serviceId": "h_1789833811464_79k578",
+      "bookingId": "HKF-2026-104164",
+      "rating": 5
+    },
+    "read": false,
+    "createdAt": "2026-09-19T16:03:31.742Z",
+    "readAt": null,
+    "updatedAt": "2026-09-19T16:03:31.742Z"
+  },
+  {
+    "id": "notif_1789833811774_s2bwn3",
+    "userId": "usr_1789833810806_e8v8zr",
+    "type": "BOOKING_UPDATE",
+    "title": "Owner Replied to Your Review",
+    "message": "The owner of Manoj Royal Heritage Lawn responded to your review.",
+    "data": {
+      "reviewId": "rev_1789833811719_zeg1e0",
+      "serviceId": "h_1789833811464_79k578"
+    },
+    "read": false,
+    "createdAt": "2026-09-19T16:03:31.774Z",
+    "readAt": null,
+    "updatedAt": "2026-09-19T16:03:31.774Z"
+  },
+  {
+    "id": "notif_1789833857238_ve560f",
+    "userId": "usr_1789833856997_te2mji",
+    "type": "BOOKING_REQUEST",
+    "title": "New Booking Request",
+    "message": "Kavita Verma has requested to book Manoj Royal Heritage Lawn on 2026-12-28.",
+    "data": {
+      "bookingId": "HKF-2026-742153",
+      "serviceId": "h_1789833857210_ccanm7",
+      "eventDate": "2026-12-28"
+    },
+    "read": false,
+    "createdAt": "2026-09-19T16:04:17.238Z",
+    "readAt": null,
+    "updatedAt": "2026-09-19T16:04:17.238Z"
+  },
+  {
+    "id": "notif_1789833857322_k1bnyl",
+    "userId": "usr_1789833856463_2uqycr",
+    "type": "BOOKING_UPDATE",
+    "title": "Booking ACCEPTED",
+    "message": "Your booking HKF-2026-742153 for Manoj Royal Heritage Lawn is now ACCEPTED.",
+    "data": {
+      "bookingId": "HKF-2026-742153",
+      "status": "ACCEPTED"
+    },
+    "read": false,
+    "createdAt": "2026-09-19T16:04:17.322Z",
+    "readAt": null,
+    "updatedAt": "2026-09-19T16:04:17.322Z"
+  },
+  {
+    "id": "notif_1789833857346_xk17rm",
+    "userId": "usr_1789833856463_2uqycr",
+    "type": "BOOKING_UPDATE",
+    "title": "Booking CONFIRMED",
+    "message": "Your booking HKF-2026-742153 for Manoj Royal Heritage Lawn is now CONFIRMED.",
+    "data": {
+      "bookingId": "HKF-2026-742153",
+      "status": "CONFIRMED"
+    },
+    "read": false,
+    "createdAt": "2026-09-19T16:04:17.347Z",
+    "readAt": null,
+    "updatedAt": "2026-09-19T16:04:17.347Z"
+  },
+  {
+    "id": "notif_1789833857362_5e8yle",
+    "userId": "usr_1789833856463_2uqycr",
+    "type": "BOOKING_UPDATE",
+    "title": "Booking COMPLETED",
+    "message": "Your booking HKF-2026-742153 for Manoj Royal Heritage Lawn is now COMPLETED.",
+    "data": {
+      "bookingId": "HKF-2026-742153",
+      "status": "COMPLETED"
+    },
+    "read": false,
+    "createdAt": "2026-09-19T16:04:17.362Z",
+    "readAt": null,
+    "updatedAt": "2026-09-19T16:04:17.362Z"
+  },
+  {
+    "id": "notif_1789833857391_q3s4o6",
+    "userId": "usr_1789833856997_te2mji",
+    "type": "BOOKING_UPDATE",
+    "title": "New 5★ Review Received!",
+    "message": "Kavita Verma Customer left a 5-star review for Manoj Royal Heritage Lawn: \"Magical Royal Wedding Experience!\".",
+    "data": {
+      "reviewId": "rev_1789833857380_ah0asa",
+      "serviceId": "h_1789833857210_ccanm7",
+      "bookingId": "HKF-2026-742153",
+      "rating": 5
+    },
+    "read": false,
+    "createdAt": "2026-09-19T16:04:17.391Z",
+    "readAt": null,
+    "updatedAt": "2026-09-19T16:04:17.391Z"
+  },
+  {
+    "id": "notif_1789833857558_viqrav",
+    "userId": "usr_1789833856463_2uqycr",
+    "type": "BOOKING_UPDATE",
+    "title": "Owner Replied to Your Review",
+    "message": "The owner of Manoj Royal Heritage Lawn responded to your review.",
+    "data": {
+      "reviewId": "rev_1789833857380_ah0asa",
+      "serviceId": "h_1789833857210_ccanm7"
+    },
+    "read": false,
+    "createdAt": "2026-09-19T16:04:17.558Z",
+    "readAt": null,
+    "updatedAt": "2026-09-19T16:04:17.558Z"
+  },
+  {
+    "id": "notif_1789833867594_vubh2l",
+    "userId": "usr_1789833867029_1sh1ub",
+    "type": "BOOKING_REQUEST",
+    "title": "New Booking Request",
+    "message": "Aman Customer has requested to book Sunil Grand Imperial Banquet on 2026-12-15.",
+    "data": {
+      "bookingId": "HKF-2026-243280",
+      "serviceId": "h_1789833867389_liwbt1",
+      "eventDate": "2026-12-15"
+    },
+    "read": true,
+    "createdAt": "2026-09-19T16:04:27.594Z",
+    "readAt": "2026-09-19T16:04:27.634Z",
+    "updatedAt": "2026-09-19T16:04:27.634Z"
+  },
+  {
+    "id": "notif_1789833867781_fk8aoc",
+    "userId": "usr_1789833867029_1sh1ub",
+    "type": "MESSAGE",
+    "title": "New Message from Aman Customer",
+    "message": "Namaste Sunil ji, can we arrange a separate Jain food buffet...",
+    "data": {
+      "messageId": "msg_1789833867737_c8unq8",
+      "conversationId": "conv_b_HKF-2026-243280",
+      "bookingId": "HKF-2026-243280",
+      "serviceId": "h_1789833867389_liwbt1",
+      "senderId": "usr_1789833866642_6j4rih",
+      "senderName": "Aman Customer"
+    },
+    "read": false,
+    "createdAt": "2026-09-19T16:04:27.781Z",
+    "readAt": null,
+    "updatedAt": "2026-09-19T16:04:27.781Z"
+  },
+  {
+    "id": "notif_1789833867902_73xfxi",
+    "userId": "usr_1789833866642_6j4rih",
+    "type": "MESSAGE",
+    "title": "New Message from Sunil Owner Partner",
+    "message": "Haan Aman ji, bilkul! We have a dedicated separate vegetaria...",
+    "data": {
+      "messageId": "msg_1789833867896_gk0nh4",
+      "conversationId": "conv_b_HKF-2026-243280",
+      "bookingId": "HKF-2026-243280",
+      "serviceId": "h_1789833867389_liwbt1",
+      "senderId": "usr_1789833867029_1sh1ub",
+      "senderName": "Sunil Owner Partner"
+    },
+    "read": false,
+    "createdAt": "2026-09-19T16:04:27.902Z",
+    "readAt": null,
+    "updatedAt": "2026-09-19T16:04:27.902Z"
+  },
+  {
+    "id": "notif_1789834399401_bm7oph",
+    "userId": "usr_1789834399196_xq36oo",
+    "type": "BOOKING_REQUEST",
+    "title": "New Booking Request",
+    "message": "Aman Customer has requested to book Sunil Grand Imperial Banquet on 2026-12-15.",
+    "data": {
+      "bookingId": "HKF-2026-253130",
+      "serviceId": "h_1789834399369_k1h9dz",
+      "eventDate": "2026-12-15"
+    },
+    "read": true,
+    "createdAt": "2026-09-19T16:13:19.401Z",
+    "readAt": "2026-09-19T16:13:19.434Z",
+    "updatedAt": "2026-09-19T16:13:19.434Z"
+  },
+  {
+    "id": "notif_1789834399474_vci56a",
+    "userId": "usr_1789834399196_xq36oo",
+    "type": "MESSAGE",
+    "title": "New Message from Aman Customer",
+    "message": "Namaste Sunil ji, can we arrange a separate Jain food buffet...",
+    "data": {
+      "messageId": "msg_1789834399472_iz0ddi",
+      "conversationId": "conv_b_HKF-2026-253130",
+      "bookingId": "HKF-2026-253130",
+      "serviceId": "h_1789834399369_k1h9dz",
+      "senderId": "usr_1789834399008_sgdq2s",
+      "senderName": "Aman Customer"
+    },
+    "read": false,
+    "createdAt": "2026-09-19T16:13:19.474Z",
+    "readAt": null,
+    "updatedAt": "2026-09-19T16:13:19.474Z"
+  },
+  {
+    "id": "notif_1789834399531_1ifvka",
+    "userId": "usr_1789834399008_sgdq2s",
+    "type": "MESSAGE",
+    "title": "New Message from Sunil Owner Partner",
+    "message": "Haan Aman ji, bilkul! We have a dedicated separate vegetaria...",
+    "data": {
+      "messageId": "msg_1789834399530_81xww4",
+      "conversationId": "conv_b_HKF-2026-253130",
+      "bookingId": "HKF-2026-253130",
+      "serviceId": "h_1789834399369_k1h9dz",
+      "senderId": "usr_1789834399196_xq36oo",
+      "senderName": "Sunil Owner Partner"
+    },
+    "read": false,
+    "createdAt": "2026-09-19T16:13:19.531Z",
+    "readAt": null,
+    "updatedAt": "2026-09-19T16:13:19.532Z"
+  },
+  {
+    "id": "notif_1789834409633_yabm5z",
+    "userId": "usr_1789834409446_de4q6o",
+    "type": "BOOKING_REQUEST",
+    "title": "New Booking Request",
+    "message": "Kavita Verma has requested to book Manoj Royal Heritage Lawn on 2026-12-28.",
+    "data": {
+      "bookingId": "HKF-2026-753946",
+      "serviceId": "h_1789834409620_tjot28",
+      "eventDate": "2026-12-28"
+    },
+    "read": false,
+    "createdAt": "2026-09-19T16:13:29.633Z",
+    "readAt": null,
+    "updatedAt": "2026-09-19T16:13:29.633Z"
+  },
+  {
+    "id": "notif_1789834409688_aacaqm",
+    "userId": "usr_1789834409095_sedzg7",
+    "type": "BOOKING_UPDATE",
+    "title": "Booking ACCEPTED",
+    "message": "Your booking HKF-2026-753946 for Manoj Royal Heritage Lawn is now ACCEPTED.",
+    "data": {
+      "bookingId": "HKF-2026-753946",
+      "status": "ACCEPTED"
+    },
+    "read": false,
+    "createdAt": "2026-09-19T16:13:29.688Z",
+    "readAt": null,
+    "updatedAt": "2026-09-19T16:13:29.688Z"
+  },
+  {
+    "id": "notif_1789834409713_9sy6pr",
+    "userId": "usr_1789834409095_sedzg7",
+    "type": "BOOKING_UPDATE",
+    "title": "Booking CONFIRMED",
+    "message": "Your booking HKF-2026-753946 for Manoj Royal Heritage Lawn is now CONFIRMED.",
+    "data": {
+      "bookingId": "HKF-2026-753946",
+      "status": "CONFIRMED"
+    },
+    "read": false,
+    "createdAt": "2026-09-19T16:13:29.713Z",
+    "readAt": null,
+    "updatedAt": "2026-09-19T16:13:29.713Z"
+  },
+  {
+    "id": "notif_1789834409720_qr749u",
+    "userId": "usr_1789834409095_sedzg7",
+    "type": "BOOKING_UPDATE",
+    "title": "Booking COMPLETED",
+    "message": "Your booking HKF-2026-753946 for Manoj Royal Heritage Lawn is now COMPLETED.",
+    "data": {
+      "bookingId": "HKF-2026-753946",
+      "status": "COMPLETED"
+    },
+    "read": false,
+    "createdAt": "2026-09-19T16:13:29.720Z",
+    "readAt": null,
+    "updatedAt": "2026-09-19T16:13:29.720Z"
+  },
+  {
+    "id": "notif_1789834409746_3n2ucl",
+    "userId": "usr_1789834409446_de4q6o",
+    "type": "BOOKING_UPDATE",
+    "title": "New 5★ Review Received!",
+    "message": "Kavita Verma Customer left a 5-star review for Manoj Royal Heritage Lawn: \"Magical Royal Wedding Experience!\".",
+    "data": {
+      "reviewId": "rev_1789834409739_3oeiii",
+      "serviceId": "h_1789834409620_tjot28",
+      "bookingId": "HKF-2026-753946",
+      "rating": 5
+    },
+    "read": false,
+    "createdAt": "2026-09-19T16:13:29.746Z",
+    "readAt": null,
+    "updatedAt": "2026-09-19T16:13:29.746Z"
+  },
+  {
+    "id": "notif_1789834409801_r8zeol",
+    "userId": "usr_1789834409095_sedzg7",
+    "type": "BOOKING_UPDATE",
+    "title": "Owner Replied to Your Review",
+    "message": "The owner of Manoj Royal Heritage Lawn responded to your review.",
+    "data": {
+      "reviewId": "rev_1789834409739_3oeiii",
+      "serviceId": "h_1789834409620_tjot28"
+    },
+    "read": false,
+    "createdAt": "2026-09-19T16:13:29.801Z",
+    "readAt": null,
+    "updatedAt": "2026-09-19T16:13:29.801Z"
+  },
+  {
+    "id": "notif_1789834519522_ryoy20",
+    "userId": "usr_1789834519435_wc5rs0",
+    "type": "BOOKING_REQUEST",
+    "title": "New Booking Request",
+    "message": "Rahul Customer has requested to book Rajput Royal Palace & Garden on 2026-12-11.",
+    "data": {
+      "bookingId": "HKF-2026-402836",
+      "serviceId": "h_1789834519443_5o1vv8",
+      "eventDate": "2026-12-11"
+    },
+    "read": false,
+    "createdAt": "2026-09-19T16:15:19.522Z",
+    "readAt": null,
+    "updatedAt": "2026-09-19T16:15:19.522Z"
+  },
+  {
+    "id": "notif_1789834519602_c9x8bs",
+    "userId": "usr_1789834519089_n23arn",
+    "type": "BOOKING_UPDATE",
+    "title": "Booking ACCEPTED",
+    "message": "Your booking HKF-2026-402836 for Rajput Royal Palace & Garden is now ACCEPTED.",
+    "data": {
+      "bookingId": "HKF-2026-402836",
+      "status": "ACCEPTED"
+    },
+    "read": false,
+    "createdAt": "2026-09-19T16:15:19.602Z",
+    "readAt": null,
+    "updatedAt": "2026-09-19T16:15:19.602Z"
+  },
+  {
+    "id": "notif_1789834519635_m7u1cm",
+    "userId": "usr_1789834519089_n23arn",
+    "type": "BOOKING_UPDATE",
+    "title": "Booking CONFIRMED",
+    "message": "Your booking HKF-2026-402836 for Rajput Royal Palace & Garden is now CONFIRMED.",
+    "data": {
+      "bookingId": "HKF-2026-402836",
+      "status": "CONFIRMED"
+    },
+    "read": false,
+    "createdAt": "2026-09-19T16:15:19.635Z",
+    "readAt": null,
+    "updatedAt": "2026-09-19T16:15:19.635Z"
+  },
+  {
+    "id": "notif_1789834519686_70l6m1",
+    "userId": "usr_1789834519089_n23arn",
+    "type": "BOOKING_UPDATE",
+    "title": "Booking COMPLETED",
+    "message": "Your booking HKF-2026-402836 for Rajput Royal Palace & Garden is now COMPLETED.",
+    "data": {
+      "bookingId": "HKF-2026-402836",
+      "status": "COMPLETED"
+    },
+    "read": false,
+    "createdAt": "2026-09-19T16:15:19.686Z",
+    "readAt": null,
+    "updatedAt": "2026-09-19T16:15:19.686Z"
+  },
+  {
+    "id": "notif_1789834519738_hcf81m",
+    "userId": "usr_1789834519435_wc5rs0",
+    "type": "BOOKING_REQUEST",
+    "title": "New Booking Request",
+    "message": "Rahul Customer has requested to book Rajput Royal Palace & Garden on 2026-11-21.",
+    "data": {
+      "bookingId": "HKF-2026-776537",
+      "serviceId": "h_1789834519443_5o1vv8",
+      "eventDate": "2026-11-21"
+    },
+    "read": false,
+    "createdAt": "2026-09-19T16:15:19.738Z",
+    "readAt": null,
+    "updatedAt": "2026-09-19T16:15:19.738Z"
+  },
+  {
+    "id": "notif_1789834519756_j10f5c",
+    "userId": "usr_1789834519089_n23arn",
+    "type": "BOOKING_UPDATE",
+    "title": "Booking ACCEPTED",
+    "message": "Your booking HKF-2026-776537 for Rajput Royal Palace & Garden is now ACCEPTED.",
+    "data": {
+      "bookingId": "HKF-2026-776537",
+      "status": "ACCEPTED"
+    },
+    "read": false,
+    "createdAt": "2026-09-19T16:15:19.756Z",
+    "readAt": null,
+    "updatedAt": "2026-09-19T16:15:19.756Z"
+  },
+  {
+    "id": "notif_1789834519794_l1ibr6",
+    "userId": "usr_1789834519435_wc5rs0",
+    "type": "BOOKING_UPDATE",
+    "title": "Booking Cancelled",
+    "message": "Booking HKF-2026-776537 for Rajput Royal Palace & Garden was cancelled: Family changed wedding venue location to Varanasi.",
+    "data": {
+      "bookingId": "HKF-2026-776537",
+      "status": "CANCELLED"
+    },
+    "read": false,
+    "createdAt": "2026-09-19T16:15:19.794Z",
+    "readAt": null,
+    "updatedAt": "2026-09-19T16:15:19.794Z"
+  },
+  {
+    "id": "notif_1789834530978_3qildn",
+    "userId": "owner_101",
+    "type": "BOOKING_REQUEST",
+    "title": "New Booking Request",
+    "message": "Vikas Malhotra has requested to book Awadh Shahi Royal Catering & Live Counters on 2026-11-28.",
+    "data": {
+      "bookingId": "HKF-2026-369378",
+      "serviceId": "srv-cat-401",
+      "eventDate": "2026-11-28"
+    },
+    "read": false,
+    "createdAt": "2026-09-19T16:15:30.978Z",
+    "readAt": null,
+    "updatedAt": "2026-09-19T16:15:30.978Z"
+  },
+  {
+    "id": "notif_1789896538521_gzl439",
+    "userId": "usr_1789896537979_6cvpqc",
+    "type": "BOOKING_REQUEST",
+    "title": "New Booking Request",
+    "message": "Customer AI Test has requested to book Royal Heritage Grand Palace on 2026-11-25.",
+    "data": {
+      "bookingId": "HKF-2026-159000",
+      "serviceId": "h_1789896538276_v0ex0u",
+      "eventDate": "2026-11-25"
+    },
+    "read": false,
+    "createdAt": "2026-09-20T09:28:58.521Z",
+    "readAt": null,
+    "updatedAt": "2026-09-20T09:28:58.521Z"
+  },
+  {
+    "id": "notif_1789896587633_ywbnka",
+    "userId": "usr_1789896587231_5g53yq",
+    "type": "BOOKING_REQUEST",
+    "title": "New Booking Request",
+    "message": "Customer AI Test has requested to book Royal Heritage Grand Palace on 2026-11-25.",
+    "data": {
+      "bookingId": "HKF-2026-656966",
+      "serviceId": "h_1789896587524_lqfwrg",
+      "eventDate": "2026-11-25"
+    },
+    "read": false,
+    "createdAt": "2026-09-20T09:29:47.633Z",
+    "readAt": null,
+    "updatedAt": "2026-09-20T09:29:47.634Z"
+  },
+  {
+    "id": "notif_1789896696705_dqs45o",
+    "userId": "usr_1789896693423_f2382w",
+    "type": "BOOKING_REQUEST",
+    "title": "New Booking Request",
+    "message": "Customer AI Test has requested to book Royal Heritage Grand Palace on 2026-11-25.",
+    "data": {
+      "bookingId": "HKF-2026-467807",
+      "serviceId": "h_1789896695438_rfexnb",
+      "eventDate": "2026-11-25"
+    },
+    "read": false,
+    "createdAt": "2026-09-20T09:31:36.705Z",
+    "readAt": null,
+    "updatedAt": "2026-09-20T09:31:36.705Z"
+  },
+  {
+    "id": "notif_1789896696757_25qke2",
+    "userId": "usr_1789896695125_8gnsa1",
+    "type": "PAYMENT_SUCCESS",
+    "title": "Advance Payment Successful! 🎉",
+    "message": "Your advance payment of ₹43,513 for Royal Heritage Grand Palace has been received. Booking #HKF-2026-467807 is now CONFIRMED!",
+    "data": {},
+    "read": false,
+    "createdAt": "2026-09-20T09:31:36.757Z",
+    "readAt": null,
+    "updatedAt": "2026-09-20T09:31:36.757Z"
+  },
+  {
+    "id": "notif_1789896696762_7naiss",
+    "userId": "usr_1789896693423_f2382w",
+    "type": "PAYMENT_RECEIVED",
+    "title": "Advance Payment Received! 💰",
+    "message": "₹43,513 advance paid for Royal Heritage Grand Palace on 2026-11-25. Booking #HKF-2026-467807 is now CONFIRMED.",
+    "data": {},
+    "read": false,
+    "createdAt": "2026-09-20T09:31:36.762Z",
+    "readAt": null,
+    "updatedAt": "2026-09-20T09:31:36.762Z"
+  },
+  {
+    "id": "notif_1789897398500_fjttg2",
+    "userId": "usr_1789897397987_p0spl1",
+    "type": "BOOKING_REQUEST",
+    "title": "New Booking Request",
+    "message": "Customer AI Test has requested to book Royal Heritage Grand Palace on 2026-11-25.",
+    "data": {
+      "bookingId": "HKF-2026-685035",
+      "serviceId": "h_1789897398353_6vzr1r",
+      "eventDate": "2026-11-25"
+    },
+    "read": false,
+    "createdAt": "2026-09-20T09:43:18.501Z",
+    "readAt": null,
+    "updatedAt": "2026-09-20T09:43:18.501Z"
+  },
+  {
+    "id": "notif_1789897398544_n44ckh",
+    "userId": "usr_1789897398339_96r2at",
+    "type": "PAYMENT_SUCCESS",
+    "title": "Advance Payment Successful! 🎉",
+    "message": "Your advance payment of ₹43,513 for Royal Heritage Grand Palace has been received. Booking #HKF-2026-685035 is now CONFIRMED!",
+    "data": {},
+    "read": false,
+    "createdAt": "2026-09-20T09:43:18.544Z",
+    "readAt": null,
+    "updatedAt": "2026-09-20T09:43:18.544Z"
+  },
+  {
+    "id": "notif_1789897398555_ezz8lj",
+    "userId": "usr_1789897397987_p0spl1",
+    "type": "PAYMENT_RECEIVED",
+    "title": "Advance Payment Received! 💰",
+    "message": "₹43,513 advance paid for Royal Heritage Grand Palace on 2026-11-25. Booking #HKF-2026-685035 is now CONFIRMED.",
+    "data": {},
+    "read": false,
+    "createdAt": "2026-09-20T09:43:18.555Z",
+    "readAt": null,
+    "updatedAt": "2026-09-20T09:43:18.555Z"
+  },
+  {
+    "id": "notif_1789897408396_g5bs9f",
+    "userId": "usr_1789897408294_sukqre",
+    "type": "BOOKING_REQUEST",
+    "title": "New Booking Request",
+    "message": "Rahul Customer has requested to book Rajput Royal Palace & Garden on 2026-12-16.",
+    "data": {
+      "bookingId": "HKF-2026-798774",
+      "serviceId": "h_1789897408306_67w7jv",
+      "eventDate": "2026-12-16"
+    },
+    "read": false,
+    "createdAt": "2026-09-20T09:43:28.396Z",
+    "readAt": null,
+    "updatedAt": "2026-09-20T09:43:28.396Z"
+  },
+  {
+    "id": "notif_1789897408435_9emmdi",
+    "userId": "usr_1789897407682_frcf1h",
+    "type": "BOOKING_UPDATE",
+    "title": "Booking ACCEPTED",
+    "message": "Your booking HKF-2026-798774 for Rajput Royal Palace & Garden is now ACCEPTED.",
+    "data": {
+      "bookingId": "HKF-2026-798774",
+      "status": "ACCEPTED"
+    },
+    "read": false,
+    "createdAt": "2026-09-20T09:43:28.435Z",
+    "readAt": null,
+    "updatedAt": "2026-09-20T09:43:28.435Z"
+  },
+  {
+    "id": "notif_1789897408475_5nco9i",
+    "userId": "usr_1789897407682_frcf1h",
+    "type": "BOOKING_UPDATE",
+    "title": "Booking CONFIRMED",
+    "message": "Your booking HKF-2026-798774 for Rajput Royal Palace & Garden is now CONFIRMED.",
+    "data": {
+      "bookingId": "HKF-2026-798774",
+      "status": "CONFIRMED"
+    },
+    "read": false,
+    "createdAt": "2026-09-20T09:43:28.475Z",
+    "readAt": null,
+    "updatedAt": "2026-09-20T09:43:28.475Z"
+  },
+  {
+    "id": "notif_1789897408491_2os8yu",
+    "userId": "usr_1789897407682_frcf1h",
+    "type": "BOOKING_UPDATE",
+    "title": "Booking COMPLETED",
+    "message": "Your booking HKF-2026-798774 for Rajput Royal Palace & Garden is now COMPLETED.",
+    "data": {
+      "bookingId": "HKF-2026-798774",
+      "status": "COMPLETED"
+    },
+    "read": false,
+    "createdAt": "2026-09-20T09:43:28.491Z",
+    "readAt": null,
+    "updatedAt": "2026-09-20T09:43:28.491Z"
+  },
+  {
+    "id": "notif_1789897408524_jun2z0",
+    "userId": "usr_1789897408294_sukqre",
+    "type": "BOOKING_REQUEST",
+    "title": "New Booking Request",
+    "message": "Rahul Customer has requested to book Rajput Royal Palace & Garden on 2026-11-21.",
+    "data": {
+      "bookingId": "HKF-2026-382626",
+      "serviceId": "h_1789897408306_67w7jv",
+      "eventDate": "2026-11-21"
+    },
+    "read": false,
+    "createdAt": "2026-09-20T09:43:28.524Z",
+    "readAt": null,
+    "updatedAt": "2026-09-20T09:43:28.524Z"
+  },
+  {
+    "id": "notif_1789897408612_hj3b0e",
+    "userId": "usr_1789897407682_frcf1h",
+    "type": "BOOKING_UPDATE",
+    "title": "Booking ACCEPTED",
+    "message": "Your booking HKF-2026-382626 for Rajput Royal Palace & Garden is now ACCEPTED.",
+    "data": {
+      "bookingId": "HKF-2026-382626",
+      "status": "ACCEPTED"
+    },
+    "read": false,
+    "createdAt": "2026-09-20T09:43:28.612Z",
+    "readAt": null,
+    "updatedAt": "2026-09-20T09:43:28.612Z"
+  },
+  {
+    "id": "notif_1789897408669_gisxy1",
+    "userId": "usr_1789897408294_sukqre",
+    "type": "BOOKING_UPDATE",
+    "title": "Booking Cancelled",
+    "message": "Booking HKF-2026-382626 for Rajput Royal Palace & Garden was cancelled: Family changed wedding venue location to Varanasi.",
+    "data": {
+      "bookingId": "HKF-2026-382626",
+      "status": "CANCELLED"
+    },
+    "read": false,
+    "createdAt": "2026-09-20T09:43:28.669Z",
+    "readAt": null,
+    "updatedAt": "2026-09-20T09:43:28.669Z"
+  },
+  {
+    "id": "notif_1789897418638_gs1jwn",
+    "userId": "usr_1789897418328_47zpop",
+    "type": "BOOKING_REQUEST",
+    "title": "New Booking Request",
+    "message": "Aman Customer has requested to book Sunil Grand Imperial Banquet on 2026-12-15.",
+    "data": {
+      "bookingId": "HKF-2026-143656",
+      "serviceId": "h_1789897418614_pmlf1q",
+      "eventDate": "2026-12-15"
+    },
+    "read": true,
+    "createdAt": "2026-09-20T09:43:38.638Z",
+    "readAt": "2026-09-20T09:43:38.677Z",
+    "updatedAt": "2026-09-20T09:43:38.677Z"
+  },
+  {
+    "id": "notif_1789897418717_f545fp",
+    "userId": "usr_1789897418328_47zpop",
+    "type": "MESSAGE",
+    "title": "New Message from Aman Customer",
+    "message": "Namaste Sunil ji, can we arrange a separate Jain food buffet...",
+    "data": {
+      "messageId": "msg_1789897418714_8pa7e2",
+      "conversationId": "conv_b_HKF-2026-143656",
+      "bookingId": "HKF-2026-143656",
+      "serviceId": "h_1789897418614_pmlf1q",
+      "senderId": "usr_1789897418093_yzdqnu",
+      "senderName": "Aman Customer"
+    },
+    "read": false,
+    "createdAt": "2026-09-20T09:43:38.717Z",
+    "readAt": null,
+    "updatedAt": "2026-09-20T09:43:38.717Z"
+  },
+  {
+    "id": "notif_1789897418759_2b5sj9",
+    "userId": "usr_1789897418093_yzdqnu",
+    "type": "MESSAGE",
+    "title": "New Message from Sunil Owner Partner",
+    "message": "Haan Aman ji, bilkul! We have a dedicated separate vegetaria...",
+    "data": {
+      "messageId": "msg_1789897418748_lnoln7",
+      "conversationId": "conv_b_HKF-2026-143656",
+      "bookingId": "HKF-2026-143656",
+      "serviceId": "h_1789897418614_pmlf1q",
+      "senderId": "usr_1789897418328_47zpop",
+      "senderName": "Sunil Owner Partner"
+    },
+    "read": false,
+    "createdAt": "2026-09-20T09:43:38.759Z",
+    "readAt": null,
+    "updatedAt": "2026-09-20T09:43:38.759Z"
+  },
+  {
+    "id": "notif_1789897426245_u9s1q9",
+    "userId": "usr_1789897426087_6do1nj",
+    "type": "BOOKING_REQUEST",
+    "title": "New Booking Request",
+    "message": "Kavita Verma has requested to book Manoj Royal Heritage Lawn on 2026-12-28.",
+    "data": {
+      "bookingId": "HKF-2026-341209",
+      "serviceId": "h_1789897426232_9mj1ox",
+      "eventDate": "2026-12-28"
+    },
+    "read": false,
+    "createdAt": "2026-09-20T09:43:46.245Z",
+    "readAt": null,
+    "updatedAt": "2026-09-20T09:43:46.245Z"
+  },
+  {
+    "id": "notif_1789897426284_6fhp4k",
+    "userId": "usr_1789897425735_8jdn1p",
+    "type": "BOOKING_UPDATE",
+    "title": "Booking ACCEPTED",
+    "message": "Your booking HKF-2026-341209 for Manoj Royal Heritage Lawn is now ACCEPTED.",
+    "data": {
+      "bookingId": "HKF-2026-341209",
+      "status": "ACCEPTED"
+    },
+    "read": false,
+    "createdAt": "2026-09-20T09:43:46.284Z",
+    "readAt": null,
+    "updatedAt": "2026-09-20T09:43:46.284Z"
+  },
+  {
+    "id": "notif_1789897426301_prnofz",
+    "userId": "usr_1789897425735_8jdn1p",
+    "type": "BOOKING_UPDATE",
+    "title": "Booking CONFIRMED",
+    "message": "Your booking HKF-2026-341209 for Manoj Royal Heritage Lawn is now CONFIRMED.",
+    "data": {
+      "bookingId": "HKF-2026-341209",
+      "status": "CONFIRMED"
+    },
+    "read": false,
+    "createdAt": "2026-09-20T09:43:46.301Z",
+    "readAt": null,
+    "updatedAt": "2026-09-20T09:43:46.301Z"
+  },
+  {
+    "id": "notif_1789897426309_k6ltim",
+    "userId": "usr_1789897425735_8jdn1p",
+    "type": "BOOKING_UPDATE",
+    "title": "Booking COMPLETED",
+    "message": "Your booking HKF-2026-341209 for Manoj Royal Heritage Lawn is now COMPLETED.",
+    "data": {
+      "bookingId": "HKF-2026-341209",
+      "status": "COMPLETED"
+    },
+    "read": false,
+    "createdAt": "2026-09-20T09:43:46.309Z",
+    "readAt": null,
+    "updatedAt": "2026-09-20T09:43:46.309Z"
+  },
+  {
+    "id": "notif_1789897426340_iyvomx",
+    "userId": "usr_1789897426087_6do1nj",
+    "type": "BOOKING_UPDATE",
+    "title": "New 5★ Review Received!",
+    "message": "Kavita Verma Customer left a 5-star review for Manoj Royal Heritage Lawn: \"Magical Royal Wedding Experience!\".",
+    "data": {
+      "reviewId": "rev_1789897426330_al9fzq",
+      "serviceId": "h_1789897426232_9mj1ox",
+      "bookingId": "HKF-2026-341209",
+      "rating": 5
+    },
+    "read": false,
+    "createdAt": "2026-09-20T09:43:46.340Z",
+    "readAt": null,
+    "updatedAt": "2026-09-20T09:43:46.340Z"
+  },
+  {
+    "id": "notif_1789897426375_0th5n5",
+    "userId": "usr_1789897425735_8jdn1p",
+    "type": "BOOKING_UPDATE",
+    "title": "Owner Replied to Your Review",
+    "message": "The owner of Manoj Royal Heritage Lawn responded to your review.",
+    "data": {
+      "reviewId": "rev_1789897426330_al9fzq",
+      "serviceId": "h_1789897426232_9mj1ox"
+    },
+    "read": false,
+    "createdAt": "2026-09-20T09:43:46.375Z",
+    "readAt": null,
+    "updatedAt": "2026-09-20T09:43:46.375Z"
+  },
+  {
+    "id": "notif_1789898160598_nuz123",
+    "userId": "owner_101",
+    "type": "BOOKING_REQUEST",
+    "title": "New Booking Request",
+    "message": "Rohan Verma has requested to book The Royal Grand Heritage Palace on 2026-11-20.",
+    "data": {
+      "bookingId": "HKF-2026-585564",
+      "serviceId": "h-101",
+      "eventDate": "2026-11-20"
+    },
+    "read": false,
+    "createdAt": "2026-09-20T09:56:00.598Z",
+    "readAt": null,
+    "updatedAt": "2026-09-20T09:56:00.598Z"
+  },
+  {
+    "id": "notif_1789898168494_sa281n",
+    "userId": "usr_1789898168259_5ua16f",
+    "type": "BOOKING_REQUEST",
+    "title": "New Booking Request",
+    "message": "Sunita Customer has requested to book Sanskriti Lawn & Grand Banquet on 2026-12-10.",
+    "data": {
+      "bookingId": "HKF-2026-772124",
+      "serviceId": "h_1789898168450_vwc6lk",
+      "eventDate": "2026-12-10"
+    },
+    "read": false,
+    "createdAt": "2026-09-20T09:56:08.494Z",
+    "readAt": null,
+    "updatedAt": "2026-09-20T09:56:08.494Z"
+  },
+  {
+    "id": "notif_1789898188244_trkpxn",
+    "userId": "usr_1789898187967_b6cgyr",
+    "type": "BOOKING_REQUEST",
+    "title": "New Booking Request",
+    "message": "Sunita Customer has requested to book Sanskriti Lawn & Grand Banquet on 2026-12-10.",
+    "data": {
+      "bookingId": "HKF-2026-750826",
+      "serviceId": "h_1789898188206_iiv3w9",
+      "eventDate": "2026-12-10"
+    },
+    "read": false,
+    "createdAt": "2026-09-20T09:56:28.244Z",
+    "readAt": null,
+    "updatedAt": "2026-09-20T09:56:28.244Z"
+  },
+  {
+    "id": "notif_1789898188260_5flldf",
+    "userId": "usr_1789898188164_bdrh4o",
+    "type": "BOOKING_UPDATE",
+    "title": "Booking ACCEPTED",
+    "message": "Your booking HKF-2026-750826 for Sanskriti Lawn & Grand Banquet is now ACCEPTED.",
+    "data": {
+      "bookingId": "HKF-2026-750826",
+      "status": "ACCEPTED"
+    },
+    "read": false,
+    "createdAt": "2026-09-20T09:56:28.260Z",
+    "readAt": null,
+    "updatedAt": "2026-09-20T09:56:28.260Z"
+  },
+  {
+    "id": "notif_1789898204756_t3g8ur",
+    "userId": "owner_101",
+    "type": "BOOKING_REQUEST",
+    "title": "New Booking Request",
+    "message": "Vikas Malhotra has requested to book Awadh Shahi Royal Catering & Live Counters on 2026-11-28.",
+    "data": {
+      "bookingId": "HKF-2026-552482",
+      "serviceId": "srv-cat-401",
+      "eventDate": "2026-11-28"
+    },
+    "read": false,
+    "createdAt": "2026-09-20T09:56:44.756Z",
+    "readAt": null,
+    "updatedAt": "2026-09-20T09:56:44.756Z"
+  },
+  {
+    "id": "notif_1789899546600_zkmhc0",
+    "userId": "usr_1789899546480_16e2xo",
+    "type": "BOOKING_REQUEST",
+    "title": "New Booking Request",
+    "message": "E2E Test Customer has requested to book Royal Kohinoor Palace Lucknow on 2026-11-20.",
+    "data": {
+      "bookingId": "HKF-2026-110252",
+      "serviceId": "h_1789899546500_yf6qmu",
+      "eventDate": "2026-11-20"
+    },
+    "read": false,
+    "createdAt": "2026-09-20T10:19:06.600Z",
+    "readAt": null,
+    "updatedAt": "2026-09-20T10:19:06.600Z"
+  },
+  {
+    "id": "notif_1789899546618_31svhg",
+    "userId": "usr_1789899546297_lqkcuo",
+    "type": "BOOKING_UPDATE",
+    "title": "Booking ACCEPTED",
+    "message": "Your booking HKF-2026-110252 for Royal Kohinoor Palace Lucknow is now ACCEPTED.",
+    "data": {
+      "bookingId": "HKF-2026-110252",
+      "status": "ACCEPTED"
+    },
+    "read": false,
+    "createdAt": "2026-09-20T10:19:06.618Z",
+    "readAt": null,
+    "updatedAt": "2026-09-20T10:19:06.618Z"
+  },
+  {
+    "id": "notif_1789899629479_rvmrd9",
+    "userId": "usr_1789899628684_gmhztj",
+    "type": "BOOKING_REQUEST",
+    "title": "New Booking Request",
+    "message": "E2E Test Customer has requested to book Royal Kohinoor Palace Lucknow on 2026-11-20.",
+    "data": {
+      "bookingId": "HKF-2026-581753",
+      "serviceId": "h_1789899628892_wvz0jc",
+      "eventDate": "2026-11-20"
+    },
+    "read": false,
+    "createdAt": "2026-09-20T10:20:29.479Z",
+    "readAt": null,
+    "updatedAt": "2026-09-20T10:20:29.479Z"
+  },
+  {
+    "id": "notif_1789899629495_te9k7x",
+    "userId": "usr_1789899628262_x211j6",
+    "type": "BOOKING_UPDATE",
+    "title": "Booking ACCEPTED",
+    "message": "Your booking HKF-2026-581753 for Royal Kohinoor Palace Lucknow is now ACCEPTED.",
+    "data": {
+      "bookingId": "HKF-2026-581753",
+      "status": "ACCEPTED"
+    },
+    "read": false,
+    "createdAt": "2026-09-20T10:20:29.495Z",
+    "readAt": null,
+    "updatedAt": "2026-09-20T10:20:29.495Z"
+  },
+  {
+    "id": "notif_1789899648658_6eub91",
+    "userId": "usr_1789899648379_gny0al",
+    "type": "BOOKING_REQUEST",
+    "title": "New Booking Request",
+    "message": "E2E Test Customer has requested to book Royal Kohinoor Palace Lucknow on 2026-11-20.",
+    "data": {
+      "bookingId": "HKF-2026-403979",
+      "serviceId": "h_1789899648447_ehcm7l",
+      "eventDate": "2026-11-20"
+    },
+    "read": false,
+    "createdAt": "2026-09-20T10:20:48.658Z",
+    "readAt": null,
+    "updatedAt": "2026-09-20T10:20:48.658Z"
+  },
+  {
+    "id": "notif_1789899648707_4qv3ts",
+    "userId": "usr_1789899647832_mn00ml",
+    "type": "BOOKING_UPDATE",
+    "title": "Booking ACCEPTED",
+    "message": "Your booking HKF-2026-403979 for Royal Kohinoor Palace Lucknow is now ACCEPTED.",
+    "data": {
+      "bookingId": "HKF-2026-403979",
+      "status": "ACCEPTED"
+    },
+    "read": false,
+    "createdAt": "2026-09-20T10:20:48.707Z",
+    "readAt": null,
+    "updatedAt": "2026-09-20T10:20:48.707Z"
+  },
+  {
+    "id": "notif_1789899648730_1qctg8",
+    "userId": "usr_1789899647832_mn00ml",
+    "type": "PAYMENT_SUCCESS",
+    "title": "Advance Payment Successful! 🎉",
+    "message": "Your advance payment of ₹52,363 for Royal Kohinoor Palace Lucknow has been received. Booking #HKF-2026-403979 is now CONFIRMED!",
+    "data": {},
+    "read": false,
+    "createdAt": "2026-09-20T10:20:48.730Z",
+    "readAt": null,
+    "updatedAt": "2026-09-20T10:20:48.730Z"
+  },
+  {
+    "id": "notif_1789899648737_dmg0x3",
+    "userId": "usr_1789899648379_gny0al",
+    "type": "PAYMENT_RECEIVED",
+    "title": "Advance Payment Received! 💰",
+    "message": "₹52,363 advance paid for Royal Kohinoor Palace Lucknow on 2026-11-20. Booking #HKF-2026-403979 is now CONFIRMED.",
+    "data": {},
+    "read": false,
+    "createdAt": "2026-09-20T10:20:48.737Z",
+    "readAt": null,
+    "updatedAt": "2026-09-20T10:20:48.737Z"
+  },
+  {
+    "id": "notif_1789899692338_akfutr",
+    "userId": "usr_1789899692305_dh9xow",
+    "type": "BOOKING_REQUEST",
+    "title": "New Booking Request",
+    "message": "E2E Test Customer has requested to book Royal Kohinoor Palace Lucknow on 2026-11-20.",
+    "data": {
+      "bookingId": "HKF-2026-616053",
+      "serviceId": "h_1789899692313_gvxxks",
+      "eventDate": "2026-11-20"
+    },
+    "read": false,
+    "createdAt": "2026-09-20T10:21:32.338Z",
+    "readAt": null,
+    "updatedAt": "2026-09-20T10:21:32.338Z"
+  },
+  {
+    "id": "notif_1789899692349_bb64vo",
+    "userId": "usr_1789899691899_i4y20i",
+    "type": "BOOKING_UPDATE",
+    "title": "Booking ACCEPTED",
+    "message": "Your booking HKF-2026-616053 for Royal Kohinoor Palace Lucknow is now ACCEPTED.",
+    "data": {
+      "bookingId": "HKF-2026-616053",
+      "status": "ACCEPTED"
+    },
+    "read": false,
+    "createdAt": "2026-09-20T10:21:32.349Z",
+    "readAt": null,
+    "updatedAt": "2026-09-20T10:21:32.349Z"
+  },
+  {
+    "id": "notif_1789899692366_yhnxul",
+    "userId": "usr_1789899691899_i4y20i",
+    "type": "PAYMENT_SUCCESS",
+    "title": "Advance Payment Successful! 🎉",
+    "message": "Your advance payment of ₹52,363 for Royal Kohinoor Palace Lucknow has been received. Booking #HKF-2026-616053 is now CONFIRMED!",
+    "data": {},
+    "read": false,
+    "createdAt": "2026-09-20T10:21:32.366Z",
+    "readAt": null,
+    "updatedAt": "2026-09-20T10:21:32.366Z"
+  },
+  {
+    "id": "notif_1789899692368_c9kda4",
+    "userId": "usr_1789899692305_dh9xow",
+    "type": "PAYMENT_RECEIVED",
+    "title": "Advance Payment Received! 💰",
+    "message": "₹52,363 advance paid for Royal Kohinoor Palace Lucknow on 2026-11-20. Booking #HKF-2026-616053 is now CONFIRMED.",
+    "data": {},
+    "read": false,
+    "createdAt": "2026-09-20T10:21:32.368Z",
+    "readAt": null,
+    "updatedAt": "2026-09-20T10:21:32.368Z"
+  },
+  {
+    "id": "notif_1789899692380_asi0va",
+    "userId": "usr_1789899691899_i4y20i",
+    "type": "BOOKING_UPDATE",
+    "title": "Booking COMPLETED",
+    "message": "Your booking HKF-2026-616053 for Royal Kohinoor Palace Lucknow is now COMPLETED.",
+    "data": {
+      "bookingId": "HKF-2026-616053",
+      "status": "COMPLETED"
+    },
+    "read": false,
+    "createdAt": "2026-09-20T10:21:32.380Z",
+    "readAt": null,
+    "updatedAt": "2026-09-20T10:21:32.380Z"
+  },
+  {
+    "id": "notif_1789899692395_2f8i5q",
+    "userId": "usr_1789899692305_dh9xow",
+    "type": "BOOKING_UPDATE",
+    "title": "New 5★ Review Received!",
+    "message": "E2E Test Customer left a 5-star review for Royal Kohinoor Palace Lucknow: \"Flawless wedding experience!\".",
+    "data": {
+      "reviewId": "rev_1789899692389_ebb1xr",
+      "serviceId": "h_1789899692313_gvxxks",
+      "bookingId": "HKF-2026-616053",
+      "rating": 5
+    },
+    "read": false,
+    "createdAt": "2026-09-20T10:21:32.395Z",
+    "readAt": null,
+    "updatedAt": "2026-09-20T10:21:32.395Z"
+  },
+  {
+    "id": "notif_1789899762013_y38wnc",
+    "userId": "owner_101",
+    "type": "BOOKING_REQUEST",
+    "title": "New Booking Request",
+    "message": "Rohan Sharma has requested to book The Royal Grand Heritage Palace on 2026-11-28.",
+    "data": {
+      "bookingId": "HKF-2026-476694",
+      "serviceId": "h-101",
+      "eventDate": "2026-11-28"
+    },
+    "read": false,
+    "createdAt": "2026-09-20T10:22:42.013Z",
+    "readAt": null,
+    "updatedAt": "2026-09-20T10:22:42.013Z"
+  },
+  {
+    "id": "notif_1789899762385_2m9w3m",
+    "userId": "usr_1789899761382_4tu3d9",
+    "type": "BOOKING_UPDATE",
+    "title": "Booking ACCEPTED",
+    "message": "Your booking HKF-2026-476694 for The Royal Grand Heritage Palace is now ACCEPTED.",
+    "data": {
+      "bookingId": "HKF-2026-476694",
+      "status": "ACCEPTED"
+    },
+    "read": false,
+    "createdAt": "2026-09-20T10:22:42.385Z",
+    "readAt": null,
+    "updatedAt": "2026-09-20T10:22:42.385Z"
+  },
+  {
+    "id": "notif_1789899762482_5isbjn",
+    "userId": "usr_1789899761382_4tu3d9",
+    "type": "PAYMENT_SUCCESS",
+    "title": "Advance Payment Successful! 🎉",
+    "message": "Your advance payment of ₹24,338 for The Royal Grand Heritage Palace has been received. Booking #HKF-2026-476694 is now CONFIRMED!",
+    "data": {},
+    "read": false,
+    "createdAt": "2026-09-20T10:22:42.482Z",
+    "readAt": null,
+    "updatedAt": "2026-09-20T10:22:42.482Z"
+  },
+  {
+    "id": "notif_1789899762484_tpkex2",
+    "userId": "owner_101",
+    "type": "PAYMENT_RECEIVED",
+    "title": "Advance Payment Received! 💰",
+    "message": "₹24,338 advance paid for The Royal Grand Heritage Palace on 2026-11-28. Booking #HKF-2026-476694 is now CONFIRMED.",
+    "data": {},
+    "read": false,
+    "createdAt": "2026-09-20T10:22:42.484Z",
+    "readAt": null,
+    "updatedAt": "2026-09-20T10:22:42.484Z"
+  },
+  {
+    "id": "notif_1789899841987_m26ztg",
+    "userId": "owner_101",
+    "type": "BOOKING_REQUEST",
+    "title": "New Booking Request",
+    "message": "Rohan Sharma has requested to book The Royal Grand Heritage Palace on 2026-11-15.",
+    "data": {
+      "bookingId": "HKF-2026-468209",
+      "serviceId": "h-101",
+      "eventDate": "2026-11-15"
+    },
+    "read": false,
+    "createdAt": "2026-09-20T10:24:01.987Z",
+    "readAt": null,
+    "updatedAt": "2026-09-20T10:24:01.987Z"
+  },
+  {
+    "id": "notif_1789899842181_fgrrrz",
+    "userId": "usr_1789899841763_foqjbt",
+    "type": "BOOKING_UPDATE",
+    "title": "Booking ACCEPTED",
+    "message": "Your booking HKF-2026-468209 for The Royal Grand Heritage Palace is now ACCEPTED.",
+    "data": {
+      "bookingId": "HKF-2026-468209",
+      "status": "ACCEPTED"
+    },
+    "read": false,
+    "createdAt": "2026-09-20T10:24:02.181Z",
+    "readAt": null,
+    "updatedAt": "2026-09-20T10:24:02.181Z"
+  },
+  {
+    "id": "notif_1789899842255_bzq328",
+    "userId": "usr_1789899841763_foqjbt",
+    "type": "PAYMENT_SUCCESS",
+    "title": "Advance Payment Successful! 🎉",
+    "message": "Your advance payment of ₹24,338 for The Royal Grand Heritage Palace has been received. Booking #HKF-2026-468209 is now CONFIRMED!",
+    "data": {},
+    "read": false,
+    "createdAt": "2026-09-20T10:24:02.255Z",
+    "readAt": null,
+    "updatedAt": "2026-09-20T10:24:02.255Z"
+  },
+  {
+    "id": "notif_1789899842263_p64t5m",
+    "userId": "owner_101",
+    "type": "PAYMENT_RECEIVED",
+    "title": "Advance Payment Received! 💰",
+    "message": "₹24,338 advance paid for The Royal Grand Heritage Palace on 2026-11-15. Booking #HKF-2026-468209 is now CONFIRMED.",
+    "data": {},
+    "read": false,
+    "createdAt": "2026-09-20T10:24:02.263Z",
+    "readAt": null,
+    "updatedAt": "2026-09-20T10:24:02.263Z"
+  },
+  {
+    "id": "notif_1789899842281_fdlndh",
+    "userId": "usr_1789899842148_buws5h",
+    "type": "MESSAGE",
+    "title": "New Message from Rohan Sharma",
+    "message": "Hello, can we arrange an inspection visit this Sunday?",
+    "data": {
+      "messageId": "msg_1789899842279_2pb717",
+      "conversationId": "conv_b_HKF-2026-468209",
+      "bookingId": "HKF-2026-468209",
+      "serviceId": "h-101",
+      "senderId": "usr_1789899841763_foqjbt",
+      "senderName": "Rohan Sharma"
+    },
+    "read": false,
+    "createdAt": "2026-09-20T10:24:02.281Z",
+    "readAt": null,
+    "updatedAt": "2026-09-20T10:24:02.281Z"
+  },
+  {
+    "id": "notif_1789899842294_ggi4vz",
+    "userId": "usr_1789899841763_foqjbt",
+    "type": "BOOKING_UPDATE",
+    "title": "Booking COMPLETED",
+    "message": "Your booking HKF-2026-468209 for The Royal Grand Heritage Palace is now COMPLETED.",
+    "data": {
+      "bookingId": "HKF-2026-468209",
+      "status": "COMPLETED"
+    },
+    "read": false,
+    "createdAt": "2026-09-20T10:24:02.294Z",
+    "readAt": null,
+    "updatedAt": "2026-09-20T10:24:02.294Z"
+  },
+  {
+    "id": "notif_1789899842319_pdmm5t",
+    "userId": "owner_101",
+    "type": "BOOKING_UPDATE",
+    "title": "New 5★ Review Received!",
+    "message": "Rohan Sharma left a 5-star review for The Royal Grand Heritage Palace: \"Spectacular Event!\".",
+    "data": {
+      "reviewId": "rev_1789899842314_ob40bd",
+      "serviceId": "h-101",
+      "bookingId": "HKF-2026-468209",
+      "rating": 5
+    },
+    "read": false,
+    "createdAt": "2026-09-20T10:24:02.319Z",
+    "readAt": null,
+    "updatedAt": "2026-09-20T10:24:02.319Z"
+  },
+  {
+    "id": "notif_1789899889033_ysusw1",
+    "userId": "owner_101",
+    "type": "BOOKING_REQUEST",
+    "title": "New Booking Request",
+    "message": "Rohan Sharma has requested to book The Royal Grand Heritage Palace on 2027-08-15.",
+    "data": {
+      "bookingId": "HKF-2026-658008",
+      "serviceId": "h-101",
+      "eventDate": "2027-08-15"
+    },
+    "read": false,
+    "createdAt": "2026-09-20T10:24:49.033Z",
+    "readAt": null,
+    "updatedAt": "2026-09-20T10:24:49.033Z"
+  },
+  {
+    "id": "notif_1789899889453_vs5kxa",
+    "userId": "usr_1789899888473_omrl5k",
+    "type": "BOOKING_UPDATE",
+    "title": "Booking ACCEPTED",
+    "message": "Your booking HKF-2026-658008 for The Royal Grand Heritage Palace is now ACCEPTED.",
+    "data": {
+      "bookingId": "HKF-2026-658008",
+      "status": "ACCEPTED"
+    },
+    "read": false,
+    "createdAt": "2026-09-20T10:24:49.453Z",
+    "readAt": null,
+    "updatedAt": "2026-09-20T10:24:49.453Z"
+  },
+  {
+    "id": "notif_1789899889746_xeschb",
+    "userId": "usr_1789899888473_omrl5k",
+    "type": "PAYMENT_SUCCESS",
+    "title": "Advance Payment Successful! 🎉",
+    "message": "Your advance payment of ₹24,338 for The Royal Grand Heritage Palace has been received. Booking #HKF-2026-658008 is now CONFIRMED!",
+    "data": {},
+    "read": false,
+    "createdAt": "2026-09-20T10:24:49.746Z",
+    "readAt": null,
+    "updatedAt": "2026-09-20T10:24:49.746Z"
+  },
+  {
+    "id": "notif_1789899889751_3g573x",
+    "userId": "owner_101",
+    "type": "PAYMENT_RECEIVED",
+    "title": "Advance Payment Received! 💰",
+    "message": "₹24,338 advance paid for The Royal Grand Heritage Palace on 2027-08-15. Booking #HKF-2026-658008 is now CONFIRMED.",
+    "data": {},
+    "read": false,
+    "createdAt": "2026-09-20T10:24:49.751Z",
+    "readAt": null,
+    "updatedAt": "2026-09-20T10:24:49.751Z"
+  },
+  {
+    "id": "notif_1789899889783_hq2vri",
+    "userId": "usr_1789899889269_g2y7ot",
+    "type": "MESSAGE",
+    "title": "New Message from Rohan Sharma",
+    "message": "Hello, can we arrange an inspection visit this Sunday?",
+    "data": {
+      "messageId": "msg_1789899889779_7fegtj",
+      "conversationId": "conv_b_HKF-2026-658008",
+      "bookingId": "HKF-2026-658008",
+      "serviceId": "h-101",
+      "senderId": "usr_1789899888473_omrl5k",
+      "senderName": "Rohan Sharma"
+    },
+    "read": false,
+    "createdAt": "2026-09-20T10:24:49.783Z",
+    "readAt": null,
+    "updatedAt": "2026-09-20T10:24:49.783Z"
+  },
+  {
+    "id": "notif_1789899889795_jhzqh0",
+    "userId": "usr_1789899888473_omrl5k",
+    "type": "BOOKING_UPDATE",
+    "title": "Booking COMPLETED",
+    "message": "Your booking HKF-2026-658008 for The Royal Grand Heritage Palace is now COMPLETED.",
+    "data": {
+      "bookingId": "HKF-2026-658008",
+      "status": "COMPLETED"
+    },
+    "read": false,
+    "createdAt": "2026-09-20T10:24:49.795Z",
+    "readAt": null,
+    "updatedAt": "2026-09-20T10:24:49.795Z"
+  },
+  {
+    "id": "notif_1789899889810_4m7tpz",
+    "userId": "owner_101",
+    "type": "BOOKING_UPDATE",
+    "title": "New 5★ Review Received!",
+    "message": "Rohan Sharma left a 5-star review for The Royal Grand Heritage Palace: \"Spectacular Event!\".",
+    "data": {
+      "reviewId": "rev_1789899889805_dvq16d",
+      "serviceId": "h-101",
+      "bookingId": "HKF-2026-658008",
+      "rating": 5
+    },
+    "read": false,
+    "createdAt": "2026-09-20T10:24:49.810Z",
+    "readAt": null,
+    "updatedAt": "2026-09-20T10:24:49.810Z"
+  },
+  {
+    "id": "notif_1789899964907_1ktiv9",
+    "userId": "owner_101",
+    "type": "BOOKING_REQUEST",
+    "title": "New Booking Request",
+    "message": "Rohan Sharma has requested to book The Royal Grand Heritage Palace on 2027-06-29.",
+    "data": {
+      "bookingId": "HKF-2026-336486",
+      "serviceId": "h-101",
+      "eventDate": "2027-06-29"
+    },
+    "read": false,
+    "createdAt": "2026-09-20T10:26:04.907Z",
+    "readAt": null,
+    "updatedAt": "2026-09-20T10:26:04.907Z"
+  },
+  {
+    "id": "notif_1789899965100_z67ls1",
+    "userId": "usr_1789899964607_cejy9n",
+    "type": "BOOKING_UPDATE",
+    "title": "Booking ACCEPTED",
+    "message": "Your booking HKF-2026-336486 for The Royal Grand Heritage Palace is now ACCEPTED.",
+    "data": {
+      "bookingId": "HKF-2026-336486",
+      "status": "ACCEPTED"
+    },
+    "read": false,
+    "createdAt": "2026-09-20T10:26:05.100Z",
+    "readAt": null,
+    "updatedAt": "2026-09-20T10:26:05.100Z"
+  },
+  {
+    "id": "notif_1789899965184_blubbz",
+    "userId": "usr_1789899964607_cejy9n",
+    "type": "PAYMENT_SUCCESS",
+    "title": "Advance Payment Successful! 🎉",
+    "message": "Your advance payment of ₹24,338 for The Royal Grand Heritage Palace has been received. Booking #HKF-2026-336486 is now CONFIRMED!",
+    "data": {},
+    "read": false,
+    "createdAt": "2026-09-20T10:26:05.184Z",
+    "readAt": null,
+    "updatedAt": "2026-09-20T10:26:05.184Z"
+  },
+  {
+    "id": "notif_1789899965188_merfeb",
+    "userId": "owner_101",
+    "type": "PAYMENT_RECEIVED",
+    "title": "Advance Payment Received! 💰",
+    "message": "₹24,338 advance paid for The Royal Grand Heritage Palace on 2027-06-29. Booking #HKF-2026-336486 is now CONFIRMED.",
+    "data": {},
+    "read": false,
+    "createdAt": "2026-09-20T10:26:05.188Z",
+    "readAt": null,
+    "updatedAt": "2026-09-20T10:26:05.188Z"
+  },
+  {
+    "id": "notif_1789899965208_5xueve",
+    "userId": "usr_1789899965071_f1f7u8",
+    "type": "MESSAGE",
+    "title": "New Message from Rohan Sharma",
+    "message": "Hello, can we arrange an inspection visit this Sunday?",
+    "data": {
+      "messageId": "msg_1789899965204_rnx9s0",
+      "conversationId": "conv_b_HKF-2026-336486",
+      "bookingId": "HKF-2026-336486",
+      "serviceId": "h-101",
+      "senderId": "usr_1789899964607_cejy9n",
+      "senderName": "Rohan Sharma"
+    },
+    "read": false,
+    "createdAt": "2026-09-20T10:26:05.208Z",
+    "readAt": null,
+    "updatedAt": "2026-09-20T10:26:05.208Z"
+  },
+  {
+    "id": "notif_1789899965223_umhfdi",
+    "userId": "usr_1789899964607_cejy9n",
+    "type": "BOOKING_UPDATE",
+    "title": "Booking COMPLETED",
+    "message": "Your booking HKF-2026-336486 for The Royal Grand Heritage Palace is now COMPLETED.",
+    "data": {
+      "bookingId": "HKF-2026-336486",
+      "status": "COMPLETED"
+    },
+    "read": false,
+    "createdAt": "2026-09-20T10:26:05.223Z",
+    "readAt": null,
+    "updatedAt": "2026-09-20T10:26:05.223Z"
+  },
+  {
+    "id": "notif_1789899965241_emntug",
+    "userId": "owner_101",
+    "type": "BOOKING_UPDATE",
+    "title": "New 5★ Review Received!",
+    "message": "Rohan Sharma left a 5-star review for The Royal Grand Heritage Palace: \"Spectacular Event!\".",
+    "data": {
+      "reviewId": "rev_1789899965236_qnyuvg",
+      "serviceId": "h-101",
+      "bookingId": "HKF-2026-336486",
+      "rating": 5
+    },
+    "read": false,
+    "createdAt": "2026-09-20T10:26:05.241Z",
+    "readAt": null,
+    "updatedAt": "2026-09-20T10:26:05.242Z"
+  },
+  {
+    "id": "notif_1789899996763_y5e70r",
+    "userId": "usr_1789899996717_fn9upt",
+    "type": "BOOKING_REQUEST",
+    "title": "New Booking Request",
+    "message": "E2E Test Customer has requested to book Royal Kohinoor Palace Lucknow on 2026-11-20.",
+    "data": {
+      "bookingId": "HKF-2026-997720",
+      "serviceId": "h_1789899996734_x1cirn",
+      "eventDate": "2026-11-20"
+    },
+    "read": false,
+    "createdAt": "2026-09-20T10:26:36.763Z",
+    "readAt": null,
+    "updatedAt": "2026-09-20T10:26:36.763Z"
+  },
+  {
+    "id": "notif_1789899996780_t09dz8",
+    "userId": "usr_1789899996559_u6bybo",
+    "type": "BOOKING_UPDATE",
+    "title": "Booking ACCEPTED",
+    "message": "Your booking HKF-2026-997720 for Royal Kohinoor Palace Lucknow is now ACCEPTED.",
+    "data": {
+      "bookingId": "HKF-2026-997720",
+      "status": "ACCEPTED"
+    },
+    "read": false,
+    "createdAt": "2026-09-20T10:26:36.780Z",
+    "readAt": null,
+    "updatedAt": "2026-09-20T10:26:36.780Z"
+  },
+  {
+    "id": "notif_1789899996801_sa040h",
+    "userId": "usr_1789899996559_u6bybo",
+    "type": "PAYMENT_SUCCESS",
+    "title": "Advance Payment Successful! 🎉",
+    "message": "Your advance payment of ₹52,363 for Royal Kohinoor Palace Lucknow has been received. Booking #HKF-2026-997720 is now CONFIRMED!",
+    "data": {},
+    "read": false,
+    "createdAt": "2026-09-20T10:26:36.801Z",
+    "readAt": null,
+    "updatedAt": "2026-09-20T10:26:36.801Z"
+  },
+  {
+    "id": "notif_1789899996806_av1i24",
+    "userId": "usr_1789899996717_fn9upt",
+    "type": "PAYMENT_RECEIVED",
+    "title": "Advance Payment Received! 💰",
+    "message": "₹52,363 advance paid for Royal Kohinoor Palace Lucknow on 2026-11-20. Booking #HKF-2026-997720 is now CONFIRMED.",
+    "data": {},
+    "read": false,
+    "createdAt": "2026-09-20T10:26:36.806Z",
+    "readAt": null,
+    "updatedAt": "2026-09-20T10:26:36.806Z"
+  },
+  {
+    "id": "notif_1789899996824_t2nls8",
+    "userId": "usr_1789899996559_u6bybo",
+    "type": "BOOKING_UPDATE",
+    "title": "Booking COMPLETED",
+    "message": "Your booking HKF-2026-997720 for Royal Kohinoor Palace Lucknow is now COMPLETED.",
+    "data": {
+      "bookingId": "HKF-2026-997720",
+      "status": "COMPLETED"
+    },
+    "read": false,
+    "createdAt": "2026-09-20T10:26:36.824Z",
+    "readAt": null,
+    "updatedAt": "2026-09-20T10:26:36.824Z"
+  },
+  {
+    "id": "notif_1789899996839_i0z8kz",
+    "userId": "usr_1789899996717_fn9upt",
+    "type": "BOOKING_UPDATE",
+    "title": "New 5★ Review Received!",
+    "message": "E2E Test Customer left a 5-star review for Royal Kohinoor Palace Lucknow: \"Flawless wedding experience!\".",
+    "data": {
+      "reviewId": "rev_1789899996832_jqqawo",
+      "serviceId": "h_1789899996734_x1cirn",
+      "bookingId": "HKF-2026-997720",
+      "rating": 5
+    },
+    "read": false,
+    "createdAt": "2026-09-20T10:26:36.839Z",
+    "readAt": null,
+    "updatedAt": "2026-09-20T10:26:36.839Z"
+  },
+  {
+    "id": "notif_1789900007697_b9ihes",
+    "userId": "usr_1789900007178_wiahmr",
+    "type": "BOOKING_REQUEST",
+    "title": "New Booking Request",
+    "message": "Customer AI Test has requested to book Royal Heritage Grand Palace on 2026-11-25.",
+    "data": {
+      "bookingId": "HKF-2026-417134",
+      "serviceId": "h_1789900007511_t47ibc",
+      "eventDate": "2026-11-25"
+    },
+    "read": false,
+    "createdAt": "2026-09-20T10:26:47.697Z",
+    "readAt": null,
+    "updatedAt": "2026-09-20T10:26:47.697Z"
+  },
+  {
+    "id": "notif_1789900007997_f60eqn",
+    "userId": "usr_1789900007496_orvxgq",
+    "type": "PAYMENT_SUCCESS",
+    "title": "Advance Payment Successful! 🎉",
+    "message": "Your advance payment of ₹43,513 for Royal Heritage Grand Palace has been received. Booking #HKF-2026-417134 is now CONFIRMED!",
+    "data": {},
+    "read": false,
+    "createdAt": "2026-09-20T10:26:47.997Z",
+    "readAt": null,
+    "updatedAt": "2026-09-20T10:26:47.997Z"
+  },
+  {
+    "id": "notif_1789900008023_he8isr",
+    "userId": "usr_1789900007178_wiahmr",
+    "type": "PAYMENT_RECEIVED",
+    "title": "Advance Payment Received! 💰",
+    "message": "₹43,513 advance paid for Royal Heritage Grand Palace on 2026-11-25. Booking #HKF-2026-417134 is now CONFIRMED.",
+    "data": {},
+    "read": false,
+    "createdAt": "2026-09-20T10:26:48.023Z",
+    "readAt": null,
+    "updatedAt": "2026-09-20T10:26:48.023Z"
+  },
+  {
+    "id": "notif_1789900081017_ldj70l",
+    "userId": "usr_1789900080560_mxniqm",
+    "type": "BOOKING_REQUEST",
+    "title": "New Booking Request",
+    "message": "Customer AI Test has requested to book Royal Heritage Grand Palace on 2026-11-25.",
+    "data": {
+      "bookingId": "HKF-2026-165162",
+      "serviceId": "h_1789900080879_nukfdd",
+      "eventDate": "2026-11-25"
+    },
+    "read": false,
+    "createdAt": "2026-09-20T10:28:01.017Z",
+    "readAt": null,
+    "updatedAt": "2026-09-20T10:28:01.017Z"
+  },
+  {
+    "id": "notif_1789900081048_5z6g1y",
+    "userId": "usr_1789900080864_xilqkj",
+    "type": "PAYMENT_SUCCESS",
+    "title": "Advance Payment Successful! 🎉",
+    "message": "Your advance payment of ₹43,513 for Royal Heritage Grand Palace has been received. Booking #HKF-2026-165162 is now CONFIRMED!",
+    "data": {},
+    "read": false,
+    "createdAt": "2026-09-20T10:28:01.048Z",
+    "readAt": null,
+    "updatedAt": "2026-09-20T10:28:01.048Z"
+  },
+  {
+    "id": "notif_1789900081052_4tg8vy",
+    "userId": "usr_1789900080560_mxniqm",
+    "type": "PAYMENT_RECEIVED",
+    "title": "Advance Payment Received! 💰",
+    "message": "₹43,513 advance paid for Royal Heritage Grand Palace on 2026-11-25. Booking #HKF-2026-165162 is now CONFIRMED.",
+    "data": {},
+    "read": false,
+    "createdAt": "2026-09-20T10:28:01.052Z",
+    "readAt": null,
+    "updatedAt": "2026-09-20T10:28:01.052Z"
+  },
+  {
+    "id": "notif_1789900086237_jhfpcp",
+    "userId": "owner_101",
+    "type": "BOOKING_REQUEST",
+    "title": "New Booking Request",
+    "message": "Rohan Sharma has requested to book The Royal Grand Heritage Palace on 2027-05-08.",
+    "data": {
+      "bookingId": "HKF-2026-237296",
+      "serviceId": "h-101",
+      "eventDate": "2027-05-08"
+    },
+    "read": false,
+    "createdAt": "2026-09-20T10:28:06.237Z",
+    "readAt": null,
+    "updatedAt": "2026-09-20T10:28:06.237Z"
+  },
+  {
+    "id": "notif_1789900086375_kypykz",
+    "userId": "usr_1789900086065_loq54k",
+    "type": "BOOKING_UPDATE",
+    "title": "Booking ACCEPTED",
+    "message": "Your booking HKF-2026-237296 for The Royal Grand Heritage Palace is now ACCEPTED.",
+    "data": {
+      "bookingId": "HKF-2026-237296",
+      "status": "ACCEPTED"
+    },
+    "read": false,
+    "createdAt": "2026-09-20T10:28:06.375Z",
+    "readAt": null,
+    "updatedAt": "2026-09-20T10:28:06.375Z"
+  },
+  {
+    "id": "notif_1789900086395_z8y8x2",
+    "userId": "usr_1789900086065_loq54k",
+    "type": "PAYMENT_SUCCESS",
+    "title": "Advance Payment Successful! 🎉",
+    "message": "Your advance payment of ₹24,338 for The Royal Grand Heritage Palace has been received. Booking #HKF-2026-237296 is now CONFIRMED!",
+    "data": {},
+    "read": false,
+    "createdAt": "2026-09-20T10:28:06.395Z",
+    "readAt": null,
+    "updatedAt": "2026-09-20T10:28:06.395Z"
+  },
+  {
+    "id": "notif_1789900086398_9zr1za",
+    "userId": "owner_101",
+    "type": "PAYMENT_RECEIVED",
+    "title": "Advance Payment Received! 💰",
+    "message": "₹24,338 advance paid for The Royal Grand Heritage Palace on 2027-05-08. Booking #HKF-2026-237296 is now CONFIRMED.",
+    "data": {},
+    "read": false,
+    "createdAt": "2026-09-20T10:28:06.398Z",
+    "readAt": null,
+    "updatedAt": "2026-09-20T10:28:06.398Z"
+  },
+  {
+    "id": "notif_1789900086412_fypurp",
+    "userId": "usr_1789900086355_y351mc",
+    "type": "MESSAGE",
+    "title": "New Message from Rohan Sharma",
+    "message": "Hello, can we arrange an inspection visit this Sunday?",
+    "data": {
+      "messageId": "msg_1789900086410_9xmky7",
+      "conversationId": "conv_b_HKF-2026-237296",
+      "bookingId": "HKF-2026-237296",
+      "serviceId": "h-101",
+      "senderId": "usr_1789900086065_loq54k",
+      "senderName": "Rohan Sharma"
+    },
+    "read": false,
+    "createdAt": "2026-09-20T10:28:06.412Z",
+    "readAt": null,
+    "updatedAt": "2026-09-20T10:28:06.412Z"
+  },
+  {
+    "id": "notif_1789900086422_jew8cc",
+    "userId": "usr_1789900086065_loq54k",
+    "type": "BOOKING_UPDATE",
+    "title": "Booking COMPLETED",
+    "message": "Your booking HKF-2026-237296 for The Royal Grand Heritage Palace is now COMPLETED.",
+    "data": {
+      "bookingId": "HKF-2026-237296",
+      "status": "COMPLETED"
+    },
+    "read": false,
+    "createdAt": "2026-09-20T10:28:06.422Z",
+    "readAt": null,
+    "updatedAt": "2026-09-20T10:28:06.422Z"
+  },
+  {
+    "id": "notif_1789900086436_we2hbg",
+    "userId": "owner_101",
+    "type": "BOOKING_UPDATE",
+    "title": "New 5★ Review Received!",
+    "message": "Rohan Sharma left a 5-star review for The Royal Grand Heritage Palace: \"Spectacular Event!\".",
+    "data": {
+      "reviewId": "rev_1789900086430_cm1nm9",
+      "serviceId": "h-101",
+      "bookingId": "HKF-2026-237296",
+      "rating": 5
+    },
+    "read": false,
+    "createdAt": "2026-09-20T10:28:06.436Z",
+    "readAt": null,
+    "updatedAt": "2026-09-20T10:28:06.436Z"
+  },
+  {
+    "id": "notif_1789900092495_loxka3",
+    "userId": "usr_1789900092319_g0ipj5",
+    "type": "BOOKING_REQUEST",
+    "title": "New Booking Request",
+    "message": "Aman Customer has requested to book Sunil Grand Imperial Banquet on 2026-12-15.",
+    "data": {
+      "bookingId": "HKF-2026-981415",
+      "serviceId": "h_1789900092472_q58484",
+      "eventDate": "2026-12-15"
+    },
+    "read": true,
+    "createdAt": "2026-09-20T10:28:12.495Z",
+    "readAt": "2026-09-20T10:28:12.525Z",
+    "updatedAt": "2026-09-20T10:28:12.525Z"
+  },
+  {
+    "id": "notif_1789900092588_nx70lr",
+    "userId": "usr_1789900092319_g0ipj5",
+    "type": "MESSAGE",
+    "title": "New Message from Aman Customer",
+    "message": "Namaste Sunil ji, can we arrange a separate Jain food buffet...",
+    "data": {
+      "messageId": "msg_1789900092584_x462xp",
+      "conversationId": "conv_b_HKF-2026-981415",
+      "bookingId": "HKF-2026-981415",
+      "serviceId": "h_1789900092472_q58484",
+      "senderId": "usr_1789900092151_ibjcb9",
+      "senderName": "Aman Customer"
+    },
+    "read": false,
+    "createdAt": "2026-09-20T10:28:12.588Z",
+    "readAt": null,
+    "updatedAt": "2026-09-20T10:28:12.588Z"
+  },
+  {
+    "id": "notif_1789900092654_c8qz1s",
+    "userId": "usr_1789900092151_ibjcb9",
+    "type": "MESSAGE",
+    "title": "New Message from Sunil Owner Partner",
+    "message": "Haan Aman ji, bilkul! We have a dedicated separate vegetaria...",
+    "data": {
+      "messageId": "msg_1789900092650_0spomi",
+      "conversationId": "conv_b_HKF-2026-981415",
+      "bookingId": "HKF-2026-981415",
+      "serviceId": "h_1789900092472_q58484",
+      "senderId": "usr_1789900092319_g0ipj5",
+      "senderName": "Sunil Owner Partner"
+    },
+    "read": false,
+    "createdAt": "2026-09-20T10:28:12.654Z",
+    "readAt": null,
+    "updatedAt": "2026-09-20T10:28:12.654Z"
+  },
+  {
+    "id": "notif_1789900100655_i440xb",
+    "userId": "usr_1789900100517_btjgbi",
+    "type": "BOOKING_REQUEST",
+    "title": "New Booking Request",
+    "message": "Kavita Verma has requested to book Manoj Royal Heritage Lawn on 2026-12-28.",
+    "data": {
+      "bookingId": "HKF-2026-526330",
+      "serviceId": "h_1789900100642_ey6ujy",
+      "eventDate": "2026-12-28"
+    },
+    "read": false,
+    "createdAt": "2026-09-20T10:28:20.655Z",
+    "readAt": null,
+    "updatedAt": "2026-09-20T10:28:20.655Z"
+  },
+  {
+    "id": "notif_1789900100680_qkvxrg",
+    "userId": "usr_1789900100274_9n3ml1",
+    "type": "BOOKING_UPDATE",
+    "title": "Booking ACCEPTED",
+    "message": "Your booking HKF-2026-526330 for Manoj Royal Heritage Lawn is now ACCEPTED.",
+    "data": {
+      "bookingId": "HKF-2026-526330",
+      "status": "ACCEPTED"
+    },
+    "read": false,
+    "createdAt": "2026-09-20T10:28:20.680Z",
+    "readAt": null,
+    "updatedAt": "2026-09-20T10:28:20.680Z"
+  },
+  {
+    "id": "notif_1789900100693_oz8vd3",
+    "userId": "usr_1789900100274_9n3ml1",
+    "type": "BOOKING_UPDATE",
+    "title": "Booking CONFIRMED",
+    "message": "Your booking HKF-2026-526330 for Manoj Royal Heritage Lawn is now CONFIRMED.",
+    "data": {
+      "bookingId": "HKF-2026-526330",
+      "status": "CONFIRMED"
+    },
+    "read": false,
+    "createdAt": "2026-09-20T10:28:20.693Z",
+    "readAt": null,
+    "updatedAt": "2026-09-20T10:28:20.693Z"
+  },
+  {
+    "id": "notif_1789900100704_ohzlr7",
+    "userId": "usr_1789900100274_9n3ml1",
+    "type": "BOOKING_UPDATE",
+    "title": "Booking COMPLETED",
+    "message": "Your booking HKF-2026-526330 for Manoj Royal Heritage Lawn is now COMPLETED.",
+    "data": {
+      "bookingId": "HKF-2026-526330",
+      "status": "COMPLETED"
+    },
+    "read": false,
+    "createdAt": "2026-09-20T10:28:20.704Z",
+    "readAt": null,
+    "updatedAt": "2026-09-20T10:28:20.704Z"
+  },
+  {
+    "id": "notif_1789900100723_1ihk1o",
+    "userId": "usr_1789900100517_btjgbi",
+    "type": "BOOKING_UPDATE",
+    "title": "New 5★ Review Received!",
+    "message": "Kavita Verma Customer left a 5-star review for Manoj Royal Heritage Lawn: \"Magical Royal Wedding Experience!\".",
+    "data": {
+      "reviewId": "rev_1789900100718_n3prot",
+      "serviceId": "h_1789900100642_ey6ujy",
+      "bookingId": "HKF-2026-526330",
+      "rating": 5
+    },
+    "read": false,
+    "createdAt": "2026-09-20T10:28:20.723Z",
+    "readAt": null,
+    "updatedAt": "2026-09-20T10:28:20.723Z"
+  },
+  {
+    "id": "notif_1789900100754_4cuali",
+    "userId": "usr_1789900100274_9n3ml1",
+    "type": "BOOKING_UPDATE",
+    "title": "Owner Replied to Your Review",
+    "message": "The owner of Manoj Royal Heritage Lawn responded to your review.",
+    "data": {
+      "reviewId": "rev_1789900100718_n3prot",
+      "serviceId": "h_1789900100642_ey6ujy"
+    },
+    "read": false,
+    "createdAt": "2026-09-20T10:28:20.754Z",
+    "readAt": null,
+    "updatedAt": "2026-09-20T10:28:20.754Z"
+  },
+  {
+    "id": "notif_1789900116379_lagmu7",
+    "userId": "usr_1789900116338_41lz89",
+    "type": "BOOKING_REQUEST",
+    "title": "New Booking Request",
+    "message": "Rahul Customer has requested to book Rajput Royal Palace & Garden on 2026-12-10.",
+    "data": {
+      "bookingId": "HKF-2026-348943",
+      "serviceId": "h_1789900116350_pdb9xh",
+      "eventDate": "2026-12-10"
+    },
+    "read": false,
+    "createdAt": "2026-09-20T10:28:36.379Z",
+    "readAt": null,
+    "updatedAt": "2026-09-20T10:28:36.379Z"
+  },
+  {
+    "id": "notif_1789900116410_zl3qgk",
+    "userId": "usr_1789900116084_s6mm69",
+    "type": "BOOKING_UPDATE",
+    "title": "Booking ACCEPTED",
+    "message": "Your booking HKF-2026-348943 for Rajput Royal Palace & Garden is now ACCEPTED.",
+    "data": {
+      "bookingId": "HKF-2026-348943",
+      "status": "ACCEPTED"
+    },
+    "read": false,
+    "createdAt": "2026-09-20T10:28:36.410Z",
+    "readAt": null,
+    "updatedAt": "2026-09-20T10:28:36.410Z"
+  },
+  {
+    "id": "notif_1789900116426_cvue1w",
+    "userId": "usr_1789900116084_s6mm69",
+    "type": "BOOKING_UPDATE",
+    "title": "Booking CONFIRMED",
+    "message": "Your booking HKF-2026-348943 for Rajput Royal Palace & Garden is now CONFIRMED.",
+    "data": {
+      "bookingId": "HKF-2026-348943",
+      "status": "CONFIRMED"
+    },
+    "read": false,
+    "createdAt": "2026-09-20T10:28:36.426Z",
+    "readAt": null,
+    "updatedAt": "2026-09-20T10:28:36.426Z"
+  },
+  {
+    "id": "notif_1789900116440_o7nbbj",
+    "userId": "usr_1789900116084_s6mm69",
+    "type": "BOOKING_UPDATE",
+    "title": "Booking COMPLETED",
+    "message": "Your booking HKF-2026-348943 for Rajput Royal Palace & Garden is now COMPLETED.",
+    "data": {
+      "bookingId": "HKF-2026-348943",
+      "status": "COMPLETED"
+    },
+    "read": false,
+    "createdAt": "2026-09-20T10:28:36.440Z",
+    "readAt": null,
+    "updatedAt": "2026-09-20T10:28:36.440Z"
+  },
+  {
+    "id": "notif_1789900116458_5mwufr",
+    "userId": "usr_1789900116338_41lz89",
+    "type": "BOOKING_REQUEST",
+    "title": "New Booking Request",
+    "message": "Rahul Customer has requested to book Rajput Royal Palace & Garden on 2026-11-22.",
+    "data": {
+      "bookingId": "HKF-2026-694268",
+      "serviceId": "h_1789900116350_pdb9xh",
+      "eventDate": "2026-11-22"
+    },
+    "read": false,
+    "createdAt": "2026-09-20T10:28:36.458Z",
+    "readAt": null,
+    "updatedAt": "2026-09-20T10:28:36.458Z"
+  },
+  {
+    "id": "notif_1789900116472_tkf5rc",
+    "userId": "usr_1789900116084_s6mm69",
+    "type": "BOOKING_UPDATE",
+    "title": "Booking ACCEPTED",
+    "message": "Your booking HKF-2026-694268 for Rajput Royal Palace & Garden is now ACCEPTED.",
+    "data": {
+      "bookingId": "HKF-2026-694268",
+      "status": "ACCEPTED"
+    },
+    "read": false,
+    "createdAt": "2026-09-20T10:28:36.472Z",
+    "readAt": null,
+    "updatedAt": "2026-09-20T10:28:36.472Z"
+  },
+  {
+    "id": "notif_1789900116489_ql81nm",
+    "userId": "usr_1789900116338_41lz89",
+    "type": "BOOKING_UPDATE",
+    "title": "Booking Cancelled",
+    "message": "Booking HKF-2026-694268 for Rajput Royal Palace & Garden was cancelled: Family changed wedding venue location to Varanasi.",
+    "data": {
+      "bookingId": "HKF-2026-694268",
+      "status": "CANCELLED"
+    },
+    "read": false,
+    "createdAt": "2026-09-20T10:28:36.489Z",
+    "readAt": null,
+    "updatedAt": "2026-09-20T10:28:36.490Z"
+  },
+  {
+    "id": "notif_1789900136413_d7wor0",
+    "userId": "owner_101",
+    "type": "BOOKING_REQUEST",
+    "title": "New Booking Request",
+    "message": "Vikas Malhotra has requested to book Awadh Shahi Royal Catering & Live Counters on 2026-11-28.",
+    "data": {
+      "bookingId": "HKF-2026-992838",
+      "serviceId": "srv-cat-401",
+      "eventDate": "2026-11-28"
+    },
+    "read": false,
+    "createdAt": "2026-09-20T10:28:56.413Z",
+    "readAt": null,
+    "updatedAt": "2026-09-20T10:28:56.413Z"
+  },
+  {
+    "id": "notif_1790531967665_vev9vo",
+    "userId": "owner_101",
+    "type": "BOOKING_REQUEST",
+    "title": "New Booking Request",
+    "message": "Ramesh Sharma has requested to book The Royal Grand Heritage Palace on 2027-03-14.",
+    "data": {
+      "bookingId": "HKF-2026-512053",
+      "serviceId": "h-101",
+      "eventDate": "2027-03-14"
+    },
+    "read": false,
+    "createdAt": "2026-09-27T17:59:27.665Z",
+    "readAt": null,
+    "updatedAt": "2026-09-27T17:59:27.665Z"
+  },
+  {
+    "id": "notif_1791214869067_ddh6qc",
+    "userId": "owner_101",
+    "type": "BOOKING_REQUEST",
+    "title": "New Booking Request",
+    "message": "Manish Kumar has requested to book The Royal Grand Heritage Palace on 2026-11-04.",
+    "data": {
+      "bookingId": "HKF-2026-200654",
+      "serviceId": "h-101",
+      "eventDate": "2026-11-04"
+    },
+    "read": false,
+    "createdAt": "2026-10-05T15:41:09.067Z",
+    "readAt": null,
+    "updatedAt": "2026-10-05T15:41:09.067Z"
+  },
+  {
+    "id": "notif_1791215538563_8umonc",
+    "userId": "usr_1791141988872_m5noyc",
+    "type": "BOOKING_UPDATE",
+    "title": "Booking CANCELLED",
+    "message": "Your booking HKF-2026-200654 for The Royal Grand Heritage Palace is now CANCELLED.",
+    "data": {
+      "bookingId": "HKF-2026-200654",
+      "status": "CANCELLED"
+    },
+    "read": false,
+    "createdAt": "2026-10-05T15:52:18.563Z",
+    "readAt": null,
+    "updatedAt": "2026-10-05T15:52:18.563Z"
+  },
+  {
+    "id": "notif_1791215542461_vqu8f6",
+    "userId": "guest_customer",
+    "type": "BOOKING_UPDATE",
+    "title": "Booking CANCELLED",
+    "message": "Your booking HKF-2026-512053 for The Royal Grand Heritage Palace is now CANCELLED.",
+    "data": {
+      "bookingId": "HKF-2026-512053",
+      "status": "CANCELLED"
+    },
+    "read": false,
+    "createdAt": "2026-10-05T15:52:22.461Z",
+    "readAt": null,
+    "updatedAt": "2026-10-05T15:52:22.461Z"
+  },
+  {
+    "id": "notif_1791215543546_wfq2qo",
+    "userId": "guest_customer",
+    "type": "BOOKING_UPDATE",
+    "title": "Booking CANCELLED",
+    "message": "Your booking HKF-2026-992838 for Awadh Shahi Royal Catering & Live Counters is now CANCELLED.",
+    "data": {
+      "bookingId": "HKF-2026-992838",
+      "status": "CANCELLED"
+    },
+    "read": false,
+    "createdAt": "2026-10-05T15:52:23.546Z",
+    "readAt": null,
+    "updatedAt": "2026-10-05T15:52:23.546Z"
+  },
+  {
+    "id": "notif_1791216628828_7s8dhr",
+    "userId": "usr_1791141988872_m5noyc",
+    "type": "BOOKING_REQUEST",
+    "title": "New Booking Request",
+    "message": "Manish Kumar has requested to book The Diamond Banquet on 2026-11-04.",
+    "data": {
+      "bookingId": "HKF-2026-939681",
+      "serviceId": "h_1791216285413_i7j9ip",
+      "eventDate": "2026-11-04"
+    },
+    "read": false,
+    "createdAt": "2026-10-05T16:10:28.828Z",
+    "readAt": null,
+    "updatedAt": "2026-10-05T16:10:28.828Z"
+  },
+  {
+    "id": "notif_1791216895636_dv16so",
+    "userId": "usr_1791141988872_m5noyc",
+    "type": "BOOKING_UPDATE",
+    "title": "Booking CANCELLED",
+    "message": "Your booking HKF-2026-939681 for The Diamond Banquet is now CANCELLED.",
+    "data": {
+      "bookingId": "HKF-2026-939681",
+      "status": "CANCELLED"
+    },
+    "read": false,
+    "createdAt": "2026-10-05T16:14:55.636Z",
+    "readAt": null,
+    "updatedAt": "2026-10-05T16:14:55.636Z"
+  },
+  {
+    "id": "notif_1791968485917_w7aghd",
+    "userId": "owner_101",
+    "type": "BOOKING_REQUEST",
+    "title": "New Booking Request",
+    "message": "Manish Kumar has requested to book The Royal Grand Heritage Palace on 2026-11-13.",
+    "data": {
+      "bookingId": "HKF-2026-492109",
+      "serviceId": "h-101",
+      "eventDate": "2026-11-13"
+    },
+    "read": false,
+    "createdAt": "2026-10-14T09:01:25.917Z",
+    "readAt": null,
+    "updatedAt": "2026-10-14T09:01:25.918Z"
+  },
+  {
+    "id": "notif_1791968691705_b5tldr",
+    "userId": "owner_103",
+    "type": "BOOKING_REQUEST",
+    "title": "New Booking Request",
+    "message": "Manish Kumar has requested to book Sanskriti Luxury Resort & Lawn on 2026-11-15.",
+    "data": {
+      "bookingId": "HKF-2026-578235",
+      "serviceId": "h-103",
+      "eventDate": "2026-11-15"
+    },
+    "read": false,
+    "createdAt": "2026-10-14T09:04:51.705Z",
+    "readAt": null,
+    "updatedAt": "2026-10-14T09:04:51.705Z"
+  },
+  {
+    "id": "notif_1791968838544_hztnk1",
+    "userId": "owner_101",
+    "type": "BOOKING_REQUEST",
+    "title": "New Booking Request",
+    "message": "Manish Kumar has requested to book The Royal Grand Heritage Palace on 2026-12-06.",
+    "data": {
+      "bookingId": "HKF-2026-221427",
+      "serviceId": "h-101",
+      "eventDate": "2026-12-06"
+    },
+    "read": false,
+    "createdAt": "2026-10-14T09:07:18.544Z",
+    "readAt": null,
+    "updatedAt": "2026-10-14T09:07:18.545Z"
+  }
+]

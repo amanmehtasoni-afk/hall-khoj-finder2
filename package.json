@@ -1,0 +1,38 @@
+{
+  "name": "hall-khoj-finder",
+  "version": "1.0.0",
+  "description": "Hall Khoj Finder — Premium 3D Event Services Marketplace (Halls, Cars, Tent Houses & Event Services)",
+  "main": "backend/server.js",
+  "scripts": {
+    "start": "node backend/server.js",
+    "dev": "node backend/server.js",
+    "cluster": "node backend/cluster.js",
+    "seed": "node backend/scripts/seed.js",
+    "test": "node scratch/test_suite.js",
+    "migrate:supabase": "node backend/scripts/migrate_to_supabase.js"
+  },
+  "keywords": [
+    "marriage-halls",
+    "banquet-halls",
+    "tent-house",
+    "event-services",
+    "threejs",
+    "3d-marketplace"
+  ],
+  "author": "Hall Khoj Finder Team",
+  "license": "ISC",
+  "dependencies": {
+    "bcryptjs": "^3.0.3",
+    "cors": "^2.8.6",
+    "dotenv": "^18.0.1",
+    "express": "^5.2.1",
+    "firebase-admin": "^14.5.0",
+    "jsonwebtoken": "^9.0.3",
+    "mongoose": "^9.10.2",
+    "multer": "^2.4.0",
+    "pdfkit": "^0.20.2"
+  },
+  "devDependencies": {
+    "docx": "^9.8.1"
+  }
+}

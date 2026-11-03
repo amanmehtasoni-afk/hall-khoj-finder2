@@ -1,0 +1,1139 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Hall Khoj Finder — Find Marriage Halls, Cars, Tents & Event Services</title>
+  <meta name="description" content="Apne Paas Ka Hall, Tent, Car Aur Event Services Ek Jagah Khojiye. Book Marriage Halls, Banquet Halls, Luxury Wedding Cars, Tent Houses and Catering.">
+  <link rel="canonical" href="https://hallkhoj.in/">
+  <link rel="manifest" href="/manifest.json">
+  <meta name="theme-color" content="#070a13">
+  <meta name="mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+  <link rel="apple-touch-icon" href="/assets/logo.png">
+
+  <!-- Open Graph / Facebook -->
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://hallkhoj.in/">
+  <meta property="og:title" content="Hall Khoj Finder — Find Marriage Halls, Cars, Tents & Event Services">
+  <meta property="og:description" content="Apne Paas Ka Hall, Tent, Car Aur Event Services Ek Jagah Khojiye. India's #1 3D Event Services Marketplace.">
+  <meta property="og:image" content="/assets/logo.png">
+  <link rel="icon" type="image/png" href="/assets/logo.png">
+
+
+  <!-- Twitter Card -->
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="Hall Khoj Finder">
+  <meta name="twitter:description" content="Apne Paas Ka Hall, Tent, Car Aur Event Services Ek Jagah Khojiye.">
+
+  <!-- Schema.org JSON-LD -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "WebSite",
+    "name": "Hall Khoj Finder",
+    "alternateName": "Hall Khoj",
+    "url": "https://hallkhoj.in/",
+    "potentialAction": {
+      "@type": "SearchAction",
+      "target": "https://hallkhoj.in/search.html?q={search_term_string}",
+      "query-input": "required name=search_term_string"
+    }
+  }
+  </script>
+
+  <!-- Google Fonts: Inter & Outfit -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Outfit:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+
+  <!-- Theme Controller (Zero-Flash Dark/Light Mode) -->
+  <script src="js/theme.js"></script>
+
+  <!-- Core CSS Bundle -->
+  <link rel="stylesheet" href="css/main.css">
+  <link rel="stylesheet" href="css/components.css">
+  <link rel="stylesheet" href="css/3d.css">
+  <link rel="stylesheet" href="css/animations.css">
+
+  <!-- Three.js (Loaded via reliable CDN) -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+</head>
+<body>
+
+  <!-- =========================================================================
+       GLOBAL HEADER & NAVIGATION (DESKTOP)
+  ========================================================================= -->
+  <header class="site-header" role="banner">
+    <div class="nav-container">
+      <!-- Brand Logo -->
+      <a href="/" class="brand-logo" aria-label="Hall Khoj Finder Home">
+        <img src="/assets/logo.png" alt="Hall Khoj" class="brand-logo-img">
+        <div class="brand-logo-text">
+          <span class="brand-title">HALL KHOJ</span>
+          <span class="brand-tagline-sub">FINDER</span>
+        </div>
+      </a>
+
+      <!-- Desktop Navigation Links -->
+      <nav role="navigation" aria-label="Main Navigation">
+        <ul class="nav-links">
+          <li><a href="/" class="nav-link active" data-i18n="nav_home">Home</a></li>
+          <li><a href="/search.html" class="nav-link" data-i18n="nav_halls">Find Services</a></li>
+          <li><a href="/search.html?category=Marriage+Halls" class="nav-link" data-i18n="cat_marriage_halls">Halls</a></li>
+          <li><a href="/search.html?category=Cars" class="nav-link" data-i18n="cat_wedding_cars">Cars</a></li>
+          <li><a href="/search.html?category=Tent+Houses" class="nav-link" data-i18n="cat_tent_houses">Tent Houses</a></li>
+          <li><a href="#services-section" class="nav-link" data-i18n="nav_services">Services</a></li>
+          <li><a href="#" class="nav-link" data-trigger="near-me">Near Me</a></li>
+          <li><a href="#how-it-works" class="nav-link">How It Works</a></li>
+        </ul>
+      </nav>
+
+      <!-- Nav Actions -->
+      <div class="nav-actions">
+        <!-- Language Switcher Mount (14 Indian Languages) -->
+        <div class="language-switcher-container"></div>
+
+        <!-- Dark/Light Theme Toggle -->
+        <button class="theme-toggle-btn" data-action="toggle-theme" aria-label="Toggle Dark/Light Mode" title="Toggle Theme">
+          <span class="theme-icon-sun">☀️</span>
+          <span class="theme-icon-moon" style="display:none;">🌙</span>
+        </button>
+
+        <div id="nav-auth-actions" class="flex items-center gap-2">
+          <a href="/login.html" class="btn btn-secondary btn-sm" data-i18n="nav_login">Login</a>
+          <a href="/register.html" class="btn btn-primary btn-sm" data-i18n="nav_register">Register</a>
+          <a href="/register.html?role=owner" class="btn btn-gold btn-sm" data-i18n="owner_cta_btn">List Your Business</a>
+        </div>
+
+        <!-- Mobile Menu Hamburger Button -->
+        <button id="open-drawer-btn" class="mobile-menu-toggle" aria-label="Open Navigation Menu">
+          <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <line x1="3" y1="12" x2="21" y2="12"></line>
+            <line x1="3" y1="6" x2="21" y2="6"></line>
+            <line x1="3" y1="18" x2="21" y2="18"></line>
+          </svg>
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <!-- Mobile Drawer Menu Overlay -->
+  <div id="drawer-overlay" class="drawer-overlay"></div>
+  <aside id="mobile-drawer" class="mobile-drawer" role="dialog" aria-label="Mobile Navigation Drawer">
+    <div class="flex items-center justify-between">
+      <div class="brand-logo">
+        <img src="/assets/logo.png" alt="Hall Khoj" class="brand-logo-img" style="width:36px; height:36px;">
+        <span class="brand-title">HALL KHOJ</span>
+      </div>
+      <button id="close-drawer-btn" class="modal-close-btn" aria-label="Close Navigation">&times;</button>
+    </div>
+
+    <!-- Mobile Language Switcher Mount -->
+    <div class="language-switcher-container" style="margin-top:0.75rem; margin-bottom:0.5rem;"></div>
+
+    <ul class="flex flex-col gap-2" style="list-style:none; margin-top:0.5rem;">
+      <li><a href="/" class="nav-link active" data-i18n="nav_home">🏠 Home</a></li>
+      <li><a href="/search.html" class="nav-link" data-i18n="nav_halls">🔍 Find All Services</a></li>
+      <li><a href="/search.html?category=Marriage+Halls" class="nav-link" data-i18n="cat_marriage_halls">🏰 Marriage Halls</a></li>
+      <li><a href="/search.html?category=Cars" class="nav-link" data-i18n="cat_wedding_cars">🚗 Wedding Cars</a></li>
+      <li><a href="/search.html?category=Tent+Houses" class="nav-link" data-i18n="cat_tent_houses">🎪 Tent Houses</a></li>
+      <li><a href="#" class="nav-link" data-trigger="near-me">📍 Near Me Search</a></li>
+      <li><a href="#" class="nav-link" data-trigger="voice-search">🎙️ Voice Search</a></li>
+      <li><a href="#" class="nav-link" data-trigger="ai-search" data-i18n="ai_search_btn">✨ Hall Khoj AI Assistant</a></li>
+      <li><a href="/dashboard.html" class="nav-link" data-i18n="nav_dashboard">📋 Customer Dashboard</a></li>
+      <li><a href="/owner/dashboard.html" class="nav-link" data-i18n="nav_owner_portal">🏢 Owner Dashboard</a></li>
+      <li><a href="/admin/dashboard.html" class="nav-link">🛡️ Admin Panel</a></li>
+    </ul>
+
+    <div id="drawer-auth-actions" class="flex flex-col gap-2" style="margin-top:auto; padding-top:1rem; border-top:1px solid var(--border-subtle);">
+      <a href="/login.html" class="btn btn-secondary w-full" data-i18n="nav_login">Sign In</a>
+      <a href="/register.html?role=owner" class="btn btn-gold w-full" data-i18n="owner_cta_btn">List Your Business</a>
+    </div>
+  </aside>
+
+  <!-- =========================================================================
+       HERO SECTION WITH CINEMATIC VIDEO BACKGROUND & TRANSPARENT ADVANCED SEARCH
+  ========================================================================= -->
+  <main>
+    <section class="section hero-section" style="position:relative; min-height:96vh; display:flex; align-items:center; justify-content:center; overflow:hidden;">
+      <!-- Cinematic Multi-Video Hero Background -->
+      <div id="hero-video-wrapper" class="hero-video-wrapper" aria-hidden="true"></div>
+
+      <!-- Three.js Ambient Particle Overlay (Subtle 3D Atmosphere) -->
+      <div id="hero-3d-wrapper" class="hero-3d-wrapper" style="pointer-events:none; z-index:4; opacity:0.55;" aria-hidden="true">
+        <canvas id="hero-3d-canvas"></canvas>
+      </div>
+
+      <!-- Hero Main Content -->
+      <div class="container hero-content" style="position:relative; z-index:15; padding:7.5rem 0 4rem 0;">
+        <!-- Tagline Pill & Backend Telemetry Status -->
+        <div style="display:flex; flex-wrap:wrap; align-items:center; justify-content:center; gap:0.75rem; margin-bottom:1.5rem;">
+          <div class="hero-tagline-badge animate-float" style="background:rgba(217, 199, 160, 0.15); border-color:rgba(217, 199, 160, 0.4); color:var(--text-champagne);">
+            <span>👑</span>
+            <span>HALL KHOJ FINDER</span>
+          </div>
+          <div id="backend-status-pill" class="status-indicator-pill" title="Live System Status">
+            <span class="status-dot-pulse online"></span>
+            <span id="backend-status-text">Connecting to Live Backend...</span>
+          </div>
+        </div>
+
+        <!-- Headings: Phase 3 Exact Specification -->
+        <h1 class="hero-heading" style="margin-bottom:1rem;">
+          <span class="royal-gradient-text">"Find Your Perfect Wedding Destination."</span>
+        </h1>
+        <p class="hero-subheading" style="font-size:1.25rem; font-weight:500; color:#FFFFFF; text-shadow:0 2px 10px rgba(0,0,0,0.7); max-width:760px; margin:0 auto 2rem auto;">
+          Discover, Explore and Book Your Dream Wedding Venue Across India.
+        </p>
+
+        <!-- Hero Primary Action Buttons: Phase 3 Exact Specification -->
+        <div style="display:flex; flex-wrap:wrap; align-items:center; justify-content:center; gap:1.25rem; margin-bottom:2.5rem;">
+          <a href="/search.html" class="btn btn-primary btn-lg" style="box-shadow:0 10px 30px var(--primary-glow); padding:0.9rem 2.2rem; font-size:1rem; letter-spacing:0.04em;">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>
+            <span>EXPLORE VENUES</span>
+          </a>
+          <a href="/register.html?role=owner" class="btn btn-champagne btn-lg" style="box-shadow:0 10px 30px var(--secondary-glow); padding:0.9rem 2.2rem; font-size:1rem; letter-spacing:0.04em;">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg>
+            <span>LIST YOUR VENUE</span>
+          </a>
+        </div>
+
+        <!-- Transparent Advanced Multi-Parameter Search Bar: Phase 3 Specification -->
+        <div class="advanced-search-card">
+          <form id="hero-advanced-search-form" action="/search.html" method="GET">
+            <div class="adv-search-grid">
+              <!-- 1. State -->
+              <div class="adv-field-group">
+                <label class="adv-field-label" for="search-state">
+                  <span>📍</span> State
+                </label>
+                <select id="search-state" name="state" class="adv-select">
+                  <option value="">All States</option>
+                  <option value="Uttar Pradesh">Uttar Pradesh</option>
+                  <option value="Delhi">Delhi NCR</option>
+                  <option value="Bihar">Bihar</option>
+                  <option value="Rajasthan">Rajasthan</option>
+                  <option value="Maharashtra">Maharashtra</option>
+                  <option value="Madhya Pradesh">Madhya Pradesh</option>
+                  <option value="West Bengal">West Bengal</option>
+                  <option value="Punjab">Punjab</option>
+                  <option value="Gujarat">Gujarat</option>
+                  <option value="Karnataka">Karnataka</option>
+                </select>
+              </div>
+
+              <!-- 2. District -->
+              <div class="adv-field-group">
+                <label class="adv-field-label" for="search-district">
+                  <span>🏛️</span> District
+                </label>
+                <input type="text" id="search-district" name="district" class="adv-input" placeholder="e.g. Lucknow, Patna, Jaipur...">
+              </div>
+
+              <!-- 3. City -->
+              <div class="adv-field-group">
+                <label class="adv-field-label" for="search-city">
+                  <span>🏙️</span> City
+                </label>
+                <input type="text" id="search-city" name="city" class="adv-input" placeholder="e.g. Gomti Nagar, Rohini...">
+              </div>
+
+              <!-- 4. PIN Code -->
+              <div class="adv-field-group">
+                <label class="adv-field-label" for="search-pin">
+                  <span>📮</span> PIN Code
+                </label>
+                <input type="text" id="search-pin" name="pin" class="adv-input" placeholder="e.g. 226010" pattern="[0-9]{6}">
+              </div>
+
+              <!-- 5. Event Date -->
+              <div class="adv-field-group">
+                <label class="adv-field-label" for="search-date">
+                  <span>📅</span> Event Date
+                </label>
+                <input type="date" id="search-date" name="eventDate" class="adv-input">
+              </div>
+
+              <!-- 6. Guest Count -->
+              <div class="adv-field-group">
+                <label class="adv-field-label" for="search-guests">
+                  <span>👥</span> Guest Count
+                </label>
+                <select id="search-guests" name="guests" class="adv-select">
+                  <option value="">Any Capacity</option>
+                  <option value="100-300">Intimate (100–300 Guests)</option>
+                  <option value="300-600">Grand (300–600 Guests)</option>
+                  <option value="600-1200">Royal (600–1200 Guests)</option>
+                  <option value="1200+">Mega Palace (1200+ Guests)</option>
+                </select>
+              </div>
+
+              <!-- 7. Venue Type -->
+              <div class="adv-field-group">
+                <label class="adv-field-label" for="search-type">
+                  <span>🏰</span> Venue Type
+                </label>
+                <select id="search-type" name="category" class="adv-select">
+                  <option value="">All Categories</option>
+                  <option value="Marriage Halls">Marriage Hall / Palace</option>
+                  <option value="Banquet Halls">Banquet Hall</option>
+                  <option value="Luxury Resorts">Luxury Wedding Resort & Lawn</option>
+                  <option value="Cars">Luxury Wedding Cars</option>
+                  <option value="Tent Houses">Tent House & Shamiana</option>
+                  <option value="Catering">Royal Catering Services</option>
+                  <option value="Decoration">Floral & Theme Decoration</option>
+                  <option value="Photography">Wedding Photography & Drone</option>
+                  <option value="DJ">DJ & Sound System</option>
+                </select>
+              </div>
+
+              <!-- 8. Budget -->
+              <div class="adv-field-group">
+                <label class="adv-field-label" for="search-budget">
+                  <span>💰</span> Budget Range
+                </label>
+                <select id="search-budget" name="budget" class="adv-select">
+                  <option value="">Any Budget</option>
+                  <option value="0-100000">Under ₹1,00,000</option>
+                  <option value="100000-250000">₹1,00,000 – ₹2,50,000</option>
+                  <option value="250000-500000">₹2,50,000 – ₹5,00,000</option>
+                  <option value="500000+">Royal Luxury (₹5,00,000+)</option>
+                </select>
+              </div>
+            </div>
+
+            <!-- Bottom Row: Quick Filters & Search CTA -->
+            <div class="adv-search-bottom-row">
+              <div class="adv-quick-chips">
+                <span style="font-size:0.78rem; color:var(--text-muted); font-weight:600;">Popular:</span>
+                <a href="/search.html?category=Marriage+Halls&city=Lucknow" class="adv-chip">Palaces in Lucknow</a>
+                <a href="/search.html?category=Marriage+Halls&city=Patna" class="adv-chip">Banquet Halls in Patna</a>
+                <a href="/search.html?category=Cars" class="adv-chip">Mercedes & Audi Cars</a>
+                <a href="/search.html?category=Tent+Houses" class="adv-chip">German Waterproof Hanger</a>
+                <a href="/3d-preview.html" class="adv-chip" style="border-color:var(--primary); color:var(--primary-light);">🎮 3D Layout Walkthrough</a>
+              </div>
+
+              <div style="display:flex; align-items:center; gap:0.75rem;">
+                <button type="button" class="btn btn-secondary btn-sm" data-trigger="near-me" title="Use My Current GPS Location">
+                  <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#10b981" stroke-width="2.5"><circle cx="12" cy="12" r="10"/><polygon points="16.24 7.76 14.12 14.12 7.76 16.24 9.88 9.88 16.24 7.76"/></svg>
+                  <span>Near Me</span>
+                </button>
+                <button type="submit" class="btn btn-primary" style="height:48px; padding:0 2rem; font-weight:700;">
+                  <span>FIND VENUES</span>
+                  <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="9 18 15 12 9 6"/></svg>
+                </button>
+              </div>
+            </div>
+          </form>
+        </div>
+      </div>
+    </section>
+
+    <!-- =========================================================================
+         SECTION 4: FIRST SCREEN ROLE SELECTION (USER vs OWNER)
+    ========================================================================= -->
+    <section class="section role-selection-section" aria-label="Choose Your Role">
+      <div class="container">
+        <div class="role-cards-grid perspective-container">
+          <!-- User / Customer 3D Card -->
+          <article class="role-card role-user card-3d">
+            <div class="role-card-header">
+              <div class="role-icon-box">
+                <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>
+              </div>
+              <span class="badge badge-indigo">For Customers</span>
+            </div>
+
+            <div>
+              <h2 class="role-title">User Explorer</h2>
+              <p class="role-desc">
+                "Find halls, cars, tent houses and event services" — Check live dates, inspect 3D layout stages, view transparent pricing, and reserve with zero middleman friction.
+              </p>
+            </div>
+
+            <div class="role-pills">
+              <span class="role-pill">Marriage Halls</span>
+              <span class="role-pill">Luxury Cars</span>
+              <span class="role-pill">Tent & Shamiana</span>
+              <span class="role-pill">Catering & DJ</span>
+            </div>
+
+            <a href="/search.html" class="btn btn-primary w-full">
+              <span>Find & Book Services</span>
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="9 18 15 12 9 6"/></svg>
+            </a>
+          </article>
+
+          <!-- Business Owner 3D Card -->
+          <article class="role-card role-owner card-3d card-3d-gold">
+            <div class="role-card-header">
+              <div class="role-icon-box">
+                <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="7" width="20" height="14" rx="2" ry="2"/><path d="M16 21V5a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v16"/></svg>
+              </div>
+              <span class="badge badge-gold">For Business Owners</span>
+            </div>
+
+            <div>
+              <h2 class="role-title">Venue &amp; Service Owner</h2>
+              <p class="role-desc">
+                "List and manage your business" — Grow bookings across your city & district, manage calendar availability, get instant sound alerts for new requests, and accept payments securely.
+              </p>
+            </div>
+
+
+            <div class="role-pills">
+              <span class="role-pill">Marriage Hall Owner</span>
+              <span class="role-pill">Wedding Car Owner</span>
+              <span class="role-pill">Tent House Owner</span>
+              <span class="role-pill">Event Service Provider</span>
+            </div>
+
+            <a href="/register.html?role=owner" class="btn btn-gold w-full">
+              <span>List Your Business Now</span>
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="9 18 15 12 9 6"/></svg>
+            </a>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <!-- =========================================================================
+         SECTION 8: SERVICE CATEGORIES (13 ESSENTIAL CATEGORIES)
+    ========================================================================= -->
+    <section id="services-section" class="section">
+      <div class="container">
+        <h2 class="section-title">Explore Event Categories</h2>
+        <p class="section-subtitle">Select a category to discover verified local providers in your village, city or district.</p>
+
+        <div class="categories-grid perspective-container">
+          <!-- 1. Marriage Halls -->
+          <a href="/search.html?category=Marriage+Halls" class="category-card card-3d">
+            <div class="category-icon-box">
+              <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg>
+            </div>
+            <span class="category-name">Marriage Halls</span>
+            <span class="category-count">140+ Venues</span>
+          </a>
+
+          <!-- 2. Cars -->
+          <a href="/search.html?category=Cars" class="category-card card-3d">
+            <div class="category-icon-box">
+              <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M19 17h2c.6 0 1-.4 1-1v-3c0-.9-.7-1.7-1.5-1.9C18.7 10.6 16 10 16 10s-1.3-1.4-2.2-2.3c-.5-.4-1.1-.7-1.8-.7H5c-.6 0-1.1.4-1.4.9l-1.4 2.9C2.1 11 2 11.5 2 12v4c0 .6.4 1 1 1h2"/><circle cx="7" cy="17" r="2"/><circle cx="17" cy="17" r="2"/></svg>
+            </div>
+            <span class="category-name">Wedding Cars</span>
+            <span class="category-count">85+ Luxury Cars</span>
+          </a>
+
+          <!-- 3. Tent Houses -->
+          <a href="/search.html?category=Tent+Houses" class="category-card card-3d">
+            <div class="category-icon-box">
+              <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M19 20H5a2 2 0 0 1-2-2V6a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2v12a2 2 0 0 1-2 2z"/><polyline points="12 4 4 14 20 14"/></svg>
+            </div>
+            <span class="category-name">Tent Houses</span>
+            <span class="category-count">92+ Vendors</span>
+          </a>
+
+          <!-- 4. Decoration -->
+          <a href="/search.html?category=Decoration" class="category-card card-3d">
+            <div class="category-icon-box">
+              <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+            </div>
+            <span class="category-name">Stage Decoration</span>
+            <span class="category-count">110+ Decorators</span>
+          </a>
+
+          <!-- 5. Lighting -->
+          <a href="/search.html?category=Lighting" class="category-card card-3d">
+            <div class="category-icon-box">
+              <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 18h6"/><path d="M10 22h4"/><path d="M12 2a7 7 0 0 0-7 7c0 2.5 1.5 4.5 3 6h8c1.5-1.5 3-3.5 3-6a7 7 0 0 0-7-7z"/></svg>
+            </div>
+            <span class="category-name">Lighting & Halogen</span>
+            <span class="category-count">65+ Providers</span>
+          </a>
+
+          <!-- 6. Catering -->
+          <a href="/search.html?category=Catering" class="category-card card-3d">
+            <div class="category-icon-box">
+              <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 8h1a4 4 0 0 1 0 8h-1"/><path d="M2 8h16v9a4 4 0 0 1-4 4H6a4 4 0 0 1-4-4V8z"/><line x1="6" y1="1" x2="6" y2="4"/><line x1="10" y1="1" x2="10" y2="4"/><line x1="14" y1="1" x2="14" y2="4"/></svg>
+            </div>
+            <span class="category-name">Catering Services</span>
+            <span class="category-count">98+ Caterers</span>
+          </a>
+
+          <!-- 7. Photography -->
+          <a href="/search.html?category=Photography" class="category-card card-3d">
+            <div class="category-icon-box">
+              <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M23 19a2 2 0 0 1-2 2H3a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h4l2-3h6l2 3h4a2 2 0 0 1 2 2z"/><circle cx="12" cy="13" r="4"/></svg>
+            </div>
+            <span class="category-name">Photography & Video</span>
+            <span class="category-count">125+ Studios</span>
+          </a>
+
+          <!-- 8. DJ -->
+          <a href="/search.html?category=DJ" class="category-card card-3d">
+            <div class="category-icon-box">
+              <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><circle cx="12" cy="12" r="3"/><circle cx="12" cy="12" r="1"/></svg>
+            </div>
+            <span class="category-name">DJ & Music</span>
+            <span class="category-count">78+ Artists</span>
+          </a>
+
+          <!-- 9. Sound System -->
+          <a href="/search.html?category=Sound+System" class="category-card card-3d">
+            <div class="category-icon-box">
+              <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="4" y="2" width="16" height="20" rx="2"/><circle cx="12" cy="14" r="4"/><line x1="12" y1="6" x2="12.01" y2="6"/></svg>
+            </div>
+            <span class="category-name">Sound & Concert Audio</span>
+            <span class="category-count">54+ Systems</span>
+          </a>
+
+          <!-- 10. Furniture -->
+          <a href="/search.html?category=Furniture" class="category-card card-3d">
+            <div class="category-icon-box">
+              <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 19v2"/><path d="M18 19v2"/><path d="M4 11a2 2 0 0 1 2-2h12a2 2 0 0 1 2 2v6H4v-6z"/></svg>
+            </div>
+            <span class="category-name">Furniture & Sofas</span>
+            <span class="category-count">48+ Providers</span>
+          </a>
+
+          <!-- 11. Flower Decoration -->
+          <a href="/search.html?category=Flower+Decoration" class="category-card card-3d">
+            <div class="category-icon-box">
+              <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="3"/><path d="M12 2a5 5 0 0 0-5 5c0 3 5 8 5 8s5-5 5-8a5 5 0 0 0-5-5z"/></svg>
+            </div>
+            <span class="category-name">Flower Decoration</span>
+            <span class="category-count">82+ Florists</span>
+          </a>
+
+          <!-- 12. Catering Staff -->
+          <a href="/search.html?category=Catering+Staff" class="category-card card-3d">
+            <div class="category-icon-box">
+              <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>
+            </div>
+            <span class="category-name">Catering Staff</span>
+            <span class="category-count">60+ Teams</span>
+          </a>
+
+          <!-- 13. Event Staff -->
+          <a href="/search.html?category=Event+Staff" class="category-card card-3d">
+            <div class="category-icon-box">
+              <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+            </div>
+            <span class="category-name">Security & Staff</span>
+            <span class="category-count">45+ Agencies</span>
+          </a>
+        </div>
+      </div>
+    </section>
+
+    <!-- =========================================================================
+         SECTION 10: FEATURED VERIFIED VENUES & 3D CARDS
+    ========================================================================= -->
+    <section class="section" style="background: rgba(13, 19, 34, 0.45);">
+      <div class="container">
+        <div class="flex items-center justify-between" style="margin-bottom: 2rem; flex-wrap:wrap; gap:1rem;">
+          <div>
+            <div class="flex items-center gap-2">
+              <h2 class="section-title" style="text-align:left; margin-bottom:0.25rem;">Featured Luxury Venues</h2>
+              <span id="live-venues-badge" class="badge badge-emerald" style="display:none; align-items:center; gap:0.35rem; font-size:0.75rem;">
+                <span class="pulse-dot"></span> Live Backend Data
+              </span>
+            </div>
+            <p style="color:var(--text-muted); font-size:0.95rem;">Handpicked banquet halls with interactive 3D layout inspection & verified badges.</p>
+          </div>
+          <a href="/search.html" class="btn btn-secondary btn-sm">View All Halls &rarr;</a>
+        </div>
+
+        <div id="featured-listings-container" class="listings-grid perspective-container">
+          <!-- Hall Card 1 -->
+          <article class="listing-card card-3d">
+            <div class="listing-media">
+              <img src="https://images.unsplash.com/photo-1519167758481-83f550bb49b3?auto=format&fit=crop&w=800&q=80" alt="The Royal Grand Heritage Palace" class="listing-img" loading="lazy">
+              <div class="listing-badges">
+                <span class="badge badge-verified">✓ Verified</span>
+                <span class="badge badge-indigo">3D Layout Ready</span>
+              </div>
+              <button class="listing-fav-btn" aria-label="Add to Favorites">
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/></svg>
+              </button>
+            </div>
+
+            <div class="listing-body">
+              <div class="listing-header-row">
+                <h3 class="listing-title">The Royal Grand Heritage Palace</h3>
+                <div class="listing-rating">★ 4.9 <span style="color:var(--text-muted); font-weight:normal; font-size:0.75rem;">(148)</span></div>
+              </div>
+
+              <div class="listing-location-row">
+                <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>
+                <span>Gomti Nagar, Lucknow • <strong style="color:#10b981;">2.4 km away</strong></span>
+              </div>
+
+              <div class="listing-amenities-row">
+                <span class="amenity-chip">Capacity: 200–1200 Guests</span>
+                <span class="amenity-chip">Central AC</span>
+                <span class="amenity-chip">Lawn</span>
+                <span class="amenity-chip">Parking 150 Cars</span>
+              </div>
+
+              <div class="listing-footer-row">
+                <div class="listing-price-box">
+                  <span class="listing-price-label">Starting From</span>
+                  <span class="listing-price-val">₹65,000 <span style="font-size:0.75rem; color:var(--text-muted); font-weight:normal;">/ event</span></span>
+                </div>
+                <div class="listing-actions-row">
+                  <a href="/hall-details.html?id=h-101" class="btn btn-secondary btn-sm">Inspect 3D</a>
+                  <a href="/booking.html?hallId=h-101" class="btn btn-primary btn-sm">Book Now</a>
+                </div>
+              </div>
+            </div>
+          </article>
+
+          <!-- Hall Card 2 -->
+          <article class="listing-card card-3d">
+            <div class="listing-media">
+              <img src="https://images.unsplash.com/photo-1544830254-20b1274f881b?auto=format&fit=crop&w=800&q=80" alt="Mayur Emerald Banquet & Lawn" class="listing-img" loading="lazy">
+              <div class="listing-badges">
+                <span class="badge badge-verified">✓ Verified</span>
+                <span class="badge badge-status-available">Available Oct 15</span>
+              </div>
+              <button class="listing-fav-btn" aria-label="Add to Favorites">
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/></svg>
+              </button>
+            </div>
+
+            <div class="listing-body">
+              <div class="listing-header-row">
+                <h3 class="listing-title">Mayur Emerald Banquet & Lawn</h3>
+                <div class="listing-rating">★ 4.8 <span style="color:var(--text-muted); font-weight:normal; font-size:0.75rem;">(96)</span></div>
+              </div>
+
+              <div class="listing-location-row">
+                <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>
+                <span>Bailey Road, Patna • <strong style="color:#10b981;">4.1 km away</strong></span>
+              </div>
+
+              <div class="listing-amenities-row">
+                <span class="amenity-chip">Capacity: 100–750 Guests</span>
+                <span class="amenity-chip">Stage Setup</span>
+                <span class="amenity-chip">Generator Backup</span>
+              </div>
+
+              <div class="listing-footer-row">
+                <div class="listing-price-box">
+                  <span class="listing-price-label">Starting From</span>
+                  <span class="listing-price-val">₹45,000 <span style="font-size:0.75rem; color:var(--text-muted); font-weight:normal;">/ event</span></span>
+                </div>
+                <div class="listing-actions-row">
+                  <a href="/hall-details.html?id=h-102" class="btn btn-secondary btn-sm">Inspect 3D</a>
+                  <a href="/booking.html?hallId=h-102" class="btn btn-primary btn-sm">Book Now</a>
+                </div>
+              </div>
+            </div>
+          </article>
+
+          <!-- Hall Card 3 -->
+          <article class="listing-card card-3d">
+            <div class="listing-media">
+              <img src="https://images.unsplash.com/photo-1566073771259-6a8506099945?auto=format&fit=crop&w=800&q=80" alt="Sanskriti Luxury Resort & Poolside Lawn" class="listing-img" loading="lazy">
+              <div class="listing-badges">
+                <span class="badge badge-verified">✓ Verified</span>
+                <span class="badge badge-gold">Premium Resort</span>
+              </div>
+              <button class="listing-fav-btn" aria-label="Add to Favorites">
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/></svg>
+              </button>
+            </div>
+
+            <div class="listing-body">
+              <div class="listing-header-row">
+                <h3 class="listing-title">Sanskriti Luxury Resort & Lawn</h3>
+                <div class="listing-rating">★ 4.95 <span style="color:var(--text-muted); font-weight:normal; font-size:0.75rem;">(230)</span></div>
+              </div>
+
+              <div class="listing-location-row">
+                <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>
+                <span>Sector 48, Gurugram • <strong style="color:#10b981;">8.7 km away</strong></span>
+              </div>
+
+              <div class="listing-amenities-row">
+                <span class="amenity-chip">Capacity: 300–2000 Guests</span>
+                <span class="amenity-chip">15 AC Rooms</span>
+                <span class="amenity-chip">Valet 300 Cars</span>
+              </div>
+
+              <div class="listing-footer-row">
+                <div class="listing-price-box">
+                  <span class="listing-price-label">Starting From</span>
+                  <span class="listing-price-val">₹1,20,000 <span style="font-size:0.75rem; color:var(--text-muted); font-weight:normal;">/ day</span></span>
+                </div>
+                <div class="listing-actions-row">
+                  <a href="/hall-details.html?id=h-103" class="btn btn-secondary btn-sm">Inspect 3D</a>
+                  <a href="/booking.html?hallId=h-103" class="btn btn-primary btn-sm">Book Now</a>
+                </div>
+              </div>
+            </div>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <!-- =========================================================================
+         HOW IT WORKS SECTION
+    ========================================================================= -->
+    <section id="how-it-works" class="section">
+      <div class="container text-center">
+        <h2 class="section-title">How Hall Khoj Finder Works</h2>
+        <p class="section-subtitle">A seamless 3-step experience from finding your venue to booking your complete wedding event.</p>
+
+        <div style="display:grid; grid-template-columns:repeat(auto-fit, minmax(260px, 1fr)); gap:2rem; margin-top:3rem;">
+          <div class="glass-panel" style="padding:2.25rem 1.5rem;">
+            <div class="role-icon-box" style="margin:0 auto 1.25rem auto; background:rgba(99, 102, 241, 0.2); color:#818cf8;">1</div>
+            <h3 style="font-size:1.25rem; margin-bottom:0.6rem;">Discover & Filter</h3>
+            <p style="font-size:0.9rem;">Search halls, luxury wedding cars, and tent houses near your village, PIN code or city with voice or AI search.</p>
+          </div>
+
+          <div class="glass-panel" style="padding:2.25rem 1.5rem;">
+            <div class="role-icon-box" style="margin:0 auto 1.25rem auto; background:rgba(245, 158, 11, 0.2); color:#fbbf24;">2</div>
+            <h3 style="font-size:1.25rem; margin-bottom:0.6rem;">Inspect 3D & Calendar</h3>
+            <p style="font-size:0.9rem;">Rotate and examine stage & dining layouts in interactive 3D. Check real-time date availability without waiting for callbacks.</p>
+          </div>
+
+          <div class="glass-panel" style="padding:2.25rem 1.5rem;">
+            <div class="role-icon-box" style="margin:0 auto 1.25rem auto; background:rgba(16, 185, 129, 0.2); color:#34d399;">3</div>
+            <h3 style="font-size:1.25rem; margin-bottom:0.6rem;">Book & Celebrate</h3>
+            <p style="font-size:0.9rem;">Reserve directly with the verified owner. Get instant status alerts, unique HKF tracking IDs, and transparent pricing.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <!-- =========================================================================
+       FOOTER
+  ========================================================================= -->
+  <footer style="background:#050811; border-top:1px solid var(--border-subtle); padding:4rem 0 2.5rem 0;">
+    <div class="container">
+      <div style="display:grid; grid-template-columns:repeat(auto-fit, minmax(220px, 1fr)); gap:2.5rem; margin-bottom:3rem;">
+        <div>
+          <div class="brand-logo" style="margin-bottom:1rem;">
+            <img src="/assets/logo.png" alt="Hall Khoj" class="brand-logo-img">
+            <span class="brand-title">HALL KHOJ</span>
+          </div>
+          <p style="font-size:0.875rem; color:var(--text-muted); line-height:1.6;">
+            India's premiere 3D Event Services Marketplace. Discover Marriage Halls, Cars, Tent Houses, DJs, and Decorators with transparent pricing.
+          </p>
+          <div style="margin-top:1rem; font-size:0.8rem; color:#fbbf24; font-weight:600;">
+            "Apne Paas Ka Hall, Tent, Car Aur Event Services Ek Jagah Khojiye"
+          </div>
+        </div>
+
+        <div>
+          <h4 style="font-size:1rem; margin-bottom:1rem; color:#fff;">Event Services</h4>
+          <ul style="list-style:none; display:flex; flex-direction:column; gap:0.5rem; font-size:0.875rem; color:var(--text-muted);">
+            <li><a href="/search.html?category=Marriage+Halls">Marriage & Banquet Halls</a></li>
+            <li><a href="/search.html?category=Cars">Luxury Wedding Cars</a></li>
+            <li><a href="/search.html?category=Tent+Houses">Tent & Shamiana Works</a></li>
+            <li><a href="/search.html?category=Catering">Royal Catering Services</a></li>
+            <li><a href="/search.html?category=Decoration">Stage & Flower Decoration</a></li>
+          </ul>
+        </div>
+
+        <div>
+          <h4 style="font-size:1rem; margin-bottom:1rem; color:#fff;">Portals & Roles</h4>
+          <ul style="list-style:none; display:flex; flex-direction:column; gap:0.5rem; font-size:0.875rem; color:var(--text-muted);">
+            <li><a href="/dashboard.html">Customer Dashboard</a></li>
+            <li><a href="/owner/dashboard.html">Business Owner Portal</a></li>
+            <li><a href="/admin/dashboard.html">Admin Verification Panel</a></li>
+            <li><a href="/register.html?role=owner">List Your Hall / Service</a></li>
+            <li><a href="/login.html">Sign In to Your Account</a></li>
+          </ul>
+        </div>
+
+        <div>
+          <h4 style="font-size:1rem; margin-bottom:1rem; color:#fff;">Support & Locations</h4>
+          <ul style="list-style:none; display:flex; flex-direction:column; gap:0.5rem; font-size:0.875rem; color:var(--text-muted);">
+            <li><a href="#" data-trigger="near-me">Find Halls Near Me</a></li>
+            <li><a href="#" data-trigger="ai-search">Ask Hall Khoj AI</a></li>
+            <li><a href="#">Cancellation & Refund Policy</a></li>
+            <li><a href="#">Terms & Conditions</a></li>
+            <li><a href="#">Contact & Support Desk</a></li>
+          </ul>
+        </div>
+      </div>
+
+      <div style="border-top:1px solid var(--border-subtle); padding-top:1.5rem; display:flex; flex-wrap:wrap; justify-content:space-between; align-items:center; gap:1rem; font-size:0.8rem; color:var(--text-muted);">
+        <div>&copy; 2026 Hall Khoj Finder. All Rights Reserved. <span id="footer-backend-info" style="color:#10b981; margin-left:0.5rem; font-weight:500;">API: Connecting...</span></div>
+        <div style="display:flex; gap:1rem;">
+          <span>Privacy Policy</span>
+          <span>Security</span>
+          <span>Site Map</span>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <!-- =========================================================================
+       MOBILE BOTTOM NAVIGATION DOCKED BAR
+  ========================================================================= -->
+  <nav class="mobile-bottom-nav" aria-label="Mobile Quick Navigation">
+    <a href="/" class="mobile-nav-item active">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg>
+      <span>Home</span>
+    </a>
+    <a href="/search.html" class="mobile-nav-item">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>
+      <span>Search</span>
+    </a>
+    <a href="/dashboard.html" class="mobile-nav-item">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><rect x="3" y="4" width="18" height="18" rx="2" ry="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg>
+      <span>Bookings</span>
+    </a>
+    <a href="#" class="mobile-nav-item" data-trigger="ai-search">
+      <svg viewBox="0 0 24 24" fill="none" stroke="#fbbf24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+      <span>AI Khoj</span>
+    </a>
+    <a href="/login.html" class="mobile-nav-item">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>
+      <span>Profile</span>
+    </a>
+  </nav>
+
+  <!-- =========================================================================
+       MODAL 1: VOICE SEARCH LISTENING DIALOG
+  ========================================================================= -->
+  <div id="voice-search-modal" class="modal-backdrop" role="dialog" aria-modal="true" aria-labelledby="voice-modal-title">
+    <div class="modal-dialog">
+      <div class="modal-header">
+        <h3 id="voice-modal-title" class="modal-title flex items-center gap-1">
+          <span>🎙️</span> Voice Search
+        </h3>
+        <button class="modal-close-btn" aria-label="Close dialog">&times;</button>
+      </div>
+      <div class="modal-body text-center">
+        <!-- Animated Audio Waveform -->
+        <div class="audio-waveform">
+          <div class="wave-bar"></div>
+          <div class="wave-bar"></div>
+          <div class="wave-bar"></div>
+          <div class="wave-bar"></div>
+          <div class="wave-bar"></div>
+          <div class="wave-bar"></div>
+          <div class="wave-bar"></div>
+        </div>
+
+        <p id="voice-status-text" style="color:var(--text-secondary); margin-bottom:1rem;">
+          Listening... Say something like "Find a marriage hall for 500 people in Lucknow"
+        </p>
+
+        <textarea id="voice-transcript-text" class="search-input" style="height:80px; padding:0.75rem 1rem; border-radius:var(--radius-md); resize:none; margin-bottom:1.25rem;" placeholder="Recognized speech will appear here (or type to edit)..."></textarea>
+
+        <div class="flex gap-2 justify-between">
+          <button class="btn btn-secondary w-full" data-modal-close>Cancel</button>
+          <button id="voice-submit-btn" class="btn btn-primary w-full">Search Now</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- =========================================================================
+       MODAL 2: NEAR ME RADIUS & LOCATION DIALOG
+  ========================================================================= -->
+  <div id="near-me-modal" class="modal-backdrop" role="dialog" aria-modal="true" aria-labelledby="near-me-title">
+    <div class="modal-dialog">
+      <div class="modal-header">
+        <h3 id="near-me-title" class="modal-title flex items-center gap-1">
+          <span>📍</span> Find Events & Services Near Me
+        </h3>
+        <button class="modal-close-btn" aria-label="Close dialog">&times;</button>
+      </div>
+      <div class="modal-body">
+        <div id="near-me-status" style="margin-bottom:1rem; font-size:0.95rem;">
+          Requesting browser geolocation...
+        </div>
+
+        <label style="font-size:0.85rem; color:var(--text-secondary); font-weight:600;">Select Search Radius:</label>
+        <div class="radius-pills">
+          <button type="button" class="radius-pill" data-radius="1">1 KM</button>
+          <button type="button" class="radius-pill" data-radius="5">5 KM</button>
+          <button type="button" class="radius-pill active" data-radius="10">10 KM</button>
+          <button type="button" class="radius-pill" data-radius="25">25 KM</button>
+          <button type="button" class="radius-pill" data-radius="50">50 KM</button>
+          <button type="button" class="radius-pill" data-radius="100">100 KM</button>
+        </div>
+
+        <!-- Manual Fallback Input if GPS is denied or unavailable -->
+        <div style="margin-top:1.25rem;">
+          <label for="manual-location-input" style="font-size:0.85rem; color:var(--text-secondary); font-weight:600;">Or enter City, Village or PIN Code:</label>
+          <input id="manual-location-input" type="text" class="search-input" style="height:46px; border-radius:var(--radius-md); margin-top:0.4rem;" placeholder="e.g. Lucknow, Varanasi, 226010">
+        </div>
+
+        <div class="flex gap-2" style="margin-top:1.75rem;">
+          <button class="btn btn-secondary w-full" data-modal-close>Cancel</button>
+          <button id="near-me-apply-btn" class="btn btn-gold w-full">Find Nearby Services</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- =========================================================================
+       MODAL 3: HALL KHOJ AI ASSISTANT DIALOG
+  ========================================================================= -->
+  <div id="ai-search-modal" class="modal-backdrop" role="dialog" aria-modal="true" aria-labelledby="ai-modal-title">
+    <div class="modal-dialog">
+      <div class="modal-header">
+        <div class="flex items-center gap-1">
+          <div class="brand-icon-box" style="width:32px; height:32px; font-size:0.9rem;">✨</div>
+          <h3 id="ai-modal-title" class="modal-title">Hall Khoj AI Assistant</h3>
+        </div>
+        <button class="modal-close-btn" aria-label="Close dialog">&times;</button>
+      </div>
+      <div class="modal-body">
+        <p style="font-size:0.9rem; color:var(--text-secondary); margin-bottom:1rem;">
+          Tell me your event requirements in natural language. I will search our verified database without inventing facts.
+        </p>
+
+        <!-- Prompt Suggestions -->
+        <div style="display:flex; flex-wrap:wrap; gap:0.4rem; margin-bottom:1rem;">
+          <button type="button" class="role-pill" data-ai-sample="Banquet for 500 guests under 60k with AC in Lucknow">💡 500 guests AC Banquet under 60k</button>
+          <button type="button" class="role-pill" data-ai-sample="Wedding luxury car with driver tomorrow in Patna">💡 Wedding car with driver tomorrow</button>
+          <button type="button" class="role-pill" data-ai-sample="Tent house for 1000 people with Shamiana and lighting">💡 Tent house for 1000 people</button>
+        </div>
+
+        <div style="position:relative;">
+          <input id="ai-prompt-input" type="text" class="search-input" style="height:50px; padding-right:4rem; border-radius:var(--radius-md);" placeholder="Type what you need (e.g. Lawn for 800 guests in Patna)...">
+          <button id="ai-submit-btn" class="btn btn-primary btn-sm" style="position:absolute; right:6px; top:6px; height:38px; border-radius:var(--radius-sm);">
+            Ask AI
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Toast Notification Container -->
+  <div class="toast-container" aria-live="polite"></div>
+
+  <!-- Application Scripts (Correct Dependency Order) -->
+  <script src="js/i18n.js"></script>
+  <script src="js/api.js"></script>
+  <script src="js/auth.js"></script>
+  <script src="js/app.js"></script>
+  <script src="js/nav.js"></script>
+  <script src="js/modals.js"></script>
+  <script src="js/ai-search-client.js"></script>
+  <script src="js/search.js"></script>
+  <script src="js/three-hero.js"></script>
+  <script src="js/video-hero.js"></script>
+
+  <!-- Full-Stack Connector: Synchronizes Live Backend Data, Auth & Health on index.html -->
+  <script>
+    (function initIndexFullStack() {
+      // 1. Live Backend Health Connection & Telemetry
+      async function checkBackendConnection() {
+        const statusPill = document.getElementById('backend-status-pill');
+        const statusText = document.getElementById('backend-status-text');
+        const footerInfo = document.getElementById('footer-backend-info');
+
+        try {
+          const apiBase = window.HKF_API ? window.HKF_API.baseUrl : '/api';
+          const res = await fetch(`${apiBase}/health`);
+          if (res.ok) {
+            const data = await res.json();
+            const storageMode = data.database?.activeStorage || 'MongoDB';
+            if (statusPill) {
+              statusPill.classList.remove('offline');
+              statusPill.classList.add('online');
+            }
+            if (statusText) {
+              statusText.innerHTML = `🟢 Backend Online <span style="opacity:0.8; font-size:0.75rem;">(${storageMode})</span>`;
+            }
+            if (footerInfo) {
+              footerInfo.textContent = `Backend v${data.version || '20.0'} Online (${storageMode})`;
+            }
+          } else {
+            throw new Error('Health check returned status ' + res.status);
+          }
+        } catch (err) {
+          console.warn('[Backend Telemetry Error]', err);
+          if (statusPill) {
+            statusPill.classList.remove('online');
+            statusPill.classList.add('offline');
+          }
+          if (statusText) {
+            statusText.textContent = '🟡 Local Mode (Dual Fallback)';
+          }
+          if (footerInfo) {
+            footerInfo.textContent = 'API: Local Mock Fallback';
+          }
+        }
+      }
+
+      // 2. Dynamic User Authentication State in Navbar & Mobile Drawer
+      function syncUserAuthNav() {
+        const navAuthActions = document.getElementById('nav-auth-actions');
+        const drawerAuthActions = document.getElementById('drawer-auth-actions');
+        const currentUser = window.HKF_API?.auth?.getCurrentUser ? window.HKF_API.auth.getCurrentUser() : null;
+
+        if (currentUser && (currentUser.name || currentUser.mobile || currentUser.email)) {
+          const displayName = currentUser.name || currentUser.mobile || 'My Account';
+          const isOwner = currentUser.role === 'owner';
+          const isAdmin = currentUser.role === 'admin';
+          const dashboardUrl = isAdmin ? '/admin/dashboard.html' : (isOwner ? '/owner/dashboard.html' : '/dashboard.html');
+          const roleLabel = isAdmin ? '🛡️ Admin' : (isOwner ? '🏢 Owner' : '👤 User');
+
+          if (navAuthActions) {
+            navAuthActions.innerHTML = `
+              <a href="${dashboardUrl}" class="btn btn-secondary btn-sm flex items-center gap-1" title="Go to Dashboard">
+                <span>${roleLabel}:</span>
+                <strong style="max-width:110px; overflow:hidden; text-overflow:ellipsis; white-space:nowrap;">${displayName}</strong>
+              </a>
+              <button id="logout-btn-header" class="btn btn-sm" style="height:36px; padding:0 0.85rem; border-radius:var(--radius-sm); border:1px solid rgba(239,68,68,0.4); color:#ef4444; background:rgba(239,68,68,0.08); cursor:pointer;" title="Sign Out">
+                Logout
+              </button>
+            `;
+
+            document.getElementById('logout-btn-header')?.addEventListener('click', () => {
+              if (window.HKF_API?.auth?.logout) window.HKF_API.auth.logout();
+              if (window.showToast) window.showToast('You have signed out successfully.', 'info');
+              setTimeout(() => { window.location.reload(); }, 400);
+            });
+          }
+
+          if (drawerAuthActions) {
+            drawerAuthActions.innerHTML = `
+              <div style="padding:0.75rem 1rem; background:rgba(255,255,255,0.05); border-radius:var(--radius-md); margin-bottom:0.5rem;">
+                <div style="font-size:0.8rem; color:var(--text-muted);">${roleLabel} Logged In</div>
+                <div style="font-weight:700; color:#fff;">${displayName}</div>
+              </div>
+              <a href="${dashboardUrl}" class="btn btn-primary w-full">My Dashboard</a>
+              <button id="logout-btn-drawer" class="btn btn-secondary w-full" style="color:#ef4444; margin-top:0.4rem;">Log Out</button>
+            `;
+            document.getElementById('logout-btn-drawer')?.addEventListener('click', () => {
+              if (window.HKF_API?.auth?.logout) window.HKF_API.auth.logout();
+              if (window.showToast) window.showToast('Signed out successfully.', 'info');
+              setTimeout(() => { window.location.reload(); }, 400);
+            });
+          }
+        }
+      }
+
+      // 3. Dynamic Real-Time Featured Listings from Backend API
+      async function loadBackendFeaturedListings() {
+        const container = document.getElementById('featured-listings-container');
+        const liveBadge = document.getElementById('live-venues-badge');
+        if (!container) return;
+
+        try {
+          const apiBase = window.HKF_API ? window.HKF_API.baseUrl : '/api';
+          const res = await fetch(`${apiBase}/halls`);
+          if (!res.ok) return;
+
+          const json = await res.json();
+          const items = (json.data && Array.isArray(json.data)) ? json.data : (Array.isArray(json) ? json : []);
+
+          if (items && items.length > 0) {
+            if (liveBadge) liveBadge.style.display = 'inline-flex';
+
+            // Filter out flagged venues and pick up to 6
+            const displayVenues = items
+              .filter(v => v.status !== 'FLAGGED')
+              .slice(0, 6);
+
+            if (displayVenues.length > 0) {
+              container.innerHTML = displayVenues.map(item => {
+                const img = item.coverImg || (item.photos && item.photos[0]) || 'https://images.unsplash.com/photo-1519167758481-83f550bb49b3?auto=format&fit=crop&w=800&q=80';
+                const price = Number(item.startingPrice || 50000).toLocaleString('en-IN');
+                const rating = item.rating || 4.9;
+                const reviews = item.reviewCount || 0;
+                const city = item.city || 'India';
+                const area = item.area || item.address || '';
+                const locationText = area ? `${area}, ${city}` : city;
+                const capacity = item.capacityMax ? `${item.capacityMin || 100}–${item.capacityMax} Guests` : 'Up to 1000 Guests';
+                const facilities = (item.facilities || ['Central AC', 'Lawn', 'Parking']).slice(0, 3);
+
+                return `
+                  <article class="listing-card card-3d animate-fade-in" data-id="${item.id}">
+                    <div class="listing-media">
+                      <img src="${img}" alt="${item.name}" class="listing-img" loading="lazy" onerror="this.src='https://images.unsplash.com/photo-1519167758481-83f550bb49b3?auto=format&fit=crop&w=800&q=80'">
+                      <div class="listing-badges">
+                        <span class="badge ${item.isVerified || item.verified ? 'badge-verified' : 'badge-gold'}">
+                          ${item.isVerified || item.verified ? '✓ Verified' : '★ Featured'}
+                        </span>
+                        <span class="badge badge-indigo">3D Layout Ready</span>
+                      </div>
+                      <button class="listing-fav-btn" aria-label="Add to Favorites">
+                        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/></svg>
+                      </button>
+                    </div>
+
+                    <div class="listing-body">
+                      <div class="listing-header-row">
+                        <h3 class="listing-title" title="${item.name}">${item.name}</h3>
+                        <div class="listing-rating">★ ${rating} <span style="color:var(--text-muted); font-weight:normal; font-size:0.75rem;">(${reviews})</span></div>
+                      </div>
+
+                      <div class="listing-location-row">
+                        <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>
+                        <span title="${locationText}">${locationText}</span>
+                      </div>
+
+                      <div class="listing-amenities-row">
+                        <span class="amenity-chip">Capacity: ${capacity}</span>
+                        ${facilities.map(f => `<span class="amenity-chip">${f}</span>`).join('')}
+                      </div>
+
+                      <div class="listing-footer-row">
+                        <div class="listing-price-box">
+                          <span class="listing-price-label">Starting From</span>
+                          <span class="listing-price-val">₹${price} <span style="font-size:0.75rem; color:var(--text-muted); font-weight:normal;">/ event</span></span>
+                        </div>
+                        <div class="listing-actions-row">
+                          <a href="/hall-details.html?id=${item.id}" class="btn btn-secondary btn-sm">Inspect 3D</a>
+                          <a href="/booking.html?hallId=${item.id}" class="btn btn-primary btn-sm">Book Now</a>
+                        </div>
+                      </div>
+                    </div>
+                  </article>
+                `;
+              }).join('');
+
+              // Re-bind 3D tilt and favorites on newly created dynamic cards
+              if (window.init3DCardTilt) window.init3DCardTilt();
+              if (window.initFavorites) window.initFavorites();
+            }
+          }
+        } catch (e) {
+          console.warn('[Dynamic Venues Load]', e);
+        }
+      }
+
+      // Register PWA Service Worker
+      if ('serviceWorker' in navigator && (window.location.protocol === 'https:' || window.location.hostname === 'localhost' || window.location.hostname === '127.0.0.1')) {
+        window.addEventListener('load', () => {
+          navigator.serviceWorker.register('/sw.js').then((reg) => {
+            console.log('✓ [PWA] Service Worker registered with scope:', reg.scope);
+          }).catch((err) => {
+            console.warn('[PWA] Service Worker registration failed:', err.message);
+          });
+        });
+      }
+
+      // Execute on DOM Ready
+      if (document.readyState === 'loading') {
+        document.addEventListener('DOMContentLoaded', () => {
+          checkBackendConnection();
+          syncUserAuthNav();
+          loadBackendFeaturedListings();
+        });
+      } else {
+        checkBackendConnection();
+        syncUserAuthNav();
+        loadBackendFeaturedListings();
+      }
+    })();
+  </script>
+
+</body>
+</html>

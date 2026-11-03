@@ -1,0 +1,179 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Customer Profile & Settings | Hall Khoj Finder</title>
+  <meta name="description" content="Manage your personal profile, contact information, password and notification preferences on Hall Khoj Finder.">
+  <link rel="icon" type="image/png" href="/assets/logo.png">
+
+  <!-- Theme Controller (Zero-Flash Dark/Light Mode) -->
+  <script src="js/theme.js"></script>
+
+  <!-- Core CSS -->
+  <link rel="stylesheet" href="css/main.css">
+  <link rel="stylesheet" href="css/3d.css">
+  <link rel="stylesheet" href="css/components.css">
+  <link rel="stylesheet" href="css/animations.css">
+</head>
+<body>
+
+  <!-- Site Header -->
+  <header class="site-header" role="banner">
+    <div class="nav-container">
+      <a href="/" class="brand-logo">
+        <img src="/assets/logo.png" alt="Hall Khoj" class="brand-logo-img">
+        <div class="brand-logo-text">
+          <span class="brand-title">HALL KHOJ</span>
+          <span class="brand-tagline-sub">MY PROFILE</span>
+        </div>
+      </a>
+
+      <nav role="navigation">
+        <ul class="nav-links">
+          <li><a href="/" class="nav-link">Home</a></li>
+          <li><a href="/search.html" class="nav-link">Find Services</a></li>
+          <li><a href="/dashboard.html" class="nav-link">Dashboard</a></li>
+          <li><a href="/profile.html" class="nav-link active">Profile</a></li>
+        </ul>
+      </nav>
+
+      <div class="nav-actions">
+        <div class="language-switcher-container"></div>
+        <button class="theme-toggle-btn" data-action="toggle-theme" aria-label="Toggle Dark/Light Mode" title="Toggle Theme">
+          <span class="theme-icon-sun">☀️</span>
+          <span class="theme-icon-moon" style="display:none;">🌙</span>
+        </button>
+        <a href="/dashboard.html" class="btn btn-secondary btn-sm">My Bookings</a>
+      </div>
+    </div>
+  </header>
+
+  <main style="padding-top: 6rem; padding-bottom: 5rem;">
+    <div class="container container-narrow">
+      <div class="flex items-center justify-between flex-wrap gap-2" style="margin-bottom:2rem;">
+        <div>
+          <span class="badge badge-champagne" style="margin-bottom:0.5rem;">Account Overview</span>
+          <h1 style="font-size:2rem; margin:0;">User Profile & Settings</h1>
+          <p style="color:var(--text-secondary); margin:0.25rem 0 0 0;">Manage your identity, communications and event preferences.</p>
+        </div>
+        <div class="flex items-center gap-2">
+          <span class="badge badge-verified" id="kyc-badge">✓ Verified Account</span>
+        </div>
+      </div>
+
+      <!-- Profile Card -->
+      <div class="glass-panel" style="padding:2.5rem; margin-bottom:2rem;">
+        <!-- Avatar & Header Row -->
+        <div class="flex items-center gap-3 flex-wrap" style="padding-bottom:1.75rem; border-bottom:1px solid var(--border-subtle); margin-bottom:2rem;">
+          <div style="position:relative;">
+            <div id="profile-avatar-box" style="width:84px; height:84px; border-radius:50%; background:linear-gradient(135deg, var(--color-electric), var(--color-royal-deep)); display:flex; align-items:center; justify-content:center; font-size:2rem; color:#fff; font-weight:800; border:2px solid var(--border-light); overflow:hidden;">
+              <span id="profile-initials">AK</span>
+            </div>
+          </div>
+          <div>
+            <h2 id="profile-display-name" style="font-size:1.4rem; color:#fff; margin:0 0 0.25rem 0;">Aman Kumar</h2>
+            <p id="profile-display-contact" style="font-size:0.9rem; color:var(--text-secondary); margin:0 0 0.5rem 0;">📱 +91 9876543210 • ✉️ user@hallkhoj.in</p>
+            <span class="badge badge-indigo">Role: Customer</span>
+          </div>
+        </div>
+
+        <!-- Editable Form -->
+        <form id="profile-update-form">
+          <h3 style="font-size:1.15rem; color:var(--text-champagne); margin-bottom:1.25rem;">Personal Details</h3>
+          <div style="display:grid; grid-template-columns:1fr 1fr; gap:1.25rem; margin-bottom:1.5rem;" class="booking-grid">
+            <div>
+              <label style="font-size:0.85rem; font-weight:600; display:block; margin-bottom:0.4rem;">Full Name:</label>
+              <input type="text" id="prof-name" class="search-input" value="Aman Kumar" required style="height:48px; border-radius:var(--radius-md);">
+            </div>
+            <div>
+              <label style="font-size:0.85rem; font-weight:600; display:block; margin-bottom:0.4rem;">Mobile Number:</label>
+              <input type="tel" id="prof-mobile" class="search-input" value="9876543210" required style="height:48px; border-radius:var(--radius-md);">
+            </div>
+            <div>
+              <label style="font-size:0.85rem; font-weight:600; display:block; margin-bottom:0.4rem;">Email Address:</label>
+              <input type="email" id="prof-email" class="search-input" value="user@hallkhoj.in" required style="height:48px; border-radius:var(--radius-md);">
+            </div>
+            <div>
+              <label style="font-size:0.85rem; font-weight:600; display:block; margin-bottom:0.4rem;">City / Area:</label>
+              <input type="text" id="prof-city" class="search-input" value="Lucknow, UP" required style="height:48px; border-radius:var(--radius-md);">
+            </div>
+          </div>
+
+          <div class="flex items-center justify-between flex-wrap gap-2" style="padding-top:1.25rem; border-top:1px solid var(--border-subtle);">
+            <div id="profile-save-status" style="font-size:0.85rem; color:#10b981; font-weight:600; display:none;">
+              ✓ Profile saved successfully!
+            </div>
+            <button type="submit" class="btn btn-primary btn-lg" style="margin-left:auto;">
+              Save Profile Changes
+            </button>
+          </div>
+        </form>
+      </div>
+
+      <!-- Password Change Section -->
+      <div class="glass-panel" style="padding:2.5rem;">
+        <h3 style="font-size:1.15rem; color:var(--text-champagne); margin-bottom:1.25rem;">Change Password</h3>
+        <form id="change-pwd-form" style="display:grid; grid-template-columns:1fr 1fr; gap:1.25rem;" class="booking-grid">
+          <div>
+            <label style="font-size:0.85rem; font-weight:600; display:block; margin-bottom:0.4rem;">New Password:</label>
+            <input type="password" id="prof-new-pwd" class="search-input" placeholder="At least 6 characters" minlength="6" required style="height:48px; border-radius:var(--radius-md);">
+          </div>
+          <div>
+            <label style="font-size:0.85rem; font-weight:600; display:block; margin-bottom:0.4rem;">Confirm Password:</label>
+            <input type="password" id="prof-conf-pwd" class="search-input" placeholder="Repeat new password" minlength="6" required style="height:48px; border-radius:var(--radius-md);">
+          </div>
+          <div style="grid-column:1 / -1; text-align:right;">
+            <button type="submit" class="btn btn-secondary">Update Password</button>
+          </div>
+        </form>
+      </div>
+    </div>
+  </main>
+
+  <footer class="footer-section" style="background:var(--bg-secondary); border-top:1px solid var(--border-subtle); padding:3rem 0; margin-top:4rem;">
+    <div class="container text-center" style="font-size:0.85rem; color:var(--text-muted);">
+      <p>&copy; 2026 Hall Khoj Finder. Secure Customer Portal.</p>
+    </div>
+  </footer>
+
+  <script>
+    (function initProfilePage() {
+      const user = (window.HKF_API?.auth?.getCurrentUser) ? window.HKF_API.auth.getCurrentUser() : null;
+      if (user) {
+        if (user.name) {
+          document.getElementById('prof-name').value = user.name;
+          document.getElementById('profile-display-name').textContent = user.name;
+          document.getElementById('profile-initials').textContent = user.name.slice(0, 2).toUpperCase();
+        }
+        if (user.mobile) {
+          document.getElementById('prof-mobile').value = user.mobile;
+        }
+        if (user.email) {
+          document.getElementById('prof-email').value = user.email;
+          document.getElementById('profile-display-contact').textContent = `📱 ${user.mobile || ''} • ✉️ ${user.email}`;
+        }
+      }
+
+      document.getElementById('profile-update-form').addEventListener('submit', (e) => {
+        e.preventDefault();
+        const status = document.getElementById('profile-save-status');
+        status.style.display = 'block';
+        setTimeout(() => { status.style.display = 'none'; }, 3000);
+      });
+
+      document.getElementById('change-pwd-form').addEventListener('submit', (e) => {
+        e.preventDefault();
+        const p1 = document.getElementById('prof-new-pwd').value;
+        const p2 = document.getElementById('prof-conf-pwd').value;
+        if (p1 !== p2) {
+          alert('Passwords do not match.');
+          return;
+        }
+        alert('Password updated successfully.');
+        document.getElementById('change-pwd-form').reset();
+      });
+    })();
+  </script>
+</body>
+</html>

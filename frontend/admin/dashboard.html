@@ -1,0 +1,863 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Superadmin Control Center — Hall Khoj Finder</title>
+  <link rel="icon" type="image/png" href="/assets/logo.png">
+
+  <!-- Theme Controller (Zero-Flash Dark/Light Mode) -->
+  <script src="../js/theme.js"></script>
+
+  <!-- Core CSS -->
+  <link rel="stylesheet" href="../css/main.css">
+  <link rel="stylesheet" href="../css/3d.css">
+  <link rel="stylesheet" href="../css/components.css">
+  <link rel="stylesheet" href="../css/animations.css">
+
+  <style>
+    .admin-dash-layout {
+      display: grid;
+      grid-template-columns: 280px 1fr;
+      gap: 2rem;
+      align-items: start;
+    }
+
+    @media (max-width: 960px) {
+      .admin-dash-layout {
+        grid-template-columns: 1fr;
+      }
+    }
+
+    .dash-nav-btn {
+      display: flex;
+      align-items: center;
+      gap: 0.75rem;
+      width: 100%;
+      padding: 0.75rem 1rem;
+      border-radius: var(--radius-md);
+      background: transparent;
+      border: 1px solid transparent;
+      color: var(--text-secondary);
+      font-size: 0.9rem;
+      font-weight: 500;
+      text-align: left;
+      cursor: pointer;
+      transition: var(--transition-fast);
+    }
+
+    .dash-nav-btn:hover {
+      background: rgba(255, 255, 255, 0.05);
+      color: var(--text-primary);
+    }
+
+    .dash-nav-btn.active {
+      background: rgba(239, 68, 68, 0.15);
+      border-color: rgba(239, 68, 68, 0.35);
+      color: #f87171;
+      font-weight: 600;
+    }
+
+    .dash-nav-btn svg {
+      width: 18px;
+      height: 18px;
+      flex-shrink: 0;
+    }
+
+    .dash-nav-badge {
+      margin-left: auto;
+      font-size: 0.7rem;
+      padding: 0.15rem 0.45rem;
+      border-radius: var(--radius-full);
+      background: rgba(239, 68, 68, 0.2);
+      color: #f87171;
+      font-weight: 700;
+    }
+
+    .tab-content-panel {
+      display: none;
+    }
+
+    .tab-content-panel.active {
+      display: block;
+      animation: fadeIn 0.25s ease-in-out;
+    }
+
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(6px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    .filter-pills-bar {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.5rem;
+      margin-bottom: 1.25rem;
+    }
+
+    .filter-pill-btn {
+      padding: 0.4rem 0.9rem;
+      font-size: 0.8rem;
+      font-weight: 500;
+      border-radius: var(--radius-full);
+      background: rgba(255, 255, 255, 0.04);
+      border: 1px solid var(--border-subtle);
+      color: var(--text-secondary);
+      cursor: pointer;
+      transition: var(--transition-fast);
+    }
+
+    .filter-pill-btn.active {
+      background: #ef4444;
+      color: #fff;
+      border-color: #ef4444;
+      font-weight: 600;
+    }
+
+    .table-container {
+      width: 100%;
+      overflow-x: auto;
+      background: rgba(13, 17, 29, 0.6);
+      border-radius: var(--radius-md);
+      border: 1px solid var(--border-subtle);
+    }
+
+    .admin-table {
+      width: 100%;
+      border-collapse: collapse;
+      text-align: left;
+      font-size: 0.85rem;
+    }
+
+    .admin-table th {
+      background: rgba(255, 255, 255, 0.03);
+      padding: 0.85rem 1rem;
+      font-weight: 600;
+      color: var(--text-muted);
+      border-bottom: 1px solid var(--border-subtle);
+      text-transform: uppercase;
+      font-size: 0.75rem;
+      letter-spacing: 0.04em;
+    }
+
+    .admin-table td {
+      padding: 1rem;
+      border-bottom: 1px solid rgba(255, 255, 255, 0.04);
+      color: var(--text-secondary);
+    }
+
+    .admin-table tr:hover td {
+      background: rgba(255, 255, 255, 0.02);
+      color: var(--text-primary);
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Site Header -->
+  <header class="site-header" role="banner">
+    <div class="nav-container">
+      <a href="/" class="brand-logo">
+        <img src="/assets/logo.png" alt="Hall Khoj" class="brand-logo-img">
+        <div class="brand-logo-text">
+          <span class="brand-title">HALL KHOJ</span>
+          <span class="brand-tagline-sub">SUPERADMIN CENTER</span>
+        </div>
+      </a>
+
+      <nav role="navigation">
+        <ul class="nav-links">
+          <li><a href="javascript:void(0)" onclick="switchTab('overview')" class="nav-link active" id="nav-link-overview">Overview</a></li>
+          <li><a href="javascript:void(0)" onclick="switchTab('verifications')" class="nav-link" id="nav-link-verifications">KYC Queue</a></li>
+          <li><a href="javascript:void(0)" onclick="switchTab('users')" class="nav-link" id="nav-link-users">Users</a></li>
+          <li><a href="javascript:void(0)" onclick="switchTab('listings')" class="nav-link" id="nav-link-listings">Listings</a></li>
+          <li><a href="/" class="nav-link">Main Storefront</a></li>
+        </ul>
+      </nav>
+
+      <div class="nav-actions">
+        <button class="theme-toggle-btn" data-action="toggle-theme" aria-label="Toggle Dark/Light Mode" title="Toggle Theme">
+          <span class="theme-icon-sun">☀️</span>
+          <span class="theme-icon-moon" style="display:none;">🌙</span>
+        </button>
+        <span class="badge badge-status-cancelled" style="background:rgba(239,68,68,0.15); color:#f87171; border:1px solid rgba(239,68,68,0.3);">
+          🛡️ Master Admin
+        </span>
+        <button class="btn btn-secondary btn-sm" onclick="handleAdminSignOut()">
+          Sign Out
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <main style="padding-top: 5.5rem; padding-bottom: 4rem;">
+    <div class="container">
+
+      <!-- Admin Quick Notice / Auth Helper -->
+      <div id="admin-auth-banner" class="glass-panel" style="padding:1rem 1.5rem; margin-bottom:1.5rem; border-left:4px solid #ef4444; display:none; align-items:center; justify-content:space-between; flex-wrap:wrap; gap:0.75rem;">
+        <div>
+          <strong style="color:#f87171;">Superadmin Authorization Required</strong>
+          <p style="font-size:0.8rem; color:var(--text-secondary); margin:0.2rem 0 0;">You are currently browsing without active admin credentials. Click to authenticate as Master Administrator.</p>
+        </div>
+        <button class="btn btn-primary btn-sm" onclick="quickLoginAdmin()">⚡ Quick Log In as Master Admin</button>
+      </div>
+
+      <!-- Main Layout: Sidebar + Tab Panels -->
+      <div class="admin-dash-layout">
+        <!-- Sidebar -->
+        <aside class="glass-panel" style="padding:1.5rem; position:sticky; top:5.5rem;">
+          <div style="text-align:center; padding-bottom:1.25rem; border-bottom:1px solid var(--border-subtle); margin-bottom:1.25rem;">
+            <div style="width:64px; height:64px; border-radius:var(--radius-full); background:linear-gradient(135deg, #ef4444, #991b1b); display:flex; align-items:center; justify-content:center; font-size:1.6rem; color:#fff; margin:0 auto 0.75rem;">
+              🛡️
+            </div>
+            <h3 style="font-size:1rem; font-weight:700; margin-bottom:0.2rem;" id="admin-display-name">System Administrator</h3>
+            <p style="font-size:0.75rem; color:var(--text-muted);" id="admin-display-email">admin@hallkhoj.com</p>
+            <span class="badge badge-verified" style="font-size:0.7rem; margin-top:0.4rem;">Platform Authority</span>
+          </div>
+
+          <nav style="display:flex; flex-direction:column; gap:0.35rem;">
+            <button class="dash-nav-btn active" onclick="switchTab('overview')">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="7" height="7"/><rect x="14" y="3" width="7" height="7"/><rect x="14" y="14" width="7" height="7"/><rect x="3" y="14" width="7" height="7"/></svg>
+              <span>Platform Overview</span>
+            </button>
+
+            <button class="dash-nav-btn" onclick="switchTab('verifications')">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+              <span>Owner KYC Queue</span>
+              <span class="dash-nav-badge" id="badge-ver-queue">0</span>
+            </button>
+
+            <button class="dash-nav-btn" onclick="switchTab('users')">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>
+              <span>User & Owner Control</span>
+            </button>
+
+            <button class="dash-nav-btn" onclick="switchTab('listings')">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polygon points="12 2 2 7 12 12 22 7 12 2"/><polyline points="2 17 12 22 22 17"/><polyline points="2 12 12 17 22 12"/></svg>
+              <span>Listing Moderation</span>
+              <span class="dash-nav-badge" id="badge-pending-listings">0</span>
+            </button>
+
+            <button class="dash-nav-btn" onclick="switchTab('audit')">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 14 14"/></svg>
+              <span>Audit & Activity Logs</span>
+            </button>
+          </nav>
+        </aside>
+
+        <!-- Right Content Panels -->
+        <div>
+          <!-- =========================================================================
+               TAB 1: PLATFORM OVERVIEW
+          ========================================================================= -->
+          <div id="tab-overview" class="tab-content-panel active">
+            <div style="margin-bottom:1.75rem;">
+              <h1 style="font-size:1.6rem;">System Administration & Telemetry</h1>
+              <p style="font-size:0.85rem; color:var(--text-secondary);">Real-time monitoring of registered accounts, partner onboarding, and market activity.</p>
+            </div>
+
+            <!-- 5 Metric Cards -->
+            <div style="display:grid; grid-template-columns:repeat(auto-fit, minmax(200px, 1fr)); gap:1rem; margin-bottom:2rem;">
+              <div class="glass-panel" style="padding:1.25rem;">
+                <span style="font-size:0.75rem; color:var(--text-muted); text-transform:uppercase;">Total Registered Users</span>
+                <div style="font-size:1.75rem; font-weight:800; color:#fff; margin-top:0.25rem;" id="metric-total-users">0</div>
+                <span style="font-size:0.7rem; color:#10b981;">● Customers & Business Partners</span>
+              </div>
+
+              <div class="glass-panel" style="padding:1.25rem; border:1px solid rgba(245, 158, 11, 0.4);">
+                <div class="flex justify-between items-center">
+                  <span style="font-size:0.75rem; color:var(--text-muted); text-transform:uppercase;">Pending KYC Requests</span>
+                  <span class="badge badge-gold animate-pulse-gold">Review</span>
+                </div>
+                <div style="font-size:1.75rem; font-weight:800; color:#fbbf24; margin-top:0.25rem;" id="metric-pending-verifications">0</div>
+                <span style="font-size:0.7rem; color:#fbbf24;">Action required</span>
+              </div>
+
+              <div class="glass-panel" style="padding:1.25rem;">
+                <span style="font-size:0.75rem; color:var(--text-muted); text-transform:uppercase;">Verified Partners</span>
+                <div style="font-size:1.75rem; font-weight:800; color:#10b981; margin-top:0.25rem;" id="metric-verified-owners">0</div>
+                <span style="font-size:0.7rem; color:#10b981;">✓ Badges Active</span>
+              </div>
+
+              <div class="glass-panel" style="padding:1.25rem;">
+                <span style="font-size:0.75rem; color:var(--text-muted); text-transform:uppercase;">Live Marketplace Listings</span>
+                <div style="font-size:1.75rem; font-weight:800; color:#818cf8; margin-top:0.25rem;" id="metric-active-listings">0</div>
+                <span style="font-size:0.7rem; color:var(--text-muted);">Halls, Cars & Tents</span>
+              </div>
+
+              <div class="glass-panel" style="padding:1.25rem;">
+                <span style="font-size:0.75rem; color:var(--text-muted); text-transform:uppercase;">Total Marketplace GMV</span>
+                <div style="font-size:1.75rem; font-weight:800; color:#fff; margin-top:0.25rem;" id="metric-total-gmv">₹0</div>
+                <span style="font-size:0.7rem; color:#10b981;">Confirmed volume</span>
+              </div>
+            </div>
+
+            <!-- Quick Action Banners -->
+            <div class="glass-panel" style="padding:1.5rem; margin-bottom:2rem;">
+              <h3 style="font-size:1.1rem; margin-bottom:0.75rem;">Administrative Fast Actions</h3>
+              <div class="flex gap-2" style="flex-wrap:wrap;">
+                <button class="btn btn-gold btn-sm" onclick="switchTab('verifications')">🔍 Audit KYC Verification Queue</button>
+                <button class="btn btn-secondary btn-sm" onclick="switchTab('listings')">📋 Moderate New Venue Listings</button>
+                <button class="btn btn-secondary btn-sm" onclick="switchTab('users')">👥 Search User Directory</button>
+                <button class="btn btn-secondary btn-sm" onclick="switchTab('audit')">🕒 Review Audit Trail</button>
+              </div>
+            </div>
+
+            <!-- Recent System Activity Log Preview -->
+            <section>
+              <div class="flex items-center justify-between" style="margin-bottom:1rem;">
+                <h3 style="font-size:1.2rem;">Recent Moderation Activity</h3>
+                <button class="btn btn-secondary btn-sm" onclick="switchTab('audit')">View All Logs →</button>
+              </div>
+
+              <div id="overview-recent-logs" style="display:flex; flex-direction:column; gap:0.75rem;">
+                <!-- Populated dynamically -->
+              </div>
+            </section>
+          </div>
+
+          <!-- =========================================================================
+               TAB 2: OWNER KYC VERIFICATION QUEUE
+          ========================================================================= -->
+          <div id="tab-verifications" class="tab-content-panel">
+            <div class="flex items-center justify-between" style="margin-bottom:1.5rem;">
+              <div>
+                <h2 style="font-size:1.4rem;">Partner KYC Verification Queue</h2>
+                <p style="font-size:0.85rem; color:var(--text-secondary);">Verify legal business entities, inspect GSTIN documents, and award Verified Badges.</p>
+              </div>
+              <button class="btn btn-secondary btn-sm" onclick="loadVerificationQueue()">🔄 Refresh Queue</button>
+            </div>
+
+            <div id="verifications-list" style="display:flex; flex-direction:column; gap:1rem;">
+              <!-- Populated dynamically -->
+            </div>
+          </div>
+
+          <!-- =========================================================================
+               TAB 3: USER & OWNER CONTROL
+          ========================================================================= -->
+          <div id="tab-users" class="tab-content-panel">
+            <div class="flex items-center justify-between" style="margin-bottom:1.5rem; flex-wrap:wrap; gap:1rem;">
+              <div>
+                <h2 style="font-size:1.4rem;">User & Owner Management Directory</h2>
+                <p style="font-size:0.85rem; color:var(--text-secondary);">Manage platform accounts, investigate reports, and suspend offending profiles.</p>
+              </div>
+            </div>
+
+            <!-- Search & Filters -->
+            <div style="display:flex; gap:0.75rem; flex-wrap:wrap; margin-bottom:1.25rem;">
+              <input type="text" id="user-search-input" class="search-input" style="flex:1; min-width:240px; height:42px;" placeholder="Search by name, email, or mobile..." oninput="filterUsersDirectory()">
+              <select id="user-role-filter" class="form-input" style="width:160px; height:42px; background:#111827; color:#fff;" onchange="filterUsersDirectory()">
+                <option value="all">All Roles</option>
+                <option value="customer">Customers</option>
+                <option value="owner">Owners</option>
+                <option value="admin">Admins</option>
+              </select>
+              <select id="user-status-filter" class="form-input" style="width:160px; height:42px; background:#111827; color:#fff;" onchange="filterUsersDirectory()">
+                <option value="all">All Statuses</option>
+                <option value="active">Active</option>
+                <option value="suspended">Suspended</option>
+              </select>
+            </div>
+
+            <div class="table-container">
+              <table class="admin-table">
+                <thead>
+                  <tr>
+                    <th>User / Business</th>
+                    <th>Role</th>
+                    <th>Contact Details</th>
+                    <th>Location</th>
+                    <th>Account Status</th>
+                    <th style="text-align:right;">Actions</th>
+                  </tr>
+                </thead>
+                <tbody id="users-table-body">
+                  <!-- Populated dynamically -->
+                </tbody>
+              </table>
+            </div>
+          </div>
+
+          <!-- =========================================================================
+               TAB 4: LISTING MODERATION
+          ========================================================================= -->
+          <div id="tab-listings" class="tab-content-panel">
+            <div class="flex items-center justify-between" style="margin-bottom:1.5rem; flex-wrap:wrap; gap:1rem;">
+              <div>
+                <h2 style="font-size:1.4rem;">Venue & Service Moderation</h2>
+                <p style="font-size:0.85rem; color:var(--text-secondary);">Review user-submitted listings, approve content quality, or flag non-compliant items.</p>
+              </div>
+            </div>
+
+            <!-- Filter Pills -->
+            <div class="filter-pills-bar">
+              <button class="filter-pill-btn active" onclick="filterListings('all', this)">All Listings</button>
+              <button class="filter-pill-btn" onclick="filterListings('PENDING_APPROVAL', this)">Pending Approval</button>
+              <button class="filter-pill-btn" onclick="filterListings('APPROVED', this)">Live / Approved</button>
+              <button class="filter-pill-btn" onclick="filterListings('FLAGGED', this)">Flagged</button>
+              <button class="filter-pill-btn" onclick="filterListings('REJECTED', this)">Rejected</button>
+            </div>
+
+            <div id="listings-moderation-grid" style="display:grid; grid-template-columns:repeat(auto-fill, minmax(300px, 1fr)); gap:1.25rem;">
+              <!-- Populated dynamically -->
+            </div>
+          </div>
+
+          <!-- =========================================================================
+               TAB 5: AUDIT & ACTIVITY LOGS
+          ========================================================================= -->
+          <div id="tab-audit" class="tab-content-panel">
+            <div class="flex items-center justify-between" style="margin-bottom:1.5rem;">
+              <div>
+                <h2 style="font-size:1.4rem;">System Activity & Moderation Audit Trail</h2>
+                <p style="font-size:0.85rem; color:var(--text-secondary);">Immutable log of administrative actions, status changes, and verifications.</p>
+              </div>
+              <button class="btn btn-secondary btn-sm" onclick="loadAuditLogs()">🔄 Refresh Logs</button>
+            </div>
+
+            <div class="table-container">
+              <table class="admin-table">
+                <thead>
+                  <tr>
+                    <th>Timestamp</th>
+                    <th>Action</th>
+                    <th>Admin Actor</th>
+                    <th>Target ID</th>
+                    <th>Details / Reason</th>
+                  </tr>
+                </thead>
+                <tbody id="audit-logs-table-body">
+                  <!-- Populated dynamically -->
+                </tbody>
+              </table>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </main>
+
+  <div class="toast-container"></div>
+  <script src="../js/app.js"></script>
+  <script src="../js/api.js"></script>
+  <script src="../js/firebase-config.js"></script>
+  <script>
+    // =========================================================================
+    // ADMIN PORTAL CLIENT STATE & LOGIC
+    // =========================================================================
+    let adminUsersCache = [];
+    let adminListingsCache = [];
+    let adminVerificationsCache = [];
+    let currentAdminListingFilter = 'all';
+
+    // 1. Tab Navigation
+    function switchTab(tabId) {
+      document.querySelectorAll('.dash-nav-btn').forEach(btn => btn.classList.remove('active'));
+      document.querySelectorAll('.tab-content-panel').forEach(panel => panel.classList.remove('active'));
+
+      const targetBtn = Array.from(document.querySelectorAll('.dash-nav-btn')).find(b => b.getAttribute('onclick')?.includes(tabId));
+      if (targetBtn) targetBtn.classList.add('active');
+
+      const targetPanel = document.getElementById(`tab-${tabId}`);
+      if (targetPanel) targetPanel.classList.add('active');
+
+      document.querySelectorAll('.nav-link').forEach(l => l.classList.remove('active'));
+      const topLink = document.getElementById(`nav-link-${tabId}`);
+      if (topLink) topLink.classList.add('active');
+    }
+
+    // 2. Auth Helper: Quick Log In as Master Admin
+    async function quickLoginAdmin() {
+      try {
+        const res = await HKF_API.auth.login('admin@hallkhoj.com', 'AdminPass@123');
+        if (res.data?.token) {
+          localStorage.setItem('hkf_token', res.data.token);
+          localStorage.setItem('hkf_session', JSON.stringify(res.data.user));
+          showToast('Authenticated as Master Administrator!', 'success');
+          document.getElementById('admin-auth-banner').style.display = 'none';
+          initAdminDashboard();
+        }
+      } catch (err) {
+        showToast(err.message || 'Failed to login as admin', 'error');
+      }
+    }
+
+    function handleAdminSignOut() {
+      localStorage.removeItem('hkf_token');
+      localStorage.removeItem('hkf_session');
+      showToast('Logged out from Admin Center', 'info');
+      setTimeout(() => {
+        window.location.href = '/login.html?redirect=/admin/dashboard.html';
+      }, 500);
+    }
+
+    // 3. Platform Metrics
+    async function loadAdminMetrics() {
+      try {
+        const res = await HKF_API.admin.getMetrics();
+        if (res.data) {
+          const m = res.data;
+          document.getElementById('metric-total-users').textContent = (m.totalUsers || 0).toLocaleString();
+          document.getElementById('metric-pending-verifications').textContent = (m.pendingVerifications || 0).toLocaleString();
+          document.getElementById('badge-ver-queue').textContent = m.pendingVerifications || 0;
+          document.getElementById('metric-verified-owners').textContent = (m.verifiedOwners || 0).toLocaleString();
+          document.getElementById('metric-active-listings').textContent = (m.activeListings || 0).toLocaleString();
+          document.getElementById('badge-pending-listings').textContent = m.pendingListings || 0;
+          document.getElementById('metric-total-gmv').textContent = `₹${(m.totalGmv || 0).toLocaleString('en-IN')}`;
+        }
+      } catch (err) {
+        console.warn('Metrics load error:', err.message);
+        if (err.statusCode === 401 || err.statusCode === 403) {
+          document.getElementById('admin-auth-banner').style.display = 'flex';
+        }
+      }
+    }
+
+    // 4. Verification Queue
+    async function loadVerificationQueue() {
+      const container = document.getElementById('verifications-list');
+      if (!container) return;
+
+      try {
+        const res = await HKF_API.admin.getVerifications();
+        adminVerificationsCache = res.data || [];
+
+        if (adminVerificationsCache.length === 0) {
+          container.innerHTML = `
+            <div class="glass-panel" style="padding:2rem; text-align:center;">
+              <p style="color:var(--text-secondary); margin:0;">No partner KYC requests pending. The queue is clear!</p>
+            </div>
+          `;
+          return;
+        }
+
+        container.innerHTML = adminVerificationsCache.map(v => {
+          const isPending = v.verificationStatus === 'PENDING' || !v.verificationStatus;
+          return `
+            <div class="glass-panel" style="padding:1.5rem; border-left:4px solid ${isPending ? '#fbbf24' : '#10b981'};" id="ver-card-${v.id}">
+              <div class="flex items-center justify-between" style="flex-wrap:wrap; gap:0.5rem; margin-bottom:0.75rem;">
+                <div>
+                  <strong style="font-size:1.15rem;">${v.businessName}</strong>
+                  <span class="badge badge-gold" style="margin-left:0.5rem;">${v.businessCategory}</span>
+                  <span class="badge ${v.verificationStatus === 'APPROVED' ? 'badge-verified' : 'badge-status-pending'}" style="margin-left:0.35rem;">
+                    ${v.verificationStatus}
+                  </span>
+                </div>
+                <span style="font-size:0.75rem; color:var(--text-muted);">Ref: ${v.id}</span>
+              </div>
+
+              <div style="display:grid; grid-template-columns:repeat(auto-fit, minmax(200px, 1fr)); gap:0.5rem; font-size:0.85rem; background:rgba(255,255,255,0.03); padding:0.85rem; border-radius:var(--radius-md); margin-bottom:1rem;">
+                <div>👤 <strong>Representative:</strong> ${v.ownerName}</div>
+                <div>📱 <strong>Mobile:</strong> ${v.mobile}</div>
+                <div>📧 <strong>Email:</strong> ${v.email}</div>
+                <div>📍 <strong>Location:</strong> ${v.city}, ${v.state}</div>
+                <div>📑 <strong>GSTIN:</strong> <code style="color:#fbbf24;">${v.gstin}</code></div>
+              </div>
+
+              <div style="margin-bottom:1rem;">
+                <span style="font-size:0.75rem; color:var(--text-muted); text-transform:uppercase; display:block; margin-bottom:0.35rem;">Uploaded Compliance Documents:</span>
+                <div class="flex gap-2" style="flex-wrap:wrap;">
+                  ${(v.verificationDocs || []).map(doc => `
+                    <span class="badge" style="background:rgba(255,255,255,0.06); font-size:0.75rem;">
+                      📄 ${doc.name || doc.type}
+                    </span>
+                  `).join('')}
+                </div>
+              </div>
+
+              <div class="flex gap-2" style="flex-wrap:wrap;">
+                <button class="btn btn-primary btn-sm" onclick="submitVerifyOwner('${v.id}', 'APPROVED')">
+                  ✓ Grant Verified Partner Badge
+                </button>
+                <button class="btn btn-secondary btn-sm" onclick="requestDocs('${v.id}')">
+                  📑 Request Additional Documents
+                </button>
+                <button class="btn btn-secondary btn-sm" style="color:#ef4444;" onclick="submitRejectOwner('${v.id}')">
+                  ✕ Reject
+                </button>
+              </div>
+            </div>
+          `;
+        }).join('');
+      } catch (err) {
+        console.warn('Verifications load error:', err.message);
+        if (err.statusCode === 401 || err.statusCode === 403) {
+          document.getElementById('admin-auth-banner').style.display = 'flex';
+        }
+      }
+    }
+
+    async function submitVerifyOwner(ownerId, status, reason = '') {
+      try {
+        await HKF_API.admin.verifyOwner(ownerId, status, reason);
+        showToast(`Owner ${ownerId} status updated to ${status}!`, 'success');
+        loadVerificationQueue();
+        loadAdminMetrics();
+        loadAuditLogs();
+      } catch (err) {
+        showToast(err.message || 'Operation failed', 'error');
+      }
+    }
+
+    function submitRejectOwner(ownerId) {
+      const reason = prompt('Please state the reason for rejection (e.g., Invalid GSTIN, unreadable documents):');
+      if (reason) {
+        submitVerifyOwner(ownerId, 'REJECTED', reason);
+      }
+    }
+
+    function requestDocs(ownerId) {
+      const note = prompt('Specify what documents are needed from the business owner:');
+      if (note) {
+        submitVerifyOwner(ownerId, 'DOCUMENT_REQUESTED', note);
+      }
+    }
+
+    // 5. User & Owner Directory Management
+    async function loadUsers() {
+      try {
+        const res = await HKF_API.admin.getUsers();
+        adminUsersCache = res.data || [];
+        renderUsersTable(adminUsersCache);
+      } catch (err) {
+        console.warn('Users load error:', err.message);
+      }
+    }
+
+    function renderUsersTable(users) {
+      const tbody = document.getElementById('users-table-body');
+      if (!tbody) return;
+
+      if (users.length === 0) {
+        tbody.innerHTML = `<tr><td colspan="6" style="text-align:center; padding:2rem; color:var(--text-muted);">No users found matching current filters.</td></tr>`;
+        return;
+      }
+
+      tbody.innerHTML = users.map(u => {
+        const isSuspended = u.accountStatus === 'SUSPENDED' || u.isSuspended;
+        const roleCls = u.role === 'admin' ? 'badge-gold' : (u.role === 'owner' ? 'badge-indigo' : 'badge');
+        return `
+          <tr>
+            <td>
+              <strong style="color:var(--text-primary); font-size:0.9rem;">${u.name || 'User'}</strong>
+              <div style="font-size:0.75rem; color:var(--text-muted);">ID: ${u.id}</div>
+            </td>
+            <td><span class="badge ${roleCls}">${(u.role || 'customer').toUpperCase()}</span></td>
+            <td>
+              <div>📱 ${u.mobile || 'N/A'}</div>
+              <div style="font-size:0.75rem; color:var(--text-muted);">${u.email || 'N/A'}</div>
+            </td>
+            <td>${[u.city, u.state].filter(Boolean).join(', ') || 'India'}</td>
+            <td>
+              <span class="badge ${isSuspended ? 'badge-status-cancelled' : 'badge-verified'}">
+                ${isSuspended ? 'SUSPENDED' : 'ACTIVE'}
+              </span>
+            </td>
+            <td style="text-align:right;">
+              ${isSuspended ? `
+                <button class="btn btn-secondary btn-sm" onclick="toggleUserSuspension('${u.id}', 'ACTIVE')">
+                  Restore Access
+                </button>
+              ` : `
+                ${u.role !== 'admin' ? `
+                  <button class="btn btn-secondary btn-sm" style="color:#ef4444;" onclick="toggleUserSuspension('${u.id}', 'SUSPENDED')">
+                    Suspend
+                  </button>
+                ` : '<span style="font-size:0.75rem; color:var(--text-muted);">Protected</span>'}
+              `}
+            </td>
+          </tr>
+        `;
+      }).join('');
+    }
+
+    function filterUsersDirectory() {
+      const query = (document.getElementById('user-search-input').value || '').toLowerCase();
+      const role = document.getElementById('user-role-filter').value;
+      const status = document.getElementById('user-status-filter').value;
+
+      let filtered = adminUsersCache;
+      if (role !== 'all') {
+        filtered = filtered.filter(u => (u.role || 'customer').toLowerCase() === role.toLowerCase());
+      }
+      if (status !== 'all') {
+        filtered = filtered.filter(u => {
+          const isSusp = u.accountStatus === 'SUSPENDED' || u.isSuspended;
+          return status === 'suspended' ? isSusp : !isSusp;
+        });
+      }
+      if (query) {
+        filtered = filtered.filter(u =>
+          (u.name && u.name.toLowerCase().includes(query)) ||
+          (u.email && u.email.toLowerCase().includes(query)) ||
+          (u.mobile && u.mobile.includes(query))
+        );
+      }
+
+      renderUsersTable(filtered);
+    }
+
+    async function toggleUserSuspension(userId, newStatus) {
+      let reason = '';
+      if (newStatus === 'SUSPENDED') {
+        reason = prompt('Enter suspension rationale (e.g. Terms of Service violation, fraudulent behavior):');
+        if (!reason) return;
+      }
+
+      try {
+        await HKF_API.admin.updateUserStatus(userId, newStatus, reason);
+        showToast(`User ${userId} status updated to ${newStatus}`, 'success');
+        loadUsers();
+        loadAuditLogs();
+      } catch (err) {
+        showToast(err.message || 'Status update failed', 'error');
+      }
+    }
+
+    // 6. Listing Moderation Directory
+    async function loadListings() {
+      try {
+        const res = await HKF_API.admin.getListings();
+        adminListingsCache = res.data || [];
+        renderListingsGrid(adminListingsCache);
+      } catch (err) {
+        console.warn('Listings load error:', err.message);
+      }
+    }
+
+    function renderListingsGrid(listings) {
+      const grid = document.getElementById('listings-moderation-grid');
+      if (!grid) return;
+
+      if (listings.length === 0) {
+        grid.innerHTML = `<div class="glass-panel" style="padding:2rem; text-align:center; grid-column:1/-1;">
+          <p style="color:var(--text-secondary); margin:0;">No listings found matching this status.</p>
+        </div>`;
+        return;
+      }
+
+      grid.innerHTML = listings.map(l => {
+        const status = l.status || 'APPROVED';
+        const isApproved = status === 'APPROVED';
+        return `
+          <div class="glass-panel" style="padding:0; overflow:hidden; display:flex; flex-direction:column;">
+            <div style="height:150px; position:relative; overflow:hidden;">
+              <img src="${l.coverImg || 'https://images.unsplash.com/photo-1519167758481-83f550bb49b3?auto=format&fit=crop&w=800&q=80'}" style="width:100%; height:100%; object-fit:cover;" alt="${l.name}">
+              <span class="badge ${isApproved ? 'badge-verified' : 'badge-status-pending'}" style="position:absolute; top:10px; left:10px;">
+                ${status}
+              </span>
+            </div>
+            <div style="padding:1.25rem; flex:1; display:flex; flex-direction:column;">
+              <div class="flex justify-between" style="font-size:0.75rem; color:var(--text-muted); margin-bottom:0.25rem;">
+                <span>${l.category || l.type || 'Venue'}</span>
+                <span>📍 ${l.city || 'Lucknow'}</span>
+              </div>
+              <h4 style="font-size:1.1rem; margin-bottom:0.35rem;">${l.name}</h4>
+              <div style="font-size:0.8rem; color:var(--text-secondary); margin-bottom:0.75rem;">
+                Starting: <strong style="color:#fbbf24;">₹${(l.startingPrice || 65000).toLocaleString('en-IN')}</strong> • Max Guests: ${l.capacityMax || 500}
+              </div>
+
+              <div style="margin-top:auto; display:flex; gap:0.5rem; border-top:1px solid var(--border-subtle); padding-top:0.75rem; flex-wrap:wrap;">
+                <button class="btn btn-primary btn-sm" style="flex:1;" onclick="moderateListing('${l.id}', 'APPROVED')">✓ Approve</button>
+                <button class="btn btn-secondary btn-sm" style="flex:1;" onclick="moderateListing('${l.id}', 'FLAGGED')">⚠️ Flag</button>
+                <button class="btn btn-secondary btn-sm" style="color:#ef4444;" onclick="moderateListing('${l.id}', 'REJECTED')">✕ Remove</button>
+              </div>
+            </div>
+          </div>
+        `;
+      }).join('');
+    }
+
+    function filterListings(status, btn) {
+      document.querySelectorAll('#tab-listings .filter-pill-btn').forEach(b => b.classList.remove('active'));
+      if (btn) btn.classList.add('active');
+
+      if (status === 'all') {
+        renderListingsGrid(adminListingsCache);
+      } else {
+        renderListingsGrid(adminListingsCache.filter(l => (l.status || 'APPROVED').toUpperCase() === status));
+      }
+    }
+
+    async function moderateListing(listingId, newStatus) {
+      let note = '';
+      if (newStatus === 'FLAGGED' || newStatus === 'REJECTED') {
+        note = prompt(`Enter moderation note for ${newStatus} listing:`);
+      }
+
+      try {
+        await HKF_API.admin.updateListingStatus(listingId, newStatus, note);
+        showToast(`Listing ${listingId} marked as ${newStatus}`, 'success');
+        loadListings();
+        loadAdminMetrics();
+        loadAuditLogs();
+      } catch (err) {
+        showToast(err.message || 'Moderation action failed', 'error');
+      }
+    }
+
+    // 7. Audit Logs
+    async function loadAuditLogs() {
+      const tbody = document.getElementById('audit-logs-table-body');
+      const overviewLogs = document.getElementById('overview-recent-logs');
+      if (!tbody) return;
+
+      try {
+        const res = await HKF_API.admin.getAuditLogs();
+        const logs = res.data || [];
+
+        if (overviewLogs) {
+          if (logs.length === 0) {
+            overviewLogs.innerHTML = `<p style="font-size:0.85rem; color:var(--text-muted); margin:0;">No moderation logs recorded yet.</p>`;
+          } else {
+            overviewLogs.innerHTML = logs.slice(0, 3).map(log => `
+              <div class="glass-panel" style="padding:0.75rem 1rem; display:flex; justify-content:space-between; align-items:center; font-size:0.85rem;">
+                <div>
+                  <strong style="color:var(--text-primary);">${log.action}</strong>
+                  <span style="color:var(--text-muted); font-size:0.75rem; margin-left:0.5rem;">Target: ${log.targetId}</span>
+                </div>
+                <span style="font-size:0.75rem; color:var(--text-muted);">${new Date(log.timestamp).toLocaleTimeString()}</span>
+              </div>
+            `).join('');
+          }
+        }
+
+        if (logs.length === 0) {
+          tbody.innerHTML = `<tr><td colspan="5" style="text-align:center; padding:2rem; color:var(--text-muted);">No audit logs found.</td></tr>`;
+          return;
+        }
+
+        tbody.innerHTML = logs.map(l => `
+          <tr>
+            <td style="font-size:0.75rem; color:var(--text-muted);">${new Date(l.timestamp).toLocaleString()}</td>
+            <td><span class="badge badge-indigo">${l.action}</span></td>
+            <td>${l.actorName || l.actorId}</td>
+            <td><code>${l.targetId}</code></td>
+            <td style="font-size:0.8rem;">${JSON.stringify(l.details || {})}</td>
+          </tr>
+        `).join('');
+      } catch (err) {
+        console.warn('Audit logs load error:', err.message);
+      }
+    }
+
+    // 8. Boot Admin
+    function initAdminDashboard() {
+      loadAdminMetrics();
+      loadVerificationQueue();
+      loadUsers();
+      loadListings();
+      loadAuditLogs();
+    }
+
+    document.addEventListener('DOMContentLoaded', () => {
+      const token = localStorage.getItem('hkf_token');
+      if (!token) {
+        document.getElementById('admin-auth-banner').style.display = 'flex';
+      }
+      initAdminDashboard();
+    });
+  </script>
+</body>
+</html>

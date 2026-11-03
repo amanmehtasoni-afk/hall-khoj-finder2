@@ -1,0 +1,225 @@
+[
+  {
+    "id": "rev_1789833811719_zeg1e0",
+    "bookingId": "HKF-2026-104164",
+    "serviceId": "h_1789833811464_79k578",
+    "serviceName": "Manoj Royal Heritage Lawn",
+    "customerId": "usr_1789833810806_e8v8zr",
+    "customerName": "Kavita Verma Customer",
+    "customerCity": "India",
+    "rating": 5,
+    "title": "Magical Royal Wedding Experience!",
+    "comment": "Everything was pristine. The lawn was vast, AC was superb, and Manoj ji was very hospitable.",
+    "photos": [
+      "https://images.unsplash.com/photo-1519167758481-83f550bb49b3?w=800"
+    ],
+    "verifiedBooking": true,
+    "ownerReply": {
+      "text": "Dhanyawaad Kavita ji! It was our privilege hosting your family. Wishing the couple a lifetime of happiness!",
+      "repliedAt": "2026-09-19T16:03:31.773Z"
+    },
+    "status": "FLAGGED",
+    "createdAt": "2026-09-19T16:03:31.719Z",
+    "updatedAt": "2026-09-19T16:03:31.787Z"
+  },
+  {
+    "id": "rev_1789833857380_ah0asa",
+    "bookingId": "HKF-2026-742153",
+    "serviceId": "h_1789833857210_ccanm7",
+    "serviceName": "Manoj Royal Heritage Lawn",
+    "customerId": "usr_1789833856463_2uqycr",
+    "customerName": "Kavita Verma Customer",
+    "customerCity": "India",
+    "rating": 5,
+    "title": "Magical Royal Wedding Experience!",
+    "comment": "Everything was pristine. The lawn was vast, AC was superb, and Manoj ji was very hospitable.",
+    "photos": [
+      "https://images.unsplash.com/photo-1519167758481-83f550bb49b3?w=800"
+    ],
+    "verifiedBooking": true,
+    "ownerReply": {
+      "text": "Dhanyawaad Kavita ji! It was our privilege hosting your family. Wishing the couple a lifetime of happiness!",
+      "repliedAt": "2026-09-19T16:04:17.556Z"
+    },
+    "status": "FLAGGED",
+    "createdAt": "2026-09-19T16:04:17.380Z",
+    "updatedAt": "2026-09-19T16:04:17.627Z"
+  },
+  {
+    "id": "rev_1789834409739_3oeiii",
+    "bookingId": "HKF-2026-753946",
+    "serviceId": "h_1789834409620_tjot28",
+    "serviceName": "Manoj Royal Heritage Lawn",
+    "customerId": "usr_1789834409095_sedzg7",
+    "customerName": "Kavita Verma Customer",
+    "customerCity": "India",
+    "rating": 5,
+    "title": "Magical Royal Wedding Experience!",
+    "comment": "Everything was pristine. The lawn was vast, AC was superb, and Manoj ji was very hospitable.",
+    "photos": [
+      "https://images.unsplash.com/photo-1519167758481-83f550bb49b3?w=800"
+    ],
+    "verifiedBooking": true,
+    "ownerReply": {
+      "text": "Dhanyawaad Kavita ji! It was our privilege hosting your family. Wishing the couple a lifetime of happiness!",
+      "repliedAt": "2026-09-19T16:13:29.800Z"
+    },
+    "status": "FLAGGED",
+    "createdAt": "2026-09-19T16:13:29.739Z",
+    "updatedAt": "2026-09-19T16:13:29.847Z"
+  },
+  {
+    "id": "rev_1789897426330_al9fzq",
+    "bookingId": "HKF-2026-341209",
+    "serviceId": "h_1789897426232_9mj1ox",
+    "serviceName": "Manoj Royal Heritage Lawn",
+    "customerId": "usr_1789897425735_8jdn1p",
+    "customerName": "Kavita Verma Customer",
+    "customerCity": "India",
+    "rating": 5,
+    "title": "Magical Royal Wedding Experience!",
+    "comment": "Everything was pristine. The lawn was vast, AC was superb, and Manoj ji was very hospitable.",
+    "photos": [
+      "https://images.unsplash.com/photo-1519167758481-83f550bb49b3?w=800"
+    ],
+    "verifiedBooking": true,
+    "ownerReply": {
+      "text": "Dhanyawaad Kavita ji! It was our privilege hosting your family. Wishing the couple a lifetime of happiness!",
+      "repliedAt": "2026-09-20T09:43:46.372Z"
+    },
+    "status": "FLAGGED",
+    "createdAt": "2026-09-20T09:43:46.330Z",
+    "updatedAt": "2026-09-20T09:43:46.392Z"
+  },
+  {
+    "id": "rev_1789899692389_ebb1xr",
+    "bookingId": "HKF-2026-616053",
+    "serviceId": "h_1789899692313_gvxxks",
+    "serviceName": "Royal Kohinoor Palace Lucknow",
+    "customerId": "usr_1789899691899_i4y20i",
+    "customerName": "E2E Test Customer",
+    "customerCity": "India",
+    "rating": 5,
+    "title": "Flawless wedding experience!",
+    "comment": "The 3D walkthrough was completely accurate to the real palace. Five stars!",
+    "photos": [],
+    "verifiedBooking": true,
+    "ownerReply": null,
+    "status": "APPROVED",
+    "createdAt": "2026-09-20T10:21:32.389Z",
+    "updatedAt": "2026-09-20T10:21:32.389Z"
+  },
+  {
+    "id": "rev_1789899842314_ob40bd",
+    "bookingId": "HKF-2026-468209",
+    "serviceId": "h-101",
+    "serviceName": "The Royal Grand Heritage Palace",
+    "customerId": "usr_1789899841763_foqjbt",
+    "customerName": "Rohan Sharma",
+    "customerCity": "India",
+    "rating": 5,
+    "title": "Spectacular Event!",
+    "comment": "The venue lighting, AC and arrangements were top notch.",
+    "photos": [],
+    "verifiedBooking": true,
+    "ownerReply": null,
+    "status": "APPROVED",
+    "createdAt": "2026-09-20T10:24:02.314Z",
+    "updatedAt": "2026-09-20T10:24:02.314Z"
+  },
+  {
+    "id": "rev_1789899889805_dvq16d",
+    "bookingId": "HKF-2026-658008",
+    "serviceId": "h-101",
+    "serviceName": "The Royal Grand Heritage Palace",
+    "customerId": "usr_1789899888473_omrl5k",
+    "customerName": "Rohan Sharma",
+    "customerCity": "India",
+    "rating": 5,
+    "title": "Spectacular Event!",
+    "comment": "The venue lighting, AC and arrangements were top notch.",
+    "photos": [],
+    "verifiedBooking": true,
+    "ownerReply": null,
+    "status": "APPROVED",
+    "createdAt": "2026-09-20T10:24:49.805Z",
+    "updatedAt": "2026-09-20T10:24:49.805Z"
+  },
+  {
+    "id": "rev_1789899965236_qnyuvg",
+    "bookingId": "HKF-2026-336486",
+    "serviceId": "h-101",
+    "serviceName": "The Royal Grand Heritage Palace",
+    "customerId": "usr_1789899964607_cejy9n",
+    "customerName": "Rohan Sharma",
+    "customerCity": "India",
+    "rating": 5,
+    "title": "Spectacular Event!",
+    "comment": "The venue lighting, AC and arrangements were top notch.",
+    "photos": [],
+    "verifiedBooking": true,
+    "ownerReply": null,
+    "status": "APPROVED",
+    "createdAt": "2026-09-20T10:26:05.236Z",
+    "updatedAt": "2026-09-20T10:26:05.236Z"
+  },
+  {
+    "id": "rev_1789899996832_jqqawo",
+    "bookingId": "HKF-2026-997720",
+    "serviceId": "h_1789899996734_x1cirn",
+    "serviceName": "Royal Kohinoor Palace Lucknow",
+    "customerId": "usr_1789899996559_u6bybo",
+    "customerName": "E2E Test Customer",
+    "customerCity": "India",
+    "rating": 5,
+    "title": "Flawless wedding experience!",
+    "comment": "The 3D walkthrough was completely accurate to the real palace. Five stars!",
+    "photos": [],
+    "verifiedBooking": true,
+    "ownerReply": null,
+    "status": "APPROVED",
+    "createdAt": "2026-09-20T10:26:36.832Z",
+    "updatedAt": "2026-09-20T10:26:36.832Z"
+  },
+  {
+    "id": "rev_1789900086430_cm1nm9",
+    "bookingId": "HKF-2026-237296",
+    "serviceId": "h-101",
+    "serviceName": "The Royal Grand Heritage Palace",
+    "customerId": "usr_1789900086065_loq54k",
+    "customerName": "Rohan Sharma",
+    "customerCity": "India",
+    "rating": 5,
+    "title": "Spectacular Event!",
+    "comment": "The venue lighting, AC and arrangements were top notch.",
+    "photos": [],
+    "verifiedBooking": true,
+    "ownerReply": null,
+    "status": "APPROVED",
+    "createdAt": "2026-09-20T10:28:06.431Z",
+    "updatedAt": "2026-09-20T10:28:06.431Z"
+  },
+  {
+    "id": "rev_1789900100718_n3prot",
+    "bookingId": "HKF-2026-526330",
+    "serviceId": "h_1789900100642_ey6ujy",
+    "serviceName": "Manoj Royal Heritage Lawn",
+    "customerId": "usr_1789900100274_9n3ml1",
+    "customerName": "Kavita Verma Customer",
+    "customerCity": "India",
+    "rating": 5,
+    "title": "Magical Royal Wedding Experience!",
+    "comment": "Everything was pristine. The lawn was vast, AC was superb, and Manoj ji was very hospitable.",
+    "photos": [
+      "https://images.unsplash.com/photo-1519167758481-83f550bb49b3?w=800"
+    ],
+    "verifiedBooking": true,
+    "ownerReply": {
+      "text": "Dhanyawaad Kavita ji! It was our privilege hosting your family. Wishing the couple a lifetime of happiness!",
+      "repliedAt": "2026-09-20T10:28:20.752Z"
+    },
+    "status": "FLAGGED",
+    "createdAt": "2026-09-20T10:28:20.718Z",
+    "updatedAt": "2026-09-20T10:28:20.769Z"
+  }
+]

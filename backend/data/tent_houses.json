@@ -1,0 +1,70 @@
+[
+  {
+    "id": "t-301",
+    "ownerId": "owner_102",
+    "name": "Shree Krishna Royal Tent & Shamiana Works",
+    "type": "Tent House",
+    "category": "Tent House",
+    "categorySlug": "tent-house",
+    "status": "APPROVED",
+    "city": "Varanasi",
+    "district": "Varanasi",
+    "state": "Uttar Pradesh",
+    "area": "Bhelupur",
+    "pin": "221005",
+    "latitude": 25.3050,
+    "longitude": 82.9930,
+    "startingPrice": 25000,
+    "priceUnit": "per event",
+    "rating": 4.8,
+    "reviewCount": 65,
+    "verified": true,
+    "facilities": [
+      "German Hanger Structure",
+      "Waterproof Shamiana",
+      "Royal Maharaja Sofas",
+      "Haldi & Mehndi Setup",
+      "Weather Resistant Fabric"
+    ],
+    "services": [
+      "German Hanger",
+      "Waterproof Shamiana",
+      "Sofa & Banquet Chairs",
+      "Haldi & Mehndi Setup"
+    ],
+    "coverImg": "https://images.unsplash.com/photo-1511795409834-ef04bbd61622?auto=format&fit=crop&w=800&q=80",
+    "updatedAt": "2026-09-19T14:39:20.024Z",
+    "createdAt": "2026-09-19T14:39:20.024Z"
+  },
+  {
+    "id": "t-302",
+    "ownerId": "owner_101",
+    "name": "Awadh Grand Luxury German Hanger & Marquee",
+    "type": "Tent House",
+    "category": "Tent House",
+    "categorySlug": "tent-house",
+    "status": "APPROVED",
+    "city": "Lucknow",
+    "district": "Lucknow",
+    "state": "Uttar Pradesh",
+    "area": "Gomti Nagar Extension",
+    "pin": "226010",
+    "latitude": 26.8350,
+    "longitude": 81.0120,
+    "startingPrice": 45000,
+    "priceUnit": "per event",
+    "rating": 4.9,
+    "reviewCount": 54,
+    "verified": true,
+    "facilities": [
+      "Imported Aluminum German Hanger",
+      "Transparent Glass Walls",
+      "Central HVAC Ducting",
+      "Crystal Chandelier Suspension",
+      "Plywood Carpeted Flooring"
+    ],
+    "coverImg": "https://images.unsplash.com/photo-1465495976277-4387d4b0b4c6?auto=format&fit=crop&w=800&q=80",
+    "updatedAt": "2026-09-19T16:00:00.000Z",
+    "createdAt": "2026-09-19T16:00:00.000Z"
+  }
+]
