@@ -8,6 +8,9 @@
   <link rel="icon" type="image/png" href="/assets/logo.png">
 
   <!-- Theme Controller (Zero-Flash Dark/Light Mode) -->
+    <!-- Standard Production Footer -->
+  
+
   <script src="js/theme.js"></script>
 
   <!-- Core CSS -->
@@ -158,6 +161,7 @@
       font-weight: 600;
     }
   </style>
+  <link rel="stylesheet" href="/css/cookie-consent.css">
 </head>
 <body>
 
@@ -168,7 +172,7 @@
     <div class="viewer-topbar">
       <div class="flex items-center gap-2">
         <a href="/" class="brand-logo glass-panel-subtle" style="padding:0.4rem 0.85rem; border-radius:var(--radius-full);">
-          <img src="/assets/logo.png" alt="Hall Khoj" style="width:30px; height:30px; border-radius:6px;">
+          <img decoding="async" loading="lazy" src="/assets/logo.png" alt="Hall Khoj" style="width:30px; height:30px; border-radius:6px;">
           <span style="font-size:1.05rem; font-weight:800; color:#fff;">HALL KHOJ <span style="color:var(--color-champagne);">3D</span></span>
         </a>
         <div class="procedural-badge">
@@ -254,6 +258,19 @@
 
       <div style="font-size:0.72rem; color:var(--text-muted); text-align:center;">
         🖱️ Left-Click & Drag to Rotate | Scroll to Zoom | Right-Click to Pan
+      </div>
+
+      <!-- Quick Concierge & Legal Links -->
+      <div style="border-top:1px solid rgba(255,255,255,0.08); padding-top:0.6rem; display:flex; flex-wrap:wrap; justify-content:center; gap:0.6rem; font-size:0.72rem; color:var(--text-muted);">
+        <a href="/support.html" style="color:var(--text-muted); text-decoration:none;">Support</a>
+        <span>•</span>
+        <a href="tel:+919773647612" style="color:var(--color-electric); text-decoration:none;">+91 97736 47612</a>
+        <span>•</span>
+        <a href="/privacy.html" style="color:var(--text-muted); text-decoration:none;">Privacy</a>
+        <span>•</span>
+        <a href="/terms.html" style="color:var(--text-muted); text-decoration:none;">Terms</a>
+        <span>•</span>
+        <button type="button" class="cookie-settings-btn" data-action="open-cookie-settings" style="background:none; border:none; color:var(--color-champagne); font-size:0.72rem; cursor:pointer; padding:0; text-decoration:underline;">Cookies</button>
       </div>
     </div>
   </div>
@@ -573,5 +590,10 @@
       animate();
     })();
   </script>
+
+  <!-- Observability, Analytics & Privacy Consent (Phases 10, 11, 21) -->
+  <script src="/js/error-monitor.js"></script>
+  <script src="/js/cookie-consent.js"></script>
+  <script src="/js/analytics.js"></script>
 </body>
 </html>

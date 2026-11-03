@@ -1,0 +1,185 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>404 — Venue or Page Not Found | Hall Khoj Finder</title>
+  <meta name="description" content="The page or venue you requested could not be found. Explore verified marriage halls, 3D venue tours, and wedding services on Hall Khoj Finder.">
+  <link rel="icon" type="image/png" href="/assets/logo.png">
+
+  <!-- Theme Controller (Zero-Flash Dark/Light Mode) -->
+  <script src="js/theme.js"></script>
+
+  <!-- Core CSS -->
+  <link rel="stylesheet" href="css/main.css">
+  <link rel="stylesheet" href="css/3d.css">
+  <link rel="stylesheet" href="css/components.css">
+  <link rel="stylesheet" href="css/animations.css">
+
+  <style>
+    .not-found-container {
+      min-height: calc(100vh - 160px);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 6rem 1.5rem 4rem 1.5rem;
+    }
+    .not-found-card {
+      max-width: 680px;
+      width: 100%;
+      text-align: center;
+      padding: 3.5rem 2.5rem;
+      border-radius: var(--radius-xl);
+      background: var(--bg-card);
+      border: 1px solid var(--border-light);
+      box-shadow: var(--shadow-lg);
+      backdrop-filter: blur(20px);
+    }
+    .badge-404 {
+      font-size: clamp(4rem, 10vw, 7rem);
+      font-weight: 900;
+      line-height: 1;
+      font-family: var(--font-heading);
+      background: linear-gradient(135deg, #FFFFFF 0%, #398BFF 50%, #D9C7A0 100%);
+      -webkit-background-clip: text;
+      background-clip: text;
+      -webkit-text-fill-color: transparent;
+      margin-bottom: 1rem;
+    }
+    :root[data-theme="light"] .badge-404 {
+      background: linear-gradient(135deg, #071426 0%, #123B68 50%, #398BFF 100%);
+      -webkit-background-clip: text;
+      background-clip: text;
+      -webkit-text-fill-color: transparent;
+    }
+    .quick-links-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(130px, 1fr));
+      gap: 0.75rem;
+      margin-top: 2rem;
+    }
+    .quick-link-box {
+      background: var(--bg-glass);
+      border: 1px solid var(--border-subtle);
+      padding: 0.75rem 0.5rem;
+      border-radius: var(--radius-md);
+      font-size: 0.85rem;
+      font-weight: 600;
+      transition: all var(--transition-fast);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 0.35rem;
+    }
+    .quick-link-box:hover {
+      border-color: var(--primary);
+      transform: translateY(-2px);
+      background: rgba(57, 139, 255, 0.12);
+    }
+  </style>
+  <link rel="stylesheet" href="/css/cookie-consent.css">
+</head>
+<body>
+
+  <!-- Site Header -->
+  <header class="site-header" role="banner">
+    <div class="nav-container">
+      <a href="/" class="brand-logo" aria-label="Hall Khoj Finder Homepage">
+        <img decoding="async" loading="lazy" src="/assets/logo.png" alt="Hall Khoj Logo" class="brand-logo-img">
+        <div class="brand-logo-text">
+          <span class="brand-title">HALL KHOJ</span>
+          <span class="brand-tagline-sub">404 DESTINATION</span>
+        </div>
+      </a>
+
+      <nav role="navigation" aria-label="Main Navigation">
+        <ul class="nav-links">
+          <li><a href="/" class="nav-link">Home</a></li>
+          <li><a href="/search.html" class="nav-link">Explore Venues</a></li>
+          <li><a href="/3d-preview.html" class="nav-link">3D Tour</a></li>
+          <li><a href="/support.html" class="nav-link">Support</a></li>
+        </ul>
+      </nav>
+
+      <div class="nav-actions">
+        <button class="theme-toggle-btn" data-action="toggle-theme" aria-label="Toggle Dark/Light Mode" title="Toggle Theme">
+          <span class="theme-icon-sun">☀️</span>
+          <span class="theme-icon-moon" style="display:none;">🌙</span>
+        </button>
+        <a href="/" class="btn btn-primary btn-sm">Home</a>
+      </div>
+    </div>
+  </header>
+
+  <main class="not-found-container">
+    <div class="not-found-card">
+      <div class="badge-404">404</div>
+      <h1 style="font-size: clamp(1.4rem, 3vw, 1.85rem); margin-bottom: 0.75rem;">
+        Destination or Page Not Found
+      </h1>
+      <p style="font-size: 1rem; color: var(--text-secondary); max-width: 500px; margin: 0 auto 2rem auto; line-height: 1.6;">
+        The venue listing or page you are looking for may have been moved, renamed, or is temporarily unavailable. Let us help you find the right hall.
+      </p>
+
+      <!-- Instant Search Input -->
+      <form action="/search.html" method="GET" style="display: flex; gap: 0.5rem; max-width: 440px; margin: 0 auto 2rem auto;">
+        <input type="text" name="q" class="form-control" placeholder="Search marriage halls, city, or PIN..." required style="border-radius: var(--radius-full); padding-left: 1.25rem;">
+        <button type="submit" class="btn btn-primary" style="border-radius: var(--radius-full); padding: 0 1.25rem;">
+          Search
+        </button>
+      </form>
+
+      <div style="display: flex; justify-content: center; gap: 1rem; flex-wrap: wrap;">
+        <a href="/" class="btn btn-gold btn-lg">
+          <span>&larr; Return to Homepage</span>
+        </a>
+        <a href="/support.html" class="btn btn-secondary btn-lg">
+          <span>Contact Concierge (+91 97736 47612)</span>
+        </a>
+      </div>
+
+      <!-- Quick Helpful Navigation -->
+      <div style="margin-top: 2.5rem; text-align: left;">
+        <span style="font-size: 0.78rem; text-transform: uppercase; color: var(--text-muted); font-weight: 700; letter-spacing: 0.05em; display: block; text-align: center;">
+          Popular Destinations
+        </span>
+        <div class="quick-links-grid">
+          <a href="/search.html?city=Lucknow" class="quick-link-box">
+            <span>🏰</span>
+            <span>Lucknow Halls</span>
+          </a>
+          <a href="/search.html?city=Patna" class="quick-link-box">
+            <span>🌿</span>
+            <span>Patna Banquets</span>
+          </a>
+          <a href="/search.html?city=Varanasi" class="quick-link-box">
+            <span>👑</span>
+            <span>Varanasi Lawns</span>
+          </a>
+          <a href="/3d-preview.html" class="quick-link-box">
+            <span>💎</span>
+            <span>3D Walkthrough</span>
+          </a>
+        </div>
+      </div>
+    </div>
+  </main>
+
+  <footer class="footer-section" style="background:var(--bg-secondary); border-top:1px solid var(--border-subtle); padding:2rem 0; font-size:0.85rem; color:var(--text-muted);">
+    <div class="container" style="display:flex; flex-wrap:wrap; justify-content:space-between; align-items:center; gap:1rem;">
+      <div>&copy; 2026 Hall Khoj Finder. Support Hotline: <a href="tel:+919773647612" style="color:var(--color-electric); text-decoration:none;">+91 97736 47612</a></div>
+      <div style="display:flex; flex-wrap:wrap; gap:1.25rem; align-items:center;">
+        <a href="/privacy.html" style="color:var(--text-muted); text-decoration:none;">Privacy Policy</a>
+        <a href="/terms.html" style="color:var(--text-muted); text-decoration:none;">Terms &amp; Conditions</a>
+        <a href="/support.html" style="color:var(--text-muted); text-decoration:none;">Support Desk</a>
+        <button type="button" class="cookie-settings-btn" data-action="open-cookie-settings" style="background:none; border:none; color:var(--color-champagne, #D9C7A0); font-size:0.82rem; cursor:pointer; padding:0; text-decoration:underline;">Cookie Settings</button>
+      </div>
+    </div>
+  </footer>
+
+  <!-- Observability, Analytics & Privacy Consent (Phases 10, 11, 21) -->
+  <script src="/js/error-monitor.js"></script>
+  <script src="/js/cookie-consent.js"></script>
+  <script src="/js/analytics.js"></script>
+</body>
+</html>

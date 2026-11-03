@@ -96,6 +96,8 @@
       }
     }
   </style>
+  <link rel="icon" type="image/png" href="/assets/logo.png">
+  <link rel="stylesheet" href="/css/cookie-consent.css">
 </head>
 <body style="display:flex; flex-direction:column; min-height:100vh;">
 
@@ -103,7 +105,7 @@
   <header class="site-header" style="position:static; background:#070a13;">
     <div class="nav-container">
       <a href="/" class="brand-logo">
-        <img src="/assets/logo.png" alt="Hall Khoj" class="brand-logo-img">
+        <img decoding="async" loading="lazy" src="/assets/logo.png" alt="Hall Khoj" class="brand-logo-img">
         <div class="brand-logo-text">
           <span class="brand-title">HALL KHOJ</span>
           <span class="brand-tagline-sub">FINDER</span>
@@ -290,6 +292,20 @@
   <div class="toast-container"></div>
 
   <!-- Mobile Bottom Navigation Bar (Phone-Friendly) -->
+    <!-- Compact Footer for Auth Pages -->
+  <footer class="site-footer" style="padding: 1.5rem 0;">
+    <div class="container site-footer-bottom">
+      <div>&copy; 2026 Hall Khoj Finder. All Rights Reserved.</div>
+      <div style="display:flex; flex-wrap:wrap; gap:1.25rem; align-items:center;">
+        <a href="/privacy.html">Privacy Policy</a>
+        <a href="/terms.html">Terms &amp; Conditions</a>
+        <a href="/support.html">Support Desk</a>
+        <a href="tel:+919773647612">+91 97736 47612</a>
+        <button type="button" class="cookie-settings-btn" data-action="open-cookie-settings">Cookie Preferences</button>
+      </div>
+    </div>
+  </footer>
+
   <nav class="mobile-bottom-nav" aria-label="Mobile Quick Navigation">
     <a href="/" class="mobile-nav-item">
       <svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg>
@@ -328,5 +344,10 @@
       }
     });
   </script>
+
+  <!-- Observability, Analytics & Privacy Consent (Phases 10, 11, 21) -->
+  <script src="/js/error-monitor.js"></script>
+  <script src="/js/cookie-consent.js"></script>
+  <script src="/js/analytics.js"></script>
 </body>
 </html>

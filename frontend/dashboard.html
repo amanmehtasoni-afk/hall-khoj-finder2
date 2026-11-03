@@ -4,8 +4,12 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Customer Dashboard — Hall Khoj Finder</title>
+  <meta name="description" content="Customer Dashboard — Manage your bookings, 3D layouts, favorites, messages and reviews on Hall Khoj Finder.">
 
   <!-- Theme Controller (Zero-Flash Dark/Light Mode) -->
+    <!-- Standard Production Footer -->
+  
+
   <script src="js/theme.js"></script>
 
   <!-- Core CSS -->
@@ -141,6 +145,8 @@
       }
     }
   </style>
+  <link rel="icon" type="image/png" href="/assets/logo.png">
+  <link rel="stylesheet" href="/css/cookie-consent.css">
 </head>
 <body>
 
@@ -148,7 +154,7 @@
   <header class="site-header" role="banner">
     <div class="nav-container">
       <a href="/" class="brand-logo">
-        <img src="/assets/logo.png" alt="Hall Khoj" class="brand-logo-img">
+        <img decoding="async" loading="lazy" src="/assets/logo.png" alt="Hall Khoj" class="brand-logo-img">
         <div class="brand-logo-text">
           <span class="brand-title">HALL KHOJ</span>
           <span class="brand-tagline-sub">CUSTOMER PORTAL</span>
@@ -554,6 +560,72 @@
     </div>
   </main>
 
+<footer class="site-footer">
+    <div class="container">
+      <div class="footer-grid">
+        <div>
+          <div class="brand-logo" style="margin-bottom:1rem;">
+            <img src="/assets/logo.png" alt="Hall Khoj" class="brand-logo-img" loading="lazy" decoding="async">
+            <span class="brand-title">HALL KHOJ</span>
+          </div>
+          <p style="font-size:0.875rem; color:var(--text-muted); line-height:1.6;">
+            India's premiere 3D Event Services Marketplace. Discover Marriage Halls, Cars, Tent Houses, DJs, and Decorators with transparent pricing.
+          </p>
+          <div style="margin-top:1rem; font-size:0.8rem; color:#fbbf24; font-weight:600;">
+            "Apne Paas Ka Hall, Tent, Car Aur Event Services Ek Jagah Khojiye"
+          </div>
+        </div>
+
+        <div>
+          <h4>Event Services</h4>
+          <ul>
+            <li><a href="/search.html?category=Marriage+Halls">Marriage & Banquet Halls</a></li>
+            <li><a href="/search.html?category=Cars">Luxury Wedding Cars</a></li>
+            <li><a href="/search.html?category=Tent+Houses">Tent & Shamiana Works</a></li>
+            <li><a href="/search.html?category=Catering">Royal Catering Services</a></li>
+            <li><a href="/search.html?category=Decoration">Stage & Flower Decoration</a></li>
+            <li><a href="/gallery.html">3D Virtual Gallery</a></li>
+          </ul>
+        </div>
+
+        <div>
+          <h4>Portals & Roles</h4>
+          <ul>
+            <li><a href="/dashboard.html">Customer Dashboard</a></li>
+            <li><a href="/owner/dashboard.html">Business Owner Portal</a></li>
+            <li><a href="/admin/dashboard.html">Admin Verification Panel</a></li>
+            <li><a href="/register.html?role=owner">List Your Hall / Service</a></li>
+            <li><a href="/login.html">Sign In to Your Account</a></li>
+            <li><a href="/compare.html">Compare Venues</a></li>
+          </ul>
+        </div>
+
+        <div>
+          <h4>Direct Support & Contact</h4>
+          <ul>
+            <li><a href="/support.html">Contact &amp; Support Desk</a></li>
+            <li><a href="/support.html?tab=bug-report">Report a Bug / Issue</a></li>
+            <li><a href="tel:+919773647612">Direct Call: +91 97736 47612</a></li>
+            <li><a href="https://wa.me/919773647612" target="_blank" rel="noopener">WhatsApp Concierge</a></li>
+            <li><a href="/terms.html">Terms &amp; Cancellation Policy</a></li>
+            <li><a href="/privacy.html">Privacy &amp; Data Rights</a></li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="site-footer-bottom">
+        <div>&copy; 2026 Hall Khoj Finder. All Rights Reserved. <span id="footer-backend-info" style="color:#10b981; margin-left:0.5rem; font-weight:500;">API: Connecting...</span></div>
+        <div style="display:flex; flex-wrap:wrap; gap:1.25rem; align-items:center;">
+          <a href="/privacy.html">Privacy Policy</a>
+          <a href="/terms.html">Terms &amp; Conditions</a>
+          <a href="/support.html">Support &amp; Help</a>
+          <a href="/sitemap.xml" target="_blank">Sitemap</a>
+          <button type="button" class="cookie-settings-btn" data-action="open-cookie-settings">Cookie Preferences</button>
+        </div>
+      </div>
+    </div>
+  </footer>
+
   <!-- Add Location Modal -->
   <div id="add-location-modal" class="modal-backdrop">
     <div class="modal-dialog">
@@ -819,7 +891,7 @@
       document.getElementById('sidebar-user-name').textContent = user.name || 'Customer';
       document.getElementById('sidebar-user-location').textContent = [user.city, user.state].filter(Boolean).join(', ') || 'India';
       if (user.profilePhoto) {
-        document.getElementById('sidebar-avatar').innerHTML = `<img src="${user.profilePhoto}" style="width:100%; height:100%; object-fit:cover;" alt="${user.name}">`;
+        document.getElementById('sidebar-avatar').innerHTML = `<img decoding="async" loading="lazy" src="${user.profilePhoto}" style="width:100%; height:100%; object-fit:cover;" alt="${user.name}">`;
       } else {
         document.getElementById('sidebar-initials').textContent = initials;
       }
@@ -828,7 +900,7 @@
       document.getElementById('overview-user-name').textContent = user.name || 'Welcome back!';
       document.getElementById('overview-subtext').textContent = `Customer • ${[user.village, user.city, user.state].filter(Boolean).join(', ') || 'India'}`;
       if (user.profilePhoto) {
-        document.getElementById('overview-avatar').innerHTML = `<img src="${user.profilePhoto}" style="width:100%; height:100%; object-fit:cover;" alt="${user.name}">`;
+        document.getElementById('overview-avatar').innerHTML = `<img decoding="async" loading="lazy" src="${user.profilePhoto}" style="width:100%; height:100%; object-fit:cover;" alt="${user.name}">`;
       } else {
         document.getElementById('overview-initials').textContent = initials;
       }
@@ -846,7 +918,7 @@
       document.getElementById('prof-pincode').value = user.pinCode || '';
 
       if (user.profilePhoto) {
-        document.getElementById('settings-avatar-preview').innerHTML = `<img src="${user.profilePhoto}" style="width:100%; height:100%; object-fit:cover;" alt="${user.name}">`;
+        document.getElementById('settings-avatar-preview').innerHTML = `<img decoding="async" loading="lazy" src="${user.profilePhoto}" style="width:100%; height:100%; object-fit:cover;" alt="${user.name}">`;
       } else {
         document.getElementById('settings-initials').textContent = initials;
       }
@@ -1632,7 +1704,7 @@
 
               ${r.photos && r.photos.length > 0 ? `
                 <div class="flex gap-1" style="margin-bottom:0.75rem; overflow-x:auto;">
-                  ${r.photos.map(p => `<img src="${p}" style="width:70px; height:70px; object-fit:cover; border-radius:var(--radius-sm); border:1px solid var(--border-subtle);" alt="Review photo">`).join('')}
+                  ${r.photos.map(p => `<img decoding="async" loading="lazy" src="${p}" style="width:70px; height:70px; object-fit:cover; border-radius:var(--radius-sm); border:1px solid var(--border-subtle);" alt="Review photo">`).join('')}
                 </div>
               ` : ''}
 
@@ -1678,5 +1750,10 @@
       }, 15000);
     });
   </script>
+
+  <!-- Observability, Analytics & Privacy Consent (Phases 10, 11, 21) -->
+  <script src="/js/error-monitor.js"></script>
+  <script src="/js/cookie-consent.js"></script>
+  <script src="/js/analytics.js"></script>
 </body>
 </html>

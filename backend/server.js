@@ -4,6 +4,7 @@
  */
 
 require('dotenv').config();
+const fs = require('fs');
 const path = require('path');
 const express = require('express');
 const cors = require('cors');
@@ -14,6 +15,7 @@ const dataService = require('./services/data.service');
 // Middleware
 const { errorHandler, notFoundHandler } = require('./middleware/error.middleware');
 const {
+  forceHttps,
   securityHeaders,
   globalApiLimiter,
   sensitiveEndpointLimiter,
@@ -40,12 +42,14 @@ const notificationsRoutes = require('./routes/notifications.routes');
 const messagesRoutes = require('./routes/messages.routes');
 const reviewsRoutes = require('./routes/reviews.routes');
 const paymentsRoutes = require('./routes/payments.routes');
+const supportRoutes = require('./routes/support.routes');
 
 const app = express();
 const PORT = process.env.PORT || 3000;
 const FRONTEND_DIR = path.join(__dirname, '../frontend');
 
-// 1. Enterprise Security Headers & Performance Caching (Phase 16)
+// 1. Enterprise Security Headers & Performance Caching (Phases 8 & 16)
+app.use(forceHttps);
 app.use(securityHeaders);
 app.use(cacheHeaders);
 
@@ -132,6 +136,7 @@ app.get('/api/database/status', (req, res) => {
 app.use('/api/auth', sensitiveEndpointLimiter);
 app.use('/api/payments', sensitiveEndpointLimiter);
 app.use('/api/ai', sensitiveEndpointLimiter);
+app.use('/api/support', sensitiveEndpointLimiter);
 
 // General API rate limiter
 app.use('/api', globalApiLimiter);
@@ -152,6 +157,7 @@ app.use('/api/notifications', notificationsRoutes);
 app.use('/api/messages', messagesRoutes);
 app.use('/api/reviews', reviewsRoutes);
 app.use('/api/payments', paymentsRoutes);
+app.use('/api/support', supportRoutes);
 
 // 9. Serve Static Frontend Files
 app.use(express.static(FRONTEND_DIR));
@@ -159,6 +165,10 @@ app.use(express.static(FRONTEND_DIR));
 // Fallback for HTML routing
 app.get('/', (req, res) => {
   res.sendFile(path.join(FRONTEND_DIR, 'index.html'));
+});
+
+app.get('/support', (req, res) => {
+  res.sendFile(path.join(FRONTEND_DIR, 'support.html'));
 });
 
 app.get('/synopsis', (req, res) => {
@@ -175,6 +185,16 @@ app.get('/academic-synopsis.pdf', (req, res) => {
 
 // 10. 404 for unhandled API routes
 app.use('/api', notFoundHandler);
+
+// Custom 404 for unmatched HTML web routes
+app.use((req, res) => {
+  const notFoundHtml = path.join(FRONTEND_DIR, '404.html');
+  if (fs.existsSync(notFoundHtml)) {
+    res.status(404).sendFile(notFoundHtml);
+  } else {
+    res.status(404).send('Page Not Found');
+  }
+});
 
 // 11. Central Error Handler
 app.use(errorHandler);

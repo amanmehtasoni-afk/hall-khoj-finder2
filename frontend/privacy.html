@@ -5,7 +5,15 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Privacy Policy | Hall Khoj Finder</title>
   <meta name="description" content="Privacy Policy for Hall Khoj Finder regarding personal data protection, payment security, location privacy, and communication standards.">
+  <link rel="canonical" href="https://hallkhoj.in/privacy.html">
   <link rel="icon" type="image/png" href="/assets/logo.png">
+
+  <!-- Open Graph -->
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://hallkhoj.in/privacy.html">
+  <meta property="og:title" content="Privacy Policy | Hall Khoj Finder">
+  <meta property="og:description" content="Read how Hall Khoj Finder safeguards your personal data, reservation requests, payment verification, and location privacy.">
+  <meta property="og:image" content="https://hallkhoj.in/assets/logo.png">
 
   <!-- Theme Controller (Zero-Flash Dark/Light Mode) -->
   <script src="js/theme.js"></script>
@@ -15,91 +23,156 @@
   <link rel="stylesheet" href="css/3d.css">
   <link rel="stylesheet" href="css/components.css">
   <link rel="stylesheet" href="css/animations.css">
+  <link rel="stylesheet" href="/css/cookie-consent.css">
 </head>
 <body>
 
   <!-- Site Header -->
   <header class="site-header" role="banner">
     <div class="nav-container">
-      <a href="/" class="brand-logo">
-        <img src="/assets/logo.png" alt="Hall Khoj" class="brand-logo-img">
+      <a href="/" class="brand-logo" aria-label="Hall Khoj Finder Homepage">
+        <img decoding="async" loading="lazy" src="/assets/logo.png" alt="Hall Khoj Logo" class="brand-logo-img">
         <div class="brand-logo-text">
           <span class="brand-title">HALL KHOJ</span>
-          <span class="brand-tagline-sub">LEGAL</span>
+          <span class="brand-tagline-sub">PRIVACY & TRUST</span>
         </div>
       </a>
 
-      <nav role="navigation">
+      <nav role="navigation" aria-label="Main Navigation">
         <ul class="nav-links">
           <li><a href="/" class="nav-link">Home</a></li>
-          <li><a href="/search.html" class="nav-link">Find Services</a></li>
+          <li><a href="/search.html" class="nav-link">Find Venues</a></li>
           <li><a href="/privacy.html" class="nav-link active">Privacy</a></li>
           <li><a href="/terms.html" class="nav-link">Terms</a></li>
-          <li><a href="/help.html" class="nav-link">Help</a></li>
+          <li><a href="/support.html" class="nav-link">Support</a></li>
         </ul>
       </nav>
 
       <div class="nav-actions">
-        <div class="language-switcher-container"></div>
         <button class="theme-toggle-btn" data-action="toggle-theme" aria-label="Toggle Dark/Light Mode" title="Toggle Theme">
           <span class="theme-icon-sun">☀️</span>
           <span class="theme-icon-moon" style="display:none;">🌙</span>
         </button>
+        <a href="tel:+919773647612" class="btn btn-primary btn-sm">📞 +91 97736 47612</a>
       </div>
     </div>
   </header>
 
-  <main style="padding-top: 6rem; padding-bottom: 5rem;">
+  <main style="padding-top: 6.5rem; padding-bottom: 5rem;">
     <div class="container container-narrow">
-      <div class="glass-panel" style="padding:3rem 2.5rem;">
-        <span class="badge badge-champagne" style="margin-bottom:0.75rem;">Last Updated: November 2026</span>
-        <h1 style="font-size:2.2rem; color:#fff; margin-bottom:1.5rem;">Privacy Policy</h1>
-
-        <div style="color:var(--text-secondary); line-height:1.8; font-size:0.95rem; display:flex; flex-direction:column; gap:1.25rem;">
-          <p>
-            Welcome to <strong>Hall Khoj Finder</strong> ("we", "our", or "us"). We respect your privacy and are committed to protecting your personal data in accordance with the Information Technology Act of India and prevailing data protection principles.
-          </p>
-
-          <h2 style="color:var(--text-champagne); font-size:1.3rem; margin-top:1rem;">1. Information We Collect</h2>
-          <p>
-            We collect personal information necessary to facilitate event venue discovery, 3D visualization, date booking requests, and secure payment processing. This includes:
-          </p>
-          <ul style="padding-left:1.5rem;">
-            <li><strong>Identity & Contact Data:</strong> Full name, mobile number, email address, and residential city.</li>
-            <li><strong>Booking & Event Details:</strong> Selected event date, time slot, guest capacity, and customized requirements.</li>
-            <li><strong>Location Data:</strong> Device GPS coordinates solely when you explicitly trigger "Near Me" venue searches.</li>
-            <li><strong>Payment Information:</strong> Razorpay order IDs and transaction tokens. <em>We never store credit/debit card numbers or UPI PINs on our servers.</em></li>
-          </ul>
-
-          <h2 style="color:var(--text-champagne); font-size:1.3rem; margin-top:1rem;">2. How We Use Your Data</h2>
-          <p>
-            Your information is utilized solely to:
-          </p>
-          <ul style="padding-left:1.5rem;">
-            <li>Deliver real-time venue search results and 3D architectural representations.</li>
-            <li>Transmit your booking requests directly to verified venue owners for mandatory manual review.</li>
-            <li>Generate legal tax invoices and Razorpay transaction records.</li>
-            <li>Send critical transactional notifications regarding approval status, payment confirmations, and reminder alerts.</li>
-          </ul>
-
-          <h2 style="color:var(--text-champagne); font-size:1.3rem; margin-top:1rem;">3. Data Security & Storage</h2>
-          <p>
-            All data transmitted between your browser and our platform is encrypted using TLS 1.3 (256-bit SSL). Database persistence is secured via Supabase PostgreSQL featuring strict Row Level Security (RLS) policies, preventing unauthorized cross-user access or data leakage.
-          </p>
-
-          <h2 style="color:var(--text-champagne); font-size:1.3rem; margin-top:1rem;">4. Your Rights</h2>
-          <p>
-            You have the right to access, edit, or delete your account information at any time directly through your Customer Dashboard or by contacting our data protection officer at <code>privacy@hallkhoj.in</code>.
-          </p>
+      <article class="glass-panel" style="padding: 3rem 2.5rem;">
+        <div style="display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:0.5rem; margin-bottom:1rem;">
+          <span class="badge badge-champagne">Last Updated: November 2026</span>
+          <span style="font-size:0.8rem; color:var(--text-muted);">Compliance: Indian DPDP Act & IT Rules 2011</span>
         </div>
-      </div>
+        <h1 style="font-size: 2.3rem; margin-bottom: 1.5rem;">Privacy Policy</h1>
+
+        <div style="color:var(--text-secondary); line-height: 1.85; font-size: 0.95rem; display: flex; flex-direction: column; gap: 1.5rem;">
+          <p>
+            Welcome to <strong>Hall Khoj Finder</strong> ("we", "our", or "us"). We are committed to safeguarding your personal privacy while providing transparent, world-class 3D venue discovery and booking services across India. This Privacy Policy details how we collect, store, process, protect, and delete your data.
+          </p>
+
+          <section>
+            <h2 style="color:var(--text-champagne); font-size: 1.35rem; margin-bottom: 0.5rem;">1. Information We Collect</h2>
+            <p>We collect only the minimum necessary data required to facilitate marriage hall reservations, 3D tours, and verified transactions:</p>
+            <ul style="padding-left: 1.5rem; display: flex; flex-direction: column; gap: 0.4rem;">
+              <li><strong>Contact & Profile Identifiers:</strong> Name, mobile number (+91), email address, and residential city entered during registration or reservation.</li>
+              <li><strong>Event Reservation Parameters:</strong> Requested event date, slot (Morning / Evening / Full Day), estimated guest count, and custom notes for the venue owner.</li>
+              <li><strong>Location Data:</strong> Device geographic coordinates (latitude and longitude) captured <em>strictly</em> when you click "Use My Current Location" or "Near Me" to compute road distance to venues. We do not track background location.</li>
+              <li><strong>Payment & Transaction Ledger:</strong> Razorpay payment identifiers, order numbers, and verified advance deposit amounts. <em>We never store debit/credit card numbers, CVVs, or UPI PINs on our servers.</em></li>
+              <li><strong>Technical & Diagnostic Data:</strong> IP address, browser type, device category (Mobile/Tablet/Desktop), and operating system used strictly for fraud prevention and performance optimization.</li>
+            </ul>
+          </section>
+
+          <section>
+            <h2 style="color:var(--text-champagne); font-size: 1.35rem; margin-bottom: 0.5rem;">2. How We Use Your Information</h2>
+            <p>Your data is used strictly to fulfill legitimate marketplace functions:</p>
+            <ul style="padding-left: 1.5rem; display: flex; flex-direction: column; gap: 0.4rem;">
+              <li>To present available marriage halls, banquets, and event services within your requested locality and budget.</li>
+              <li>To transmit booking requests to verified venue owners for <strong>mandatory manual approval</strong> before any advance payment is requested.</li>
+              <li>To generate legally compliant vector PDF GST tax invoices and payment receipts.</li>
+              <li>To send critical transactional SMS and in-app alerts regarding approval, rejection, or confirmation.</li>
+              <li>To monitor application errors and resolve technical bugs reported through our engineering queue.</li>
+            </ul>
+          </section>
+
+          <section>
+            <h2 style="color:var(--text-champagne); font-size: 1.35rem; margin-bottom: 0.5rem;">3. Data Storage, Security & Encryption</h2>
+            <p>
+              We implement industry-standard cybersecurity protections to ensure your information is never compromised:
+            </p>
+            <ul style="padding-left: 1.5rem; display: flex; flex-direction: column; gap: 0.4rem;">
+              <li><strong>Transport Security:</strong> All client-server communication is encrypted using 256-bit TLS 1.3 encryption (HTTPS enforced in production).</li>
+              <li><strong>Database Protection:</strong> Data persistence is managed via Supabase PostgreSQL protected by Row Level Security (RLS) policies, ensuring customers and owners only access their authorized records.</li>
+              <li><strong>Password Hashing:</strong> Passwords are cryptographically salted and hashed using <code>bcryptjs</code> (10 rounds). Plaintext passwords are never saved.</li>
+              <li><strong>Signature Verification:</strong> All payment callbacks are verified cryptographically using HMAC-SHA256 to prevent price tampering.</li>
+            </ul>
+          </section>
+
+          <section>
+            <h2 style="color:var(--text-champagne); font-size: 1.35rem; margin-bottom: 0.5rem;">4. Third-Party Integrations</h2>
+            <p>We work with trusted third-party providers who operate under strict confidentiality:</p>
+            <ul style="padding-left: 1.5rem; display: flex; flex-direction: column; gap: 0.4rem;">
+              <li><strong>Razorpay:</strong> PCI-DSS certified payment gateway handling UPI, Card, and Netbanking transactions.</li>
+              <li><strong>Supabase / PostgreSQL Cloud:</strong> Encrypted database and storage infrastructure.</li>
+              <li><strong>Google Maps Platform / Leaflet OpenStreetMap:</strong> Map tiles and geocoding.</li>
+              <li><strong>Google Gemini AI:</strong> Natural language query processing for grounded venue search.</li>
+            </ul>
+          </section>
+
+          <section>
+            <h2 style="color:var(--text-champagne); font-size: 1.35rem; margin-bottom: 0.5rem;">5. Cookies & Tracking Preferences</h2>
+            <p>
+              We use essential cookies to maintain user authentication and booking state. Analytics and marketing cookies are activated strictly based on your preferences. You can update your choices anytime by clicking <a href="#" data-action="open-cookie-settings" style="color:var(--primary); text-decoration:underline;">Cookie Settings</a> in the footer.
+            </p>
+          </section>
+
+          <section>
+            <h2 style="color:var(--text-champagne); font-size: 1.35rem; margin-bottom: 0.5rem;">6. User Rights & Data Deletion Requests</h2>
+            <p>
+              Under Indian data protection laws, you retain full sovereignty over your information:
+            </p>
+            <ul style="padding-left: 1.5rem; display: flex; flex-direction: column; gap: 0.4rem;">
+              <li><strong>Right to Access:</strong> View all your active bookings, past invoices, and profile data in your Customer Dashboard.</li>
+              <li><strong>Right to Rectification:</strong> Edit phone, name, or preferences directly in your Profile settings.</li>
+              <li><strong>Right to Erasure (Data Deletion):</strong> To permanently delete your account and personal records, submit a request via our <a href="/support.html">Support Portal</a> or email <code>privacy@hallkhoj.in</code>. Data will be purged within 7 business days, except records legally required for tax compliance.</li>
+            </ul>
+          </section>
+
+          <section style="background:var(--bg-glass); border:1px solid var(--border-subtle); border-radius:var(--radius-md); padding:1.5rem;">
+            <h2 style="color:var(--text-champagne); font-size: 1.2rem; margin-bottom: 0.5rem;">7. Official Contact & Data Protection Officer</h2>
+            <p style="font-size:0.9rem; margin-bottom:0.75rem;">If you have any questions or data concerns, reach out to our National Concierge:</p>
+            <div style="font-size:0.9rem; display:flex; flex-direction:column; gap:0.4rem;">
+              <div>📞 <strong>Phone:</strong> <a href="tel:+919773647612" style="color:var(--color-electric); font-weight:700;">+91 97736 47612</a></div>
+              <div>💬 <strong>WhatsApp:</strong> <a href="https://wa.me/919773647612" target="_blank" rel="noopener noreferrer" style="color:#25D366; font-weight:700;">Chat on WhatsApp (+91 97736 47612)</a></div>
+              <div>✉️ <strong>Email:</strong> <a href="mailto:privacy@hallkhoj.in" style="color:var(--text-primary);">privacy@hallkhoj.in</a> / <a href="mailto:support@hallkhoj.in" style="color:var(--text-primary);">support@hallkhoj.in</a></div>
+              <div>📍 <strong>Headquarters:</strong> Lucknow, Uttar Pradesh, India</div>
+            </div>
+          </section>
+        </div>
+      </article>
     </div>
   </main>
 
-  <footer class="footer-section" style="background:var(--bg-secondary); border-top:1px solid var(--border-subtle); padding:3rem 0; margin-top:4rem;">
-    <div class="container text-center" style="font-size:0.85rem; color:var(--text-muted);">
-      <p>&copy; 2026 Hall Khoj Finder. All Rights Reserved. Privacy & Data Protection Compliance.</p>
+  <!-- Footer with Full Links -->
+  <footer class="footer-section" style="background:var(--bg-secondary); border-top:1px solid var(--border-subtle); padding:3.5rem 0 2rem 0;">
+    <div class="container text-center" style="font-size:0.85rem; color:var(--text-muted); display:flex; flex-direction:column; gap:1rem;">
+      <div style="display:flex; justify-content:center; gap:1.5rem; flex-wrap:wrap; font-weight:500;">
+        <a href="/" class="nav-link">Home</a>
+        <a href="/search.html" class="nav-link">Explore Venues</a>
+        <a href="/privacy.html" class="nav-link active">Privacy Policy</a>
+        <a href="/terms.html" class="nav-link">Terms & Conditions</a>
+        <a href="/support.html" class="nav-link">Support & Bug Report</a>
+        <a href="#" data-action="open-cookie-settings" class="nav-link">Cookie Settings</a>
+      </div>
+      <p>&copy; 2026 Hall Khoj Finder. Official Support Line: <a href="tel:+919773647612" style="color:var(--color-electric);">+91 97736 47612</a>.</p>
     </div>
   </footer>
+
+  <script src="js/cookie-consent.js"></script>
+  <script src="js/analytics.js"></script>
+
+  <!-- Observability, Analytics & Privacy Consent (Phases 10, 11, 21) -->
+  <script src="/js/error-monitor.js"></script>
 </body>
 </html>

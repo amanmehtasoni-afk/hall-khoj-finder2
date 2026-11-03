@@ -1,0 +1,574 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Customer Support & Bug Reporting | Hall Khoj Finder</title>
+  <meta name="description" content="Official 24/7 Support for Hall Khoj Finder. Call +91 97736 47612, chat on WhatsApp, submit concierge inquiries, or report bugs to our engineering team.">
+  <link rel="canonical" href="https://hallkhoj.in/support.html">
+  <link rel="icon" type="image/png" href="/assets/logo.png">
+
+  <!-- Open Graph / Facebook -->
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://hallkhoj.in/support.html">
+  <meta property="og:title" content="Support & Bug Reporting | Hall Khoj Finder">
+  <meta property="og:description" content="Reach our 24/7 wedding concierge at +91 97736 47612, chat on WhatsApp, or report technical issues directly to our engineering team.">
+  <meta property="og:image" content="https://hallkhoj.in/assets/logo.png">
+
+  <!-- Twitter Card -->
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="Support & Bug Reporting | Hall Khoj Finder">
+  <meta name="twitter:description" content="Need help with venue discovery, manual owner approval, or found a defect? Call +91 97736 47612 or submit a bug report.">
+  <meta name="twitter:image" content="https://hallkhoj.in/assets/logo.png">
+
+  <!-- Theme Controller (Zero-Flash Dark/Light Mode) -->
+  <script src="js/theme.js"></script>
+
+  <!-- Core CSS -->
+  <link rel="stylesheet" href="css/main.css">
+  <link rel="stylesheet" href="css/3d.css">
+  <link rel="stylesheet" href="css/components.css">
+  <link rel="stylesheet" href="css/animations.css">
+
+  <style>
+    .support-hero-card {
+      background: linear-gradient(135deg, rgba(18, 59, 104, 0.85) 0%, rgba(7, 20, 38, 0.95) 100%);
+      border: 1px solid var(--border-light);
+      border-radius: var(--radius-xl);
+      padding: 3rem 2.5rem;
+      text-align: center;
+      margin-bottom: 2.5rem;
+      box-shadow: var(--shadow-lg);
+      position: relative;
+      overflow: hidden;
+    }
+    :root[data-theme="light"] .support-hero-card {
+      background: linear-gradient(135deg, #FFFFFF 0%, #F1F5F9 100%);
+      border-color: rgba(18, 59, 104, 0.18);
+    }
+    .support-channels-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 1.5rem;
+      margin-bottom: 3rem;
+    }
+    .channel-box {
+      background: var(--bg-card);
+      border: 1px solid var(--border-subtle);
+      border-radius: var(--radius-lg);
+      padding: 2rem 1.75rem;
+      display: flex;
+      flex-direction: column;
+      gap: 0.75rem;
+      transition: all var(--transition-normal);
+      backdrop-filter: blur(12px);
+    }
+    .channel-box:hover {
+      transform: translateY(-4px);
+      border-color: var(--primary);
+      box-shadow: var(--shadow-md);
+    }
+    .channel-icon-badge {
+      width: 52px;
+      height: 52px;
+      border-radius: 14px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1.6rem;
+      margin-bottom: 0.5rem;
+    }
+    .tab-pills-row {
+      display: flex;
+      justify-content: center;
+      gap: 0.75rem;
+      margin-bottom: 2rem;
+      flex-wrap: wrap;
+    }
+    .tab-pill {
+      background: var(--bg-glass);
+      border: 1px solid var(--border-subtle);
+      color: var(--text-secondary);
+      padding: 0.75rem 1.5rem;
+      border-radius: var(--radius-full);
+      font-weight: 600;
+      cursor: pointer;
+      font-size: 0.95rem;
+      transition: all var(--transition-fast);
+    }
+    .tab-pill.active {
+      background: var(--primary);
+      color: #FFFFFF;
+      border-color: var(--primary);
+      box-shadow: var(--shadow-glow);
+    }
+    .form-group-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 1.25rem;
+    }
+    .honeypot-field {
+      opacity: 0;
+      position: absolute;
+      top: 0;
+      left: 0;
+      height: 0;
+      width: 0;
+      z-index: -1;
+    }
+  </style>
+  <link rel="stylesheet" href="/css/cookie-consent.css">
+</head>
+<body>
+
+  <!-- Site Header -->
+  <header class="site-header" role="banner">
+    <div class="nav-container">
+      <a href="/" class="brand-logo" aria-label="Hall Khoj Finder Homepage">
+        <img decoding="async" loading="lazy" src="/assets/logo.png" alt="Hall Khoj Logo" class="brand-logo-img">
+        <div class="brand-logo-text">
+          <span class="brand-title">HALL KHOJ</span>
+          <span class="brand-tagline-sub">SUPPORT & HELP</span>
+        </div>
+      </a>
+
+      <nav role="navigation" aria-label="Main Navigation">
+        <ul class="nav-links">
+          <li><a href="/" class="nav-link">Home</a></li>
+          <li><a href="/search.html" class="nav-link">Explore Venues</a></li>
+          <li><a href="/3d-preview.html" class="nav-link">3D Tour</a></li>
+          <li><a href="/help.html" class="nav-link">FAQs</a></li>
+          <li><a href="/support.html" class="nav-link active">Contact & Support</a></li>
+        </ul>
+      </nav>
+
+      <div class="nav-actions">
+        <button class="theme-toggle-btn" data-action="toggle-theme" aria-label="Toggle Dark/Light Mode" title="Toggle Theme">
+          <span class="theme-icon-sun">☀️</span>
+          <span class="theme-icon-moon" style="display:none;">🌙</span>
+        </button>
+        <a href="tel:+919773647612" class="btn btn-primary btn-sm" title="Call Concierge">
+          📞 +91 97736 47612
+        </a>
+      </div>
+    </div>
+  </header>
+
+  <main style="padding-top: 6.5rem; padding-bottom: 5rem;">
+    <div class="container">
+
+      <!-- Hero Header -->
+      <section class="support-hero-card" aria-labelledby="support-heading">
+        <span class="badge badge-champagne" style="margin-bottom: 1rem;">Official National Concierge</span>
+        <h1 id="support-heading" style="font-size: clamp(2rem, 4vw, 3rem); margin-bottom: 0.75rem;">
+          How Can We Help You Today?
+        </h1>
+        <p style="font-size: 1.1rem; max-width: 680px; margin: 0 auto 1.5rem auto;">
+          Whether you need assistance booking a luxury marriage palace, checking date availability, or reporting a technical issue, our dedicated team is at your service 24/7.
+        </p>
+
+        <div style="display: flex; justify-content: center; align-items: center; gap: 1rem; flex-wrap: wrap;">
+          <a href="tel:+919773647612" class="btn btn-gold btn-lg">
+            <span>📞 Call Support: +91 97736 47612</span>
+          </a>
+          <a href="https://wa.me/919773647612?text=Hello%20Hall%20Khoj%20Concierge,%20I%20need%20assistance%20with%20my%20wedding%20venue" target="_blank" rel="noopener noreferrer" class="btn btn-secondary btn-lg" style="background:#25D366; color:#FFFFFF; border-color:#25D366;">
+            <span>💬 Chat on WhatsApp</span>
+          </a>
+        </div>
+      </section>
+
+      <!-- 3 Instant Support Channels -->
+      <section class="support-channels-grid" aria-label="Direct Support Options">
+        <!-- Channel 1: Phone -->
+        <article class="channel-box">
+          <div class="channel-icon-badge" style="background: rgba(57, 139, 255, 0.15); color: #398BFF;">📞</div>
+          <h2 style="font-size: 1.25rem;">Phone Concierge</h2>
+          <p style="font-size: 0.9rem; margin-bottom: 0.5rem;">Direct voice consultation with our senior venue advisers across India.</p>
+          <div style="margin-top: auto;">
+            <div style="font-size: 0.8rem; color: var(--text-muted); text-transform: uppercase;">Official Support Line:</div>
+            <a href="tel:+919773647612" style="font-size: 1.2rem; font-weight: 800; color: var(--color-electric); display: block; margin-top: 0.25rem;">
+              +91 97736 47612
+            </a>
+            <span style="font-size: 0.78rem; color: var(--color-available); display: inline-flex; align-items: center; gap: 0.35rem; margin-top: 0.4rem;">
+              ● Available 24 Hours / 7 Days
+            </span>
+          </div>
+        </article>
+
+        <!-- Channel 2: WhatsApp -->
+        <article class="channel-box">
+          <div class="channel-icon-badge" style="background: rgba(37, 211, 102, 0.15); color: #25D366;">💬</div>
+          <h2 style="font-size: 1.25rem;">WhatsApp Instant Support</h2>
+          <p style="font-size: 0.9rem; margin-bottom: 0.5rem;">Share event dates, request custom quote brochures, or verify owner approvals via chat.</p>
+          <div style="margin-top: auto;">
+            <a href="https://wa.me/919773647612?text=Hello%20Hall%20Khoj%20Team,%20I%20have%20an%20inquiry" target="_blank" rel="noopener noreferrer" class="btn btn-secondary w-full" style="justify-content: center; gap: 0.5rem;">
+              <span>Open WhatsApp Chat</span> &rarr;
+            </a>
+            <span style="font-size: 0.78rem; color: var(--text-muted); display: block; margin-top: 0.4rem;">
+              Typically replies in under 15 minutes
+            </span>
+          </div>
+        </article>
+
+        <!-- Channel 3: Email & Bug Tracker -->
+        <article class="channel-box">
+          <div class="channel-icon-badge" style="background: rgba(217, 199, 160, 0.15); color: #D9C7A0;">🛡️</div>
+          <h2 style="font-size: 1.25rem;">Technical & Bug Support</h2>
+          <p style="font-size: 0.9rem; margin-bottom: 0.5rem;">Found a glitch, 3D rendering error, or payment verification issue? Let us fix it.</p>
+          <div style="margin-top: auto;">
+            <button class="btn btn-primary w-full" onclick="switchSupportTab('bug')" style="justify-content: center;">
+              <span>File a Bug Report</span>
+            </button>
+            <span style="font-size: 0.78rem; color: var(--text-muted); display: block; margin-top: 0.4rem;">
+              Direct escalation to lead engineers
+            </span>
+          </div>
+        </article>
+      </section>
+
+      <!-- Interactive Switcher -->
+      <div class="tab-pills-row" role="tablist" aria-label="Support Type Selection">
+        <button class="tab-pill active" id="tab-btn-contact" role="tab" aria-selected="true" onclick="switchSupportTab('contact')">
+          ✉️ General Inquiry & Concierge
+        </button>
+        <button class="tab-pill" id="tab-btn-bug" role="tab" aria-selected="false" onclick="switchSupportTab('bug')">
+          🐞 Report a Bug / Technical Issue
+        </button>
+      </div>
+
+      <!-- TAB 1: General Inquiry Form -->
+      <section id="panel-contact" class="glass-panel" style="padding: 2.5rem; max-width: 860px; margin: 0 auto;" aria-labelledby="contact-form-title">
+        <h2 id="contact-form-title" style="font-size: 1.5rem; margin-bottom: 0.5rem;">Send a Message to Our Concierge</h2>
+        <p style="font-size: 0.9rem; margin-bottom: 2rem;">Our wedding specialists will respond within 4 hours with hall recommendations or answers.</p>
+
+        <form id="contact-support-form" onsubmit="handleContactSubmit(event)">
+          <!-- Anti-Spam Honeypot Field -->
+          <input type="text" name="_hp_check" class="honeypot-field" tabindex="-1" autocomplete="off">
+
+          <div class="form-group-grid">
+            <div class="form-group">
+              <label for="contact-name" class="form-label">Full Name *</label>
+              <input type="text" id="contact-name" class="form-control" placeholder="e.g. Rahul Sharma" required minlength="2">
+            </div>
+            <div class="form-group">
+              <label for="contact-email" class="form-label">Email Address *</label>
+              <input type="email" id="contact-email" class="form-control" placeholder="rahul@example.com" required>
+            </div>
+          </div>
+
+          <div class="form-group-grid" style="margin-top: 1rem;">
+            <div class="form-group">
+              <label for="contact-phone" class="form-label">Phone Number (Optional)</label>
+              <input type="tel" id="contact-phone" class="form-control" placeholder="+91 98765 43210">
+            </div>
+            <div class="form-group">
+              <label for="contact-subject" class="form-label">Inquiry Subject</label>
+              <select id="contact-subject" class="form-control">
+                <option value="Venue Booking Inquiry">Venue Booking Inquiry</option>
+                <option value="Owner Approval Status">Owner Approval Status</option>
+                <option value="List Your Marriage Palace">List Your Marriage Palace / Car / Tent</option>
+                <option value="Payment or Invoice Help">Payment or Invoice Assistance</option>
+                <option value="Other">Other Question</option>
+              </select>
+            </div>
+          </div>
+
+          <div class="form-group" style="margin-top: 1rem;">
+            <label for="contact-message" class="form-label">Your Message *</label>
+            <textarea id="contact-message" class="form-control" rows="5" placeholder="Tell us your event date, expected guest count, preferred city, or any question..." required minlength="10"></textarea>
+          </div>
+
+          <div style="margin-top: 1.5rem; display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 1rem;">
+            <span style="font-size: 0.8rem; color: var(--text-muted);">
+              🔒 Your information is confidential and never shared with third parties.
+            </span>
+            <button type="submit" id="contact-submit-btn" class="btn btn-primary btn-lg">
+              <span>Send Message</span> &rarr;
+            </button>
+          </div>
+        </form>
+      </section>
+
+      <!-- TAB 2: Official Bug Report Form (Phase 22 Specification) -->
+      <section id="panel-bug" class="glass-panel" style="padding: 2.5rem; max-width: 860px; margin: 0 auto; display: none;" aria-labelledby="bug-form-title">
+        <div style="display: flex; align-items: center; justify-content: space-between; margin-bottom: 0.5rem; flex-wrap: wrap; gap: 0.5rem;">
+          <h2 id="bug-form-title" style="font-size: 1.5rem;">Report a Bug or Technical Defect</h2>
+          <span class="badge badge-champagne">Direct Engineering Queue</span>
+        </div>
+        <p style="font-size: 0.9rem; margin-bottom: 2rem;">
+          Help us keep Hall Khoj Finder pristine. Submit the details below and our developers will investigate immediately.
+        </p>
+
+        <form id="bug-report-form" onsubmit="handleBugSubmit(event)" enctype="multipart/form-data">
+          <!-- Anti-Spam Honeypot Field -->
+          <input type="text" name="_hp_check" id="bug_hp" class="honeypot-field" tabindex="-1" autocomplete="off">
+
+          <!-- 1. Full Name & 2. Email Address -->
+          <div class="form-group-grid">
+            <div class="form-group">
+              <label for="bug-fullname" class="form-label">1. Full Name *</label>
+              <input type="text" id="bug-fullname" name="fullName" class="form-control" placeholder="Your name" required minlength="2">
+            </div>
+            <div class="form-group">
+              <label for="bug-email" class="form-label">2. Email Address *</label>
+              <input type="email" id="bug-email" name="email" class="form-control" placeholder="you@domain.com" required>
+            </div>
+          </div>
+
+          <!-- 3. Phone & 4. Category -->
+          <div class="form-group-grid" style="margin-top: 1rem;">
+            <div class="form-group">
+              <label for="bug-phone" class="form-label">3. Phone Number (Optional)</label>
+              <input type="tel" id="bug-phone" name="phone" class="form-control" placeholder="+91 98765 43210">
+            </div>
+            <div class="form-group">
+              <label for="bug-category" class="form-label">4. Issue Category *</label>
+              <select id="bug-category" name="category" class="form-control" required>
+                <option value="">-- Select Category --</option>
+                <option value="UI / Visual Layout">UI / Visual Layout / Contrast</option>
+                <option value="Booking Engine">Booking Request & Owner Approval Flow</option>
+                <option value="Payments & Invoices">Payments, Razorpay or Invoices</option>
+                <option value="3D Venue Walkthrough">3D Venue Walkthrough / WebGL</option>
+                <option value="Search & Filters">Search, Map Pins & Filters</option>
+                <option value="Authentication & Login">Authentication, Login & Registration</option>
+                <option value="Other">Other Performance or Functional Defect</option>
+              </select>
+            </div>
+          </div>
+
+          <!-- 5. Page or Feature Where Bug Occurred -->
+          <div class="form-group" style="margin-top: 1rem;">
+            <label for="bug-pageurl" class="form-label">5. Page or Feature Where Bug Occurred *</label>
+            <input type="text" id="bug-pageurl" name="pageUrl" class="form-control" placeholder="e.g. /3d-preview.html or Booking date picker or Owner Dashboard" required>
+          </div>
+
+          <!-- 6. Bug Description -->
+          <div class="form-group" style="margin-top: 1rem;">
+            <label for="bug-description" class="form-label">6. Bug Description *</label>
+            <textarea id="bug-description" name="description" class="form-control" rows="4" placeholder="What happened? What error message did you see?" required minlength="10"></textarea>
+          </div>
+
+          <!-- 7. Steps to Reproduce -->
+          <div class="form-group" style="margin-top: 1rem;">
+            <label for="bug-steps" class="form-label">7. Steps to Reproduce *</label>
+            <textarea id="bug-steps" name="stepsToReproduce" class="form-control" rows="3" placeholder="1. Go to page... 2. Clicked on... 3. Observed that..." required minlength="5"></textarea>
+          </div>
+
+          <!-- 8. Screenshot or Attachment -->
+          <div class="form-group" style="margin-top: 1rem;">
+            <label for="bug-attachment" class="form-label">8. Screenshot or Attachment (Optional • Max 5MB)</label>
+            <input type="file" id="bug-attachment" name="attachment" class="form-control" accept="image/png,image/jpeg,image/webp,application/pdf">
+            <span style="font-size: 0.75rem; color: var(--text-muted); display: block; margin-top: 0.35rem;">
+              Accepted formats: PNG, JPG, WEBP, PDF (max 5 MB).
+            </span>
+          </div>
+
+          <div style="margin-top: 2rem; display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 1rem;">
+            <span style="font-size: 0.8rem; color: var(--text-muted);">
+              🛡️ Bug reports are confidential and delivered securely to our engineering team.
+            </span>
+            <button type="submit" id="bug-submit-btn" class="btn btn-primary btn-lg">
+              <span>Submit Bug Report</span> 🐞
+            </button>
+          </div>
+        </form>
+      </section>
+
+      <!-- Success Confirmation Modal -->
+      <div id="support-success-modal" class="modal-backdrop" style="display:none; position:fixed; inset:0; background:rgba(0,0,0,0.85); z-index:3000; align-items:center; justify-content:center; padding:1.5rem;">
+        <div class="glass-panel" style="max-width:520px; width:100%; padding:2.5rem; text-align:center;">
+          <div style="font-size:3.5rem; margin-bottom:1rem;">🎉</div>
+          <h3 id="modal-success-title" style="font-size:1.6rem; color:#fff; margin-bottom:0.75rem;">Submitted Successfully!</h3>
+          <p id="modal-success-msg" style="color:var(--text-secondary); font-size:0.95rem; margin-bottom:1.5rem; line-height:1.6;">
+            Your report has been logged in our secure backend.
+          </p>
+          <div style="background:var(--bg-primary); border:1px dashed var(--border-light); padding:0.85rem; border-radius:var(--radius-md); margin-bottom:1.5rem; font-family:monospace; font-size:1.1rem; color:var(--color-electric);" id="modal-id-badge">
+            ID: BUG-12345
+          </div>
+          <div style="display:flex; justify-content:center; gap:0.75rem;">
+            <button class="btn btn-primary" onclick="closeSuccessModal()">Close</button>
+            <a href="https://wa.me/919773647612" target="_blank" rel="noopener noreferrer" class="btn btn-secondary">
+              WhatsApp Us &rarr;
+            </a>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </main>
+
+  <!-- Complete Standard Footer -->
+  <footer class="footer-section" style="background:var(--bg-secondary); border-top:1px solid var(--border-subtle); padding:4rem 0 2rem 0;">
+    <div class="container">
+      <div style="display:grid; grid-template-columns:repeat(auto-fit, minmax(220px, 1fr)); gap:2.5rem; margin-bottom:3rem;">
+        <div>
+          <div class="brand-logo" style="margin-bottom:1rem;">
+            <img decoding="async" loading="lazy" src="/assets/logo.png" alt="Hall Khoj Logo" class="brand-logo-img">
+            <span class="brand-title">HALL KHOJ</span>
+          </div>
+          <p style="font-size:0.85rem; color:var(--text-muted); line-height:1.7;">
+            India's premier 3D wedding and event venue marketplace. Discover, explore, and book grand marriage palaces with mandatory manual owner approval.
+          </p>
+        </div>
+
+        <div>
+          <h4 style="font-size:0.95rem; text-transform:uppercase; color:var(--text-champagne); margin-bottom:1rem;">Quick Links</h4>
+          <ul style="list-style:none; display:flex; flex-direction:column; gap:0.6rem; font-size:0.88rem;">
+            <li><a href="/" class="nav-link">Home</a></li>
+            <li><a href="/search.html" class="nav-link">Explore Venues</a></li>
+            <li><a href="/gallery.html" class="nav-link">Photo Gallery</a></li>
+            <li><a href="/3d-preview.html" class="nav-link">3D Venue Tour</a></li>
+            <li><a href="/compare.html" class="nav-link">Compare Venues</a></li>
+          </ul>
+        </div>
+
+        <div>
+          <h4 style="font-size:0.95rem; text-transform:uppercase; color:var(--text-champagne); margin-bottom:1rem;">Legal & Privacy</h4>
+          <ul style="list-style:none; display:flex; flex-direction:column; gap:0.6rem; font-size:0.88rem;">
+            <li><a href="/privacy.html" class="nav-link">Privacy Policy</a></li>
+            <li><a href="/terms.html" class="nav-link">Terms & Conditions</a></li>
+            <li><a href="/help.html" class="nav-link">Help Center & FAQ</a></li>
+            <li><a href="/support.html" class="nav-link">Support & Bug Report</a></li>
+          </ul>
+        </div>
+
+        <div>
+          <h4 style="font-size:0.95rem; text-transform:uppercase; color:var(--text-champagne); margin-bottom:1rem;">Direct Support</h4>
+          <div style="display:flex; flex-direction:column; gap:0.75rem; font-size:0.88rem;">
+            <div>
+              <span style="color:var(--text-muted); font-size:0.75rem; text-transform:uppercase;">Official Phone:</span>
+              <a href="tel:+919773647612" style="color:var(--color-electric); font-weight:700; display:block;">
+                +91 97736 47612
+              </a>
+            </div>
+            <div>
+              <span style="color:var(--text-muted); font-size:0.75rem; text-transform:uppercase;">WhatsApp Chat:</span>
+              <a href="https://wa.me/919773647612" target="_blank" rel="noopener noreferrer" style="color:#25D366; font-weight:700; display:block;">
+                Chat on WhatsApp (+91 97736 47612)
+              </a>
+            </div>
+            <div>
+              <span style="color:var(--text-muted); font-size:0.75rem; text-transform:uppercase;">Support Email:</span>
+              <a href="mailto:support@hallkhoj.in" style="color:var(--text-secondary); display:block;">
+                support@hallkhoj.in
+              </a>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div style="border-top:1px solid var(--border-subtle); padding-top:2rem; text-align:center; font-size:0.82rem; color:var(--text-muted);">
+        &copy; 2026 Hall Khoj Finder. All Rights Reserved. National Concierge Hotline: +91 97736 47612.
+      </div>
+    </div>
+  </footer>
+
+  <!-- Support Interactions Script -->
+  <script>
+    function switchSupportTab(tab) {
+      const contactBtn = document.getElementById('tab-btn-contact');
+      const bugBtn = document.getElementById('tab-btn-bug');
+      const contactPanel = document.getElementById('panel-contact');
+      const bugPanel = document.getElementById('panel-bug');
+
+      if (tab === 'bug') {
+        contactBtn.classList.remove('active');
+        contactBtn.setAttribute('aria-selected', 'false');
+        bugBtn.classList.add('active');
+        bugBtn.setAttribute('aria-selected', 'true');
+        contactPanel.style.display = 'none';
+        bugPanel.style.display = 'block';
+        bugPanel.scrollIntoView({ behavior: 'smooth' });
+      } else {
+        bugBtn.classList.remove('active');
+        bugBtn.setAttribute('aria-selected', 'false');
+        contactBtn.classList.add('active');
+        contactBtn.setAttribute('aria-selected', 'true');
+        bugPanel.style.display = 'none';
+        contactPanel.style.display = 'block';
+      }
+    }
+
+    // Auto-select bug tab if query param has ?tab=bug
+    if (window.location.search.includes('tab=bug')) {
+      switchSupportTab('bug');
+    }
+
+    async function handleContactSubmit(e) {
+      e.preventDefault();
+      const btn = document.getElementById('contact-submit-btn');
+      btn.disabled = true;
+      btn.innerHTML = '<span>Sending inquiry...</span>';
+
+      const payload = {
+        name: document.getElementById('contact-name').value,
+        email: document.getElementById('contact-email').value,
+        phone: document.getElementById('contact-phone').value,
+        subject: document.getElementById('contact-subject').value,
+        message: document.getElementById('contact-message').value,
+        _hp_check: document.querySelector('#contact-support-form input[name="_hp_check"]').value
+      };
+
+      try {
+        const res = await fetch('/api/support/ticket', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify(payload)
+        });
+        const data = await res.json();
+        if (!res.ok) throw new Error(data.message || 'Submission failed');
+
+        document.getElementById('modal-success-title').textContent = 'Inquiry Received!';
+        document.getElementById('modal-success-msg').textContent = 'A senior concierge advisor will respond to your email or phone within 4 business hours.';
+        document.getElementById('modal-id-badge').textContent = `TICKET REF: ${data.data?.ticketId || 'TKT-CONFIRMED'}`;
+        document.getElementById('support-success-modal').style.display = 'flex';
+        document.getElementById('contact-support-form').reset();
+      } catch (err) {
+        alert(err.message || 'Could not submit inquiry. Please call +91 97736 47612.');
+      } finally {
+        btn.disabled = false;
+        btn.innerHTML = '<span>Send Message</span> &rarr;';
+      }
+    }
+
+    async function handleBugSubmit(e) {
+      e.preventDefault();
+      const btn = document.getElementById('bug-submit-btn');
+      btn.disabled = true;
+      btn.innerHTML = '<span>Submitting report to engineering...</span>';
+
+      const form = document.getElementById('bug-report-form');
+      const formData = new FormData(form);
+
+      try {
+        const res = await fetch('/api/support/bug-report', {
+          method: 'POST',
+          body: formData
+        });
+        const data = await res.json();
+        if (!res.ok) throw new Error(data.message || 'Bug submission failed');
+
+        document.getElementById('modal-success-title').textContent = 'Bug Report Submitted!';
+        document.getElementById('modal-success-msg').textContent = 'Thank you for helping us improve Hall Khoj Finder. Our engineering team has received your reproduction steps and attachment.';
+        document.getElementById('modal-id-badge').textContent = `REPORT ID: ${data.data?.reportId || 'BUG-LOGGED'}`;
+        document.getElementById('support-success-modal').style.display = 'flex';
+        form.reset();
+      } catch (err) {
+        alert(err.message || 'Could not submit bug report. Please call our hotline +91 97736 47612.');
+      } finally {
+        btn.disabled = false;
+        btn.innerHTML = '<span>Submit Bug Report</span> 🐞';
+      }
+    }
+
+    function closeSuccessModal() {
+      document.getElementById('support-success-modal').style.display = 'none';
+    }
+  </script>
+
+  <!-- Observability, Analytics & Privacy Consent (Phases 10, 11, 21) -->
+  <script src="/js/error-monitor.js"></script>
+  <script src="/js/cookie-consent.js"></script>
+  <script src="/js/analytics.js"></script>
+</body>
+</html>

@@ -79,7 +79,17 @@ const sensitiveEndpointLimiter = new MemoryRateLimiter(
   'Too many requests to this sensitive operation. Please wait a minute.'
 ).middleware();
 
-// 2. Helmet-grade HTTP Security Headers Middleware
+// 2. Helmet-grade HTTP Security Headers Middleware & HTTPS Enforcement
+function forceHttps(req, res, next) {
+  if (process.env.NODE_ENV === 'production') {
+    const isHttps = req.secure || req.headers['x-forwarded-proto'] === 'https';
+    if (!isHttps && req.headers.host && !req.headers.host.includes('localhost') && !req.headers.host.includes('127.0.0.1')) {
+      return res.redirect(301, `https://${req.headers.host}${req.url}`);
+    }
+  }
+  next();
+}
+
 function securityHeaders(req, res, next) {
   // Content Security Policy (allows necessary CDNs for Leaflet, Three.js, fonts)
   res.setHeader(
@@ -164,6 +174,7 @@ function cacheHeaders(req, res, next) {
 }
 
 module.exports = {
+  forceHttps,
   securityHeaders,
   globalApiLimiter,
   sensitiveEndpointLimiter,

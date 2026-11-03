@@ -56,6 +56,7 @@
   <link rel="stylesheet" href="css/components.css">
   <link rel="stylesheet" href="css/3d.css">
   <link rel="stylesheet" href="css/animations.css">
+  <link rel="stylesheet" href="css/cookie-consent.css">
 
   <!-- Three.js (Loaded via reliable CDN) -->
   <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
@@ -69,7 +70,7 @@
     <div class="nav-container">
       <!-- Brand Logo -->
       <a href="/" class="brand-logo" aria-label="Hall Khoj Finder Home">
-        <img src="/assets/logo.png" alt="Hall Khoj" class="brand-logo-img">
+        <img decoding="async" loading="lazy" src="/assets/logo.png" alt="Hall Khoj" class="brand-logo-img">
         <div class="brand-logo-text">
           <span class="brand-title">HALL KHOJ</span>
           <span class="brand-tagline-sub">FINDER</span>
@@ -124,7 +125,7 @@
   <aside id="mobile-drawer" class="mobile-drawer" role="dialog" aria-label="Mobile Navigation Drawer">
     <div class="flex items-center justify-between">
       <div class="brand-logo">
-        <img src="/assets/logo.png" alt="Hall Khoj" class="brand-logo-img" style="width:36px; height:36px;">
+        <img decoding="async" loading="lazy" src="/assets/logo.png" alt="Hall Khoj" class="brand-logo-img" style="width:36px; height:36px;">
         <span class="brand-title">HALL KHOJ</span>
       </div>
       <button id="close-drawer-btn" class="modal-close-btn" aria-label="Close Navigation">&times;</button>
@@ -550,7 +551,7 @@
           <!-- Hall Card 1 -->
           <article class="listing-card card-3d">
             <div class="listing-media">
-              <img src="https://images.unsplash.com/photo-1519167758481-83f550bb49b3?auto=format&fit=crop&w=800&q=80" alt="The Royal Grand Heritage Palace" class="listing-img" loading="lazy">
+              <img decoding="async" src="https://images.unsplash.com/photo-1519167758481-83f550bb49b3?auto=format&fit=crop&w=800&q=80" alt="The Royal Grand Heritage Palace" class="listing-img" loading="lazy">
               <div class="listing-badges">
                 <span class="badge badge-verified">✓ Verified</span>
                 <span class="badge badge-indigo">3D Layout Ready</span>
@@ -594,7 +595,7 @@
           <!-- Hall Card 2 -->
           <article class="listing-card card-3d">
             <div class="listing-media">
-              <img src="https://images.unsplash.com/photo-1544830254-20b1274f881b?auto=format&fit=crop&w=800&q=80" alt="Mayur Emerald Banquet & Lawn" class="listing-img" loading="lazy">
+              <img decoding="async" src="https://images.unsplash.com/photo-1544830254-20b1274f881b?auto=format&fit=crop&w=800&q=80" alt="Mayur Emerald Banquet & Lawn" class="listing-img" loading="lazy">
               <div class="listing-badges">
                 <span class="badge badge-verified">✓ Verified</span>
                 <span class="badge badge-status-available">Available Oct 15</span>
@@ -637,7 +638,7 @@
           <!-- Hall Card 3 -->
           <article class="listing-card card-3d">
             <div class="listing-media">
-              <img src="https://images.unsplash.com/photo-1566073771259-6a8506099945?auto=format&fit=crop&w=800&q=80" alt="Sanskriti Luxury Resort & Poolside Lawn" class="listing-img" loading="lazy">
+              <img decoding="async" src="https://images.unsplash.com/photo-1566073771259-6a8506099945?auto=format&fit=crop&w=800&q=80" alt="Sanskriti Luxury Resort & Poolside Lawn" class="listing-img" loading="lazy">
               <div class="listing-badges">
                 <span class="badge badge-verified">✓ Verified</span>
                 <span class="badge badge-gold">Premium Resort</span>
@@ -714,12 +715,12 @@
   <!-- =========================================================================
        FOOTER
   ========================================================================= -->
-  <footer style="background:#050811; border-top:1px solid var(--border-subtle); padding:4rem 0 2.5rem 0;">
+  <footer class="site-footer">
     <div class="container">
-      <div style="display:grid; grid-template-columns:repeat(auto-fit, minmax(220px, 1fr)); gap:2.5rem; margin-bottom:3rem;">
+      <div class="footer-grid">
         <div>
           <div class="brand-logo" style="margin-bottom:1rem;">
-            <img src="/assets/logo.png" alt="Hall Khoj" class="brand-logo-img">
+            <img src="/assets/logo.png" alt="Hall Khoj" class="brand-logo-img" loading="lazy" decoding="async">
             <span class="brand-title">HALL KHOJ</span>
           </div>
           <p style="font-size:0.875rem; color:var(--text-muted); line-height:1.6;">
@@ -731,45 +732,50 @@
         </div>
 
         <div>
-          <h4 style="font-size:1rem; margin-bottom:1rem; color:#fff;">Event Services</h4>
-          <ul style="list-style:none; display:flex; flex-direction:column; gap:0.5rem; font-size:0.875rem; color:var(--text-muted);">
+          <h4>Event Services</h4>
+          <ul>
             <li><a href="/search.html?category=Marriage+Halls">Marriage & Banquet Halls</a></li>
             <li><a href="/search.html?category=Cars">Luxury Wedding Cars</a></li>
             <li><a href="/search.html?category=Tent+Houses">Tent & Shamiana Works</a></li>
             <li><a href="/search.html?category=Catering">Royal Catering Services</a></li>
             <li><a href="/search.html?category=Decoration">Stage & Flower Decoration</a></li>
+            <li><a href="/gallery.html">3D Virtual Gallery</a></li>
           </ul>
         </div>
 
         <div>
-          <h4 style="font-size:1rem; margin-bottom:1rem; color:#fff;">Portals & Roles</h4>
-          <ul style="list-style:none; display:flex; flex-direction:column; gap:0.5rem; font-size:0.875rem; color:var(--text-muted);">
+          <h4>Portals & Roles</h4>
+          <ul>
             <li><a href="/dashboard.html">Customer Dashboard</a></li>
             <li><a href="/owner/dashboard.html">Business Owner Portal</a></li>
             <li><a href="/admin/dashboard.html">Admin Verification Panel</a></li>
             <li><a href="/register.html?role=owner">List Your Hall / Service</a></li>
             <li><a href="/login.html">Sign In to Your Account</a></li>
+            <li><a href="/compare.html">Compare Venues</a></li>
           </ul>
         </div>
 
         <div>
-          <h4 style="font-size:1rem; margin-bottom:1rem; color:#fff;">Support & Locations</h4>
-          <ul style="list-style:none; display:flex; flex-direction:column; gap:0.5rem; font-size:0.875rem; color:var(--text-muted);">
-            <li><a href="#" data-trigger="near-me">Find Halls Near Me</a></li>
-            <li><a href="#" data-trigger="ai-search">Ask Hall Khoj AI</a></li>
-            <li><a href="#">Cancellation & Refund Policy</a></li>
-            <li><a href="#">Terms & Conditions</a></li>
-            <li><a href="#">Contact & Support Desk</a></li>
+          <h4>Direct Support & Contact</h4>
+          <ul>
+            <li><a href="/support.html">Contact &amp; Support Desk</a></li>
+            <li><a href="/support.html?tab=bug-report">Report a Bug / Issue</a></li>
+            <li><a href="tel:+919773647612">Direct Call: +91 97736 47612</a></li>
+            <li><a href="https://wa.me/919773647612" target="_blank" rel="noopener">WhatsApp Concierge</a></li>
+            <li><a href="/terms.html">Terms &amp; Cancellation Policy</a></li>
+            <li><a href="/privacy.html">Privacy &amp; Data Rights</a></li>
           </ul>
         </div>
       </div>
 
-      <div style="border-top:1px solid var(--border-subtle); padding-top:1.5rem; display:flex; flex-wrap:wrap; justify-content:space-between; align-items:center; gap:1rem; font-size:0.8rem; color:var(--text-muted);">
+      <div class="site-footer-bottom">
         <div>&copy; 2026 Hall Khoj Finder. All Rights Reserved. <span id="footer-backend-info" style="color:#10b981; margin-left:0.5rem; font-weight:500;">API: Connecting...</span></div>
-        <div style="display:flex; gap:1rem;">
-          <span>Privacy Policy</span>
-          <span>Security</span>
-          <span>Site Map</span>
+        <div style="display:flex; flex-wrap:wrap; gap:1.25rem; align-items:center;">
+          <a href="/privacy.html">Privacy Policy</a>
+          <a href="/terms.html">Terms &amp; Conditions</a>
+          <a href="/support.html">Support &amp; Help</a>
+          <a href="/sitemap.xml" target="_blank">Sitemap</a>
+          <button type="button" class="cookie-settings-btn" data-action="open-cookie-settings">Cookie Preferences</button>
         </div>
       </div>
     </div>
@@ -1056,7 +1062,7 @@
                 return `
                   <article class="listing-card card-3d animate-fade-in" data-id="${item.id}">
                     <div class="listing-media">
-                      <img src="${img}" alt="${item.name}" class="listing-img" loading="lazy" onerror="this.src='https://images.unsplash.com/photo-1519167758481-83f550bb49b3?auto=format&fit=crop&w=800&q=80'">
+                      <img decoding="async" src="${img}" alt="${item.name}" class="listing-img" loading="lazy" onerror="this.src='https://images.unsplash.com/photo-1519167758481-83f550bb49b3?auto=format&fit=crop&w=800&q=80'">
                       <div class="listing-badges">
                         <span class="badge ${item.isVerified || item.verified ? 'badge-verified' : 'badge-gold'}">
                           ${item.isVerified || item.verified ? '✓ Verified' : '★ Featured'}
@@ -1135,5 +1141,9 @@
     })();
   </script>
 
+  <!-- Observability, Analytics & Privacy Consent (Phases 10, 11, 21) -->
+  <script src="/js/error-monitor.js"></script>
+  <script src="/js/cookie-consent.js"></script>
+  <script src="/js/analytics.js"></script>
 </body>
 </html>

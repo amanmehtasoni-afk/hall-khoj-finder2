@@ -1,0 +1,16 @@
+[
+  {
+    "id": "BUG-INITIAL-SEED",
+    "name": "QA System Self-Test",
+    "email": "dev@hallkhoj.in",
+    "phone": "+91 97736 47612",
+    "category": "Security",
+    "page": "/login.html",
+    "description": "Initial system readiness self-test bug report entry to verify secure JSON storage and schema conformance.",
+    "stepsToReproduce": "1. Run automated test suite.\n2. Verify JSON file initialization.",
+    "attachment": null,
+    "userAgent": "Automated QA Test Agent",
+    "status": "RESOLVED",
+    "createdAt": "2026-11-04T00:00:00.000Z"
+  }
+]

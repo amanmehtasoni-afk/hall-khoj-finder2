@@ -3,7 +3,7 @@
  * Generates dynamic sitemap.xml and robots.txt for search engine indexing.
  */
 
-const { getCollection } = require('./firestore.service');
+const { getCollection } = require('./data.service');
 const CATEGORIES = require('../data/categories.json');
 
 const BASE_URL = process.env.FRONTEND_URL || 'https://hallkhoj.in';
@@ -15,29 +15,29 @@ async function generateSitemapXml() {
   const today = new Date().toISOString().split('T')[0];
 
   // 1. Core High-Priority Pages
-  urls.push({
-    loc: `${BASE_URL}/`,
-    lastmod: today,
-    changefreq: 'daily',
-    priority: '1.0'
-  });
-  urls.push({
-    loc: `${BASE_URL}/search.html`,
-    lastmod: today,
-    changefreq: 'daily',
-    priority: '0.9'
-  });
-  urls.push({
-    loc: `${BASE_URL}/login.html`,
-    lastmod: today,
-    changefreq: 'monthly',
-    priority: '0.5'
-  });
-  urls.push({
-    loc: `${BASE_URL}/register.html`,
-    lastmod: today,
-    changefreq: 'monthly',
-    priority: '0.6'
+  const corePages = [
+    { loc: `${BASE_URL}/`, changefreq: 'daily', priority: '1.0' },
+    { loc: `${BASE_URL}/search.html`, changefreq: 'daily', priority: '0.9' },
+    { loc: `${BASE_URL}/gallery.html`, changefreq: 'weekly', priority: '0.8' },
+    { loc: `${BASE_URL}/3d-preview.html`, changefreq: 'weekly', priority: '0.8' },
+    { loc: `${BASE_URL}/compare.html`, changefreq: 'weekly', priority: '0.75' },
+    { loc: `${BASE_URL}/support.html`, changefreq: 'weekly', priority: '0.8' },
+    { loc: `${BASE_URL}/contact.html`, changefreq: 'monthly', priority: '0.7' },
+    { loc: `${BASE_URL}/about.html`, changefreq: 'monthly', priority: '0.7' },
+    { loc: `${BASE_URL}/help.html`, changefreq: 'monthly', priority: '0.7' },
+    { loc: `${BASE_URL}/privacy.html`, changefreq: 'monthly', priority: '0.7' },
+    { loc: `${BASE_URL}/terms.html`, changefreq: 'monthly', priority: '0.7' },
+    { loc: `${BASE_URL}/login.html`, changefreq: 'monthly', priority: '0.5' },
+    { loc: `${BASE_URL}/register.html`, changefreq: 'monthly', priority: '0.6' }
+  ];
+
+  corePages.forEach(p => {
+    urls.push({
+      loc: p.loc,
+      lastmod: today,
+      changefreq: p.changefreq,
+      priority: p.priority
+    });
   });
 
   // 2. 19 Category Pages
@@ -104,7 +104,8 @@ function generateRobotsTxt() {
     'Disallow: /api/',
     'Disallow: /admin/',
     'Disallow: /dashboard.html',
-    'Disallow: /owner/dashboard.html',
+    'Disallow: /owner/',
+    'Disallow: /scratch/',
     '',
     `Sitemap: ${BASE_URL}/sitemap.xml`
   ].join('\n');
