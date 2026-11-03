@@ -7,6 +7,9 @@
   <meta name="description" content="Official 12-Page Project Synopsis, Architecture Blueprint, and Technical Specification for Hall Khoj Finder (hallkhoj.com).">
   <link rel="icon" type="image/png" href="/assets/logo.png">
 
+  <!-- Theme Controller (Zero-Flash Dark/Light Mode) -->
+  <script src="js/theme.js"></script>
+
   <!-- Google Fonts -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -333,6 +336,10 @@
         <span id="countdown">03:59:59</span>
       </div>
       <div class="action-btn-group">
+        <button class="theme-toggle-btn" data-action="toggle-theme" aria-label="Toggle Dark/Light Mode" title="Toggle Theme" style="display:inline-flex;">
+          <span class="theme-icon-sun">☀️</span>
+          <span class="theme-icon-moon" style="display:none;">🌙</span>
+        </button>
         <button class="btn-gold" onclick="copyClientLink()">
           <span>🔗</span> Copy Live Link
         </button>
