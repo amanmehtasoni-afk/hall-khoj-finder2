@@ -941,7 +941,7 @@
           const res = await fetch(`${apiBase}/health`);
           if (res.ok) {
             const data = await res.json();
-            const storageMode = data.database?.activeStorage || 'MongoDB';
+            const storageMode = data.database?.activeStorage || 'Supabase / Local';
             if (statusPill) {
               statusPill.classList.remove('offline');
               statusPill.classList.add('online');

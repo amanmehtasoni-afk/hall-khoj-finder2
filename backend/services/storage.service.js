@@ -1,11 +1,11 @@
 /**
  * Hall Khoj Finder — Storage Service Layer
- * Supports Firebase Storage bucket uploads with local filesystem fallback.
+ * Local filesystem and Supabase Storage ready.
+ * Free of Firebase dependencies.
  */
 
 const fs = require('fs');
 const path = require('path');
-const { isLiveFirebase } = require('../config/firebase');
 
 const UPLOADS_DIR = path.join(__dirname, '../../frontend/assets/uploads');
 
@@ -26,40 +26,7 @@ async function uploadImageFile(file, folder = 'general') {
   const ext = path.extname(file.originalname).toLowerCase() || '.jpg';
   const cleanName = `${folder}_${Date.now()}_${Math.random().toString(36).substr(2, 6)}${ext}`;
 
-  // If live Firebase Storage is configured in environment
-  const bucketName = process.env.FIREBASE_STORAGE_BUCKET;
-  if (isLiveFirebase && bucketName) {
-    try {
-      const { getStorage } = require('firebase-admin/storage');
-      const bucket = getStorage().bucket(bucketName);
-      const destination = `${folder}/${cleanName}`;
-      const bucketFile = bucket.file(destination);
-
-      await bucketFile.save(file.buffer, {
-        metadata: {
-          contentType: file.mimetype,
-          metadata: {
-            uploadedAt: new Date().toISOString()
-          }
-        },
-        public: true
-      });
-
-      const publicUrl = `https://storage.googleapis.com/${bucketName}/${destination}`;
-      console.log('✓ [Storage] Uploaded image to Firebase Storage:', publicUrl);
-      return {
-        url: publicUrl,
-        fileName: cleanName,
-        size: file.size,
-        mimetype: file.mimetype,
-        storageProvider: 'firebase-storage'
-      };
-    } catch (err) {
-      console.warn('⚠️ [Storage] Firebase Storage bucket upload failed, using local fallback:', err.message);
-    }
-  }
-
-  // Local Storage Fallback
+  // Store file locally in frontend assets upload directory
   const targetPath = path.join(UPLOADS_DIR, cleanName);
   fs.writeFileSync(targetPath, file.buffer);
 
@@ -107,5 +74,6 @@ async function uploadBase64Image(dataUrl, folder = 'listings') {
 
 module.exports = {
   uploadImageFile,
-  uploadBase64Image
+  uploadBase64Image,
+  UPLOADS_DIR
 };

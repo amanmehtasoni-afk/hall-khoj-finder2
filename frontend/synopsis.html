@@ -384,7 +384,7 @@
       </div>
       <div>
         <span style="font-size: 0.72rem; color: var(--text-muted); text-transform: uppercase;">Primary Architecture</span>
-        <div style="font-size: 0.95rem; font-weight: 700; color: #fff;">Node.js • MongoDB • Three.js 3D</div>
+        <div style="font-size: 0.95rem; font-weight: 700; color: #fff;">Node.js • Supabase PostgreSQL • Three.js 3D</div>
       </div>
       <div>
         <span style="font-size: 0.72rem; color: var(--text-muted); text-transform: uppercase;">Customer Auth</span>
@@ -504,9 +504,9 @@
         </p>
       </div>
       <div class="feature-card" style="border-top: 3px solid var(--emerald);">
-        <div class="card-title">4. Dual-Engine Persistence</div>
+        <div class="card-title">4. Supabase PostgreSQL Persistence</div>
         <p style="font-size: 0.82rem; color: var(--text-muted);">
-          MongoDB Atlas Replica Set as primary cloud store + Resilient local atomic JSON fallback to prevent any service interruptions.
+          Supabase PostgreSQL cloud store + Resilient local atomic JSON data layer to prevent any service interruptions.
         </p>
       </div>
     </div>
@@ -517,7 +517,7 @@
       </div>
       <ol style="margin: 0; padding-left: 1.2rem; font-size: 0.82rem; color: #94a3b8; line-height: 1.8;">
         <li>Customer selects city, category (e.g. Banquet Hall), and plate budget on mobile app.</li>
-        <li>Backend queries MongoDB with 2dsphere geo-index and category filters; returns sorted results.</li>
+        <li>Backend queries database with category and location filters; returns sorted results.</li>
         <li>Customer explores 3D WebGL Virtual Tour and browses high-res multi-image photo gallery.</li>
         <li>Customer checks date availability; calendar shows green (Available) and red (Blocked) dates.</li>
         <li>Customer enters mobile number; receives instant 6-digit SMS OTP via Twilio/Fast2SMS.</li>
@@ -549,10 +549,10 @@
           <td>Provides high-throughput asynchronous HTTP routing, JSON request parsing, and static file serving.</td>
         </tr>
         <tr>
-          <td><strong>mongoose</strong></td>
-          <td>^9.10.2</td>
-          <td>MongoDB ODM</td>
-          <td>Schema modeling, strict validation, compound indexing, and MongoDB Atlas aggregation pipelines.</td>
+          <td><strong>@supabase/supabase-js</strong></td>
+          <td>^2.49.0</td>
+          <td>PostgreSQL Client</td>
+          <td>Relational database, Row Level Security (RLS), stored procedures, Auth, and Realtime event streaming.</td>
         </tr>
         <tr>
           <td><strong>bcryptjs</strong></td>
@@ -1056,7 +1056,7 @@
       <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 0.75rem; font-size: 0.8rem;">
         <div style="padding: 0.75rem; background: rgba(255,255,255,0.03); border-radius: 6px;">
           <strong style="color: var(--emerald);">PHASE 1 (COMPLETED)</strong><br>
-          Mobile-first PWA, Phone OTP, 11 categories, MongoDB backend, Three.js 3D.
+          Mobile-first PWA, Phone OTP, 11 categories, Supabase PostgreSQL backend, Three.js 3D.
         </div>
         <div style="padding: 0.75rem; background: rgba(255,255,255,0.03); border-radius: 6px;">
           <strong style="color: var(--gold-accent);">PHASE 2 (CURRENT)</strong><br>

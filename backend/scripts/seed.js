@@ -1,27 +1,22 @@
 /**
- * Hall Khoj Finder — MongoDB Seeder Script
+ * Hall Khoj Finder — Seeder & Supabase Compiler Script
+ * Seeds local verified listings and compiles Supabase seed.sql.
  * Run with: npm run seed
  */
 
 require('dotenv').config();
-const { connectMongoDB, isLiveMongo, mongoose } = require('../config/mongodb');
-const { syncLocalToMongoDB } = require('../services/firestore.service');
+const { execSync } = require('child_process');
+const path = require('path');
 
 async function runSeed() {
   console.log('====================================================');
-  console.log('🌱 HALL KHOJ FINDER — MONGODB SEEDER');
+  console.log('🌱 HALL KHOJ FINDER — DATA SEEDER & SUPABASE COMPILER');
   console.log('====================================================');
 
-  const conn = await connectMongoDB();
-  if (!conn) {
-    console.error('❌ Could not connect to MongoDB. Check MONGODB_URI in your .env file.');
-    process.exit(1);
-  }
-
-  console.log('🚀 Syncing local verified listings and collections to MongoDB...');
-  await syncLocalToMongoDB();
-  console.log('✓ Seeding complete!');
-  await mongoose.disconnect();
+  console.log('🚀 Compiling local verified listings into supabase/seed.sql...');
+  const scriptPath = path.join(__dirname, 'migrate_to_supabase.js');
+  execSync(`node "${scriptPath}"`, { stdio: 'inherit' });
+  console.log('✓ Seeding and Supabase compilation complete!');
   process.exit(0);
 }
 

@@ -17,7 +17,7 @@
  *                    │        │        │
  *                    └────────┼────────┘
  *                             │
- *                     MongoDB Atlas DB
+ *               Supabase PostgreSQL Tier
  *
  * Features:
  * - Active /health probes every 5s per server

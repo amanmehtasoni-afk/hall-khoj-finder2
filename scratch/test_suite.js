@@ -168,14 +168,32 @@ const stream = require('stream');
     process.exit(1);
   }
 
-  // Test 6: Models & Indexes Verification
-  console.log('\n--- TEST 6: Mongoose Models & Schemas ---');
-  const { models } = require('../backend/models');
-  assert(models.halls, 'Hall model missing');
-  assert(models.bookings, 'Booking model missing');
-  assert(models.users, 'User model missing');
-  assert(models.transactions, 'Transaction model missing');
-  console.log('✓ Test 6 Passed: All 14 Mongoose marketplace models and indexes registered.');
+  // Test 6: Verification of MongoDB and Firebase Clean Removal & Pure Data Layer
+  console.log('\n--- TEST 6: Zero MongoDB & Firebase Verification + Pure Data Layer ---');
+  try {
+    assert(!fs.existsSync(path.join(__dirname, '../backend/config/mongodb.js')), 'mongodb.js should be deleted');
+    assert(!fs.existsSync(path.join(__dirname, '../backend/config/firebase.js')), 'firebase.js should be deleted');
+    assert(!fs.existsSync(path.join(__dirname, '../backend/models')), 'backend/models should be deleted');
+    assert(!fs.existsSync(path.join(__dirname, '../frontend/js/firebase-config.js')), 'firebase-config.js should be deleted');
+    assert(!fs.existsSync(path.join(__dirname, '../firebase.json')), 'firebase.json should be deleted');
+
+    const pkg = JSON.parse(fs.readFileSync(path.join(__dirname, '../package.json'), 'utf8'));
+    assert(!pkg.dependencies.mongoose, 'mongoose should not be in dependencies');
+    assert(!pkg.dependencies['firebase-admin'], 'firebase-admin should not be in dependencies');
+
+    const dataService = require('../backend/services/data.service');
+    const halls = await dataService.getCollection('halls');
+    const users = await dataService.getCollection('users');
+    const bookings = await dataService.getCollection('bookings');
+    assert(halls.length > 0, 'Halls collection should have records');
+    assert(users.length > 0, 'Users collection should have records');
+    assert(bookings.length > 0, 'Bookings collection should have records');
+
+    console.log(`✓ Test 6 Passed: MongoDB and Firebase 100% removed. Pure data service operational (${halls.length} halls, ${users.length} users, ${bookings.length} bookings).`);
+  } catch (e) {
+    console.error('❌ Test 6 Failed:', e.message);
+    process.exit(1);
+  }
 
   // Test 7: Mandatory Manual Booking Approval Enforcement (Phase 9 & Phase 17)
   console.log('\n--- TEST 7: Phase 9 Mandatory Owner Approval & Payment Gate ---');

@@ -132,7 +132,7 @@ Copy the example environment file:
 ```bash
 cp .env.example .env
 ```
-Fill in your Supabase, Razorpay, or MongoDB credentials. If left unconfigured, the platform automatically boots using the resilient local transactional JSON database.
+Fill in your Supabase or Razorpay credentials. If left unconfigured, the platform automatically boots using the resilient local transactional JSON database.
 
 ### 4. Running the Automated Test Suite
 ```bash
