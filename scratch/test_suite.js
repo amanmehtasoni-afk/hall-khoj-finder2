@@ -358,8 +358,88 @@ const stream = require('stream');
     process.exit(1);
   }
 
+  // Test 15: Master Auth Upgrade & Complete OTP Eradication Verification (Phase 6 & 7)
+  console.log('\n--- TEST 15: Email + Google Authentication & OTP Eradication ---');
+  try {
+    // 1. Direct Email & Password Registration without phone OTP
+    const uniqueEmail = `test_email_user_${Date.now()}@example.com`;
+    const regResult = await authService.registerUser({
+      name: 'Autonomous Tester',
+      email: uniqueEmail,
+      password: 'StrongAuth@2026',
+      role: 'user',
+      state: 'Uttar Pradesh',
+      city: 'Lucknow'
+    });
+    assert(regResult && regResult.user && regResult.token, 'Direct Email registration failed');
+    assert(regResult.user.email === uniqueEmail, 'Registered user email mismatch');
+    assert(!regResult.user.password, 'Password must never be returned in user payload');
+
+    // 2. Direct Email & Password Login
+    const loginResult = await authService.loginUser(uniqueEmail, 'StrongAuth@2026');
+    assert(loginResult && loginResult.user && loginResult.token, 'Direct Email login failed');
+    assert(loginResult.user.email === uniqueEmail, 'Logged in user email mismatch');
+
+    // 3. Google Auth Endpoint & Token Generation
+    const googleEmail = `google_verified_${Date.now()}@gmail.com`;
+    const googleResult = await authService.googleAuth({
+      email: googleEmail,
+      name: 'Google User',
+      picture: 'https://images.unsplash.com/photo-1535713875002-d1d0cf377fde?w=100',
+      role: 'user'
+    });
+    assert(googleResult && googleResult.user && googleResult.token, 'Google authentication failed');
+    assert(googleResult.user.email === googleEmail, 'Google user email mismatch');
+    assert(googleResult.user.authProvider === 'google', 'Google authProvider missing');
+
+    // 4. Verify login.html has ZERO OTP inputs or buttons
+    const loginHtml = fs.readFileSync(path.join(__dirname, '../frontend/login.html'), 'utf8');
+    assert(!loginHtml.includes('Send OTP'), 'login.html must not contain Send OTP button');
+    assert(!loginHtml.includes('otp-login-form'), 'login.html must not contain otp-login-form');
+    assert(!loginHtml.includes('pill-otp'), 'login.html must not contain pill-otp');
+    assert(loginHtml.includes('btn-google-3d'), 'login.html missing btn-google-3d');
+    assert(loginHtml.includes('login-password'), 'login.html missing login-password');
+
+    // 5. Verify register.html has ZERO OTP screens and has Google signup
+    const regHtml = fs.readFileSync(path.join(__dirname, '../frontend/register.html'), 'utf8');
+    assert(!regHtml.includes('Send OTP'), 'register.html must not contain Send OTP');
+    assert(regHtml.includes('btn-google-3d'), 'register.html missing btn-google-3d');
+    assert(regHtml.includes('reg-email'), 'register.html missing reg-email');
+    assert(regHtml.includes('pwd-strength-bar'), 'register.html missing pwd-strength-bar');
+
+    console.log('✓ Test 15 Passed: Direct Email & Google authentication operational; all OTP gates completely eradicated.');
+  } catch (e) {
+    console.error('❌ Test 15 Failed:', e.message);
+    process.exit(1);
+  }
+
+  // Test 16: 3D Icon System & Glassmorphism Verification (Phase 2, 3, 4, 5)
+  console.log('\n--- TEST 16: 3D Icon System & Advanced Glassmorphism Verification ---');
+  try {
+    const iconsCss = fs.readFileSync(path.join(__dirname, '../frontend/css/3d-icons.css'), 'utf8');
+    assert(iconsCss.includes('.icon-3d-box'), '3d-icons.css missing .icon-3d-box');
+    assert(iconsCss.includes('.btn-google-3d'), '3d-icons.css missing .btn-google-3d');
+    assert(iconsCss.includes('.icon-3d-gold'), '3d-icons.css missing .icon-3d-gold');
+    assert(iconsCss.includes('.icon-3d-blue'), '3d-icons.css missing .icon-3d-blue');
+    assert(iconsCss.includes('.category-3d-card'), '3d-icons.css missing .category-3d-card');
+
+    const mainCss = fs.readFileSync(path.join(__dirname, '../frontend/css/main.css'), 'utf8');
+    assert(mainCss.includes('3d-icons.css'), 'main.css missing @import url("3d-icons.css")');
+    assert(mainCss.includes('blur(20px)'), 'main.css missing 20px backdrop blur glass specification');
+    assert(mainCss.includes(':root[data-theme="light"]'), 'main.css missing light mode contrast tokens');
+
+    const animCss = fs.readFileSync(path.join(__dirname, '../frontend/css/animations.css'), 'utf8');
+    assert(animCss.includes('scale(0.97)'), 'animations.css missing 3D tactile press scale(0.97)');
+    assert(animCss.includes('modalPopIn'), 'animations.css missing modalPopIn keyframe');
+
+    console.log('✓ Test 16 Passed: 3D icon system, 20px glassmorphism, micro-interactions, and contrast tokens verified.');
+  } catch (e) {
+    console.error('❌ Test 16 Failed:', e.message);
+    process.exit(1);
+  }
+
   console.log('\n======================================================');
-  console.log('🎉 ALL 14 AUTOMATED VERIFICATION SUITES PASSED (100%)');
+  console.log('🎉 ALL 16 AUTOMATED VERIFICATION SUITES PASSED (100%)');
   console.log('======================================================\n');
   process.exit(0);
 })();

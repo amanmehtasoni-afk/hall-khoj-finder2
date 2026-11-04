@@ -79,6 +79,73 @@
 }
 
 /* -------------------------------------------------------------
+   3D MICRO-INTERACTIONS & TACTILE CONTROLS
+---------------------------------------------------------------- */
+.btn, .mobile-nav-item, .cat-card, .search-btn, .action-btn, .theme-toggle-btn, .pwd-toggle-btn {
+  transition: transform 0.12s cubic-bezier(0.2, 0, 0, 1), box-shadow 0.12s ease;
+}
+
+.btn:active, .mobile-nav-item:active, .cat-card:active, .search-btn:active, .action-btn:active, .theme-toggle-btn:active {
+  transform: scale(0.97) translateY(1px) !important;
+}
+
+/* Modal & Dialog Smooth Pop In */
+@keyframes modalPopIn {
+  0% {
+    opacity: 0;
+    transform: scale(0.92) translateY(14px);
+  }
+  100% {
+    opacity: 1;
+    transform: scale(1) translateY(0);
+  }
+}
+
+.modal-dialog, .modal.open .modal-dialog, .glass-panel-auth {
+  animation: modalPopIn 0.32s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+}
+
+/* Loading Skeleton Shimmer Wave */
+@keyframes skeletonShimmer {
+  0% { background-position: -200% 0; }
+  100% { background-position: 200% 0; }
+}
+
+.skeleton-loading {
+  background: linear-gradient(90deg, rgba(255,255,255,0.04) 25%, rgba(255,255,255,0.14) 50%, rgba(255,255,255,0.04) 75%);
+  background-size: 200% 100%;
+  animation: skeletonShimmer 1.8s infinite linear;
+  border-radius: var(--radius-sm);
+}
+
+:root[data-theme="light"] .skeleton-loading {
+  background: linear-gradient(90deg, #f1f5f9 25%, #e2e8f0 50%, #f1f5f9 75%);
+  background-size: 200% 100%;
+}
+
+/* 3D Card Hover Lift */
+.card-hover-3d {
+  transition: transform 0.28s cubic-bezier(0.2, 0, 0.1, 1), box-shadow 0.28s ease, border-color 0.28s ease;
+  will-change: transform;
+}
+
+.card-hover-3d:hover {
+  transform: translateY(-6px) perspective(1000px) rotateX(1.2deg);
+  box-shadow: 0 18px 40px -10px var(--primary-glow);
+}
+
+/* Theme Icon Animation */
+.theme-icon-sun, .theme-icon-moon {
+  display: inline-block;
+  transition: transform 0.25s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.theme-toggle-btn:hover .theme-icon-sun,
+.theme-toggle-btn:hover .theme-icon-moon {
+  transform: rotate(20deg) scale(1.15);
+}
+
+/* -------------------------------------------------------------
    ACCESSIBILITY: REDUCED MOTION SUPPORT
 ---------------------------------------------------------------- */
 @media (prefers-reduced-motion: reduce) {
@@ -89,11 +156,11 @@
     scroll-behavior: auto !important;
   }
   
-  .card-3d:hover {
+  .card-3d:hover, .card-hover-3d:hover {
     transform: none !important;
   }
   
-  .animate-float, .animate-pulse-glow, .animate-pulse-gold {
+  .animate-float, .animate-pulse-glow, .animate-pulse-gold, .skeleton-loading {
     animation: none !important;
   }
 }

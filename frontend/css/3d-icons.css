@@ -1,0 +1,277 @@
+/**
+ * Hall Khoj Finder — Premium 3D Icon System
+ * Phase 3 Specification:
+ * - Soft rounded edges
+ * - Glass and metallic materials
+ * - Realistic depth, specular lighting highlights, and layered shadows
+ * - Modern gradients and consistent proportions
+ * - Dark & Light mode theme awareness
+ */
+
+/* Base 3D Icon Box Container */
+.icon-3d-box {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+  border-radius: var(--radius-md, 14px);
+  transform-style: preserve-3d;
+  transition: transform 0.25s cubic-bezier(0.34, 1.56, 0.64, 1), box-shadow 0.25s ease;
+  user-select: none;
+  flex-shrink: 0;
+  box-shadow: 
+    0 6px 16px -2px rgba(0, 0, 0, 0.35),
+    inset 0 1px 1px 0 rgba(255, 255, 255, 0.45),
+    inset 0 -2px 4px 0 rgba(0, 0, 0, 0.25);
+}
+
+.icon-3d-box::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 45%;
+  border-top-left-radius: inherit;
+  border-top-right-radius: inherit;
+  background: linear-gradient(180deg, rgba(255, 255, 255, 0.32) 0%, rgba(255, 255, 255, 0) 100%);
+  pointer-events: none;
+}
+
+.icon-3d-box:hover {
+  transform: translateY(-3px) scale(1.05);
+}
+
+/* Sizes */
+.icon-3d-sm {
+  width: 34px;
+  height: 34px;
+  border-radius: 10px;
+}
+.icon-3d-sm svg {
+  width: 18px;
+  height: 18px;
+}
+
+.icon-3d-md {
+  width: 46px;
+  height: 46px;
+  border-radius: 14px;
+}
+.icon-3d-md svg {
+  width: 24px;
+  height: 24px;
+}
+
+.icon-3d-lg {
+  width: 60px;
+  height: 60px;
+  border-radius: 18px;
+}
+.icon-3d-lg svg {
+  width: 32px;
+  height: 32px;
+}
+
+.icon-3d-xl {
+  width: 76px;
+  height: 76px;
+  border-radius: 22px;
+}
+.icon-3d-xl svg {
+  width: 40px;
+  height: 40px;
+}
+
+/* Material Variants */
+/* 1. Royal Gold Metallic */
+.icon-3d-gold {
+  background: linear-gradient(135deg, #fbbf24 0%, #f59e0b 50%, #d97706 100%);
+  color: #071426;
+  border: 1px solid rgba(251, 191, 36, 0.6);
+  box-shadow: 
+    0 8px 20px -3px rgba(245, 158, 11, 0.45),
+    inset 0 1px 2px rgba(255, 255, 255, 0.65),
+    inset 0 -2px 4px rgba(180, 83, 9, 0.5);
+}
+
+/* 2. Electric Royal Blue */
+.icon-3d-blue {
+  background: linear-gradient(135deg, #60a5fa 0%, #398bff 50%, #1e40af 100%);
+  color: #ffffff;
+  border: 1px solid rgba(96, 165, 250, 0.6);
+  box-shadow: 
+    0 8px 20px -3px rgba(57, 139, 255, 0.45),
+    inset 0 1px 2px rgba(255, 255, 255, 0.65),
+    inset 0 -2px 4px rgba(30, 64, 175, 0.5);
+}
+
+/* 3. Emerald Green */
+.icon-3d-emerald {
+  background: linear-gradient(135deg, #34d399 0%, #10b981 50%, #047857 100%);
+  color: #ffffff;
+  border: 1px solid rgba(52, 211, 153, 0.6);
+  box-shadow: 
+    0 8px 20px -3px rgba(16, 185, 129, 0.45),
+    inset 0 1px 2px rgba(255, 255, 255, 0.65),
+    inset 0 -2px 4px rgba(4, 120, 87, 0.5);
+}
+
+/* 4. Ruby / Rose */
+.icon-3d-ruby {
+  background: linear-gradient(135deg, #f87171 0%, #ef4444 50%, #b91c1c 100%);
+  color: #ffffff;
+  border: 1px solid rgba(248, 113, 113, 0.6);
+  box-shadow: 
+    0 8px 20px -3px rgba(239, 68, 68, 0.45),
+    inset 0 1px 2px rgba(255, 255, 255, 0.65),
+    inset 0 -2px 4px rgba(185, 28, 28, 0.5);
+}
+
+/* 5. Luxury Violet / Amethyst */
+.icon-3d-purple {
+  background: linear-gradient(135deg, #c084fc 0%, #8b5cf6 50%, #6d28d9 100%);
+  color: #ffffff;
+  border: 1px solid rgba(192, 132, 252, 0.6);
+  box-shadow: 
+    0 8px 20px -3px rgba(139, 92, 246, 0.45),
+    inset 0 1px 2px rgba(255, 255, 255, 0.65),
+    inset 0 -2px 4px rgba(109, 40, 217, 0.5);
+}
+
+/* 6. Frosted Translucent Glass */
+.icon-3d-glass {
+  background: rgba(255, 255, 255, 0.12);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  color: var(--text-primary);
+  border: 1px solid rgba(255, 255, 255, 0.22);
+  box-shadow: 
+    0 8px 24px -4px rgba(0, 0, 0, 0.35),
+    inset 0 1px 1px rgba(255, 255, 255, 0.5),
+    inset 0 -1px 2px rgba(0, 0, 0, 0.2);
+}
+
+:root[data-theme="light"] .icon-3d-glass {
+  background: rgba(255, 255, 255, 0.75);
+  border-color: rgba(18, 59, 104, 0.15);
+  color: #123b68;
+  box-shadow: 
+    0 6px 18px -3px rgba(18, 59, 104, 0.12),
+    inset 0 1px 2px rgba(255, 255, 255, 0.9);
+}
+
+/* -------------------------------------------------------------
+   3D GOOGLE SIGN-IN BUTTON (Phase 6 & 7)
+---------------------------------------------------------------- */
+.btn-google-3d {
+  width: 100%;
+  height: 50px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.85rem;
+  background: rgba(255, 255, 255, 0.08);
+  border: 1px solid rgba(255, 255, 255, 0.18);
+  border-radius: var(--radius-md, 14px);
+  color: #ffffff;
+  font-weight: 600;
+  font-size: 0.96rem;
+  cursor: pointer;
+  box-shadow: 
+    0 4px 16px rgba(0, 0, 0, 0.25),
+    inset 0 1px 1px rgba(255, 255, 255, 0.25);
+  transition: all 0.2s cubic-bezier(0.2, 0, 0, 1);
+  position: relative;
+  overflow: hidden;
+  user-select: none;
+}
+
+.btn-google-3d::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.15), transparent);
+  transition: left 0.6s ease;
+}
+
+.btn-google-3d:hover {
+  background: rgba(255, 255, 255, 0.14);
+  border-color: rgba(255, 255, 255, 0.35);
+  transform: translateY(-2px);
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.35);
+}
+
+.btn-google-3d:hover::before {
+  left: 100%;
+}
+
+.btn-google-3d:active {
+  transform: scale(0.98) translateY(1px);
+}
+
+:root[data-theme="light"] .btn-google-3d {
+  background: #ffffff;
+  border-color: #cbd5e1;
+  color: #0f172a;
+  box-shadow: 0 4px 14px rgba(0, 0, 0, 0.08);
+}
+
+:root[data-theme="light"] .btn-google-3d:hover {
+  background: #f8fafc;
+  border-color: #94a3b8;
+  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.12);
+}
+
+.google-icon-wrapper-3d {
+  width: 26px;
+  height: 26px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  filter: drop-shadow(0 2px 4px rgba(0, 0, 0, 0.2));
+}
+
+/* Category 3D Floating Badges */
+.category-3d-card {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 1.5rem 1rem;
+  border-radius: var(--radius-lg, 20px);
+  background: rgba(12, 31, 56, 0.60);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  transition: transform 0.3s cubic-bezier(0.2, 0, 0.1, 1), box-shadow 0.3s ease, border-color 0.3s ease;
+  text-align: center;
+  cursor: pointer;
+  overflow: hidden;
+}
+
+:root[data-theme="light"] .category-3d-card {
+  background: rgba(255, 255, 255, 0.82);
+  border-color: rgba(18, 59, 104, 0.12);
+  box-shadow: 0 8px 24px rgba(18, 59, 104, 0.06);
+}
+
+.category-3d-card:hover {
+  transform: translateY(-8px) scale(1.03);
+  border-color: var(--primary, #398bff);
+  box-shadow: 0 20px 40px -10px var(--primary-glow, rgba(57, 139, 255, 0.4));
+}
+
+.category-3d-card .icon-3d-box {
+  margin-bottom: 0.85rem;
+}
+
+.category-3d-title {
+  font-size: 0.95rem;
+  font-weight: 700;
+  color: var(--text-primary);
+  margin-top: 0.25rem;
+}

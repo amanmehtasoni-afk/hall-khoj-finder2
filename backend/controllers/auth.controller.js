@@ -103,9 +103,20 @@ async function resetPassword(req, res, next) {
   }
 }
 
+async function googleAuth(req, res, next) {
+  try {
+    const { credential, email, name, picture, role } = req.body;
+    const result = await authService.googleAuth({ credential, email, name, picture, role });
+    return successResponse(res, result, 'Google authentication successful');
+  } catch (err) {
+    next(err);
+  }
+}
+
 module.exports = {
   register,
   login,
+  googleAuth,
   getMe,
   sendOtp,
   verifyOtp,

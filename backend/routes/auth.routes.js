@@ -11,6 +11,7 @@ const { authenticate } = require('../middleware/auth.middleware');
 
 router.post('/register', validateRegistration, authController.register);
 router.post('/login', validateLogin, authController.login);
+router.post('/google', authController.googleAuth);
 router.get('/me', authenticate, authController.getMe);
 router.post('/send-otp', authController.sendOtp);
 router.post('/verify-otp', authController.verifyOtp);

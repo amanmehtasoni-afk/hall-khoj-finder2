@@ -98,7 +98,20 @@ window.HKF_API = (function () {
       login: async (mobileOrEmail, password) => {
         const res = await request('/auth/login', {
           method: 'POST',
-          body: JSON.stringify({ mobile: mobileOrEmail, password })
+          body: JSON.stringify({
+            identifier: mobileOrEmail,
+            email: mobileOrEmail,
+            mobile: mobileOrEmail,
+            password
+          })
+        });
+        if (res.data?.token) setSession(res.data.user, res.data.token);
+        return res;
+      },
+      googleAuth: async (payload) => {
+        const res = await request('/auth/google', {
+          method: 'POST',
+          body: JSON.stringify(payload)
         });
         if (res.data?.token) setSession(res.data.user, res.data.token);
         return res;

@@ -44,7 +44,7 @@ function verifyToken(token) {
 
 async function registerUser({
   name,
-  mobile,
+  mobile = '',
   email = '',
   password,
   role = 'user',
@@ -63,12 +63,50 @@ async function registerUser({
     throw error;
   }
 
+  const cleanEmail = (email || '').toLowerCase().trim();
   const cleanMobile = (mobile || '').replace(/[\s+-]/g, '').slice(-10);
-  if (!cleanMobile || cleanMobile.length < 10) {
-    const error = new Error('Please enter a valid 10-digit mobile number.');
-    error.code = 'INVALID_MOBILE';
+
+  if (!cleanEmail && !cleanMobile) {
+    const error = new Error('Please enter an email address or mobile number to register.');
+    error.code = 'IDENTIFIER_REQUIRED';
     error.statusCode = 400;
     throw error;
+  }
+
+  if (cleanEmail) {
+    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    if (!emailRegex.test(cleanEmail)) {
+      const error = new Error('Please enter a valid email address.');
+      error.code = 'INVALID_EMAIL';
+      error.statusCode = 400;
+      throw error;
+    }
+    const existingByEmail = await firestore.queryCollection('users', u => (u.email || '').toLowerCase().trim() === cleanEmail);
+    if (existingByEmail.length > 0) {
+      const error = new Error('An account with this email address already exists. Please sign in or use another email.');
+      error.code = 'EMAIL_EXISTS';
+      error.statusCode = 409;
+      throw error;
+    }
+  }
+
+  if (cleanMobile) {
+    if (cleanMobile.length < 10) {
+      const error = new Error('Please enter a valid 10-digit mobile number.');
+      error.code = 'INVALID_MOBILE';
+      error.statusCode = 400;
+      throw error;
+    }
+    const existingByMobile = await firestore.queryCollection('users', u => {
+      const m = (u.mobile || '').replace(/[\s+-]/g, '').slice(-10);
+      return m && m === cleanMobile;
+    });
+    if (existingByMobile.length > 0) {
+      const error = new Error('An account with this mobile number already exists. Please sign in or use another mobile number.');
+      error.code = 'MOBILE_EXISTS';
+      error.statusCode = 409;
+      throw error;
+    }
   }
 
   if (!password || password.length < 8) {
@@ -97,18 +135,6 @@ async function registerUser({
     }
   }
 
-  // Prevent duplicate mobile registration
-  const existingByMobile = await firestore.queryCollection('users', u => {
-    const m = (u.mobile || '').replace(/[\s+-]/g, '').slice(-10);
-    return m && m === cleanMobile;
-  });
-  if (existingByMobile.length > 0) {
-    const error = new Error('An account with this mobile number already exists. Please sign in or use another mobile number.');
-    error.code = 'MOBILE_EXISTS';
-    error.statusCode = 409;
-    throw error;
-  }
-
   const hashedPassword = await hashPassword(password);
   const userId = generateId('usr');
 
@@ -116,7 +142,7 @@ async function registerUser({
     id: userId,
     name: name.trim(),
     mobile: cleanMobile,
-    email: (email || '').toLowerCase().trim(),
+    email: cleanEmail,
     password: hashedPassword,
     role: isOwner ? 'owner' : 'user',
     businessCategory: isOwner ? resolvedCategory : '',
@@ -125,7 +151,7 @@ async function registerUser({
     city: (city || '').trim(),
     village: (village || '').trim(),
     pinCode: (pinCode || '').trim(),
-    isVerified: false,
+    isVerified: true,
     favorites: [],
     createdAt: new Date().toISOString()
   };
@@ -140,7 +166,7 @@ async function registerUser({
       businessCategory: resolvedCategory,
       businessType: resolvedCategory,
       mobile: cleanMobile,
-      email: (email || '').toLowerCase().trim(),
+      email: cleanEmail,
       city: (city || '').trim(),
       state: (state || '').trim(),
       village: (village || '').trim(),
@@ -170,21 +196,32 @@ async function registerUser({
 
 async function loginUser(identifier, password) {
   if (!identifier) {
-    const error = new Error('Please enter your mobile number.');
+    const error = new Error('Please enter your email or mobile number.');
     error.code = 'INVALID_CREDENTIALS';
     error.statusCode = 400;
     throw error;
   }
 
-  const cleanId = (identifier || '').replace(/[\s+-]/g, '').slice(-10);
+  if (!password) {
+    const error = new Error('Please enter your password.');
+    error.code = 'INVALID_CREDENTIALS';
+    error.statusCode = 400;
+    throw error;
+  }
+
+  const cleanInput = (identifier || '').trim();
+  const cleanMobile = cleanInput.replace(/[\s+-]/g, '').slice(-10);
+  const normalizedEmail = cleanInput.toLowerCase();
+
   const users = await firestore.queryCollection('users', u => {
     const userMobile = (u.mobile || '').replace(/[\s+-]/g, '').slice(-10);
-    return (userMobile && userMobile === cleanId) || 
-      (u.email && u.email.toLowerCase() === identifier.toLowerCase().trim());
+    const userEmail = (u.email || '').toLowerCase().trim();
+    return (userEmail && userEmail === normalizedEmail) || 
+      (cleanMobile.length === 10 && userMobile && userMobile === cleanMobile);
   });
   
   if (users.length === 0) {
-    const error = new Error('No account found with this mobile number. Please register first.');
+    const error = new Error('No account found with this email or mobile number. Please register first.');
     error.code = 'INVALID_CREDENTIALS';
     error.statusCode = 401;
     throw error;
@@ -222,6 +259,99 @@ async function loginUser(identifier, password) {
 
   const token = generateToken(safeUser);
   return { user: safeUser, token };
+}
+
+async function googleAuth({ credential, email, name, picture, role = 'user' }) {
+  if (!email && !credential) {
+    const error = new Error('Google credential or email is required.');
+    error.code = 'INVALID_CREDENTIALS';
+    error.statusCode = 400;
+    throw error;
+  }
+
+  let userEmail = (email || '').toLowerCase().trim();
+  let userName = (name || '').trim();
+  let userAvatar = picture || '';
+
+  // Safely extract from Google JWT token if provided
+  if (credential && typeof credential === 'string') {
+    try {
+      const parts = credential.split('.');
+      if (parts.length === 3) {
+        const payload = JSON.parse(Buffer.from(parts[1], 'base64').toString('utf8'));
+        if (payload.email) userEmail = payload.email.toLowerCase().trim();
+        if (payload.name && !userName) userName = payload.name.trim();
+        if (payload.picture && !userAvatar) userAvatar = payload.picture;
+      }
+    } catch (e) {
+      console.warn('[Google Auth Token Decode]', e.message);
+    }
+  }
+
+  if (!userEmail) {
+    const error = new Error('Unable to extract verified email from Google Sign-In.');
+    error.code = 'INVALID_GOOGLE_TOKEN';
+    error.statusCode = 400;
+    throw error;
+  }
+
+  const existingUsers = await firestore.queryCollection('users', u => (u.email || '').toLowerCase().trim() === userEmail);
+  let user = null;
+  let isNewUser = false;
+
+  if (existingUsers.length > 0) {
+    user = existingUsers[0];
+    if (userAvatar && !user.avatar) {
+      await firestore.updateDocument('users', user.id, { avatar: userAvatar });
+      user.avatar = userAvatar;
+    }
+  } else {
+    const userId = generateId('usr');
+    const newUser = {
+      id: userId,
+      name: userName || userEmail.split('@')[0],
+      email: userEmail,
+      mobile: '',
+      role: role === 'owner' ? 'owner' : 'user',
+      authProvider: 'google',
+      avatar: userAvatar,
+      isVerified: true,
+      favorites: [],
+      createdAt: new Date().toISOString()
+    };
+    await firestore.setDocument('users', userId, newUser);
+    user = newUser;
+    isNewUser = true;
+
+    if (newUser.role === 'owner') {
+      const ownerProfile = {
+        id: `owner_${userId}`,
+        userId: userId,
+        ownerName: newUser.name,
+        businessName: `${newUser.name}'s Venue Services`,
+        businessCategory: 'Event Venue',
+        businessType: 'Event Venue',
+        email: userEmail,
+        verificationStatus: 'PENDING',
+        rating: 5.0,
+        totalListings: 0,
+        createdAt: new Date().toISOString()
+      };
+      await firestore.setDocument('owners', ownerProfile.id, ownerProfile);
+    }
+  }
+
+  if (user.accountStatus === 'SUSPENDED' || user.isSuspended) {
+    const error = new Error('Your account has been suspended by platform administration.');
+    error.code = 'ACCOUNT_SUSPENDED';
+    error.statusCode = 403;
+    throw error;
+  }
+
+  const safeUser = { ...user };
+  delete safeUser.password;
+  const token = generateToken(safeUser);
+  return { user: safeUser, token, isNewUser };
 }
 
 // In-memory store for OTPs (with expiration)
@@ -426,6 +556,7 @@ module.exports = {
   verifyToken,
   registerUser,
   loginUser,
+  googleAuth,
   sendOtp,
   verifyOtp,
   forgotPassword,

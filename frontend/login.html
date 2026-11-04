@@ -4,7 +4,7 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Sign In | Hall Khoj Finder</title>
-  <meta name="description" content="Sign in to your Hall Khoj Finder Customer or Business Owner account using your mobile number.">
+  <meta name="description" content="Sign in to your Hall Khoj Finder Customer or Business Owner account using Email or Google Sign-In.">
 
   <!-- Theme Controller (Zero-Flash Dark/Light Mode) -->
   <script src="js/theme.js"></script>
@@ -12,6 +12,7 @@
   <!-- Core CSS -->
   <link rel="stylesheet" href="css/main.css">
   <link rel="stylesheet" href="css/3d.css">
+  <link rel="stylesheet" href="css/3d-icons.css">
   <link rel="stylesheet" href="css/components.css">
   <link rel="stylesheet" href="css/animations.css">
 
@@ -19,7 +20,7 @@
     .auth-role-tab.active {
       background: var(--primary) !important;
       color: #ffffff !important;
-      box-shadow: 0 2px 10px var(--primary-glow);
+      box-shadow: 0 4px 14px var(--primary-glow);
     }
 
     .auth-custom-input {
@@ -54,24 +55,30 @@
       border-color: var(--primary) !important;
     }
 
-    .method-pill {
-      flex: 1;
-      padding: 0.5rem 0.75rem;
-      border-radius: var(--radius-full);
-      font-size: 0.85rem;
-      font-weight: 600;
+    .auth-divider {
+      display: flex;
+      align-items: center;
       text-align: center;
-      cursor: pointer;
+      margin: 1.25rem 0;
       color: var(--text-muted);
-      border: 1px solid transparent;
-      transition: all 0.2s ease;
-      user-select: none;
+      font-size: 0.8rem;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
     }
 
-    .method-pill.active {
-      background: rgba(245, 158, 11, 0.15);
-      color: #fbbf24;
-      border-color: rgba(245, 158, 11, 0.4);
+    .auth-divider::before,
+    .auth-divider::after {
+      content: '';
+      flex: 1;
+      border-bottom: 1px solid var(--border-subtle);
+    }
+
+    .auth-divider:not(:empty)::before {
+      margin-right: 0.85em;
+    }
+
+    .auth-divider:not(:empty)::after {
+      margin-left: 0.85em;
     }
 
     @media (max-width: 600px) {
@@ -85,8 +92,8 @@
 </head>
 <body style="display:flex; flex-direction:column; min-height:100vh;">
 
-  <!-- Simple Header -->
-  <header class="site-header" style="position:static; background:#070a13;">
+  <!-- Header -->
+  <header class="site-header" style="position:static; background:rgba(12, 31, 56, 0.70);">
     <div class="nav-container">
       <a href="/" class="brand-logo">
         <img decoding="async" loading="lazy" src="/assets/logo.png" alt="Hall Khoj" class="brand-logo-img">
@@ -109,9 +116,18 @@
 
   <main style="flex:1; display:flex; align-items:center; justify-content:center; padding:2.5rem 1rem;">
     <div class="glass-panel glass-panel-auth" style="width:100%; max-width:460px; padding:2.25rem; border:1px solid var(--border-light); box-shadow:var(--shadow-lg);">
+      
+      <!-- Card Header -->
       <div class="text-center" style="margin-bottom:1.5rem;">
+        <div class="icon-3d-box icon-3d-blue icon-3d-md" style="margin-bottom:0.75rem;">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M15 3h4a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2h-4"></path>
+            <polyline points="10 17 15 12 10 7"></polyline>
+            <line x1="15" y1="12" x2="3" y2="12"></line>
+          </svg>
+        </div>
         <h1 style="font-size:1.75rem; margin-bottom:0.35rem; color:var(--text-primary);">Welcome Back</h1>
-        <p style="font-size:0.9rem; color:var(--text-secondary);">Sign in with your mobile number to continue</p>
+        <p style="font-size:0.9rem; color:var(--text-secondary);">Sign in with Email or Google to continue</p>
       </div>
 
       <!-- Customer vs Owner Tab Switcher -->
@@ -124,40 +140,42 @@
         </button>
       </div>
 
-      <!-- Auth Method Switcher (Mobile Password vs Phone OTP) -->
-      <div style="display:flex; gap:0.5rem; background:rgba(255,255,255,0.03); padding:0.25rem; border-radius:var(--radius-full); margin-bottom:1.5rem;">
-        <div class="method-pill active" id="pill-pwd" onclick="switchLoginMethod('password')">
-          📱 Mobile & Password
-        </div>
-        <div class="method-pill" id="pill-otp" onclick="switchLoginMethod('otp')">
-          ⚡ Quick OTP Login
-        </div>
-      </div>
+      <!-- 3D Google Sign-In Button (Phase 6 & 7) -->
+      <button type="button" id="google-signin-btn" class="btn-google-3d" onclick="handleGoogleSignIn()">
+        <span class="google-icon-wrapper-3d">
+          <svg viewBox="0 0 24 24" width="22" height="22">
+            <path fill="#4285F4" d="M22.56 12.25c0-.78-.07-1.53-.2-2.25H12v4.26h5.92c-.26 1.37-1.04 2.53-2.21 3.31v2.77h3.57c2.08-1.92 3.28-4.74 3.28-8.09z"/>
+            <path fill="#34A853" d="M12 23c2.97 0 5.46-.98 7.28-2.66l-3.57-2.77c-.98.66-2.23 1.06-3.71 1.06-2.86 0-5.29-1.93-6.16-4.53H2.18v2.84C3.99 20.53 7.7 23 12 23z"/>
+            <path fill="#FBBC05" d="M5.84 14.09c-.22-.66-.35-1.36-.35-2.09s.13-1.43.35-2.09V7.06H2.18C1.43 8.55 1 10.22 1 12s.43 3.45 1.18 4.94l2.85-2.22.81-.63z"/>
+            <path fill="#EA4335" d="M12 5.38c1.62 0 3.06.56 4.21 1.64l3.15-3.15C17.45 2.09 14.97 1 12 1 7.7 1 3.99 3.47 2.18 7.06l3.66 2.84c.87-2.6 3.3-4.52 6.16-4.52z"/>
+          </svg>
+        </span>
+        <span>Continue with Google</span>
+      </button>
+
+      <div class="auth-divider">or sign in with email</div>
 
       <!-- Alert Box -->
       <div id="login-alert-box" style="display:none; padding:0.85rem 1rem; border-radius:var(--radius-md); margin-bottom:1.25rem; font-size:0.88rem; line-height:1.4;"></div>
 
-      <!-- 1. Mobile & Password Form (Primary) -->
+      <!-- Direct Email & Password Form (Zero OTP) -->
       <form id="login-form">
         <div style="margin-bottom:1.25rem;">
-          <label for="login-mobile" style="font-size:0.85rem; font-weight:600; display:block; margin-bottom:0.4rem; color:var(--text-primary);">
-            Mobile Number
+          <label for="login-email" style="font-size:0.85rem; font-weight:600; display:block; margin-bottom:0.4rem; color:var(--text-primary);">
+            Email or Registered Mobile
           </label>
-          <div style="display:flex; position:relative;">
-            <span style="display:flex; align-items:center; background:#1e293b; color:#fbbf24; font-weight:700; font-size:0.92rem; padding:0 0.85rem; border-top-left-radius:var(--radius-md); border-bottom-left-radius:var(--radius-md); border:1px solid rgba(255,255,255,0.18); border-right:none; user-select:none;">
-              🇮🇳 +91
-            </span>
-            <input type="tel" id="login-mobile" name="mobile" class="auth-custom-input" style="border-top-left-radius:0; border-bottom-left-radius:0; font-size:1.05rem; letter-spacing:0.5px;" placeholder="98765 43210" maxlength="10" inputmode="numeric" autocomplete="tel" required>
+          <div style="position:relative;">
+            <input type="text" id="login-email" name="identifier" class="auth-custom-input" placeholder="e.g. name@example.com or 9876543210" autocomplete="username" required>
           </div>
         </div>
 
         <div style="margin-bottom:1.25rem;">
           <div class="flex justify-between items-center" style="margin-bottom:0.4rem;">
             <label for="login-password" style="font-size:0.85rem; font-weight:600; color:var(--text-primary);">Password</label>
-            <a href="#" id="forgot-pwd-trigger" style="font-size:0.8rem; color:#fbbf24; text-decoration:none;">Forgot Password?</a>
+            <a href="#" id="forgot-pwd-trigger" style="font-size:0.8rem; color:var(--primary); font-weight:600; text-decoration:none;">Forgot Password?</a>
           </div>
           <div style="position:relative;">
-            <input type="password" id="login-password" name="password" class="auth-custom-input" style="padding-right:2.5rem;" placeholder="Enter your password" autocomplete="current-password" required>
+            <input type="password" id="login-password" name="password" class="auth-custom-input" style="padding-right:2.5rem;" placeholder="Enter your account password" autocomplete="current-password" required>
             <button type="button" class="pwd-toggle-btn" style="position:absolute; right:0.75rem; top:50%; transform:translateY(-50%); background:transparent; border:none; color:var(--text-muted); cursor:pointer;" aria-label="Toggle password visibility">
               👁️
             </button>
@@ -166,76 +184,46 @@
 
         <div class="flex items-center justify-between" style="margin-bottom:1.5rem; font-size:0.85rem;">
           <label style="display:flex; align-items:center; gap:0.4rem; cursor:pointer; color:var(--text-secondary);">
-            <input type="checkbox" checked style="accent-color:#f59e0b;"> Remember me
+            <input type="checkbox" id="login-remember" checked style="accent-color:var(--primary);"> Remember me
           </label>
         </div>
 
-        <button type="submit" id="mobile-signin-btn" class="btn btn-primary w-full btn-lg" style="height:50px; font-weight:700; font-size:1rem; display:flex; align-items:center; justify-content:center; gap:0.5rem;">
-          <span>Sign In</span>
-          <span>&rarr;</span>
+        <button type="submit" id="login-submit-btn" class="btn btn-primary w-full btn-lg" style="height:50px; font-weight:700; font-size:1rem; display:flex; align-items:center; justify-content:center; gap:0.5rem;">
+          <span id="login-btn-text">Sign In</span>
+          <span id="login-btn-arrow">&rarr;</span>
         </button>
       </form>
 
-      <!-- 2. Phone OTP Login Form -->
-      <form id="otp-login-form" style="display:none;" onsubmit="handleOtpSubmit(event)">
-        <div style="margin-bottom:1.25rem;">
-          <label for="otp-mobile" style="font-size:0.85rem; font-weight:600; display:block; margin-bottom:0.4rem; color:var(--text-primary);">
-            Enter Mobile Number
-          </label>
-          <div style="display:flex; position:relative; gap:0.5rem;">
-            <div style="display:flex; flex:1;">
-              <span style="display:flex; align-items:center; background:#1e293b; color:#fbbf24; font-weight:700; font-size:0.92rem; padding:0 0.85rem; border-top-left-radius:var(--radius-md); border-bottom-left-radius:var(--radius-md); border:1px solid rgba(255,255,255,0.18); border-right:none; user-select:none;">
-                🇮🇳 +91
-              </span>
-              <input type="tel" id="otp-mobile" class="auth-custom-input" style="border-top-left-radius:0; border-bottom-left-radius:0; font-size:1.05rem; letter-spacing:0.5px;" placeholder="98765 43210" maxlength="10" inputmode="numeric" required>
-            </div>
-            <button type="button" id="send-otp-btn" class="btn btn-gold btn-sm" style="white-space:nowrap; padding:0 1rem; height:48px;" onclick="triggerSendOtp()">Send OTP</button>
-          </div>
-          <div id="otp-sent-hint" style="display:none; font-size:0.78rem; color:#10b981; margin-top:0.4rem;">✓ OTP sent to your mobile.</div>
-        </div>
+      <div class="text-center" style="margin-top:1.5rem; font-size:0.88rem; color:var(--text-secondary);">
+        Don't have an account? <a href="/register.html" style="color:var(--primary); font-weight:700; text-decoration:none;">Create account</a>
+      </div>
 
-        <div id="otp-verify-group" style="display:none; margin-bottom:1.5rem;">
-          <label for="otp-code" style="font-size:0.85rem; font-weight:600; display:block; margin-bottom:0.4rem; color:var(--text-primary);">
-            Enter 6-Digit OTP
-          </label>
-          <input type="text" id="otp-code" class="auth-custom-input" style="text-align:center; font-size:1.4rem; letter-spacing:6px; font-weight:700;" placeholder="••••••" maxlength="6" inputmode="numeric">
-        </div>
-
-        <button type="submit" id="verify-otp-btn" class="btn btn-primary w-full btn-lg" style="display:none; height:50px; font-weight:700;">
-          Verify OTP & Sign In &rarr;
-        </button>
-      </form>
     </div>
   </main>
 
-  <!-- Forgot Password via Mobile OTP Modal -->
+  <!-- Forgot Password Modal (OTP-Free: Sends Email Reset Link) -->
   <div id="forgot-pwd-modal" class="modal-backdrop">
-    <div class="modal-dialog" style="max-width:420px; padding:1.75rem;">
+    <div class="modal-dialog" style="max-width:440px; padding:1.75rem;">
       <div class="modal-header">
         <h3 class="modal-title" style="font-size:1.2rem;">Reset Password</h3>
         <button class="modal-close-btn" onclick="document.getElementById('forgot-pwd-modal').classList.remove('open')">&times;</button>
       </div>
       <div class="modal-body" style="padding-top:1rem;">
         <p style="font-size:0.88rem; color:var(--text-secondary); margin-bottom:1.25rem;">
-          Enter your registered mobile number to receive an instant OTP.
+          Enter your registered email address to receive password reset instructions.
         </p>
 
-        <div style="margin-bottom:1rem;">
-          <label style="font-size:0.82rem; font-weight:600; display:block; margin-bottom:0.35rem; color:var(--text-primary);">Mobile Number</label>
-          <div style="display:flex;">
-            <span style="display:flex; align-items:center; background:#1e293b; color:#fbbf24; font-weight:700; font-size:0.88rem; padding:0 0.75rem; border-top-left-radius:var(--radius-md); border-bottom-left-radius:var(--radius-md); border:1px solid rgba(255,255,255,0.18); border-right:none;">
-              +91
-            </span>
-            <input type="tel" id="forgot-mobile-input" class="auth-custom-input" style="border-top-left-radius:0; border-bottom-left-radius:0;" placeholder="98765 43210" maxlength="10" inputmode="numeric">
-          </div>
+        <div style="margin-bottom:1.25rem;">
+          <label for="forgot-email-input" style="font-size:0.82rem; font-weight:600; display:block; margin-bottom:0.35rem; color:var(--text-primary);">Email Address</label>
+          <input type="email" id="forgot-email-input" class="auth-custom-input" placeholder="e.g. name@example.com" required>
         </div>
 
-        <button id="forgot-submit-btn" class="btn btn-gold w-full" style="height:46px;">Send OTP & Reset</button>
+        <button id="forgot-submit-btn" class="btn btn-primary w-full" style="height:46px;">Send Reset Link</button>
 
         <div id="reset-token-group" style="display:none; margin-top:1.25rem; border-top:1px solid var(--border-subtle); padding-top:1rem;">
-          <label style="font-size:0.85rem; font-weight:600; display:block; margin-bottom:0.4rem; color:var(--text-primary);">New Password</label>
-          <input type="password" id="reset-new-password" class="auth-custom-input" style="margin-bottom:0.75rem;" placeholder="Min 8 chars with symbols">
-          <button type="button" class="btn btn-primary w-full" onclick="executePasswordReset()">Save New Password</button>
+          <label for="reset-new-password" style="font-size:0.85rem; font-weight:600; display:block; margin-bottom:0.4rem; color:var(--text-primary);">New Password</label>
+          <input type="password" id="reset-new-password" class="auth-custom-input" style="margin-bottom:0.75rem;" placeholder="Minimum 8 characters">
+          <button type="button" class="btn btn-champagne w-full" onclick="executePasswordReset()">Save New Password</button>
         </div>
       </div>
     </div>
@@ -243,8 +231,7 @@
 
   <div class="toast-container"></div>
 
-  <!-- Mobile Bottom Navigation Bar (Phone-Friendly) -->
-    <!-- Compact Footer for Auth Pages -->
+  <!-- Compact Footer -->
   <footer class="site-footer" style="padding: 1.5rem 0;">
     <div class="container site-footer-bottom">
       <div>&copy; 2026 Hall Khoj Finder. All Rights Reserved.</div>
@@ -258,6 +245,7 @@
     </div>
   </footer>
 
+  <!-- Mobile Bottom Navigation Bar (Phone-Friendly) -->
   <nav class="mobile-bottom-nav" aria-label="Mobile Quick Navigation">
     <a href="/" class="mobile-nav-item">
       <svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg>
@@ -286,145 +274,10 @@
   <script src="js/app.js"></script>
   <script src="js/modals.js"></script>
   <script src="js/api.js"></script>
+  <script src="js/supabase-client.js"></script>
   <script src="js/auth.js"></script>
-  <script>
-    let activeResetToken = null;
 
-    function switchLoginMethod(method) {
-      const pwdForm = document.getElementById('login-form');
-      const otpForm = document.getElementById('otp-login-form');
-      const pillPwd = document.getElementById('pill-pwd');
-      const pillOtp = document.getElementById('pill-otp');
-
-      if (method === 'otp') {
-        pwdForm.style.display = 'none';
-        otpForm.style.display = 'block';
-        pillPwd.classList.remove('active');
-        pillOtp.classList.add('active');
-      } else {
-        pwdForm.style.display = 'block';
-        otpForm.style.display = 'none';
-        pillPwd.classList.add('active');
-        pillOtp.classList.remove('active');
-      }
-    }
-
-    async function triggerSendOtp() {
-      const mobile = document.getElementById('otp-mobile').value.trim().replace(/\D/g, '').slice(-10);
-      const sendBtn = document.getElementById('send-otp-btn');
-      const hint = document.getElementById('otp-sent-hint');
-      const verifyGroup = document.getElementById('otp-verify-group');
-      const verifyBtn = document.getElementById('verify-otp-btn');
-
-      if (!mobile || !/^[6-9]\d{9}$/.test(mobile)) {
-        showToast('Please enter a valid 10-digit Indian mobile number.', 'error');
-        return;
-      }
-
-      sendBtn.disabled = true;
-      sendBtn.textContent = 'Sending...';
-
-      try {
-        const res = await HKF_API.auth.sendOtp(mobile);
-        showToast('OTP sent successfully to +91 ' + mobile, 'success');
-        hint.style.display = 'block';
-        verifyGroup.style.display = 'block';
-        verifyBtn.style.display = 'block';
-
-        if (res.data?.debugOtp) {
-          document.getElementById('otp-code').value = res.data.debugOtp;
-          hint.textContent = `✓ [OTP Generated]: ${res.data.debugOtp}`;
-        }
-
-        sendBtn.textContent = 'Resend OTP';
-      } catch (err) {
-        showToast(err.message || 'Failed to dispatch OTP', 'error');
-        sendBtn.textContent = 'Send OTP';
-      } finally {
-        sendBtn.disabled = false;
-      }
-    }
-
-    async function handleOtpSubmit(e) {
-      e.preventDefault();
-      const mobile = document.getElementById('otp-mobile').value.trim().replace(/\D/g, '').slice(-10);
-      const otp = document.getElementById('otp-code').value.trim();
-      const verifyBtn = document.getElementById('verify-otp-btn');
-      const role = document.querySelector('.auth-role-tab.active')?.getAttribute('data-role') || 'user';
-
-      if (!mobile || !otp || otp.length < 6) {
-        showToast('Please enter the 6-digit OTP received.', 'warning');
-        return;
-      }
-
-      verifyBtn.disabled = true;
-      verifyBtn.textContent = 'Verifying...';
-
-      try {
-        const res = await HKF_API.auth.verifyOtp(mobile, otp);
-        showToast('Phone verification successful! Redirecting...', 'success');
-        const user = res.data?.user || {};
-        setTimeout(() => {
-          if (user.role === 'owner' || role === 'owner') {
-            window.location.href = '/owner/dashboard.html';
-          } else {
-            window.location.href = '/dashboard.html';
-          }
-        }, 500);
-      } catch (err) {
-        showToast(err.message || 'OTP verification failed', 'error');
-        verifyBtn.disabled = false;
-        verifyBtn.textContent = 'Verify OTP & Sign In';
-      }
-    }
-
-    // Connect Forgot Password via mobile
-    document.addEventListener('DOMContentLoaded', () => {
-      const forgotBtn = document.getElementById('forgot-submit-btn');
-      if (forgotBtn) {
-        forgotBtn.onclick = async () => {
-          const mobile = document.getElementById('forgot-mobile-input').value.trim().replace(/\D/g, '').slice(-10);
-          if (!mobile || mobile.length < 10) {
-            showToast('Please enter your 10-digit mobile number.', 'error');
-            return;
-          }
-          forgotBtn.disabled = true;
-          forgotBtn.textContent = 'Sending OTP...';
-
-          try {
-            const res = await HKF_API.auth.sendOtp(mobile);
-            showToast(res.message || 'OTP sent to your mobile!', 'success');
-            activeResetToken = 'otp_' + mobile;
-            document.getElementById('reset-token-group').style.display = 'block';
-            forgotBtn.style.display = 'none';
-          } catch (err) {
-            showToast(err.message || 'Error processing request', 'error');
-          } finally {
-            forgotBtn.disabled = false;
-            forgotBtn.textContent = 'Send OTP & Reset';
-          }
-        };
-      }
-    });
-
-    async function executePasswordReset() {
-      const newPassword = document.getElementById('reset-new-password').value;
-      if (!newPassword || newPassword.length < 8) {
-        showToast('Password must be at least 8 characters.', 'warning');
-        return;
-      }
-
-      try {
-        const res = await HKF_API.auth.resetPassword(activeResetToken, newPassword);
-        showToast('Password reset successful! You can now sign in with your mobile number.', 'success');
-        document.getElementById('forgot-pwd-modal').classList.remove('open');
-      } catch (err) {
-        showToast(err.message || 'Password reset failed', 'error');
-      }
-    }
-  </script>
-
-  <!-- Observability, Analytics & Privacy Consent (Phases 10, 11, 21) -->
+  <!-- Observability, Analytics & Privacy Consent -->
   <script src="/js/error-monitor.js"></script>
   <script src="/js/cookie-consent.js"></script>
   <script src="/js/analytics.js"></script>

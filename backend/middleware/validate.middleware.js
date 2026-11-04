@@ -12,18 +12,24 @@ function validateRegistration(req, res, next) {
     return errorResponse(res, 'Full name is required (minimum 2 characters)', 'VALIDATION_ERROR', 400);
   }
 
-  // Mobile number is strictly required (10 digits)
-  const mobileRegex = /^[6-9]\d{9}$/;
+  const cleanEmail = (email || '').toLowerCase().trim();
   const cleanMobile = (mobile || '').replace(/[\s+-]/g, '').slice(-10);
-  if (!mobileRegex.test(cleanMobile)) {
-    return errorResponse(res, 'A valid 10-digit Indian mobile number is required (e.g. 9876543210)', 'VALIDATION_ERROR', 400);
+
+  if (!cleanEmail && !cleanMobile) {
+    return errorResponse(res, 'An email address or 10-digit mobile number is required', 'VALIDATION_ERROR', 400);
   }
 
-  // Email is completely optional
-  if (email && email.trim()) {
+  if (cleanEmail) {
     const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-    if (!emailRegex.test(email.trim())) {
-      return errorResponse(res, 'If provided, email must be a valid email address', 'VALIDATION_ERROR', 400);
+    if (!emailRegex.test(cleanEmail)) {
+      return errorResponse(res, 'Please provide a valid email address (e.g. name@domain.com)', 'VALIDATION_ERROR', 400);
+    }
+  }
+
+  if (cleanMobile) {
+    const mobileRegex = /^[6-9]\d{9}$/;
+    if (!mobileRegex.test(cleanMobile)) {
+      return errorResponse(res, 'A valid 10-digit Indian mobile number is required (e.g. 9876543210)', 'VALIDATION_ERROR', 400);
     }
   }
 
@@ -43,9 +49,9 @@ function validateRegistration(req, res, next) {
 
 function validateLogin(req, res, next) {
   const { email, mobile, identifier, password } = req.body;
-  const userIdentifier = mobile || identifier || email;
+  const userIdentifier = email || mobile || identifier;
   if (!userIdentifier || !password) {
-    return errorResponse(res, 'Mobile number and password are required', 'VALIDATION_ERROR', 400);
+    return errorResponse(res, 'Email or mobile number, and password are required', 'VALIDATION_ERROR', 400);
   }
   next();
 }
