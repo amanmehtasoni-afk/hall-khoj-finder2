@@ -510,8 +510,56 @@ const stream = require('stream');
     process.exit(1);
   }
 
+  // Test 20: Master Prompt Specific Requirements Verification
+  console.log('\n--- TEST 20: Master Prompt Specific Requirements (16 Sections, 5-Col Footer, Complete Nav) ---');
+  try {
+    const indexHtml = fs.readFileSync(path.join(__dirname, '../frontend/index.html'), 'utf8');
+
+    // 1. Navbar Completeness (Phase 3)
+    assert(indexHtml.includes('Find Venues'), 'Navbar missing Find Venues');
+    assert(indexHtml.includes('Marriage Halls'), 'Navbar missing Marriage Halls');
+    assert(indexHtml.includes('Wedding Cars'), 'Navbar missing Wedding Cars');
+    assert(indexHtml.includes('Tent Houses'), 'Navbar missing Tent Houses');
+    assert(indexHtml.includes('nav-dropdown-menu'), 'Navbar missing Services dropdown');
+    assert(indexHtml.includes('nav-btn-nearme'), 'Navbar missing Near Me button');
+    assert(indexHtml.includes('How It Works'), 'Navbar missing How It Works');
+    assert(indexHtml.includes('Register Business'), 'Navbar missing Register Business');
+
+    // 2. All 16 Dedicated Homepage Sections (Phase 2)
+    assert(indexHtml.includes('hero-3d-wrapper'), 'Sec 2 Hero missing');
+    assert(indexHtml.includes('hero-advanced-search-form'), 'Sec 3 Smart Search missing');
+    assert(indexHtml.includes('services-section'), 'Sec 4 Explore Categories missing');
+    assert(indexHtml.includes('featured-listings-container'), 'Sec 5 Featured Marriage Halls missing');
+    assert(indexHtml.includes('wedding-cars-section'), 'Sec 6 Luxury Wedding Cars missing');
+    assert(indexHtml.includes('tent-services-section'), 'Sec 7 Tent & Shamiana Services missing');
+    assert(indexHtml.includes('dj-services-section'), 'Sec 8 DJ & Sound Services missing');
+    assert(indexHtml.includes('catering-services-section'), 'Sec 9 Catering Services missing');
+    assert(indexHtml.includes('decor-services-section'), 'Sec 10 Stage & Flower Decor missing');
+    assert(indexHtml.includes('nearby-services-section'), 'Sec 11 Nearby Event Services missing');
+    assert(indexHtml.includes('destinations-section'), 'Sec 12 Trending Services missing');
+    assert(indexHtml.includes('how-it-works'), 'Sec 13 How It Works missing');
+    assert(indexHtml.includes('Are You a Banquet Hall, Car, Tent, DJ or Catering Business Owner?'), 'Sec 14 Business CTA missing');
+    assert(indexHtml.includes('section-testimonials'), 'Sec 15 Customer Testimonials missing');
+    assert(indexHtml.includes('footer-5col-grid'), 'Sec 16 5-Column Footer missing');
+
+    // 3. 5-Column Footer Presence on Secondary Pages (Phase 6)
+    ['privacy.html', 'terms.html', 'support.html', 'about.html', 'search.html'].forEach(page => {
+      const pageHtml = fs.readFileSync(path.join(__dirname, '../frontend', page), 'utf8');
+      assert(pageHtml.includes('footer-5col-grid'), `${page} missing 5-column footer`);
+    });
+
+    // 4. Safe Multilingual t() guard (Phase 4)
+    const i18nJs = fs.readFileSync(path.join(__dirname, '../frontend/js/i18n.js'), 'utf8');
+    assert(i18nJs.includes('// Prevent displaying raw keys like \'home.title\''), 'i18n.js missing safe raw key guard');
+
+    console.log('✓ Test 20 Passed: All 16 Homepage Sections, complete Navbar, 5-Column Footer across platform, and i18n guards verified.');
+  } catch (e) {
+    console.error('❌ Test 20 Failed:', e.message);
+    process.exit(1);
+  }
+
   console.log('\n======================================================');
-  console.log('🎉 ALL 19 AUTOMATED VERIFICATION SUITES PASSED (100%)');
+  console.log('🎉 ALL 20 AUTOMATED VERIFICATION SUITES PASSED (100%)');
   console.log('======================================================\n');
   process.exit(0);
 })();

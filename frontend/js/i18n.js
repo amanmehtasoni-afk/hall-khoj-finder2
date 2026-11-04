@@ -592,6 +592,7 @@
   }
 
   function t(key, defaultText = '') {
+    if (!key || typeof key !== 'string') return defaultText || '';
     const lang = getCurrentLang();
     if (TRANSLATIONS[lang] && TRANSLATIONS[lang][key]) {
       return TRANSLATIONS[lang][key];
@@ -599,7 +600,13 @@
     if (TRANSLATIONS.en && TRANSLATIONS.en[key]) {
       return TRANSLATIONS.en[key];
     }
-    return defaultText || key;
+    if (defaultText && defaultText !== key) {
+      return defaultText;
+    }
+    // Prevent displaying raw keys like 'home.title', 'null', or 'undefined'
+    const cleaned = key.replace(/^[a-z]+[._]/i, '').replace(/[._]/g, ' ').trim();
+    if (!cleaned || cleaned === 'undefined' || cleaned === 'null') return '';
+    return cleaned.charAt(0).toUpperCase() + cleaned.slice(1);
   }
 
   function applyTranslations(langCode) {
@@ -609,8 +616,9 @@
     // Elements with data-i18n
     document.querySelectorAll('[data-i18n]').forEach(el => {
       const key = el.getAttribute('data-i18n');
+      if (!key) return;
       const val = currentDict[key] || fallbackDict[key];
-      if (val) {
+      if (val && val !== 'undefined' && val !== 'null') {
         el.textContent = val;
       }
     });
@@ -618,8 +626,9 @@
     // Elements with data-i18n-placeholder
     document.querySelectorAll('[data-i18n-placeholder]').forEach(el => {
       const key = el.getAttribute('data-i18n-placeholder');
+      if (!key) return;
       const val = currentDict[key] || fallbackDict[key];
-      if (val) {
+      if (val && val !== 'undefined' && val !== 'null') {
         el.setAttribute('placeholder', val);
       }
     });
@@ -627,8 +636,9 @@
     // Elements with data-i18n-html
     document.querySelectorAll('[data-i18n-html]').forEach(el => {
       const key = el.getAttribute('data-i18n-html');
+      if (!key) return;
       const val = currentDict[key] || fallbackDict[key];
-      if (val) {
+      if (val && val !== 'undefined' && val !== 'null') {
         el.innerHTML = val;
       }
     });

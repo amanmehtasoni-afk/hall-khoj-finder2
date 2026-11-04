@@ -225,7 +225,7 @@
 <body>
 
   <!-- =========================================================================
-       GLOBAL HEADER & NAVIGATION (DESKTOP)
+       GLOBAL HEADER & NAVIGATION (DESKTOP & MOBILE - PHASE 3)
   ========================================================================= -->
   <header class="site-header" role="banner">
     <div class="nav-container">
@@ -238,23 +238,44 @@
         </div>
       </a>
 
-      <!-- Desktop Navigation Links -->
+      <!-- Desktop Navigation Links (All Phase 3 Requirements) -->
       <nav role="navigation" aria-label="Main Navigation">
         <ul class="nav-links">
           <li><a href="/" class="nav-link active" data-i18n="nav_home">Home</a></li>
           <li><a href="/search.html" class="nav-link" data-i18n="nav_halls">Find Venues</a></li>
-          <li><a href="/compare.html" class="nav-link">Compare</a></li>
-          <li><a href="/3d-preview.html" class="nav-link">3D Walkthrough</a></li>
-          <li><a href="#event-types-section" class="nav-link">Event Types</a></li>
-          <li><a href="#services-section" class="nav-link" data-i18n="nav_services">Categories</a></li>
-          <li><a href="#destinations-section" class="nav-link">Destinations</a></li>
-          <li><a href="/support.html" class="nav-link">Support</a></li>
+          <li><a href="/search.html?category=Marriage+Halls" class="nav-link">Marriage Halls</a></li>
+          <li><a href="/search.html?category=Cars" class="nav-link">Wedding Cars</a></li>
+          <li><a href="/search.html?category=Tent+Houses" class="nav-link">Tent Houses</a></li>
+
+          <!-- Services 3D Glass Dropdown -->
+          <li class="nav-item-dropdown">
+            <a href="#services-section" class="nav-link nav-dropdown-trigger">
+              <span>Services</span>
+              <svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="6 9 12 15 18 9"/></svg>
+            </a>
+            <div class="nav-dropdown-menu">
+              <a href="/search.html?category=Catering" class="nav-dropdown-item">🍽️ Royal Catering</a>
+              <a href="/search.html?category=Decoration" class="nav-dropdown-item">🌸 Stage &amp; Flower Decor</a>
+              <a href="/search.html?category=DJ" class="nav-dropdown-item">🎧 DJ &amp; Sound</a>
+              <a href="/search.html?category=Photography" class="nav-dropdown-item">📸 4K Cinematography</a>
+              <a href="/3d-preview.html" class="nav-dropdown-item">🎮 3D Virtual Tours</a>
+              <a href="/compare.html" class="nav-dropdown-item">⚖️ Compare Venues</a>
+              <a href="/search.html?category=All" class="nav-dropdown-item" style="border-top:1px solid rgba(255,255,255,0.08); font-weight:700; color:var(--text-champagne);">✨ Explore All Categories</a>
+            </div>
+          </li>
+
+          <li>
+            <button type="button" class="nav-link nav-btn-nearme" data-trigger="near-me" title="Find Venues Near Me">
+              <span>📍 Near Me</span>
+            </button>
+          </li>
+          <li><a href="#how-it-works-section" class="nav-link">How It Works</a></li>
         </ul>
       </nav>
 
-      <!-- Nav Actions -->
+      <!-- Nav Actions (3D Language Switcher, Dark/Light Toggle, Auth Buttons) -->
       <div class="nav-actions">
-        <!-- 3D Language Switcher Mount (14 Indian Languages - Phase 4) -->
+        <!-- 3D Language Switcher Mount (Phase 4) -->
         <div class="language-switcher-container"></div>
 
         <!-- 3D Dark/Light Theme Toggle (Phase 5) -->
@@ -266,7 +287,7 @@
         <div id="nav-auth-actions" class="flex items-center gap-2">
           <a href="/login.html" class="btn btn-secondary btn-sm" data-i18n="nav_login">Login</a>
           <a href="/register.html" class="btn btn-primary btn-sm" data-i18n="nav_register">Register</a>
-          <a href="/register.html?role=owner" class="btn btn-champagne btn-sm" data-i18n="owner_cta_btn">List Your Business</a>
+          <a href="/register.html?role=owner" class="btn btn-champagne btn-sm" data-i18n="owner_cta_btn">Register Business</a>
         </div>
 
         <!-- Mobile Menu Toggle Button -->
@@ -297,15 +318,17 @@
 
     <ul class="flex flex-col gap-2" style="list-style:none; margin-top:0.5rem;">
       <li><a href="/" class="nav-link active" data-i18n="nav_home">🏠 Home</a></li>
-      <li><a href="/search.html" class="nav-link" data-i18n="nav_halls">🔍 Find Venues &amp; Vendors</a></li>
-      <li><a href="/compare.html" class="nav-link">⚖️ Compare Venues</a></li>
-      <li><a href="/3d-preview.html" class="nav-link">🎮 3D Layout Tour</a></li>
+      <li><a href="/search.html" class="nav-link" data-i18n="nav_halls">🔍 Find Venues</a></li>
       <li><a href="/search.html?category=Marriage+Halls" class="nav-link" data-i18n="cat_marriage_halls">🏰 Marriage Halls</a></li>
       <li><a href="/search.html?category=Cars" class="nav-link" data-i18n="cat_wedding_cars">🚗 Wedding Cars</a></li>
       <li><a href="/search.html?category=Tent+Houses" class="nav-link" data-i18n="cat_tent_houses">🎪 Tent Houses</a></li>
+      <li><a href="/search.html?category=Catering" class="nav-link">🍽️ Royal Catering</a></li>
+      <li><a href="/search.html?category=Decoration" class="nav-link">🌸 Stage &amp; Flower Decor</a></li>
+      <li><a href="/search.html?category=DJ" class="nav-link">🎧 DJ &amp; Sound Services</a></li>
       <li><a href="#" class="nav-link" data-trigger="near-me">📍 Near Me Search</a></li>
-      <li><a href="#" class="nav-link" data-trigger="voice-search">🎙️ Voice Search</a></li>
-      <li><a href="#" class="nav-link" data-trigger="ai-search" data-i18n="ai_search_btn">✨ Hall Khoj AI Assistant</a></li>
+      <li><a href="#how-it-works-section" class="nav-link">⚡ How It Works</a></li>
+      <li><a href="/compare.html" class="nav-link">⚖️ Compare Venues</a></li>
+      <li><a href="/3d-preview.html" class="nav-link">🎮 3D Layout Tour</a></li>
       <li><a href="/dashboard.html" class="nav-link" data-i18n="nav_dashboard">📋 Customer Dashboard</a></li>
       <li><a href="/owner/dashboard.html" class="nav-link" data-i18n="nav_owner_portal">🏢 Owner Dashboard</a></li>
       <li><a href="/support.html" class="nav-link">📞 Support &amp; Help Desk</a></li>
@@ -313,7 +336,7 @@
 
     <div id="drawer-auth-actions" class="flex flex-col gap-2" style="margin-top:auto; padding-top:1rem; border-top:1px solid var(--border-subtle);">
       <a href="/login.html" class="btn btn-secondary w-full" data-i18n="nav_login">Sign In</a>
-      <a href="/register.html?role=owner" class="btn btn-champagne w-full" data-i18n="owner_cta_btn">List Your Business</a>
+      <a href="/register.html?role=owner" class="btn btn-champagne w-full" data-i18n="owner_cta_btn">Register Business</a>
     </div>
   </aside>
 
@@ -678,8 +701,669 @@
       </div>
     </section>
 
-    <!-- SECTION 6: FEATURED VENDORS -->
-    <section class="section">
+    <!-- SECTION 6: LUXURY WEDDING CARS -->
+    <section id="wedding-cars-section" class="section" style="background: rgba(12, 31, 56, 0.35);">
+      <div class="container">
+        <div class="flex items-center justify-between flex-wrap gap-2" style="margin-bottom:2.25rem;">
+          <div>
+            <span class="badge badge-ruby" style="margin-bottom:0.4rem;">VIP Bridal Transit</span>
+            <h2 class="section-title" style="text-align:left; margin-bottom:0.25rem;">Luxury Wedding Cars</h2>
+            <p style="color:var(--text-secondary); font-size:0.95rem;">Arrive in royal style with chauffeured luxury sedans, convertibles and vintage wedding fleets.</p>
+          </div>
+          <a href="/search.html?category=Cars" class="btn btn-secondary btn-sm">View All 85+ Cars &rarr;</a>
+        </div>
+
+        <div style="display:grid; grid-template-columns:repeat(auto-fit, minmax(320px, 1fr)); gap:1.75rem;">
+          <!-- Car 1: Mercedes E-Class -->
+          <article class="listing-card card-3d">
+            <div class="listing-media">
+              <img decoding="async" loading="lazy" src="https://images.unsplash.com/photo-1618843479313-40f8afb4b4d8?auto=format&fit=crop&w=800&q=80" alt="Mercedes-Benz E-Class Luxury Wedding Car" class="listing-img">
+              <div class="listing-badges">
+                <span class="badge badge-verified">✓ Verified Fleet</span>
+                <span class="badge badge-gold">Pearl White</span>
+              </div>
+            </div>
+            <div class="listing-body">
+              <div class="listing-header-row">
+                <h3 class="listing-title">Mercedes-Benz E-Class Luxury Sedan</h3>
+                <div class="listing-rating">★ 4.95 <span style="color:var(--text-muted); font-size:0.75rem;">(88)</span></div>
+              </div>
+              <div class="listing-location-row">
+                <span>📍 Hazratganj, Lucknow &bull; Driver &amp; Fuel Included</span>
+              </div>
+              <div class="listing-amenities-row">
+                <span class="amenity-chip">Automatic AC</span>
+                <span class="amenity-chip">Floral Ribbon Decor</span>
+                <span class="amenity-chip">Uniformed Chauffeur</span>
+              </div>
+              <div class="listing-footer-row">
+                <div class="listing-price-box">
+                  <span class="listing-price-label">Starting From</span>
+                  <span class="listing-price-val">₹15,000 <span style="font-size:0.75rem; color:var(--text-muted);">/ day</span></span>
+                </div>
+                <div class="listing-actions-row">
+                  <a href="/search.html?category=Cars" class="btn btn-primary btn-sm">Book Wedding Car</a>
+                </div>
+              </div>
+            </div>
+          </article>
+
+          <!-- Car 2: BMW 5-Series M-Sport -->
+          <article class="listing-card card-3d">
+            <div class="listing-media">
+              <img decoding="async" loading="lazy" src="https://images.unsplash.com/photo-1555215695-3004980ad54e?auto=format&fit=crop&w=800&q=80" alt="BMW 5-Series M-Sport" class="listing-img">
+              <div class="listing-badges">
+                <span class="badge badge-verified">✓ Verified Fleet</span>
+                <span class="badge badge-indigo">Imperial Blue</span>
+              </div>
+            </div>
+            <div class="listing-body">
+              <div class="listing-header-row">
+                <h3 class="listing-title">BMW 5-Series M-Sport Executive</h3>
+                <div class="listing-rating">★ 4.9 <span style="color:var(--text-muted); font-size:0.75rem;">(74)</span></div>
+              </div>
+              <div class="listing-location-row">
+                <span>📍 Gomti Nagar, Lucknow &bull; 100 KM Included</span>
+              </div>
+              <div class="listing-amenities-row">
+                <span class="amenity-chip">Sunroof Entry</span>
+                <span class="amenity-chip">Harmon Kardon Audio</span>
+                <span class="amenity-chip">Sanitized Daily</span>
+              </div>
+              <div class="listing-footer-row">
+                <div class="listing-price-box">
+                  <span class="listing-price-label">Starting From</span>
+                  <span class="listing-price-val">₹14,000 <span style="font-size:0.75rem; color:var(--text-muted);">/ day</span></span>
+                </div>
+                <div class="listing-actions-row">
+                  <a href="/search.html?category=Cars" class="btn btn-primary btn-sm">Book Wedding Car</a>
+                </div>
+              </div>
+            </div>
+          </article>
+
+          <!-- Car 3: Rolls-Royce / Vintage Classic -->
+          <article class="listing-card card-3d">
+            <div class="listing-media">
+              <img decoding="async" loading="lazy" src="https://images.unsplash.com/photo-1503376780353-7e6692767b70?auto=format&fit=crop&w=800&q=80" alt="Royal Vintage Wedding Car" class="listing-img">
+              <div class="listing-badges">
+                <span class="badge badge-gold">👑 Royal Heritage</span>
+                <span class="badge badge-ruby">Vintage Convertible</span>
+              </div>
+            </div>
+            <div class="listing-body">
+              <div class="listing-header-row">
+                <h3 class="listing-title">Maharaja Heritage Vintage Open-Top</h3>
+                <div class="listing-rating">★ 5.0 <span style="color:var(--text-muted); font-size:0.75rem;">(112)</span></div>
+              </div>
+              <div class="listing-location-row">
+                <span>📍 Jaipur / Udaipur &bull; Red Carpet Grand Entry</span>
+              </div>
+              <div class="listing-amenities-row">
+                <span class="amenity-chip">Royal Baraat Escort</span>
+                <span class="amenity-chip">Vintage Horn &amp; Lamps</span>
+                <span class="amenity-chip">White Glove Driver</span>
+              </div>
+              <div class="listing-footer-row">
+                <div class="listing-price-box">
+                  <span class="listing-price-label">Starting From</span>
+                  <span class="listing-price-val">₹25,000 <span style="font-size:0.75rem; color:var(--text-muted);">/ event</span></span>
+                </div>
+                <div class="listing-actions-row">
+                  <a href="/search.html?category=Cars" class="btn btn-champagne btn-sm">Book Royal Car</a>
+                </div>
+              </div>
+            </div>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <!-- SECTION 7: TENT & SHAMIANA SERVICES -->
+    <section id="tent-services-section" class="section">
+      <div class="container">
+        <div class="flex items-center justify-between flex-wrap gap-2" style="margin-bottom:2.25rem;">
+          <div>
+            <span class="badge badge-gold" style="margin-bottom:0.4rem;">Waterproof &amp; Fireproof</span>
+            <h2 class="section-title" style="text-align:left; margin-bottom:0.25rem;">Tent &amp; Shamiana Services</h2>
+            <p style="color:var(--text-secondary); font-size:0.95rem;">German waterproof hangers, royal Rajputana shamianas, and custom wedding pavilions.</p>
+          </div>
+          <a href="/search.html?category=Tent+Houses" class="btn btn-secondary btn-sm">View All 60+ Tent Houses &rarr;</a>
+        </div>
+
+        <div style="display:grid; grid-template-columns:repeat(auto-fit, minmax(320px, 1fr)); gap:1.75rem;">
+          <!-- Tent 1 -->
+          <article class="listing-card card-3d">
+            <div class="listing-media">
+              <img decoding="async" loading="lazy" src="https://images.unsplash.com/photo-1540555700478-4be289fbecef?auto=format&fit=crop&w=800&q=80" alt="German Waterproof Hanger Tent" class="listing-img">
+              <div class="listing-badges">
+                <span class="badge badge-verified">✓ 100% Waterproof</span>
+                <span class="badge badge-indigo">1000–5000 Guests</span>
+              </div>
+            </div>
+            <div class="listing-body">
+              <div class="listing-header-row">
+                <h3 class="listing-title">Shree Krishna German Waterproof Hangers</h3>
+                <div class="listing-rating">★ 4.85 <span style="color:var(--text-muted); font-size:0.75rem;">(65)</span></div>
+              </div>
+              <div class="listing-location-row">
+                <span>📍 Bhelupur, Varanasi &bull; Aluminum Frame Structure</span>
+              </div>
+              <div class="listing-amenities-row">
+                <span class="amenity-chip">Silent GenSet Backup</span>
+                <span class="amenity-chip">Velvet Ceiling Drapery</span>
+                <span class="amenity-chip">Misting Air Coolers</span>
+              </div>
+              <div class="listing-footer-row">
+                <div class="listing-price-box">
+                  <span class="listing-price-label">Starting Package</span>
+                  <span class="listing-price-val">₹25,000 <span style="font-size:0.75rem; color:var(--text-muted);">/ event</span></span>
+                </div>
+                <div class="listing-actions-row">
+                  <a href="/search.html?category=Tent+Houses" class="btn btn-primary btn-sm">Book Tent House</a>
+                </div>
+              </div>
+            </div>
+          </article>
+
+          <!-- Tent 2 -->
+          <article class="listing-card card-3d">
+            <div class="listing-media">
+              <img decoding="async" loading="lazy" src="https://images.unsplash.com/photo-1464366400600-7168b8af9bc3?auto=format&fit=crop&w=800&q=80" alt="Maharaja Premium Shamiana" class="listing-img">
+              <div class="listing-badges">
+                <span class="badge badge-gold">👑 Royal Rajputana</span>
+                <span class="badge badge-emerald">Pure Cotton Velvet</span>
+              </div>
+            </div>
+            <div class="listing-body">
+              <div class="listing-header-row">
+                <h3 class="listing-title">Maharaja Premium Shamiana &amp; Lightings</h3>
+                <div class="listing-rating">★ 4.9 <span style="color:var(--text-muted); font-size:0.75rem;">(82)</span></div>
+              </div>
+              <div class="listing-location-row">
+                <span>📍 Bailey Road, Patna &bull; Complete Theme Lighting</span>
+              </div>
+              <div class="listing-amenities-row">
+                <span class="amenity-chip">Chandelier Lighting</span>
+                <span class="amenity-chip">Carpet Flooring</span>
+                <span class="amenity-chip">Royal Entrance Gate</span>
+              </div>
+              <div class="listing-footer-row">
+                <div class="listing-price-box">
+                  <span class="listing-price-label">Starting Package</span>
+                  <span class="listing-price-val">₹30,000 <span style="font-size:0.75rem; color:var(--text-muted);">/ event</span></span>
+                </div>
+                <div class="listing-actions-row">
+                  <a href="/search.html?category=Tent+Houses" class="btn btn-primary btn-sm">Book Tent House</a>
+                </div>
+              </div>
+            </div>
+          </article>
+
+          <!-- Tent 3 -->
+          <article class="listing-card card-3d">
+            <div class="listing-media">
+              <img decoding="async" loading="lazy" src="https://images.unsplash.com/photo-1519741497674-611481863552?auto=format&fit=crop&w=800&q=80" alt="Luxury Pagoda Canopy" class="listing-img">
+              <div class="listing-badges">
+                <span class="badge badge-verified">✓ Pagoda Cabanas</span>
+                <span class="badge badge-ruby">Cocktail &amp; Haldi</span>
+              </div>
+            </div>
+            <div class="listing-body">
+              <div class="listing-header-row">
+                <h3 class="listing-title">Orchid Luxury Pagoda &amp; Dining Canopies</h3>
+                <div class="listing-rating">★ 4.8 <span style="color:var(--text-muted); font-size:0.75rem;">(53)</span></div>
+              </div>
+              <div class="listing-location-row">
+                <span>📍 Lucknow &amp; Kanpur &bull; Outdoor Garden Weddings</span>
+              </div>
+              <div class="listing-amenities-row">
+                <span class="amenity-chip">Fairy Light Canopies</span>
+                <span class="amenity-chip">Waterproof Dining Area</span>
+                <span class="amenity-chip">Round Table Setup</span>
+              </div>
+              <div class="listing-footer-row">
+                <div class="listing-price-box">
+                  <span class="listing-price-label">Starting Package</span>
+                  <span class="listing-price-val">₹22,000 <span style="font-size:0.75rem; color:var(--text-muted);">/ event</span></span>
+                </div>
+                <div class="listing-actions-row">
+                  <a href="/search.html?category=Tent+Houses" class="btn btn-primary btn-sm">Book Tent House</a>
+                </div>
+              </div>
+            </div>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <!-- SECTION 8: DJ AND SOUND SERVICES -->
+    <section id="dj-services-section" class="section" style="background: rgba(12, 31, 56, 0.4);">
+      <div class="container">
+        <div class="flex items-center justify-between flex-wrap gap-2" style="margin-bottom:2.25rem;">
+          <div>
+            <span class="badge badge-indigo" style="margin-bottom:0.4rem;">Concert Grade Sound</span>
+            <h2 class="section-title" style="text-align:left; margin-bottom:0.25rem;">DJ &amp; Sound Services</h2>
+            <p style="color:var(--text-secondary); font-size:0.95rem;">High-energy live DJs, mobile Baraat sound trucks, cold pyros and line-array acoustics.</p>
+          </div>
+          <a href="/search.html?category=DJ" class="btn btn-secondary btn-sm">View All 75+ DJ Artists &rarr;</a>
+        </div>
+
+        <div style="display:grid; grid-template-columns:repeat(auto-fit, minmax(320px, 1fr)); gap:1.75rem;">
+          <!-- DJ 1 -->
+          <article class="listing-card card-3d">
+            <div class="listing-media">
+              <img decoding="async" loading="lazy" src="https://images.unsplash.com/photo-1470225620780-dba8ba36b745?auto=format&fit=crop&w=800&q=80" alt="BassRock Professional DJ" class="listing-img">
+              <div class="listing-badges">
+                <span class="badge badge-verified">✓ 15,000W Line Array</span>
+                <span class="badge badge-gold">Cold Pyros Included</span>
+              </div>
+            </div>
+            <div class="listing-body">
+              <div class="listing-header-row">
+                <h3 class="listing-title">BassRock Concert DJ &amp; Moving Head Lasers</h3>
+                <div class="listing-rating">★ 4.95 <span style="color:var(--text-muted); font-size:0.75rem;">(118)</span></div>
+              </div>
+              <div class="listing-location-row">
+                <span>📍 Delhi NCR &amp; Noida &bull; Bollywood, Punjabi &amp; EDM</span>
+              </div>
+              <div class="listing-amenities-row">
+                <span class="amenity-chip">JBL VTX Line Array</span>
+                <span class="amenity-chip">CO2 Smoke Jet Guns</span>
+                <span class="amenity-chip">Shure Wireless Mics</span>
+              </div>
+              <div class="listing-footer-row">
+                <div class="listing-price-box">
+                  <span class="listing-price-label">Starting From</span>
+                  <span class="listing-price-val">₹22,000 <span style="font-size:0.75rem; color:var(--text-muted);">/ night</span></span>
+                </div>
+                <div class="listing-actions-row">
+                  <a href="/search.html?category=DJ" class="btn btn-primary btn-sm">Book DJ &amp; Sound</a>
+                </div>
+              </div>
+            </div>
+          </article>
+
+          <!-- DJ 2 -->
+          <article class="listing-card card-3d">
+            <div class="listing-media">
+              <img decoding="async" loading="lazy" src="https://images.unsplash.com/photo-1514525253161-7a46d19cd819?auto=format&fit=crop&w=800&q=80" alt="Royal Baraat Mobile DJ" class="listing-img">
+              <div class="listing-badges">
+                <span class="badge badge-gold">🎺 Mobile Baraat Truck</span>
+                <span class="badge badge-ruby">Live Dhol Group</span>
+              </div>
+            </div>
+            <div class="listing-body">
+              <div class="listing-header-row">
+                <h3 class="listing-title">Royal Punjabi Dhol &amp; Mobile Baraat DJ</h3>
+                <div class="listing-rating">★ 4.88 <span style="color:var(--text-muted); font-size:0.75rem;">(95)</span></div>
+              </div>
+              <div class="listing-location-row">
+                <span>📍 Lucknow &bull; 8 Live Nasik &amp; Punjabi Dholis</span>
+              </div>
+              <div class="listing-amenities-row">
+                <span class="amenity-chip">Turbaned Dhol Artists</span>
+                <span class="amenity-chip">Generator On-Board</span>
+                <span class="amenity-chip">Baraat Crowd Lighting</span>
+              </div>
+              <div class="listing-footer-row">
+                <div class="listing-price-box">
+                  <span class="listing-price-label">Starting From</span>
+                  <span class="listing-price-val">₹18,000 <span style="font-size:0.75rem; color:var(--text-muted);">/ event</span></span>
+                </div>
+                <div class="listing-actions-row">
+                  <a href="/search.html?category=DJ" class="btn btn-primary btn-sm">Book Baraat Dhol</a>
+                </div>
+              </div>
+            </div>
+          </article>
+
+          <!-- DJ 3 -->
+          <article class="listing-card card-3d">
+            <div class="listing-media">
+              <img decoding="async" loading="lazy" src="https://images.unsplash.com/photo-1511671782779-c97d3d27a1d4?auto=format&fit=crop&w=800&q=80" alt="Symphony Live Orchestra" class="listing-img">
+              <div class="listing-badges">
+                <span class="badge badge-verified">✓ Live Musical Band</span>
+                <span class="badge badge-indigo">Sufi &amp; Ghazal Nights</span>
+              </div>
+            </div>
+            <div class="listing-body">
+              <div class="listing-header-row">
+                <h3 class="listing-title">SwarSymphony Live Wedding Orchestra</h3>
+                <div class="listing-rating">★ 4.9 <span style="color:var(--text-muted); font-size:0.75rem;">(62)</span></div>
+              </div>
+              <div class="listing-location-row">
+                <span>📍 Jaipur &amp; Delhi &bull; Sangeet &amp; Cocktail Special</span>
+              </div>
+              <div class="listing-amenities-row">
+                <span class="amenity-chip">Flute &amp; Violin Fusion</span>
+                <span class="amenity-chip">Bilingual Singers</span>
+                <span class="amenity-chip">Digital Sound Console</span>
+              </div>
+              <div class="listing-footer-row">
+                <div class="listing-price-box">
+                  <span class="listing-price-label">Starting From</span>
+                  <span class="listing-price-val">₹35,000 <span style="font-size:0.75rem; color:var(--text-muted);">/ event</span></span>
+                </div>
+                <div class="listing-actions-row">
+                  <a href="/search.html?category=DJ" class="btn btn-primary btn-sm">Book Live Band</a>
+                </div>
+              </div>
+            </div>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <!-- SECTION 9: CATERING SERVICES -->
+    <section id="catering-services-section" class="section">
+      <div class="container">
+        <div class="flex items-center justify-between flex-wrap gap-2" style="margin-bottom:2.25rem;">
+          <div>
+            <span class="badge badge-emerald" style="margin-bottom:0.4rem;">Pure Shahi Delicacies</span>
+            <h2 class="section-title" style="text-align:left; margin-bottom:0.25rem;">Catering &amp; Shahi Dining Services</h2>
+            <p style="color:var(--text-secondary); font-size:0.95rem;">Awadhi Dum Biryani, royal Marwari pure vegetarian thalis, Punjabi tandoor and live dessert stations.</p>
+          </div>
+          <a href="/search.html?category=Catering" class="btn btn-secondary btn-sm">View All 90+ Caterers &rarr;</a>
+        </div>
+
+        <div style="display:grid; grid-template-columns:repeat(auto-fit, minmax(320px, 1fr)); gap:1.75rem;">
+          <!-- Caterer 1 -->
+          <article class="listing-card card-3d">
+            <div class="listing-media">
+              <img decoding="async" loading="lazy" src="https://images.unsplash.com/photo-1555244162-803834f70033?auto=format&fit=crop&w=800&q=80" alt="Awadh Shahi Royal Catering" class="listing-img">
+              <div class="listing-badges">
+                <span class="badge badge-verified">✓ FSSAI Certified</span>
+                <span class="badge badge-gold">Awadhi Specialties</span>
+              </div>
+            </div>
+            <div class="listing-body">
+              <div class="listing-header-row">
+                <h3 class="listing-title">Awadh Shahi Royal Catering &amp; Live Counters</h3>
+                <div class="listing-rating">★ 4.95 <span style="color:var(--text-muted); font-size:0.75rem;">(142)</span></div>
+              </div>
+              <div class="listing-location-row">
+                <span>📍 Hazratganj, Lucknow &bull; 100 to 2500 Guests</span>
+              </div>
+              <div class="listing-amenities-row">
+                <span class="amenity-chip">Dum Gosht Biryani</span>
+                <span class="amenity-chip">Galawati Kebab Counters</span>
+                <span class="amenity-chip">Shahi Tukda &amp; Kulfi</span>
+              </div>
+              <div class="listing-footer-row">
+                <div class="listing-price-box">
+                  <span class="listing-price-label">Price Per Plate</span>
+                  <span class="listing-price-val">₹750 <span style="font-size:0.75rem; color:var(--text-muted);">/ plate</span></span>
+                </div>
+                <div class="listing-actions-row">
+                  <a href="/search.html?category=Catering" class="btn btn-primary btn-sm">Request Food Tasting</a>
+                </div>
+              </div>
+            </div>
+          </article>
+
+          <!-- Caterer 2 -->
+          <article class="listing-card card-3d">
+            <div class="listing-media">
+              <img decoding="async" loading="lazy" src="https://images.unsplash.com/photo-1546069901-ba9599a7e63c?auto=format&fit=crop&w=800&q=80" alt="Marwari Pure Veg Catering" class="listing-img">
+              <div class="listing-badges">
+                <span class="badge badge-emerald">🌱 100% Pure Veg Jain Available</span>
+                <span class="badge badge-gold">Desi Ghee Delicacies</span>
+              </div>
+            </div>
+            <div class="listing-body">
+              <div class="listing-header-row">
+                <h3 class="listing-title">Rajputana Shuddh Desi Ghee Catering</h3>
+                <div class="listing-rating">★ 4.9 <span style="color:var(--text-muted); font-size:0.75rem;">(120)</span></div>
+              </div>
+              <div class="listing-location-row">
+                <span>📍 Jaipur &amp; Delhi &bull; Live Chaat &amp; Jalebi Counter</span>
+              </div>
+              <div class="listing-amenities-row">
+                <span class="amenity-chip">Dal Baati Churma</span>
+                <span class="amenity-chip">Live Tawa Sabzi</span>
+                <span class="amenity-chip">Organic Crockery</span>
+              </div>
+              <div class="listing-footer-row">
+                <div class="listing-price-box">
+                  <span class="listing-price-label">Price Per Plate</span>
+                  <span class="listing-price-val">₹650 <span style="font-size:0.75rem; color:var(--text-muted);">/ plate</span></span>
+                </div>
+                <div class="listing-actions-row">
+                  <a href="/search.html?category=Catering" class="btn btn-primary btn-sm">Book Catering</a>
+                </div>
+              </div>
+            </div>
+          </article>
+
+          <!-- Caterer 3 -->
+          <article class="listing-card card-3d">
+            <div class="listing-media">
+              <img decoding="async" loading="lazy" src="https://images.unsplash.com/photo-1517248135467-4c7edcad34c4?auto=format&fit=crop&w=800&q=80" alt="Global Fusion Buffet" class="listing-img">
+              <div class="listing-badges">
+                <span class="badge badge-verified">✓ 5-Star Chefs</span>
+                <span class="badge badge-indigo">Multi-Cuisine Buffet</span>
+              </div>
+            </div>
+            <div class="listing-body">
+              <div class="listing-header-row">
+                <h3 class="listing-title">Imperial Feast International Banquets</h3>
+                <div class="listing-rating">★ 4.88 <span style="color:var(--text-muted); font-size:0.75rem;">(84)</span></div>
+              </div>
+              <div class="listing-location-row">
+                <span>📍 Patna &amp; Kolkata &bull; Live Sushi &amp; Pasta Bars</span>
+              </div>
+              <div class="listing-amenities-row">
+                <span class="amenity-chip">Woodfired Pizza Oven</span>
+                <span class="amenity-chip">Mocktail Baristas</span>
+                <span class="amenity-chip">Belgian Waffle Live</span>
+              </div>
+              <div class="listing-footer-row">
+                <div class="listing-price-box">
+                  <span class="listing-price-label">Price Per Plate</span>
+                  <span class="listing-price-val">₹950 <span style="font-size:0.75rem; color:var(--text-muted);">/ plate</span></span>
+                </div>
+                <div class="listing-actions-row">
+                  <a href="/search.html?category=Catering" class="btn btn-primary btn-sm">Book Catering</a>
+                </div>
+              </div>
+            </div>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <!-- SECTION 10: STAGE & FLOWER DECORATION -->
+    <section id="decor-services-section" class="section" style="background: rgba(12, 31, 56, 0.35);">
+      <div class="container">
+        <div class="flex items-center justify-between flex-wrap gap-2" style="margin-bottom:2.25rem;">
+          <div>
+            <span class="badge badge-ruby" style="margin-bottom:0.4rem;">Exquisite Wedding Aesthetics</span>
+            <h2 class="section-title" style="text-align:left; margin-bottom:0.25rem;">Stage &amp; Flower Decoration</h2>
+            <p style="color:var(--text-secondary); font-size:0.95rem;">Revolving hydraulic varmala stages, fresh exotic orchid tunnels, and royal crystal mandaps.</p>
+          </div>
+          <a href="/search.html?category=Decoration" class="btn btn-secondary btn-sm">View All 80+ Decorators &rarr;</a>
+        </div>
+
+        <div style="display:grid; grid-template-columns:repeat(auto-fit, minmax(320px, 1fr)); gap:1.75rem;">
+          <!-- Decor 1 -->
+          <article class="listing-card card-3d">
+            <div class="listing-media">
+              <img decoding="async" loading="lazy" src="https://images.unsplash.com/photo-1583939003579-730e3918a45a?auto=format&fit=crop&w=800&q=80" alt="Rajwada Revolving Stage" class="listing-img">
+              <div class="listing-badges">
+                <span class="badge badge-gold">👑 Hydraulic Stage</span>
+                <span class="badge badge-ruby">Imported Orchids</span>
+              </div>
+            </div>
+            <div class="listing-body">
+              <div class="listing-header-row">
+                <h3 class="listing-title">Rajwada Royal Hydraulic Varmala Stage</h3>
+                <div class="listing-rating">★ 4.95 <span style="color:var(--text-muted); font-size:0.75rem;">(110)</span></div>
+              </div>
+              <div class="listing-location-row">
+                <span>📍 Jaipur &bull; Complete Theme Lighting Included</span>
+              </div>
+              <div class="listing-amenities-row">
+                <span class="amenity-chip">360° Rotating Platform</span>
+                <span class="amenity-chip">Cold Pyro Smoke Ring</span>
+                <span class="amenity-chip">Mirror Backdrop</span>
+              </div>
+              <div class="listing-footer-row">
+                <div class="listing-price-box">
+                  <span class="listing-price-label">Starting Package</span>
+                  <span class="listing-price-val">₹45,000 <span style="font-size:0.75rem; color:var(--text-muted);">/ event</span></span>
+                </div>
+                <div class="listing-actions-row">
+                  <a href="/search.html?category=Decoration" class="btn btn-primary btn-sm">Book Stage Decor</a>
+                </div>
+              </div>
+            </div>
+          </article>
+
+          <!-- Decor 2 -->
+          <article class="listing-card card-3d">
+            <div class="listing-media">
+              <img decoding="async" loading="lazy" src="https://images.unsplash.com/photo-1519225421980-715cb0215aed?auto=format&fit=crop&w=800&q=80" alt="Fresh Floral Tunnel" class="listing-img">
+              <div class="listing-badges">
+                <span class="badge badge-verified">✓ 100% Fresh Flowers</span>
+                <span class="badge badge-emerald">60-Foot Tunnel</span>
+              </div>
+            </div>
+            <div class="listing-body">
+              <div class="listing-header-row">
+                <h3 class="listing-title">Grand Floral Entrance Tunnel &amp; Pathways</h3>
+                <div class="listing-rating">★ 4.88 <span style="color:var(--text-muted); font-size:0.75rem;">(78)</span></div>
+              </div>
+              <div class="listing-location-row">
+                <span>📍 Lucknow &bull; Mogra, Marigold &amp; Rose Canopies</span>
+              </div>
+              <div class="listing-amenities-row">
+                <span class="amenity-chip">Brass Urli Water Lamps</span>
+                <span class="amenity-chip">LED Spot Illuminators</span>
+                <span class="amenity-chip">Aroma Mist Sprayers</span>
+              </div>
+              <div class="listing-footer-row">
+                <div class="listing-price-box">
+                  <span class="listing-price-label">Starting Package</span>
+                  <span class="listing-price-val">₹35,000 <span style="font-size:0.75rem; color:var(--text-muted);">/ event</span></span>
+                </div>
+                <div class="listing-actions-row">
+                  <a href="/search.html?category=Decoration" class="btn btn-primary btn-sm">Book Stage Decor</a>
+                </div>
+              </div>
+            </div>
+          </article>
+
+          <!-- Decor 3 -->
+          <article class="listing-card card-3d">
+            <div class="listing-media">
+              <img decoding="async" loading="lazy" src="https://images.unsplash.com/photo-1520854221256-17451cc331bf?auto=format&fit=crop&w=800&q=80" alt="Crystal Mandap" class="listing-img">
+              <div class="listing-badges">
+                <span class="badge badge-indigo">✨ Crystal Chandelier</span>
+                <span class="badge badge-gold">Sacred Vivah Mandap</span>
+              </div>
+            </div>
+            <div class="listing-body">
+              <div class="listing-header-row">
+                <h3 class="listing-title">Royal Crystal Pillar Vivah Mandap</h3>
+                <div class="listing-rating">★ 4.92 <span style="color:var(--text-muted); font-size:0.75rem;">(94)</span></div>
+              </div>
+              <div class="listing-location-row">
+                <span>📍 Patna &bull; Classical Carved Stone Finish</span>
+              </div>
+              <div class="listing-amenities-row">
+                <span class="amenity-chip">Havan Kund Ventilation</span>
+                <span class="amenity-chip">Floral Hanging Bells</span>
+                <span class="amenity-chip">Comfortable Floor Seating</span>
+              </div>
+              <div class="listing-footer-row">
+                <div class="listing-price-box">
+                  <span class="listing-price-label">Starting Package</span>
+                  <span class="listing-price-val">₹40,000 <span style="font-size:0.75rem; color:var(--text-muted);">/ event</span></span>
+                </div>
+                <div class="listing-actions-row">
+                  <a href="/search.html?category=Decoration" class="btn btn-primary btn-sm">Book Stage Decor</a>
+                </div>
+              </div>
+            </div>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <!-- SECTION 11: NEARBY EVENT SERVICES -->
+    <section id="nearby-services-section" class="section">
+      <div class="container">
+        <div class="glass-panel" style="padding:2.5rem;">
+          <div class="flex items-center justify-between flex-wrap gap-2" style="margin-bottom:1.75rem;">
+            <div>
+              <span class="badge badge-emerald" style="margin-bottom:0.4rem;">📍 Live Proximity Discovery</span>
+              <h2 class="section-title" style="text-align:left; margin-bottom:0.25rem;">Nearby Event Services</h2>
+              <p style="color:var(--text-secondary); font-size:0.95rem;">Find marriage halls, cars, tent houses and caterers situated directly in your locality or within your selected radius.</p>
+            </div>
+            <button type="button" class="btn btn-champagne btn-sm flex items-center gap-1" onclick="if(window.HallKhojModals) window.HallKhojModals.open('near-me-modal')">
+              <span>📍 Detect My GPS Location</span>
+            </button>
+          </div>
+
+          <div style="display:flex; flex-wrap:wrap; gap:0.5rem; align-items:center; margin-bottom:2rem; padding:0.85rem; background:rgba(255,255,255,0.03); border-radius:var(--radius-md); border:1px solid var(--border-subtle);">
+            <span style="font-size:0.85rem; font-weight:700; color:var(--text-champagne);">Filter by Distance:</span>
+            <button type="button" class="radius-pill" onclick="window.location.href='/search.html?radius=1'">Within 1 KM</button>
+            <button type="button" class="radius-pill" onclick="window.location.href='/search.html?radius=5'">Within 5 KM</button>
+            <button type="button" class="radius-pill active" onclick="window.location.href='/search.html?radius=10'">Within 10 KM</button>
+            <button type="button" class="radius-pill" onclick="window.location.href='/search.html?radius=25'">Within 25 KM</button>
+            <button type="button" class="radius-pill" onclick="window.location.href='/search.html?radius=50'">Within 50 KM</button>
+          </div>
+
+          <div style="display:grid; grid-template-columns:repeat(auto-fit, minmax(280px, 1fr)); gap:1.5rem;">
+            <!-- Nearby 1 -->
+            <div class="glass-panel-subtle" style="padding:1.25rem; border-radius:var(--radius-md); border-left:4px solid #10b981;">
+              <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:0.4rem;">
+                <span class="badge badge-emerald">1.2 KM Away</span>
+                <span style="color:#fbbf24; font-size:0.85rem;">★ 4.9</span>
+              </div>
+              <h4 style="font-size:1.05rem; margin-bottom:0.25rem;">Mayur Emerald Banquet</h4>
+              <p style="font-size:0.82rem; color:var(--text-muted); margin-bottom:0.75rem;">Marriage Hall &bull; Capacity: 600 Guests &bull; AC</p>
+              <div style="display:flex; justify-content:space-between; align-items:center;">
+                <strong style="color:var(--text-champagne); font-size:0.95rem;">₹45,000</strong>
+                <a href="/hall-details.html?id=h-102" class="btn btn-secondary btn-sm">Inspect 3D</a>
+              </div>
+            </div>
+
+            <!-- Nearby 2 -->
+            <div class="glass-panel-subtle" style="padding:1.25rem; border-radius:var(--radius-md); border-left:4px solid #398bff;">
+              <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:0.4rem;">
+                <span class="badge badge-indigo">2.5 KM Away</span>
+                <span style="color:#fbbf24; font-size:0.85rem;">★ 4.95</span>
+              </div>
+              <h4 style="font-size:1.05rem; margin-bottom:0.25rem;">Mercedes E-Class Luxury Car</h4>
+              <p style="font-size:0.82rem; color:var(--text-muted); margin-bottom:0.75rem;">Wedding Car &bull; Driver &amp; Fuel Included</p>
+              <div style="display:flex; justify-content:space-between; align-items:center;">
+                <strong style="color:var(--text-champagne); font-size:0.95rem;">₹15,000 / day</strong>
+                <a href="/search.html?category=Cars" class="btn btn-secondary btn-sm">Book Car</a>
+              </div>
+            </div>
+
+            <!-- Nearby 3 -->
+            <div class="glass-panel-subtle" style="padding:1.25rem; border-radius:var(--radius-md); border-left:4px solid #f59e0b;">
+              <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:0.4rem;">
+                <span class="badge badge-gold">3.8 KM Away</span>
+                <span style="color:#fbbf24; font-size:0.85rem;">★ 4.85</span>
+              </div>
+              <h4 style="font-size:1.05rem; margin-bottom:0.25rem;">Shree Krishna Royal Tents</h4>
+              <p style="font-size:0.82rem; color:var(--text-muted); margin-bottom:0.75rem;">Tent House &bull; Waterproof Shamiana Setup</p>
+              <div style="display:flex; justify-content:space-between; align-items:center;">
+                <strong style="color:var(--text-champagne); font-size:0.95rem;">₹25,000</strong>
+                <a href="/search.html?category=Tent+Houses" class="btn btn-secondary btn-sm">Book Tent</a>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- FEATURED VERIFIED VENDORS COLLABORATION -->
+    <section class="section" style="background: rgba(12, 31, 56, 0.45);">
       <div class="container">
         <div class="text-center" style="margin-bottom:2.5rem;">
           <h2 class="section-title">Featured Event Vendors</h2>
@@ -960,7 +1644,51 @@
       </div>
     </section>
 
-    <!-- SECTION 12: CUSTOMER TESTIMONIALS & REAL WEDDING STORIES -->
+    <!-- SECTION 14: BUSINESS REGISTRATION CTA (Phase 2 Requirement) -->
+    <section class="section" style="background: radial-gradient(circle at 50% 50%, rgba(217, 199, 160, 0.12) 0%, transparent 70%);">
+      <div class="container">
+        <div class="glass-panel" style="padding:3rem 2.5rem; text-align:center; border:1px solid rgba(217, 199, 160, 0.35); box-shadow:0 20px 60px rgba(0,0,0,0.5);">
+          <div class="icon-3d-box icon-3d-gold icon-3d-lg" style="margin:0 auto 1.25rem auto;">🏢</div>
+          <span class="badge badge-gold" style="margin-bottom:0.75rem;">Zero Platform Commission &bull; 100% Direct Customer Calls</span>
+          <h2 style="font-size:2.4rem; line-height:1.2; margin-bottom:1rem; color:var(--text-primary);">
+            Are You a Banquet Hall, Car, Tent, DJ or Catering Business Owner?
+          </h2>
+          <p style="color:var(--text-secondary); max-width:760px; margin:0 auto 2rem auto; font-size:1.05rem; line-height:1.6;">
+            List your business on Hall Khoj Finder for free. Receive direct customer phone calls, verified WhatsApp inquiries, digital booking tokens, and physical KYC verification badge.
+          </p>
+
+          <div style="display:flex; flex-wrap:wrap; justify-content:center; gap:2.5rem; margin-bottom:2.5rem;">
+            <div style="text-align:center;">
+              <div style="font-size:1.75rem; font-weight:800; color:var(--text-champagne); margin-bottom:0.25rem;">500+</div>
+              <div style="font-size:0.85rem; color:var(--text-muted);">Verified Owners</div>
+            </div>
+            <div style="text-align:center;">
+              <div style="font-size:1.75rem; font-weight:800; color:#10b981; margin-bottom:0.25rem;">₹0</div>
+              <div style="font-size:0.85rem; color:var(--text-muted);">Brokerage / Commission</div>
+            </div>
+            <div style="text-align:center;">
+              <div style="font-size:1.75rem; font-weight:800; color:var(--primary-light); margin-bottom:0.25rem;">24 Hrs</div>
+              <div style="font-size:0.85rem; color:var(--text-muted);">Listing Approval Time</div>
+            </div>
+            <div style="text-align:center;">
+              <div style="font-size:1.75rem; font-weight:800; color:#a855f7; margin-bottom:0.25rem;">100%</div>
+              <div style="font-size:0.85rem; color:var(--text-muted);">Direct Advance Payments</div>
+            </div>
+          </div>
+
+          <div style="display:flex; flex-wrap:wrap; justify-content:center; gap:1rem;">
+            <a href="/register.html?role=owner" class="btn btn-champagne btn-lg" style="box-shadow:0 8px 25px rgba(217,199,160,0.3); font-size:1.05rem; padding:0 2.25rem;">
+              <span>🚀 Register Your Business Now</span>
+            </a>
+            <a href="/login.html" class="btn btn-secondary btn-lg" style="font-size:1.05rem; padding:0 2rem;">
+              <span>🔑 Owner Sign In</span>
+            </a>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- SECTION 15: CUSTOMER TESTIMONIALS & REAL WEDDING STORIES -->
     <section class="section section-testimonials">
       <div class="container">
         <div class="text-center" style="margin-bottom:2.5rem;">
@@ -1169,68 +1897,98 @@
   </main>
 
   <!-- =========================================================================
-       SECTION 16: COMPLETE MULTI-COLUMN FOOTER
+       SECTION 16: COMPLETE 5-COLUMN 3D GLASS FOOTER (PHASE 6)
   ========================================================================= -->
   <footer class="site-footer">
     <div class="container">
-      <div class="footer-grid">
-        <!-- Col 1: Brand & Tagline -->
-        <div>
-          <div class="brand-logo" style="margin-bottom:1rem;">
+      <div class="footer-5col-grid">
+        <!-- COLUMN 1 — HALL KHOJ FINDER -->
+        <div class="footer-col-card">
+          <div class="brand-logo" style="margin-bottom:0.85rem;">
             <img src="/assets/logo.png" alt="Hall Khoj" class="brand-logo-img" loading="lazy" decoding="async">
             <span class="brand-title">HALL KHOJ</span>
           </div>
-          <p style="font-size:0.875rem; color:var(--text-secondary); line-height:1.6;">
-            India's premier 3D Event Services Marketplace. Discover Marriage Halls, Cars, Tent Houses, DJs, and Decorators with transparent pricing.
+          <p style="font-size:0.86rem; color:var(--text-secondary); line-height:1.6; margin-bottom:0.75rem;">
+            India's premier 3D Event Services Marketplace. Discover Marriage Halls, Cars, Tent Houses, DJs, and Decorators with transparent pricing and zero brokerage.
           </p>
-          <div style="margin-top:1rem; font-size:0.8rem; color:#fbbf24; font-weight:600;">
+          <div style="font-size:0.78rem; color:#fbbf24; font-weight:600; line-height:1.4;">
             "Apne Paas Ka Hall, Tent, Car Aur Event Services Ek Jagah Khojiye"
+          </div>
+
+          <!-- 3D Social Media Icons -->
+          <div class="footer-social-row">
+            <a href="https://twitter.com" target="_blank" rel="noopener" class="icon-3d-box icon-3d-sm icon-3d-blue" title="Twitter / X" aria-label="Twitter">𝕏</a>
+            <a href="https://instagram.com" target="_blank" rel="noopener" class="icon-3d-box icon-3d-sm icon-3d-ruby" title="Instagram" aria-label="Instagram">📸</a>
+            <a href="https://youtube.com" target="_blank" rel="noopener" class="icon-3d-box icon-3d-sm icon-3d-ruby" title="YouTube" aria-label="YouTube">▶️</a>
+            <a href="https://facebook.com" target="_blank" rel="noopener" class="icon-3d-box icon-3d-sm icon-3d-blue" title="Facebook" aria-label="Facebook">f</a>
+            <a href="https://wa.me/919773647612" target="_blank" rel="noopener" class="icon-3d-box icon-3d-sm icon-3d-emerald" title="WhatsApp Concierge" aria-label="WhatsApp">💬</a>
           </div>
         </div>
 
-        <!-- Col 2: Event Categories -->
-        <div>
-          <h4>Explore Categories</h4>
-          <ul>
-            <li><a href="/search.html?category=Marriage+Halls">Marriage &amp; Banquet Halls</a></li>
-            <li><a href="/search.html?category=Luxury+Resorts">Luxury Wedding Resorts</a></li>
-            <li><a href="/search.html?category=Cars">Luxury Wedding Cars</a></li>
-            <li><a href="/search.html?category=Tent+Houses">Tent &amp; Shamiana Works</a></li>
-            <li><a href="/search.html?category=Catering">Royal Shahi Catering</a></li>
-            <li><a href="/search.html?category=Decoration">Stage &amp; Flower Decor</a></li>
-            <li><a href="/3d-preview.html">3D Virtual Gallery</a></li>
+        <!-- COLUMN 2 — EVENT SERVICES -->
+        <div class="footer-col-card">
+          <h4><span>🏰</span> Event Services</h4>
+          <ul class="footer-links-list">
+            <li class="footer-link-item"><a href="/search.html?category=Marriage+Halls">Marriage &amp; Banquet Halls</a></li>
+            <li class="footer-link-item"><a href="/search.html?category=Cars">Luxury Wedding Cars</a></li>
+            <li class="footer-link-item"><a href="/search.html?category=Tent+Houses">Tent &amp; Shamiana Works</a></li>
+            <li class="footer-link-item"><a href="/search.html?category=Catering">Royal Shahi Catering</a></li>
+            <li class="footer-link-item"><a href="/search.html?category=Decoration">Stage &amp; Flower Decor</a></li>
+            <li class="footer-link-item"><a href="/search.html?category=DJ">DJ &amp; Sound Services</a></li>
+            <li class="footer-link-item"><a href="/3d-preview.html">3D Virtual Gallery</a></li>
           </ul>
         </div>
 
-        <!-- Col 3: Portals & Roles -->
-        <div>
-          <h4>Portals &amp; Roles</h4>
-          <ul>
-            <li><a href="/dashboard.html">Customer Dashboard</a></li>
-            <li><a href="/owner/dashboard.html">Business Owner Portal</a></li>
-            <li><a href="/admin/dashboard.html">Admin Verification Panel</a></li>
-            <li><a href="/register.html?role=owner">List Your Hall / Service</a></li>
-            <li><a href="/login.html">Sign In to Your Account</a></li>
-            <li><a href="/compare.html">Compare Venues</a></li>
+        <!-- COLUMN 3 — CUSTOMER & BUSINESS -->
+        <div class="footer-col-card">
+          <h4><span>🏢</span> Portals &amp; Roles</h4>
+          <ul class="footer-links-list">
+            <li class="footer-link-item"><a href="/dashboard.html">Customer Dashboard</a></li>
+            <li class="footer-link-item"><a href="/owner/dashboard.html">Business Owner Portal</a></li>
+            <li class="footer-link-item"><a href="/admin/dashboard.html">Admin Verification Panel</a></li>
+            <li class="footer-link-item"><a href="/register.html?role=owner">List Your Hall / Service</a></li>
+            <li class="footer-link-item"><a href="/compare.html">Compare Venues</a></li>
+            <li class="footer-link-item"><a href="/login.html">Sign In to Your Account</a></li>
+            <li class="footer-link-item"><a href="/register.html?role=owner">Register Business</a></li>
           </ul>
         </div>
 
-        <!-- Col 4: Direct Support & Contact -->
-        <div>
-          <h4>Contact &amp; Legal</h4>
-          <ul>
-            <li><a href="/support.html">Contact &amp; Support Desk</a></li>
-            <li><a href="/support.html?tab=bug-report">Report a Bug / Issue</a></li>
-            <li><a href="tel:+919773647612">Direct Call: +91 97736 47612</a></li>
-            <li><a href="https://wa.me/919773647612" target="_blank" rel="noopener">WhatsApp Concierge</a></li>
-            <li><a href="/terms.html">Terms &amp; Cancellation Policy</a></li>
-            <li><a href="/privacy.html">Privacy &amp; Data Rights</a></li>
+        <!-- COLUMN 4 — SUPPORT & CONTACT -->
+        <div class="footer-col-card">
+          <h4><span>📞</span> Support &amp; Help</h4>
+          <ul class="footer-links-list">
+            <li class="footer-link-item"><a href="/support.html">Contact &amp; Support Desk</a></li>
+            <li class="footer-link-item"><a href="/support.html?tab=bug-report">Report a Bug / Issue</a></li>
+            <li class="footer-link-item"><a href="https://wa.me/919773647612" target="_blank" rel="noopener">WhatsApp Support</a></li>
+            <li class="footer-link-item"><a href="tel:+919773647612">Direct Call: +91 97736 47612</a></li>
+            <li class="footer-link-item"><a href="/help.html">Help Center &amp; Guides</a></li>
+            <li class="footer-link-item"><a href="mailto:support@hallkhoj.in">Email: support@hallkhoj.in</a></li>
+          </ul>
+        </div>
+
+        <!-- COLUMN 5 — LEGAL & COMPLIANCE -->
+        <div class="footer-col-card">
+          <h4><span>⚖️</span> Legal &amp; Policies</h4>
+          <ul class="footer-links-list">
+            <li class="footer-link-item"><a href="/privacy.html">Privacy Policy</a></li>
+            <li class="footer-link-item"><a href="/terms.html">Terms &amp; Conditions</a></li>
+            <li class="footer-link-item"><a href="/terms.html#cancellation">Cancellation &amp; Refund Policy</a></li>
+            <li class="footer-link-item"><a href="/privacy.html#rights">Privacy &amp; Data Rights</a></li>
+            <li class="footer-link-item"><a href="/sitemap.xml" target="_blank">Dynamic XML Sitemap</a></li>
+            <li class="footer-link-item">
+              <button type="button" class="cookie-settings-btn" data-action="open-cookie-settings" style="color:var(--text-champagne); font-weight:600;">
+                🍪 Cookie Preferences
+              </button>
+            </li>
           </ul>
         </div>
       </div>
 
       <div class="site-footer-bottom">
-        <div>&copy; 2026 Hall Khoj Finder. All Rights Reserved. <span id="footer-backend-info" style="color:#10b981; margin-left:0.5rem; font-weight:500;">API: Connecting...</span></div>
+        <div>
+          &copy; 2026 Hall Khoj Finder. All Rights Reserved.
+          <span id="footer-backend-info" style="color:#10b981; margin-left:0.5rem; font-weight:600;">API: Connecting...</span>
+        </div>
         <div style="display:flex; flex-wrap:wrap; gap:1.25rem; align-items:center;">
           <a href="/privacy.html">Privacy Policy</a>
           <a href="/terms.html">Terms &amp; Conditions</a>
