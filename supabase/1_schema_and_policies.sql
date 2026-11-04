@@ -1,6 +1,21 @@
 -- ==============================================================================
--- HALL KHOJ FINDER — PART 1: SCHEMA, TABLES, RLS & TRIGGERS
+-- HALL KHOJ FINDER — COMPLETE ONE-CLICK SUPABASE SETUP SCRIPT (AUTO-RESOLVED)
+-- Resolves duplicate mobile/email constraints and safely initializes full schema
 -- ==============================================================================
+
+-- 1. CLEAN RESET (Safely wipes any half-created tables from previous failed run)
+DROP SCHEMA IF EXISTS public CASCADE;
+CREATE SCHEMA public;
+
+-- 2. RESTORE SUPABASE GRANTS
+GRANT USAGE ON SCHEMA public TO postgres, anon, authenticated, service_role;
+GRANT ALL ON ALL TABLES IN SCHEMA public TO postgres, anon, authenticated, service_role;
+GRANT ALL ON ALL FUNCTIONS IN SCHEMA public TO postgres, anon, authenticated, service_role;
+GRANT ALL ON ALL SEQUENCES IN SCHEMA public TO postgres, anon, authenticated, service_role;
+
+ALTER DEFAULT PRIVILEGES IN SCHEMA public GRANT ALL ON TABLES TO postgres, anon, authenticated, service_role;
+ALTER DEFAULT PRIVILEGES IN SCHEMA public GRANT ALL ON FUNCTIONS TO postgres, anon, authenticated, service_role;
+ALTER DEFAULT PRIVILEGES IN SCHEMA public GRANT ALL ON SEQUENCES TO postgres, anon, authenticated, service_role;
 
 
 -- >>> START: 20261103000001_initial_schema.sql <<<
@@ -20,7 +35,7 @@ CREATE TABLE IF NOT EXISTS public.profiles (
     auth_user_id UUID REFERENCES auth.users(id) ON DELETE CASCADE,
     name VARCHAR(255) NOT NULL,
     email VARCHAR(255) UNIQUE,
-    mobile VARCHAR(20) UNIQUE,
+    mobile VARCHAR(20),
     avatar_url TEXT,
     state VARCHAR(100),
     district VARCHAR(100),
@@ -32,6 +47,9 @@ CREATE TABLE IF NOT EXISTS public.profiles (
     created_at TIMESTAMPTZ DEFAULT NOW(),
     updated_at TIMESTAMPTZ DEFAULT NOW()
 );
+
+-- Partial unique index for mobile (allows null/empty while enforcing uniqueness for valid phone numbers)
+CREATE UNIQUE INDEX IF NOT EXISTS profiles_mobile_idx ON public.profiles (mobile) WHERE mobile IS NOT NULL AND mobile != '';
 
 -- 2. USER ROLES (Strict RBAC: CUSTOMER, OWNER, ADMIN - Section 38 & Phase 13)
 CREATE TABLE IF NOT EXISTS public.user_roles (

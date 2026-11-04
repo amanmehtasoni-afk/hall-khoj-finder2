@@ -1,7 +1,21 @@
 -- ==============================================================================
--- HALL KHOJ FINDER — COMPLETE ONE-CLICK SUPABASE SETUP SCRIPT
--- Copy this entire file and paste into Supabase Dashboard -> SQL Editor -> Run
+-- HALL KHOJ FINDER — COMPLETE ONE-CLICK SUPABASE SETUP SCRIPT (AUTO-RESOLVED)
+-- Resolves duplicate mobile/email constraints and safely initializes full schema
 -- ==============================================================================
+
+-- 1. CLEAN RESET (Safely wipes any half-created tables from previous failed run)
+DROP SCHEMA IF EXISTS public CASCADE;
+CREATE SCHEMA public;
+
+-- 2. RESTORE SUPABASE GRANTS
+GRANT USAGE ON SCHEMA public TO postgres, anon, authenticated, service_role;
+GRANT ALL ON ALL TABLES IN SCHEMA public TO postgres, anon, authenticated, service_role;
+GRANT ALL ON ALL FUNCTIONS IN SCHEMA public TO postgres, anon, authenticated, service_role;
+GRANT ALL ON ALL SEQUENCES IN SCHEMA public TO postgres, anon, authenticated, service_role;
+
+ALTER DEFAULT PRIVILEGES IN SCHEMA public GRANT ALL ON TABLES TO postgres, anon, authenticated, service_role;
+ALTER DEFAULT PRIVILEGES IN SCHEMA public GRANT ALL ON FUNCTIONS TO postgres, anon, authenticated, service_role;
+ALTER DEFAULT PRIVILEGES IN SCHEMA public GRANT ALL ON SEQUENCES TO postgres, anon, authenticated, service_role;
 
 
 -- >>> START: 20261103000001_initial_schema.sql <<<
@@ -21,7 +35,7 @@ CREATE TABLE IF NOT EXISTS public.profiles (
     auth_user_id UUID REFERENCES auth.users(id) ON DELETE CASCADE,
     name VARCHAR(255) NOT NULL,
     email VARCHAR(255) UNIQUE,
-    mobile VARCHAR(20) UNIQUE,
+    mobile VARCHAR(20),
     avatar_url TEXT,
     state VARCHAR(100),
     district VARCHAR(100),
@@ -33,6 +47,9 @@ CREATE TABLE IF NOT EXISTS public.profiles (
     created_at TIMESTAMPTZ DEFAULT NOW(),
     updated_at TIMESTAMPTZ DEFAULT NOW()
 );
+
+-- Partial unique index for mobile (allows null/empty while enforcing uniqueness for valid phone numbers)
+CREATE UNIQUE INDEX IF NOT EXISTS profiles_mobile_idx ON public.profiles (mobile) WHERE mobile IS NOT NULL AND mobile != '';
 
 -- 2. USER ROLES (Strict RBAC: CUSTOMER, OWNER, ADMIN - Section 38 & Phase 13)
 CREATE TABLE IF NOT EXISTS public.user_roles (
@@ -1056,7 +1073,7 @@ USING (
 -- >>> START: SEED DATA <<<
 -- ==============================================================================
 -- HALL KHOJ FINDER — PRODUCTION SEED DATA (MIGRATED FROM BACKEND/DATA)
--- Generated on: 2026-11-03T16:43:43.558Z
+-- Generated on: 2026-11-04T12:45:11.172Z
 -- ==============================================================================
 
 BEGIN;
@@ -1123,915 +1140,1731 @@ ON CONFLICT (slug) DO NOTHING;
 -- 2. PROFILES & ROLES
 INSERT INTO public.profiles (id, name, email, mobile, state, city, area, is_verified)
 VALUES ('84736156-3eb5-448d-a230-329f9f122e9a', 'Test Customer', 'test_1789828781990@hallkhoj.com', '9876543210', 'Uttar Pradesh', 'Lucknow', '', FALSE)
-ON CONFLICT (id) DO NOTHING;
+ON CONFLICT (id) DO UPDATE SET
+  name = EXCLUDED.name,
+  email = EXCLUDED.email,
+  mobile = EXCLUDED.mobile;
 INSERT INTO public.user_roles (profile_id, role)
 VALUES ('84736156-3eb5-448d-a230-329f9f122e9a', 'customer')
 ON CONFLICT (profile_id, role) DO NOTHING;
 INSERT INTO public.profiles (id, name, email, mobile, state, city, area, is_verified)
 VALUES ('c132f2e6-b9bc-4ace-a610-a80afc90327f', 'Priya Sharma', 'customer_1789829846386@hallkhoj.com', '9876501234', 'Uttar Pradesh', 'Lucknow', '', FALSE)
-ON CONFLICT (id) DO NOTHING;
+ON CONFLICT (id) DO UPDATE SET
+  name = EXCLUDED.name,
+  email = EXCLUDED.email,
+  mobile = EXCLUDED.mobile;
 INSERT INTO public.user_roles (profile_id, role)
 VALUES ('c132f2e6-b9bc-4ace-a610-a80afc90327f', 'customer')
 ON CONFLICT (profile_id, role) DO NOTHING;
 INSERT INTO public.profiles (id, name, email, mobile, state, city, area, is_verified)
 VALUES ('de2ca6c0-d244-418f-ae87-82d681764403', 'Vikram Singh', 'owner_1789829846386@hallkhoj.com', '9876509876', 'Uttar Pradesh', 'Varanasi', '', FALSE)
-ON CONFLICT (id) DO NOTHING;
+ON CONFLICT (id) DO UPDATE SET
+  name = EXCLUDED.name,
+  email = EXCLUDED.email,
+  mobile = EXCLUDED.mobile;
 INSERT INTO public.user_roles (profile_id, role)
 VALUES ('de2ca6c0-d244-418f-ae87-82d681764403', 'owner')
 ON CONFLICT (profile_id, role) DO NOTHING;
 INSERT INTO public.profiles (id, name, email, mobile, state, city, area, is_verified)
-VALUES ('3d295277-159b-44b2-aad2-15c119e29a26', 'Test Customer', 'test_1789829894663@hallkhoj.com', '9876543210', 'Uttar Pradesh', 'Lucknow', '', FALSE)
-ON CONFLICT (id) DO NOTHING;
+VALUES ('3d295277-159b-44b2-aad2-15c119e29a26', 'Test Customer', 'test_1789829894663@hallkhoj.com', '9810000003', 'Uttar Pradesh', 'Lucknow', '', FALSE)
+ON CONFLICT (id) DO UPDATE SET
+  name = EXCLUDED.name,
+  email = EXCLUDED.email,
+  mobile = EXCLUDED.mobile;
 INSERT INTO public.user_roles (profile_id, role)
 VALUES ('3d295277-159b-44b2-aad2-15c119e29a26', 'customer')
 ON CONFLICT (profile_id, role) DO NOTHING;
 INSERT INTO public.profiles (id, name, email, mobile, state, city, area, is_verified)
-VALUES ('8e67593d-f06b-4bf3-ada4-2a7c1ce058c3', 'Manish Kumar', 'mkumar25843@gmail.com', '+916203025057', 'Bihar', 'Chapra', '', FALSE)
-ON CONFLICT (id) DO NOTHING;
+VALUES ('8e67593d-f06b-4bf3-ada4-2a7c1ce058c3', 'Manish Kumar', 'mkumar25843@gmail.com', '6203025057', 'Bihar', 'Chapra', '', FALSE)
+ON CONFLICT (id) DO UPDATE SET
+  name = EXCLUDED.name,
+  email = EXCLUDED.email,
+  mobile = EXCLUDED.mobile;
 INSERT INTO public.user_roles (profile_id, role)
 VALUES ('8e67593d-f06b-4bf3-ada4-2a7c1ce058c3', 'customer')
 ON CONFLICT (profile_id, role) DO NOTHING;
 INSERT INTO public.profiles (id, name, email, mobile, state, city, area, is_verified)
 VALUES ('5238729c-2ad5-4d9f-aa8b-f74ffada286e', 'Rohan Verma', '9876259636@hallkhoj.phone', '9876259636', 'Uttar Pradesh', 'Lucknow', 'Chinhat', TRUE)
-ON CONFLICT (id) DO NOTHING;
+ON CONFLICT (id) DO UPDATE SET
+  name = EXCLUDED.name,
+  email = EXCLUDED.email,
+  mobile = EXCLUDED.mobile;
 INSERT INTO public.user_roles (profile_id, role)
 VALUES ('5238729c-2ad5-4d9f-aa8b-f74ffada286e', 'customer')
 ON CONFLICT (profile_id, role) DO NOTHING;
 INSERT INTO public.profiles (id, name, email, mobile, state, city, area, is_verified)
 VALUES ('4a84ce4d-f2df-4738-a138-1dde6e12773f', 'Kavita Singh', 'user_1789830695892@hallkhoj.com', '9876000001', 'Uttar Pradesh', 'Lucknow', '', FALSE)
-ON CONFLICT (id) DO NOTHING;
+ON CONFLICT (id) DO UPDATE SET
+  name = EXCLUDED.name,
+  email = EXCLUDED.email,
+  mobile = EXCLUDED.mobile;
 INSERT INTO public.user_roles (profile_id, role)
 VALUES ('4a84ce4d-f2df-4738-a138-1dde6e12773f', 'customer')
 ON CONFLICT (profile_id, role) DO NOTHING;
 INSERT INTO public.profiles (id, name, email, mobile, state, city, area, is_verified)
-VALUES ('e629169c-29c8-46fe-a914-3ad6331edaba', 'Priya Sharma', 'customer_1789830703977@hallkhoj.com', '9876501234', 'Uttar Pradesh', 'Lucknow', '', FALSE)
-ON CONFLICT (id) DO NOTHING;
+VALUES ('e629169c-29c8-46fe-a914-3ad6331edaba', 'Priya Sharma', 'customer_1789830703977@hallkhoj.com', '9810000007', 'Uttar Pradesh', 'Lucknow', '', FALSE)
+ON CONFLICT (id) DO UPDATE SET
+  name = EXCLUDED.name,
+  email = EXCLUDED.email,
+  mobile = EXCLUDED.mobile;
 INSERT INTO public.user_roles (profile_id, role)
 VALUES ('e629169c-29c8-46fe-a914-3ad6331edaba', 'customer')
 ON CONFLICT (profile_id, role) DO NOTHING;
 INSERT INTO public.profiles (id, name, email, mobile, state, city, area, is_verified)
-VALUES ('042f6066-49f9-4fc1-a4d2-677482c424ba', 'Vikram Singh', 'owner_1789830703977@hallkhoj.com', '9876509876', 'Uttar Pradesh', 'Varanasi', '', FALSE)
-ON CONFLICT (id) DO NOTHING;
+VALUES ('042f6066-49f9-4fc1-a4d2-677482c424ba', 'Vikram Singh', 'owner_1789830703977@hallkhoj.com', '9810000008', 'Uttar Pradesh', 'Varanasi', '', FALSE)
+ON CONFLICT (id) DO UPDATE SET
+  name = EXCLUDED.name,
+  email = EXCLUDED.email,
+  mobile = EXCLUDED.mobile;
 INSERT INTO public.user_roles (profile_id, role)
 VALUES ('042f6066-49f9-4fc1-a4d2-677482c424ba', 'owner')
 ON CONFLICT (profile_id, role) DO NOTHING;
 INSERT INTO public.profiles (id, name, email, mobile, state, city, area, is_verified)
-VALUES ('48471669-e378-4363-a036-7e5d32d0dc9d', 'Test Customer', 'test_1789830714934@hallkhoj.com', '9876543210', 'Uttar Pradesh', 'Lucknow', '', FALSE)
-ON CONFLICT (id) DO NOTHING;
+VALUES ('48471669-e378-4363-a036-7e5d32d0dc9d', 'Test Customer', 'test_1789830714934@hallkhoj.com', '9810000009', 'Uttar Pradesh', 'Lucknow', '', FALSE)
+ON CONFLICT (id) DO UPDATE SET
+  name = EXCLUDED.name,
+  email = EXCLUDED.email,
+  mobile = EXCLUDED.mobile;
 INSERT INTO public.user_roles (profile_id, role)
 VALUES ('48471669-e378-4363-a036-7e5d32d0dc9d', 'customer')
 ON CONFLICT (profile_id, role) DO NOTHING;
 INSERT INTO public.profiles (id, name, email, mobile, state, city, area, is_verified)
-VALUES ('567220ff-9293-42d4-a04f-5a0ed7fa6b24', 'Rajesh Verma', 'owner_p5_1789831168138@hallkhoj.com', '9876543210', 'Uttar Pradesh', 'Lucknow', '', FALSE)
-ON CONFLICT (id) DO NOTHING;
+VALUES ('567220ff-9293-42d4-a04f-5a0ed7fa6b24', 'Rajesh Verma', 'owner_p5_1789831168138@hallkhoj.com', '9810000010', 'Uttar Pradesh', 'Lucknow', '', FALSE)
+ON CONFLICT (id) DO UPDATE SET
+  name = EXCLUDED.name,
+  email = EXCLUDED.email,
+  mobile = EXCLUDED.mobile;
 INSERT INTO public.user_roles (profile_id, role)
 VALUES ('567220ff-9293-42d4-a04f-5a0ed7fa6b24', 'owner')
 ON CONFLICT (profile_id, role) DO NOTHING;
 INSERT INTO public.profiles (id, name, email, mobile, state, city, area, is_verified)
 VALUES ('92c1e1b5-b648-425b-aabc-ca5ee7a74420', 'Sunita Customer', 'cust_p5_1789831168138@hallkhoj.com', '9123456780', 'Uttar Pradesh', 'Lucknow', '', FALSE)
-ON CONFLICT (id) DO NOTHING;
+ON CONFLICT (id) DO UPDATE SET
+  name = EXCLUDED.name,
+  email = EXCLUDED.email,
+  mobile = EXCLUDED.mobile;
 INSERT INTO public.user_roles (profile_id, role)
 VALUES ('92c1e1b5-b648-425b-aabc-ca5ee7a74420', 'customer')
 ON CONFLICT (profile_id, role) DO NOTHING;
 INSERT INTO public.profiles (id, name, email, mobile, state, city, area, is_verified)
-VALUES ('60cf1509-156f-45f5-aca7-40e4f0b19ce8', 'Rajesh Verma', 'owner_p5_1789831213242@hallkhoj.com', '9876543210', 'Uttar Pradesh', 'Lucknow', '', FALSE)
-ON CONFLICT (id) DO NOTHING;
+VALUES ('60cf1509-156f-45f5-aca7-40e4f0b19ce8', 'Rajesh Verma', 'owner_p5_1789831213242@hallkhoj.com', '9810000012', 'Uttar Pradesh', 'Lucknow', '', FALSE)
+ON CONFLICT (id) DO UPDATE SET
+  name = EXCLUDED.name,
+  email = EXCLUDED.email,
+  mobile = EXCLUDED.mobile;
 INSERT INTO public.user_roles (profile_id, role)
 VALUES ('60cf1509-156f-45f5-aca7-40e4f0b19ce8', 'owner')
 ON CONFLICT (profile_id, role) DO NOTHING;
 INSERT INTO public.profiles (id, name, email, mobile, state, city, area, is_verified)
-VALUES ('5be96dca-4531-4e02-a2d0-c676bcfc8e1e', 'Sunita Customer', 'cust_p5_1789831213242@hallkhoj.com', '9123456780', 'Uttar Pradesh', 'Lucknow', '', FALSE)
-ON CONFLICT (id) DO NOTHING;
+VALUES ('5be96dca-4531-4e02-a2d0-c676bcfc8e1e', 'Sunita Customer', 'cust_p5_1789831213242@hallkhoj.com', '9810000013', 'Uttar Pradesh', 'Lucknow', '', FALSE)
+ON CONFLICT (id) DO UPDATE SET
+  name = EXCLUDED.name,
+  email = EXCLUDED.email,
+  mobile = EXCLUDED.mobile;
 INSERT INTO public.user_roles (profile_id, role)
 VALUES ('5be96dca-4531-4e02-a2d0-c676bcfc8e1e', 'customer')
 ON CONFLICT (profile_id, role) DO NOTHING;
 INSERT INTO public.profiles (id, name, email, mobile, state, city, area, is_verified)
-VALUES ('4e8eaef3-843d-4fa4-aed0-c2701d4dc4a0', 'Priya Sharma', 'customer_1789831230423@hallkhoj.com', '9876501234', 'Uttar Pradesh', 'Lucknow', '', FALSE)
-ON CONFLICT (id) DO NOTHING;
+VALUES ('4e8eaef3-843d-4fa4-aed0-c2701d4dc4a0', 'Priya Sharma', 'customer_1789831230423@hallkhoj.com', '9810000014', 'Uttar Pradesh', 'Lucknow', '', FALSE)
+ON CONFLICT (id) DO UPDATE SET
+  name = EXCLUDED.name,
+  email = EXCLUDED.email,
+  mobile = EXCLUDED.mobile;
 INSERT INTO public.user_roles (profile_id, role)
 VALUES ('4e8eaef3-843d-4fa4-aed0-c2701d4dc4a0', 'customer')
 ON CONFLICT (profile_id, role) DO NOTHING;
 INSERT INTO public.profiles (id, name, email, mobile, state, city, area, is_verified)
-VALUES ('6a503b46-0927-47b2-ad9b-d5be7532f0f0', 'Vikram Singh', 'owner_1789831230423@hallkhoj.com', '9876509876', 'Uttar Pradesh', 'Varanasi', '', FALSE)
-ON CONFLICT (id) DO NOTHING;
+VALUES ('6a503b46-0927-47b2-ad9b-d5be7532f0f0', 'Vikram Singh', 'owner_1789831230423@hallkhoj.com', '9810000015', 'Uttar Pradesh', 'Varanasi', '', FALSE)
+ON CONFLICT (id) DO UPDATE SET
+  name = EXCLUDED.name,
+  email = EXCLUDED.email,
+  mobile = EXCLUDED.mobile;
 INSERT INTO public.user_roles (profile_id, role)
 VALUES ('6a503b46-0927-47b2-ad9b-d5be7532f0f0', 'owner')
 ON CONFLICT (profile_id, role) DO NOTHING;
 INSERT INTO public.profiles (id, name, email, mobile, state, city, area, is_verified)
 VALUES ('c05dfeee-7f14-48e4-ab37-17bbc67e426b', 'Rohan Verma', '9876120342@hallkhoj.phone', '9876120342', 'Uttar Pradesh', 'Lucknow', 'Chinhat', TRUE)
-ON CONFLICT (id) DO NOTHING;
+ON CONFLICT (id) DO UPDATE SET
+  name = EXCLUDED.name,
+  email = EXCLUDED.email,
+  mobile = EXCLUDED.mobile;
 INSERT INTO public.user_roles (profile_id, role)
 VALUES ('c05dfeee-7f14-48e4-ab37-17bbc67e426b', 'customer')
 ON CONFLICT (profile_id, role) DO NOTHING;
 INSERT INTO public.profiles (id, name, email, mobile, state, city, area, is_verified)
-VALUES ('293dc84f-e693-4ba8-a8b8-ad71e2a7e292', 'Kavita Singh', 'user_1789831237968@hallkhoj.com', '9876000001', 'Uttar Pradesh', 'Lucknow', '', FALSE)
-ON CONFLICT (id) DO NOTHING;
+VALUES ('293dc84f-e693-4ba8-a8b8-ad71e2a7e292', 'Kavita Singh', 'user_1789831237968@hallkhoj.com', '9810000017', 'Uttar Pradesh', 'Lucknow', '', FALSE)
+ON CONFLICT (id) DO UPDATE SET
+  name = EXCLUDED.name,
+  email = EXCLUDED.email,
+  mobile = EXCLUDED.mobile;
 INSERT INTO public.user_roles (profile_id, role)
 VALUES ('293dc84f-e693-4ba8-a8b8-ad71e2a7e292', 'customer')
 ON CONFLICT (profile_id, role) DO NOTHING;
 INSERT INTO public.profiles (id, name, email, mobile, state, city, area, is_verified)
 VALUES ('9dd005f5-26c6-433c-a14b-c0082ffe1af9', 'Platform Administrator', 'admin@hallkhoj.com', '9999999999', 'Uttar Pradesh', 'Lucknow', '', TRUE)
-ON CONFLICT (id) DO NOTHING;
+ON CONFLICT (id) DO UPDATE SET
+  name = EXCLUDED.name,
+  email = EXCLUDED.email,
+  mobile = EXCLUDED.mobile;
 INSERT INTO public.user_roles (profile_id, role)
 VALUES ('9dd005f5-26c6-433c-a14b-c0082ffe1af9', 'admin')
 ON CONFLICT (profile_id, role) DO NOTHING;
 INSERT INTO public.profiles (id, name, email, mobile, state, city, area, is_verified)
 VALUES ('059241c9-2754-49b9-a2a5-c3fcf05d2df2', 'Target Customer', 'cust_p6_1789831433378@hallkhoj.com', '9888877777', 'Uttar Pradesh', 'Lucknow', '', FALSE)
-ON CONFLICT (id) DO NOTHING;
+ON CONFLICT (id) DO UPDATE SET
+  name = EXCLUDED.name,
+  email = EXCLUDED.email,
+  mobile = EXCLUDED.mobile;
 INSERT INTO public.user_roles (profile_id, role)
 VALUES ('059241c9-2754-49b9-a2a5-c3fcf05d2df2', 'customer')
 ON CONFLICT (profile_id, role) DO NOTHING;
 INSERT INTO public.profiles (id, name, email, mobile, state, city, area, is_verified)
 VALUES ('7b7ba247-0d82-469b-ae5b-bc01d3ea2fc2', 'Pradeep Tiwari', 'owner_p6_1789831433378@hallkhoj.com', '9777766666', 'Uttar Pradesh', 'Lucknow', '', TRUE)
-ON CONFLICT (id) DO NOTHING;
+ON CONFLICT (id) DO UPDATE SET
+  name = EXCLUDED.name,
+  email = EXCLUDED.email,
+  mobile = EXCLUDED.mobile;
 INSERT INTO public.user_roles (profile_id, role)
 VALUES ('7b7ba247-0d82-469b-ae5b-bc01d3ea2fc2', 'owner')
 ON CONFLICT (profile_id, role) DO NOTHING;
 INSERT INTO public.profiles (id, name, email, mobile, state, city, area, is_verified)
-VALUES ('9697c20a-13f0-4287-ab66-05b0a5dbdc0b', 'Priya Sharma', 'customer_1789831441625@hallkhoj.com', '9876501234', 'Uttar Pradesh', 'Lucknow', '', FALSE)
-ON CONFLICT (id) DO NOTHING;
+VALUES ('9697c20a-13f0-4287-ab66-05b0a5dbdc0b', 'Priya Sharma', 'customer_1789831441625@hallkhoj.com', '9810000021', 'Uttar Pradesh', 'Lucknow', '', FALSE)
+ON CONFLICT (id) DO UPDATE SET
+  name = EXCLUDED.name,
+  email = EXCLUDED.email,
+  mobile = EXCLUDED.mobile;
 INSERT INTO public.user_roles (profile_id, role)
 VALUES ('9697c20a-13f0-4287-ab66-05b0a5dbdc0b', 'customer')
 ON CONFLICT (profile_id, role) DO NOTHING;
 INSERT INTO public.profiles (id, name, email, mobile, state, city, area, is_verified)
-VALUES ('76dbd48f-b20b-41aa-ab61-4ecee9958d04', 'Vikram Singh', 'owner_1789831441625@hallkhoj.com', '9876509876', 'Uttar Pradesh', 'Varanasi', '', FALSE)
-ON CONFLICT (id) DO NOTHING;
+VALUES ('76dbd48f-b20b-41aa-ab61-4ecee9958d04', 'Vikram Singh', 'owner_1789831441625@hallkhoj.com', '9810000022', 'Uttar Pradesh', 'Varanasi', '', FALSE)
+ON CONFLICT (id) DO UPDATE SET
+  name = EXCLUDED.name,
+  email = EXCLUDED.email,
+  mobile = EXCLUDED.mobile;
 INSERT INTO public.user_roles (profile_id, role)
 VALUES ('76dbd48f-b20b-41aa-ab61-4ecee9958d04', 'owner')
 ON CONFLICT (profile_id, role) DO NOTHING;
 INSERT INTO public.profiles (id, name, email, mobile, state, city, area, is_verified)
 VALUES ('29a0dabf-b6cb-44b9-a27b-e14bade7ab23', 'Rohan Verma', '9876666503@hallkhoj.phone', '9876666503', 'Uttar Pradesh', 'Lucknow', 'Chinhat', TRUE)
-ON CONFLICT (id) DO NOTHING;
+ON CONFLICT (id) DO UPDATE SET
+  name = EXCLUDED.name,
+  email = EXCLUDED.email,
+  mobile = EXCLUDED.mobile;
 INSERT INTO public.user_roles (profile_id, role)
 VALUES ('29a0dabf-b6cb-44b9-a27b-e14bade7ab23', 'customer')
 ON CONFLICT (profile_id, role) DO NOTHING;
 INSERT INTO public.profiles (id, name, email, mobile, state, city, area, is_verified)
-VALUES ('fb6d4df3-a522-4920-a808-1f1c54e186f4', 'Kavita Singh', 'user_1789831448806@hallkhoj.com', '9876000001', 'Uttar Pradesh', 'Lucknow', '', FALSE)
-ON CONFLICT (id) DO NOTHING;
+VALUES ('fb6d4df3-a522-4920-a808-1f1c54e186f4', 'Kavita Singh', 'user_1789831448806@hallkhoj.com', '9810000024', 'Uttar Pradesh', 'Lucknow', '', FALSE)
+ON CONFLICT (id) DO UPDATE SET
+  name = EXCLUDED.name,
+  email = EXCLUDED.email,
+  mobile = EXCLUDED.mobile;
 INSERT INTO public.user_roles (profile_id, role)
 VALUES ('fb6d4df3-a522-4920-a808-1f1c54e186f4', 'customer')
 ON CONFLICT (profile_id, role) DO NOTHING;
 INSERT INTO public.profiles (id, name, email, mobile, state, city, area, is_verified)
-VALUES ('55161483-ca92-46ef-a537-ce19924016e7', 'Rajesh Verma', 'owner_p5_1789831456827@hallkhoj.com', '9876543210', 'Uttar Pradesh', 'Lucknow', '', FALSE)
-ON CONFLICT (id) DO NOTHING;
+VALUES ('55161483-ca92-46ef-a537-ce19924016e7', 'Rajesh Verma', 'owner_p5_1789831456827@hallkhoj.com', '9810000025', 'Uttar Pradesh', 'Lucknow', '', FALSE)
+ON CONFLICT (id) DO UPDATE SET
+  name = EXCLUDED.name,
+  email = EXCLUDED.email,
+  mobile = EXCLUDED.mobile;
 INSERT INTO public.user_roles (profile_id, role)
 VALUES ('55161483-ca92-46ef-a537-ce19924016e7', 'owner')
 ON CONFLICT (profile_id, role) DO NOTHING;
 INSERT INTO public.profiles (id, name, email, mobile, state, city, area, is_verified)
-VALUES ('d34f518d-519a-41e2-ad1f-b14cf13e75e8', 'Sunita Customer', 'cust_p5_1789831456827@hallkhoj.com', '9123456780', 'Uttar Pradesh', 'Lucknow', '', FALSE)
-ON CONFLICT (id) DO NOTHING;
+VALUES ('d34f518d-519a-41e2-ad1f-b14cf13e75e8', 'Sunita Customer', 'cust_p5_1789831456827@hallkhoj.com', '9810000026', 'Uttar Pradesh', 'Lucknow', '', FALSE)
+ON CONFLICT (id) DO UPDATE SET
+  name = EXCLUDED.name,
+  email = EXCLUDED.email,
+  mobile = EXCLUDED.mobile;
 INSERT INTO public.user_roles (profile_id, role)
 VALUES ('d34f518d-519a-41e2-ad1f-b14cf13e75e8', 'customer')
 ON CONFLICT (profile_id, role) DO NOTHING;
 INSERT INTO public.profiles (id, name, email, mobile, state, city, area, is_verified)
-VALUES ('cd2a7fbd-742f-4215-a078-56cba3999d18', 'Priya Sharma', 'customer_1789831761343@hallkhoj.com', '9876501234', 'Uttar Pradesh', 'Lucknow', '', FALSE)
-ON CONFLICT (id) DO NOTHING;
+VALUES ('cd2a7fbd-742f-4215-a078-56cba3999d18', 'Priya Sharma', 'customer_1789831761343@hallkhoj.com', '9810000027', 'Uttar Pradesh', 'Lucknow', '', FALSE)
+ON CONFLICT (id) DO UPDATE SET
+  name = EXCLUDED.name,
+  email = EXCLUDED.email,
+  mobile = EXCLUDED.mobile;
 INSERT INTO public.user_roles (profile_id, role)
 VALUES ('cd2a7fbd-742f-4215-a078-56cba3999d18', 'customer')
 ON CONFLICT (profile_id, role) DO NOTHING;
 INSERT INTO public.profiles (id, name, email, mobile, state, city, area, is_verified)
-VALUES ('48c8f787-f1ec-4942-afe4-816c5eab6c50', 'Vikram Singh', 'owner_1789831761343@hallkhoj.com', '9876509876', 'Uttar Pradesh', 'Varanasi', '', FALSE)
-ON CONFLICT (id) DO NOTHING;
+VALUES ('48c8f787-f1ec-4942-afe4-816c5eab6c50', 'Vikram Singh', 'owner_1789831761343@hallkhoj.com', '9810000028', 'Uttar Pradesh', 'Varanasi', '', FALSE)
+ON CONFLICT (id) DO UPDATE SET
+  name = EXCLUDED.name,
+  email = EXCLUDED.email,
+  mobile = EXCLUDED.mobile;
 INSERT INTO public.user_roles (profile_id, role)
 VALUES ('48c8f787-f1ec-4942-afe4-816c5eab6c50', 'owner')
 ON CONFLICT (profile_id, role) DO NOTHING;
 INSERT INTO public.profiles (id, name, email, mobile, state, city, area, is_verified)
 VALUES ('f3b681f3-a1cf-4cab-a7c1-7c575f77a9d9', 'Rohan Verma', '9876895567@hallkhoj.phone', '9876895567', 'Uttar Pradesh', 'Lucknow', 'Chinhat', TRUE)
-ON CONFLICT (id) DO NOTHING;
+ON CONFLICT (id) DO UPDATE SET
+  name = EXCLUDED.name,
+  email = EXCLUDED.email,
+  mobile = EXCLUDED.mobile;
 INSERT INTO public.user_roles (profile_id, role)
 VALUES ('f3b681f3-a1cf-4cab-a7c1-7c575f77a9d9', 'customer')
 ON CONFLICT (profile_id, role) DO NOTHING;
 INSERT INTO public.profiles (id, name, email, mobile, state, city, area, is_verified)
-VALUES ('a8404623-eae7-4f39-a17f-cdc04f7c50d9', 'Kavita Singh', 'user_1789831779857@hallkhoj.com', '9876000001', 'Uttar Pradesh', 'Lucknow', '', FALSE)
-ON CONFLICT (id) DO NOTHING;
+VALUES ('a8404623-eae7-4f39-a17f-cdc04f7c50d9', 'Kavita Singh', 'user_1789831779857@hallkhoj.com', '9810000030', 'Uttar Pradesh', 'Lucknow', '', FALSE)
+ON CONFLICT (id) DO UPDATE SET
+  name = EXCLUDED.name,
+  email = EXCLUDED.email,
+  mobile = EXCLUDED.mobile;
 INSERT INTO public.user_roles (profile_id, role)
 VALUES ('a8404623-eae7-4f39-a17f-cdc04f7c50d9', 'customer')
 ON CONFLICT (profile_id, role) DO NOTHING;
 INSERT INTO public.profiles (id, name, email, mobile, state, city, area, is_verified)
-VALUES ('2227fb37-0d1b-4b1b-aee0-ef5447c76df6', 'Rajesh Verma', 'owner_p5_1789831793838@hallkhoj.com', '9876543210', 'Uttar Pradesh', 'Lucknow', '', FALSE)
-ON CONFLICT (id) DO NOTHING;
+VALUES ('2227fb37-0d1b-4b1b-aee0-ef5447c76df6', 'Rajesh Verma', 'owner_p5_1789831793838@hallkhoj.com', '9810000031', 'Uttar Pradesh', 'Lucknow', '', FALSE)
+ON CONFLICT (id) DO UPDATE SET
+  name = EXCLUDED.name,
+  email = EXCLUDED.email,
+  mobile = EXCLUDED.mobile;
 INSERT INTO public.user_roles (profile_id, role)
 VALUES ('2227fb37-0d1b-4b1b-aee0-ef5447c76df6', 'owner')
 ON CONFLICT (profile_id, role) DO NOTHING;
 INSERT INTO public.profiles (id, name, email, mobile, state, city, area, is_verified)
-VALUES ('501655b4-0d95-4e27-a994-74acdf8ba56d', 'Sunita Customer', 'cust_p5_1789831793838@hallkhoj.com', '9123456780', 'Uttar Pradesh', 'Lucknow', '', FALSE)
-ON CONFLICT (id) DO NOTHING;
+VALUES ('501655b4-0d95-4e27-a994-74acdf8ba56d', 'Sunita Customer', 'cust_p5_1789831793838@hallkhoj.com', '9810000032', 'Uttar Pradesh', 'Lucknow', '', FALSE)
+ON CONFLICT (id) DO UPDATE SET
+  name = EXCLUDED.name,
+  email = EXCLUDED.email,
+  mobile = EXCLUDED.mobile;
 INSERT INTO public.user_roles (profile_id, role)
 VALUES ('501655b4-0d95-4e27-a994-74acdf8ba56d', 'customer')
 ON CONFLICT (profile_id, role) DO NOTHING;
 INSERT INTO public.profiles (id, name, email, mobile, state, city, area, is_verified)
-VALUES ('112374a3-778d-4351-a142-fe112df936ad', 'Target Customer', 'cust_p6_1789831804587@hallkhoj.com', '9888877777', 'Uttar Pradesh', 'Lucknow', '', FALSE)
-ON CONFLICT (id) DO NOTHING;
+VALUES ('112374a3-778d-4351-a142-fe112df936ad', 'Target Customer', 'cust_p6_1789831804587@hallkhoj.com', '9810000033', 'Uttar Pradesh', 'Lucknow', '', FALSE)
+ON CONFLICT (id) DO UPDATE SET
+  name = EXCLUDED.name,
+  email = EXCLUDED.email,
+  mobile = EXCLUDED.mobile;
 INSERT INTO public.user_roles (profile_id, role)
 VALUES ('112374a3-778d-4351-a142-fe112df936ad', 'customer')
 ON CONFLICT (profile_id, role) DO NOTHING;
 INSERT INTO public.profiles (id, name, email, mobile, state, city, area, is_verified)
-VALUES ('0433f799-02fb-4c7b-a280-9dd45c8c6cd1', 'Pradeep Tiwari', 'owner_p6_1789831804587@hallkhoj.com', '9777766666', 'Uttar Pradesh', 'Lucknow', '', TRUE)
-ON CONFLICT (id) DO NOTHING;
+VALUES ('0433f799-02fb-4c7b-a280-9dd45c8c6cd1', 'Pradeep Tiwari', 'owner_p6_1789831804587@hallkhoj.com', '9810000034', 'Uttar Pradesh', 'Lucknow', '', TRUE)
+ON CONFLICT (id) DO UPDATE SET
+  name = EXCLUDED.name,
+  email = EXCLUDED.email,
+  mobile = EXCLUDED.mobile;
 INSERT INTO public.user_roles (profile_id, role)
 VALUES ('0433f799-02fb-4c7b-a280-9dd45c8c6cd1', 'owner')
 ON CONFLICT (profile_id, role) DO NOTHING;
 INSERT INTO public.profiles (id, name, email, mobile, state, city, area, is_verified)
-VALUES ('e455952f-1ee9-4962-a9c3-9a3330df7cca', 'Priya Sharma', 'customer_1789832738460@hallkhoj.com', '9876501234', 'Uttar Pradesh', 'Lucknow', '', FALSE)
-ON CONFLICT (id) DO NOTHING;
+VALUES ('e455952f-1ee9-4962-a9c3-9a3330df7cca', 'Priya Sharma', 'customer_1789832738460@hallkhoj.com', '9810000035', 'Uttar Pradesh', 'Lucknow', '', FALSE)
+ON CONFLICT (id) DO UPDATE SET
+  name = EXCLUDED.name,
+  email = EXCLUDED.email,
+  mobile = EXCLUDED.mobile;
 INSERT INTO public.user_roles (profile_id, role)
 VALUES ('e455952f-1ee9-4962-a9c3-9a3330df7cca', 'customer')
 ON CONFLICT (profile_id, role) DO NOTHING;
 INSERT INTO public.profiles (id, name, email, mobile, state, city, area, is_verified)
-VALUES ('78c63982-f13d-4ad8-ac97-08e7d5c1bb8e', 'Vikram Singh', 'owner_1789832738460@hallkhoj.com', '9876509876', 'Uttar Pradesh', 'Varanasi', '', FALSE)
-ON CONFLICT (id) DO NOTHING;
+VALUES ('78c63982-f13d-4ad8-ac97-08e7d5c1bb8e', 'Vikram Singh', 'owner_1789832738460@hallkhoj.com', '9810000036', 'Uttar Pradesh', 'Varanasi', '', FALSE)
+ON CONFLICT (id) DO UPDATE SET
+  name = EXCLUDED.name,
+  email = EXCLUDED.email,
+  mobile = EXCLUDED.mobile;
 INSERT INTO public.user_roles (profile_id, role)
 VALUES ('78c63982-f13d-4ad8-ac97-08e7d5c1bb8e', 'owner')
 ON CONFLICT (profile_id, role) DO NOTHING;
 INSERT INTO public.profiles (id, name, email, mobile, state, city, area, is_verified)
 VALUES ('b4d040ee-cb11-4ab0-aac8-e4de6b220b10', 'Rohan Verma', '9876195872@hallkhoj.phone', '9876195872', 'Uttar Pradesh', 'Lucknow', 'Chinhat', TRUE)
-ON CONFLICT (id) DO NOTHING;
+ON CONFLICT (id) DO UPDATE SET
+  name = EXCLUDED.name,
+  email = EXCLUDED.email,
+  mobile = EXCLUDED.mobile;
 INSERT INTO public.user_roles (profile_id, role)
 VALUES ('b4d040ee-cb11-4ab0-aac8-e4de6b220b10', 'customer')
 ON CONFLICT (profile_id, role) DO NOTHING;
 INSERT INTO public.profiles (id, name, email, mobile, state, city, area, is_verified)
-VALUES ('eb4b307a-e4d3-4005-a1dd-59c1929f1d3f', 'Kavita Singh', 'user_1789832747487@hallkhoj.com', '9876000001', 'Uttar Pradesh', 'Lucknow', '', FALSE)
-ON CONFLICT (id) DO NOTHING;
+VALUES ('eb4b307a-e4d3-4005-a1dd-59c1929f1d3f', 'Kavita Singh', 'user_1789832747487@hallkhoj.com', '9810000038', 'Uttar Pradesh', 'Lucknow', '', FALSE)
+ON CONFLICT (id) DO UPDATE SET
+  name = EXCLUDED.name,
+  email = EXCLUDED.email,
+  mobile = EXCLUDED.mobile;
 INSERT INTO public.user_roles (profile_id, role)
 VALUES ('eb4b307a-e4d3-4005-a1dd-59c1929f1d3f', 'customer')
 ON CONFLICT (profile_id, role) DO NOTHING;
 INSERT INTO public.profiles (id, name, email, mobile, state, city, area, is_verified)
-VALUES ('0f4bee81-abcb-403d-a828-cb4aa09cd06c', 'Rajesh Verma', 'owner_p5_1789832761322@hallkhoj.com', '9876543210', 'Uttar Pradesh', 'Lucknow', '', FALSE)
-ON CONFLICT (id) DO NOTHING;
+VALUES ('0f4bee81-abcb-403d-a828-cb4aa09cd06c', 'Rajesh Verma', 'owner_p5_1789832761322@hallkhoj.com', '9810000039', 'Uttar Pradesh', 'Lucknow', '', FALSE)
+ON CONFLICT (id) DO UPDATE SET
+  name = EXCLUDED.name,
+  email = EXCLUDED.email,
+  mobile = EXCLUDED.mobile;
 INSERT INTO public.user_roles (profile_id, role)
 VALUES ('0f4bee81-abcb-403d-a828-cb4aa09cd06c', 'owner')
 ON CONFLICT (profile_id, role) DO NOTHING;
 INSERT INTO public.profiles (id, name, email, mobile, state, city, area, is_verified)
-VALUES ('9068b64d-1e81-4850-a82c-c00185d99fd8', 'Sunita Customer', 'cust_p5_1789832761322@hallkhoj.com', '9123456780', 'Uttar Pradesh', 'Lucknow', '', FALSE)
-ON CONFLICT (id) DO NOTHING;
+VALUES ('9068b64d-1e81-4850-a82c-c00185d99fd8', 'Sunita Customer', 'cust_p5_1789832761322@hallkhoj.com', '9810000040', 'Uttar Pradesh', 'Lucknow', '', FALSE)
+ON CONFLICT (id) DO UPDATE SET
+  name = EXCLUDED.name,
+  email = EXCLUDED.email,
+  mobile = EXCLUDED.mobile;
 INSERT INTO public.user_roles (profile_id, role)
 VALUES ('9068b64d-1e81-4850-a82c-c00185d99fd8', 'customer')
 ON CONFLICT (profile_id, role) DO NOTHING;
 INSERT INTO public.profiles (id, name, email, mobile, state, city, area, is_verified)
-VALUES ('621afea7-4206-4f8b-aea4-3b5f3d388284', 'Target Customer', 'cust_p6_1789832776391@hallkhoj.com', '9888877777', 'Uttar Pradesh', 'Lucknow', '', FALSE)
-ON CONFLICT (id) DO NOTHING;
+VALUES ('621afea7-4206-4f8b-aea4-3b5f3d388284', 'Target Customer', 'cust_p6_1789832776391@hallkhoj.com', '9810000041', 'Uttar Pradesh', 'Lucknow', '', FALSE)
+ON CONFLICT (id) DO UPDATE SET
+  name = EXCLUDED.name,
+  email = EXCLUDED.email,
+  mobile = EXCLUDED.mobile;
 INSERT INTO public.user_roles (profile_id, role)
 VALUES ('621afea7-4206-4f8b-aea4-3b5f3d388284', 'customer')
 ON CONFLICT (profile_id, role) DO NOTHING;
 INSERT INTO public.profiles (id, name, email, mobile, state, city, area, is_verified)
-VALUES ('cabf1c82-00a0-4d53-af60-dc60eb1b3df2', 'Pradeep Tiwari', 'owner_p6_1789832776391@hallkhoj.com', '9777766666', 'Uttar Pradesh', 'Lucknow', '', TRUE)
-ON CONFLICT (id) DO NOTHING;
+VALUES ('cabf1c82-00a0-4d53-af60-dc60eb1b3df2', 'Pradeep Tiwari', 'owner_p6_1789832776391@hallkhoj.com', '9810000042', 'Uttar Pradesh', 'Lucknow', '', TRUE)
+ON CONFLICT (id) DO UPDATE SET
+  name = EXCLUDED.name,
+  email = EXCLUDED.email,
+  mobile = EXCLUDED.mobile;
 INSERT INTO public.user_roles (profile_id, role)
 VALUES ('cabf1c82-00a0-4d53-af60-dc60eb1b3df2', 'owner')
 ON CONFLICT (profile_id, role) DO NOTHING;
 INSERT INTO public.profiles (id, name, email, mobile, state, city, area, is_verified)
 VALUES ('da722730-ae1f-4630-af36-538e0d3736ff', 'Rahul Customer', 'rahul_1789833096048@example.com', '9873268864', 'Uttar Pradesh', 'Lucknow', '', FALSE)
-ON CONFLICT (id) DO NOTHING;
+ON CONFLICT (id) DO UPDATE SET
+  name = EXCLUDED.name,
+  email = EXCLUDED.email,
+  mobile = EXCLUDED.mobile;
 INSERT INTO public.user_roles (profile_id, role)
 VALUES ('da722730-ae1f-4630-af36-538e0d3736ff', 'customer')
 ON CONFLICT (profile_id, role) DO NOTHING;
 INSERT INTO public.profiles (id, name, email, mobile, state, city, area, is_verified)
 VALUES ('4890f7ca-771e-4a62-a783-f118724edea5', 'Priya Customer', 'priya_1789833096048@example.com', '9717392469', 'Uttar Pradesh', 'Lucknow', '', FALSE)
-ON CONFLICT (id) DO NOTHING;
+ON CONFLICT (id) DO UPDATE SET
+  name = EXCLUDED.name,
+  email = EXCLUDED.email,
+  mobile = EXCLUDED.mobile;
 INSERT INTO public.user_roles (profile_id, role)
 VALUES ('4890f7ca-771e-4a62-a783-f118724edea5', 'customer')
 ON CONFLICT (profile_id, role) DO NOTHING;
 INSERT INTO public.profiles (id, name, email, mobile, state, city, area, is_verified)
 VALUES ('4a98da76-a0d7-444f-a327-169c24b6815a', 'Rahul Customer', 'rahul_1789833130263@example.com', '9879831002', 'Uttar Pradesh', 'Lucknow', '', FALSE)
-ON CONFLICT (id) DO NOTHING;
+ON CONFLICT (id) DO UPDATE SET
+  name = EXCLUDED.name,
+  email = EXCLUDED.email,
+  mobile = EXCLUDED.mobile;
 INSERT INTO public.user_roles (profile_id, role)
 VALUES ('4a98da76-a0d7-444f-a327-169c24b6815a', 'customer')
 ON CONFLICT (profile_id, role) DO NOTHING;
 INSERT INTO public.profiles (id, name, email, mobile, state, city, area, is_verified)
 VALUES ('12b2e2a4-8cbd-4e2a-a051-575cb05228eb', 'Priya Customer', 'priya_1789833130263@example.com', '9739909172', 'Uttar Pradesh', 'Lucknow', '', FALSE)
-ON CONFLICT (id) DO NOTHING;
+ON CONFLICT (id) DO UPDATE SET
+  name = EXCLUDED.name,
+  email = EXCLUDED.email,
+  mobile = EXCLUDED.mobile;
 INSERT INTO public.user_roles (profile_id, role)
 VALUES ('12b2e2a4-8cbd-4e2a-a051-575cb05228eb', 'customer')
 ON CONFLICT (profile_id, role) DO NOTHING;
 INSERT INTO public.profiles (id, name, email, mobile, state, city, area, is_verified)
 VALUES ('1a6ed119-ec3b-4020-ac61-be489e916cfd', 'Vikram Rajput Partner', 'vikram_partner_1789833130263@example.com', '9629277933', 'Uttar Pradesh', 'Lucknow', '', FALSE)
-ON CONFLICT (id) DO NOTHING;
+ON CONFLICT (id) DO UPDATE SET
+  name = EXCLUDED.name,
+  email = EXCLUDED.email,
+  mobile = EXCLUDED.mobile;
 INSERT INTO public.user_roles (profile_id, role)
 VALUES ('1a6ed119-ec3b-4020-ac61-be489e916cfd', 'owner')
 ON CONFLICT (profile_id, role) DO NOTHING;
 INSERT INTO public.profiles (id, name, email, mobile, state, city, area, is_verified)
 VALUES ('0d17a558-a17f-4e6c-a063-51e0e6ec3992', 'Aman Customer', 'aman_cust_1789833637874@example.com', '9835854650', 'Uttar Pradesh', 'Lucknow', '', FALSE)
-ON CONFLICT (id) DO NOTHING;
+ON CONFLICT (id) DO UPDATE SET
+  name = EXCLUDED.name,
+  email = EXCLUDED.email,
+  mobile = EXCLUDED.mobile;
 INSERT INTO public.user_roles (profile_id, role)
 VALUES ('0d17a558-a17f-4e6c-a063-51e0e6ec3992', 'customer')
 ON CONFLICT (profile_id, role) DO NOTHING;
 INSERT INTO public.profiles (id, name, email, mobile, state, city, area, is_verified)
 VALUES ('8fcd780c-50ef-4082-a24f-1cef86d625a0', 'Sunil Owner Partner', 'sunil_owner_1789833637874@example.com', '9754323456', 'Uttar Pradesh', 'Lucknow', '', FALSE)
-ON CONFLICT (id) DO NOTHING;
+ON CONFLICT (id) DO UPDATE SET
+  name = EXCLUDED.name,
+  email = EXCLUDED.email,
+  mobile = EXCLUDED.mobile;
 INSERT INTO public.user_roles (profile_id, role)
 VALUES ('8fcd780c-50ef-4082-a24f-1cef86d625a0', 'owner')
 ON CONFLICT (profile_id, role) DO NOTHING;
 INSERT INTO public.profiles (id, name, email, mobile, state, city, area, is_verified)
 VALUES ('886d0822-1986-4b5a-af37-893036000a4e', 'Stranger User', 'stranger_1789833637874@example.com', '9642450592', 'Uttar Pradesh', 'Lucknow', '', FALSE)
-ON CONFLICT (id) DO NOTHING;
+ON CONFLICT (id) DO UPDATE SET
+  name = EXCLUDED.name,
+  email = EXCLUDED.email,
+  mobile = EXCLUDED.mobile;
 INSERT INTO public.user_roles (profile_id, role)
 VALUES ('886d0822-1986-4b5a-af37-893036000a4e', 'customer')
 ON CONFLICT (profile_id, role) DO NOTHING;
 INSERT INTO public.profiles (id, name, email, mobile, state, city, area, is_verified)
 VALUES ('f99d9357-2aaf-49cd-a1a9-0e317c2b0249', 'Aman Customer', 'aman_cust_1789833735816@example.com', '9826680579', 'Uttar Pradesh', 'Lucknow', '', FALSE)
-ON CONFLICT (id) DO NOTHING;
+ON CONFLICT (id) DO UPDATE SET
+  name = EXCLUDED.name,
+  email = EXCLUDED.email,
+  mobile = EXCLUDED.mobile;
 INSERT INTO public.user_roles (profile_id, role)
 VALUES ('f99d9357-2aaf-49cd-a1a9-0e317c2b0249', 'customer')
 ON CONFLICT (profile_id, role) DO NOTHING;
 INSERT INTO public.profiles (id, name, email, mobile, state, city, area, is_verified)
 VALUES ('2f7024ab-d34a-43fb-afb2-c1067ef15732', 'Sunil Owner Partner', 'sunil_owner_1789833735816@example.com', '9784222328', 'Uttar Pradesh', 'Lucknow', '', FALSE)
-ON CONFLICT (id) DO NOTHING;
+ON CONFLICT (id) DO UPDATE SET
+  name = EXCLUDED.name,
+  email = EXCLUDED.email,
+  mobile = EXCLUDED.mobile;
 INSERT INTO public.user_roles (profile_id, role)
 VALUES ('2f7024ab-d34a-43fb-afb2-c1067ef15732', 'owner')
 ON CONFLICT (profile_id, role) DO NOTHING;
 INSERT INTO public.profiles (id, name, email, mobile, state, city, area, is_verified)
 VALUES ('2bcb25f3-5169-42bf-a252-5be9f6541ee7', 'Stranger User', 'stranger_1789833735816@example.com', '9698093432', 'Uttar Pradesh', 'Lucknow', '', FALSE)
-ON CONFLICT (id) DO NOTHING;
+ON CONFLICT (id) DO UPDATE SET
+  name = EXCLUDED.name,
+  email = EXCLUDED.email,
+  mobile = EXCLUDED.mobile;
 INSERT INTO public.user_roles (profile_id, role)
 VALUES ('2bcb25f3-5169-42bf-a252-5be9f6541ee7', 'customer')
 ON CONFLICT (profile_id, role) DO NOTHING;
 INSERT INTO public.profiles (id, name, email, mobile, state, city, area, is_verified)
 VALUES ('3572b92a-ee49-492d-acf1-1915b4cfe278', 'Kavita Verma Customer', 'kavita_1789833810518@example.com', '9899300578', 'Uttar Pradesh', 'Lucknow', '', FALSE)
-ON CONFLICT (id) DO NOTHING;
+ON CONFLICT (id) DO UPDATE SET
+  name = EXCLUDED.name,
+  email = EXCLUDED.email,
+  mobile = EXCLUDED.mobile;
 INSERT INTO public.user_roles (profile_id, role)
 VALUES ('3572b92a-ee49-492d-acf1-1915b4cfe278', 'customer')
 ON CONFLICT (profile_id, role) DO NOTHING;
 INSERT INTO public.profiles (id, name, email, mobile, state, city, area, is_verified)
 VALUES ('f0ba2926-d51a-49d0-a819-71fb938e6b23', 'Deepak Stranger', 'deepak_1789833810518@example.com', '9725186423', 'Uttar Pradesh', 'Lucknow', '', FALSE)
-ON CONFLICT (id) DO NOTHING;
+ON CONFLICT (id) DO UPDATE SET
+  name = EXCLUDED.name,
+  email = EXCLUDED.email,
+  mobile = EXCLUDED.mobile;
 INSERT INTO public.user_roles (profile_id, role)
 VALUES ('f0ba2926-d51a-49d0-a819-71fb938e6b23', 'customer')
 ON CONFLICT (profile_id, role) DO NOTHING;
 INSERT INTO public.profiles (id, name, email, mobile, state, city, area, is_verified)
 VALUES ('d5151dd0-423d-4d85-afdf-2521d39c3c75', 'Manoj Singh Partner', 'manoj_1789833810518@example.com', '9672250438', 'Uttar Pradesh', 'Lucknow', '', FALSE)
-ON CONFLICT (id) DO NOTHING;
+ON CONFLICT (id) DO UPDATE SET
+  name = EXCLUDED.name,
+  email = EXCLUDED.email,
+  mobile = EXCLUDED.mobile;
 INSERT INTO public.user_roles (profile_id, role)
 VALUES ('d5151dd0-423d-4d85-afdf-2521d39c3c75', 'owner')
 ON CONFLICT (profile_id, role) DO NOTHING;
 INSERT INTO public.profiles (id, name, email, mobile, state, city, area, is_verified)
 VALUES ('2504848d-34aa-4000-ac54-4798e6571198', 'Kavita Verma Customer', 'kavita_1789833856065@example.com', '9854696533', 'Uttar Pradesh', 'Lucknow', '', FALSE)
-ON CONFLICT (id) DO NOTHING;
+ON CONFLICT (id) DO UPDATE SET
+  name = EXCLUDED.name,
+  email = EXCLUDED.email,
+  mobile = EXCLUDED.mobile;
 INSERT INTO public.user_roles (profile_id, role)
 VALUES ('2504848d-34aa-4000-ac54-4798e6571198', 'customer')
 ON CONFLICT (profile_id, role) DO NOTHING;
 INSERT INTO public.profiles (id, name, email, mobile, state, city, area, is_verified)
 VALUES ('55994f3a-bdfc-4471-af1f-b818af45107e', 'Deepak Stranger', 'deepak_1789833856065@example.com', '9742414108', 'Uttar Pradesh', 'Lucknow', '', FALSE)
-ON CONFLICT (id) DO NOTHING;
+ON CONFLICT (id) DO UPDATE SET
+  name = EXCLUDED.name,
+  email = EXCLUDED.email,
+  mobile = EXCLUDED.mobile;
 INSERT INTO public.user_roles (profile_id, role)
 VALUES ('55994f3a-bdfc-4471-af1f-b818af45107e', 'customer')
 ON CONFLICT (profile_id, role) DO NOTHING;
 INSERT INTO public.profiles (id, name, email, mobile, state, city, area, is_verified)
 VALUES ('eecb86f9-b2c8-432f-a810-55a4b6b39494', 'Manoj Singh Partner', 'manoj_1789833856065@example.com', '9692186132', 'Uttar Pradesh', 'Lucknow', '', FALSE)
-ON CONFLICT (id) DO NOTHING;
+ON CONFLICT (id) DO UPDATE SET
+  name = EXCLUDED.name,
+  email = EXCLUDED.email,
+  mobile = EXCLUDED.mobile;
 INSERT INTO public.user_roles (profile_id, role)
 VALUES ('eecb86f9-b2c8-432f-a810-55a4b6b39494', 'owner')
 ON CONFLICT (profile_id, role) DO NOTHING;
 INSERT INTO public.profiles (id, name, email, mobile, state, city, area, is_verified)
 VALUES ('0d4d04c8-5f8d-4c5d-afc3-fdb122e4c904', 'Aman Customer', 'aman_cust_1789833866394@example.com', '9825664674', 'Uttar Pradesh', 'Lucknow', '', FALSE)
-ON CONFLICT (id) DO NOTHING;
+ON CONFLICT (id) DO UPDATE SET
+  name = EXCLUDED.name,
+  email = EXCLUDED.email,
+  mobile = EXCLUDED.mobile;
 INSERT INTO public.user_roles (profile_id, role)
 VALUES ('0d4d04c8-5f8d-4c5d-afc3-fdb122e4c904', 'customer')
 ON CONFLICT (profile_id, role) DO NOTHING;
 INSERT INTO public.profiles (id, name, email, mobile, state, city, area, is_verified)
 VALUES ('9bedca0b-f020-4d42-a29d-1289a9a50841', 'Sunil Owner Partner', 'sunil_owner_1789833866394@example.com', '9721974906', 'Uttar Pradesh', 'Lucknow', '', FALSE)
-ON CONFLICT (id) DO NOTHING;
+ON CONFLICT (id) DO UPDATE SET
+  name = EXCLUDED.name,
+  email = EXCLUDED.email,
+  mobile = EXCLUDED.mobile;
 INSERT INTO public.user_roles (profile_id, role)
 VALUES ('9bedca0b-f020-4d42-a29d-1289a9a50841', 'owner')
 ON CONFLICT (profile_id, role) DO NOTHING;
 INSERT INTO public.profiles (id, name, email, mobile, state, city, area, is_verified)
 VALUES ('597bd136-255b-4524-a5f3-510444e8d492', 'Stranger User', 'stranger_1789833866394@example.com', '9654622714', 'Uttar Pradesh', 'Lucknow', '', FALSE)
-ON CONFLICT (id) DO NOTHING;
+ON CONFLICT (id) DO UPDATE SET
+  name = EXCLUDED.name,
+  email = EXCLUDED.email,
+  mobile = EXCLUDED.mobile;
 INSERT INTO public.user_roles (profile_id, role)
 VALUES ('597bd136-255b-4524-a5f3-510444e8d492', 'customer')
 ON CONFLICT (profile_id, role) DO NOTHING;
 INSERT INTO public.profiles (id, name, email, mobile, state, city, area, is_verified)
 VALUES ('bab8a00d-766b-43d3-a4d2-97021758ff3d', 'Aman Customer', 'aman_cust_1789834398796@example.com', '9844367001', 'Uttar Pradesh', 'Lucknow', '', FALSE)
-ON CONFLICT (id) DO NOTHING;
+ON CONFLICT (id) DO UPDATE SET
+  name = EXCLUDED.name,
+  email = EXCLUDED.email,
+  mobile = EXCLUDED.mobile;
 INSERT INTO public.user_roles (profile_id, role)
 VALUES ('bab8a00d-766b-43d3-a4d2-97021758ff3d', 'customer')
 ON CONFLICT (profile_id, role) DO NOTHING;
 INSERT INTO public.profiles (id, name, email, mobile, state, city, area, is_verified)
 VALUES ('4ec3bc1b-ac62-4ccd-a975-7168690d2e12', 'Sunil Owner Partner', 'sunil_owner_1789834398796@example.com', '9735286535', 'Uttar Pradesh', 'Lucknow', '', FALSE)
-ON CONFLICT (id) DO NOTHING;
+ON CONFLICT (id) DO UPDATE SET
+  name = EXCLUDED.name,
+  email = EXCLUDED.email,
+  mobile = EXCLUDED.mobile;
 INSERT INTO public.user_roles (profile_id, role)
 VALUES ('4ec3bc1b-ac62-4ccd-a975-7168690d2e12', 'owner')
 ON CONFLICT (profile_id, role) DO NOTHING;
 INSERT INTO public.profiles (id, name, email, mobile, state, city, area, is_verified)
 VALUES ('7403edfd-c4de-410c-ae43-066de8fad77f', 'Stranger User', 'stranger_1789834398796@example.com', '9650601867', 'Uttar Pradesh', 'Lucknow', '', FALSE)
-ON CONFLICT (id) DO NOTHING;
+ON CONFLICT (id) DO UPDATE SET
+  name = EXCLUDED.name,
+  email = EXCLUDED.email,
+  mobile = EXCLUDED.mobile;
 INSERT INTO public.user_roles (profile_id, role)
 VALUES ('7403edfd-c4de-410c-ae43-066de8fad77f', 'customer')
 ON CONFLICT (profile_id, role) DO NOTHING;
 INSERT INTO public.profiles (id, name, email, mobile, state, city, area, is_verified)
 VALUES ('8f217e6c-953d-4510-a829-f537255f6537', 'Kavita Verma Customer', 'kavita_1789834408837@example.com', '9843973393', 'Uttar Pradesh', 'Lucknow', '', FALSE)
-ON CONFLICT (id) DO NOTHING;
+ON CONFLICT (id) DO UPDATE SET
+  name = EXCLUDED.name,
+  email = EXCLUDED.email,
+  mobile = EXCLUDED.mobile;
 INSERT INTO public.user_roles (profile_id, role)
 VALUES ('8f217e6c-953d-4510-a829-f537255f6537', 'customer')
 ON CONFLICT (profile_id, role) DO NOTHING;
 INSERT INTO public.profiles (id, name, email, mobile, state, city, area, is_verified)
 VALUES ('01a019cc-72f8-4e2b-a9c8-9586e89cfdac', 'Deepak Stranger', 'deepak_1789834408837@example.com', '9752922950', 'Uttar Pradesh', 'Lucknow', '', FALSE)
-ON CONFLICT (id) DO NOTHING;
+ON CONFLICT (id) DO UPDATE SET
+  name = EXCLUDED.name,
+  email = EXCLUDED.email,
+  mobile = EXCLUDED.mobile;
 INSERT INTO public.user_roles (profile_id, role)
 VALUES ('01a019cc-72f8-4e2b-a9c8-9586e89cfdac', 'customer')
 ON CONFLICT (profile_id, role) DO NOTHING;
 INSERT INTO public.profiles (id, name, email, mobile, state, city, area, is_verified)
 VALUES ('8263da0b-e919-4d89-a1fb-87f34212522a', 'Manoj Singh Partner', 'manoj_1789834408837@example.com', '9672491807', 'Uttar Pradesh', 'Lucknow', '', FALSE)
-ON CONFLICT (id) DO NOTHING;
+ON CONFLICT (id) DO UPDATE SET
+  name = EXCLUDED.name,
+  email = EXCLUDED.email,
+  mobile = EXCLUDED.mobile;
 INSERT INTO public.user_roles (profile_id, role)
 VALUES ('8263da0b-e919-4d89-a1fb-87f34212522a', 'owner')
 ON CONFLICT (profile_id, role) DO NOTHING;
 INSERT INTO public.profiles (id, name, email, mobile, state, city, area, is_verified)
 VALUES ('faeb10b8-6e49-49da-a08b-049ea0a0d6e6', 'Rahul Customer', 'rahul_1789834518810@example.com', '9872352473', 'Uttar Pradesh', 'Lucknow', '', FALSE)
-ON CONFLICT (id) DO NOTHING;
+ON CONFLICT (id) DO UPDATE SET
+  name = EXCLUDED.name,
+  email = EXCLUDED.email,
+  mobile = EXCLUDED.mobile;
 INSERT INTO public.user_roles (profile_id, role)
 VALUES ('faeb10b8-6e49-49da-a08b-049ea0a0d6e6', 'customer')
 ON CONFLICT (profile_id, role) DO NOTHING;
 INSERT INTO public.profiles (id, name, email, mobile, state, city, area, is_verified)
 VALUES ('f6aba6fd-e23f-4676-ae20-a7a3f4a3b15f', 'Priya Customer', 'priya_1789834518810@example.com', '9755622763', 'Uttar Pradesh', 'Lucknow', '', FALSE)
-ON CONFLICT (id) DO NOTHING;
+ON CONFLICT (id) DO UPDATE SET
+  name = EXCLUDED.name,
+  email = EXCLUDED.email,
+  mobile = EXCLUDED.mobile;
 INSERT INTO public.user_roles (profile_id, role)
 VALUES ('f6aba6fd-e23f-4676-ae20-a7a3f4a3b15f', 'customer')
 ON CONFLICT (profile_id, role) DO NOTHING;
 INSERT INTO public.profiles (id, name, email, mobile, state, city, area, is_verified)
 VALUES ('de87dba2-d305-42a7-a669-789c65080f43', 'Vikram Rajput Partner', 'vikram_partner_1789834518810@example.com', '9690443008', 'Uttar Pradesh', 'Lucknow', '', FALSE)
-ON CONFLICT (id) DO NOTHING;
+ON CONFLICT (id) DO UPDATE SET
+  name = EXCLUDED.name,
+  email = EXCLUDED.email,
+  mobile = EXCLUDED.mobile;
 INSERT INTO public.user_roles (profile_id, role)
 VALUES ('de87dba2-d305-42a7-a669-789c65080f43', 'owner')
 ON CONFLICT (profile_id, role) DO NOTHING;
 INSERT INTO public.profiles (id, name, email, mobile, state, city, area, is_verified)
-VALUES ('618114d0-37b6-4e24-afe8-bd91b1b93fb8', 'Target Customer', 'cust_p6_1789834544684@hallkhoj.com', '9888877777', 'Uttar Pradesh', 'Lucknow', '', FALSE)
-ON CONFLICT (id) DO NOTHING;
+VALUES ('618114d0-37b6-4e24-afe8-bd91b1b93fb8', 'Target Customer', 'cust_p6_1789834544684@hallkhoj.com', '9810000072', 'Uttar Pradesh', 'Lucknow', '', FALSE)
+ON CONFLICT (id) DO UPDATE SET
+  name = EXCLUDED.name,
+  email = EXCLUDED.email,
+  mobile = EXCLUDED.mobile;
 INSERT INTO public.user_roles (profile_id, role)
 VALUES ('618114d0-37b6-4e24-afe8-bd91b1b93fb8', 'customer')
 ON CONFLICT (profile_id, role) DO NOTHING;
 INSERT INTO public.profiles (id, name, email, mobile, state, city, area, is_verified)
-VALUES ('ff8183c5-c886-40a5-aaef-dbf8d9318add', 'Pradeep Tiwari', 'owner_p6_1789834544684@hallkhoj.com', '9777766666', 'Uttar Pradesh', 'Lucknow', '', TRUE)
-ON CONFLICT (id) DO NOTHING;
+VALUES ('ff8183c5-c886-40a5-aaef-dbf8d9318add', 'Pradeep Tiwari', 'owner_p6_1789834544684@hallkhoj.com', '9810000073', 'Uttar Pradesh', 'Lucknow', '', TRUE)
+ON CONFLICT (id) DO UPDATE SET
+  name = EXCLUDED.name,
+  email = EXCLUDED.email,
+  mobile = EXCLUDED.mobile;
 INSERT INTO public.user_roles (profile_id, role)
 VALUES ('ff8183c5-c886-40a5-aaef-dbf8d9318add', 'owner')
 ON CONFLICT (profile_id, role) DO NOTHING;
 INSERT INTO public.profiles (id, name, email, mobile, state, city, area, is_verified)
-VALUES ('5eb051bf-69b4-4e96-a6b5-cf882597ab20', 'Owner AI Test', 'owner_ai_4839@test.com', '9876543210', 'Uttar Pradesh', 'Lucknow', '', FALSE)
-ON CONFLICT (id) DO NOTHING;
+VALUES ('5eb051bf-69b4-4e96-a6b5-cf882597ab20', 'Owner AI Test', 'owner_ai_4839@test.com', '9810000074', 'Uttar Pradesh', 'Lucknow', '', FALSE)
+ON CONFLICT (id) DO UPDATE SET
+  name = EXCLUDED.name,
+  email = EXCLUDED.email,
+  mobile = EXCLUDED.mobile;
 INSERT INTO public.user_roles (profile_id, role)
 VALUES ('5eb051bf-69b4-4e96-a6b5-cf882597ab20', 'owner')
 ON CONFLICT (profile_id, role) DO NOTHING;
 INSERT INTO public.profiles (id, name, email, mobile, state, city, area, is_verified)
 VALUES ('a6b23cbd-b61d-4320-a918-e220ef8bf835', 'Customer AI Test', 'cust_ai_4839@test.com', '9876543211', 'Uttar Pradesh', 'Lucknow', '', FALSE)
-ON CONFLICT (id) DO NOTHING;
+ON CONFLICT (id) DO UPDATE SET
+  name = EXCLUDED.name,
+  email = EXCLUDED.email,
+  mobile = EXCLUDED.mobile;
 INSERT INTO public.user_roles (profile_id, role)
 VALUES ('a6b23cbd-b61d-4320-a918-e220ef8bf835', 'customer')
 ON CONFLICT (profile_id, role) DO NOTHING;
 INSERT INTO public.profiles (id, name, email, mobile, state, city, area, is_verified)
-VALUES ('d7d724af-7424-4360-ae0c-bd5906b320bc', 'Owner AI Test', 'owner_ai_3238@test.com', '9876543210', 'Uttar Pradesh', 'Lucknow', '', FALSE)
-ON CONFLICT (id) DO NOTHING;
+VALUES ('d7d724af-7424-4360-ae0c-bd5906b320bc', 'Owner AI Test', 'owner_ai_3238@test.com', '9810000076', 'Uttar Pradesh', 'Lucknow', '', FALSE)
+ON CONFLICT (id) DO UPDATE SET
+  name = EXCLUDED.name,
+  email = EXCLUDED.email,
+  mobile = EXCLUDED.mobile;
 INSERT INTO public.user_roles (profile_id, role)
 VALUES ('d7d724af-7424-4360-ae0c-bd5906b320bc', 'owner')
 ON CONFLICT (profile_id, role) DO NOTHING;
 INSERT INTO public.profiles (id, name, email, mobile, state, city, area, is_verified)
-VALUES ('0e3db9b7-c0d6-4d91-a733-9e51c3651644', 'Customer AI Test', 'cust_ai_3238@test.com', '9876543211', 'Uttar Pradesh', 'Lucknow', '', FALSE)
-ON CONFLICT (id) DO NOTHING;
+VALUES ('0e3db9b7-c0d6-4d91-a733-9e51c3651644', 'Customer AI Test', 'cust_ai_3238@test.com', '9810000077', 'Uttar Pradesh', 'Lucknow', '', FALSE)
+ON CONFLICT (id) DO UPDATE SET
+  name = EXCLUDED.name,
+  email = EXCLUDED.email,
+  mobile = EXCLUDED.mobile;
 INSERT INTO public.user_roles (profile_id, role)
 VALUES ('0e3db9b7-c0d6-4d91-a733-9e51c3651644', 'customer')
 ON CONFLICT (profile_id, role) DO NOTHING;
 INSERT INTO public.profiles (id, name, email, mobile, state, city, area, is_verified)
-VALUES ('dcf0fa32-598b-4d26-a267-137035c0a7f3', 'Owner AI Test', 'owner_ai_8132@test.com', '9876543210', 'Uttar Pradesh', 'Lucknow', '', FALSE)
-ON CONFLICT (id) DO NOTHING;
+VALUES ('dcf0fa32-598b-4d26-a267-137035c0a7f3', 'Owner AI Test', 'owner_ai_8132@test.com', '9810000078', 'Uttar Pradesh', 'Lucknow', '', FALSE)
+ON CONFLICT (id) DO UPDATE SET
+  name = EXCLUDED.name,
+  email = EXCLUDED.email,
+  mobile = EXCLUDED.mobile;
 INSERT INTO public.user_roles (profile_id, role)
 VALUES ('dcf0fa32-598b-4d26-a267-137035c0a7f3', 'owner')
 ON CONFLICT (profile_id, role) DO NOTHING;
 INSERT INTO public.profiles (id, name, email, mobile, state, city, area, is_verified)
-VALUES ('1733f150-5b59-4309-a8e2-8eadb7f0b331', 'Customer AI Test', 'cust_ai_8132@test.com', '9876543211', 'Uttar Pradesh', 'Lucknow', '', FALSE)
-ON CONFLICT (id) DO NOTHING;
+VALUES ('1733f150-5b59-4309-a8e2-8eadb7f0b331', 'Customer AI Test', 'cust_ai_8132@test.com', '9810000079', 'Uttar Pradesh', 'Lucknow', '', FALSE)
+ON CONFLICT (id) DO UPDATE SET
+  name = EXCLUDED.name,
+  email = EXCLUDED.email,
+  mobile = EXCLUDED.mobile;
 INSERT INTO public.user_roles (profile_id, role)
 VALUES ('1733f150-5b59-4309-a8e2-8eadb7f0b331', 'customer')
 ON CONFLICT (profile_id, role) DO NOTHING;
 INSERT INTO public.profiles (id, name, email, mobile, state, city, area, is_verified)
-VALUES ('46a122eb-6b3b-4120-a458-b95bff5d36f0', 'Owner AI Test', 'owner_ai_5315@test.com', '9876543210', 'Uttar Pradesh', 'Lucknow', '', FALSE)
-ON CONFLICT (id) DO NOTHING;
+VALUES ('46a122eb-6b3b-4120-a458-b95bff5d36f0', 'Owner AI Test', 'owner_ai_5315@test.com', '9810000080', 'Uttar Pradesh', 'Lucknow', '', FALSE)
+ON CONFLICT (id) DO UPDATE SET
+  name = EXCLUDED.name,
+  email = EXCLUDED.email,
+  mobile = EXCLUDED.mobile;
 INSERT INTO public.user_roles (profile_id, role)
 VALUES ('46a122eb-6b3b-4120-a458-b95bff5d36f0', 'owner')
 ON CONFLICT (profile_id, role) DO NOTHING;
 INSERT INTO public.profiles (id, name, email, mobile, state, city, area, is_verified)
-VALUES ('73bb31e9-e672-4751-aea9-2c5982bca7db', 'Customer AI Test', 'cust_ai_5315@test.com', '9876543211', 'Uttar Pradesh', 'Lucknow', '', FALSE)
-ON CONFLICT (id) DO NOTHING;
+VALUES ('73bb31e9-e672-4751-aea9-2c5982bca7db', 'Customer AI Test', 'cust_ai_5315@test.com', '9810000081', 'Uttar Pradesh', 'Lucknow', '', FALSE)
+ON CONFLICT (id) DO UPDATE SET
+  name = EXCLUDED.name,
+  email = EXCLUDED.email,
+  mobile = EXCLUDED.mobile;
 INSERT INTO public.user_roles (profile_id, role)
 VALUES ('73bb31e9-e672-4751-aea9-2c5982bca7db', 'customer')
 ON CONFLICT (profile_id, role) DO NOTHING;
 INSERT INTO public.profiles (id, name, email, mobile, state, city, area, is_verified)
-VALUES ('cfc38b55-79e7-4b22-a1d0-3bb0c8aa3e55', 'Owner AI Test', 'owner_ai_8175@test.com', '9876543210', 'Uttar Pradesh', 'Lucknow', '', FALSE)
-ON CONFLICT (id) DO NOTHING;
+VALUES ('cfc38b55-79e7-4b22-a1d0-3bb0c8aa3e55', 'Owner AI Test', 'owner_ai_8175@test.com', '9810000082', 'Uttar Pradesh', 'Lucknow', '', FALSE)
+ON CONFLICT (id) DO UPDATE SET
+  name = EXCLUDED.name,
+  email = EXCLUDED.email,
+  mobile = EXCLUDED.mobile;
 INSERT INTO public.user_roles (profile_id, role)
 VALUES ('cfc38b55-79e7-4b22-a1d0-3bb0c8aa3e55', 'owner')
 ON CONFLICT (profile_id, role) DO NOTHING;
 INSERT INTO public.profiles (id, name, email, mobile, state, city, area, is_verified)
-VALUES ('4221fd8b-65a9-434e-a0e3-69d3b497511c', 'Customer AI Test', 'cust_ai_8175@test.com', '9876543211', 'Uttar Pradesh', 'Lucknow', '', FALSE)
-ON CONFLICT (id) DO NOTHING;
+VALUES ('4221fd8b-65a9-434e-a0e3-69d3b497511c', 'Customer AI Test', 'cust_ai_8175@test.com', '9810000083', 'Uttar Pradesh', 'Lucknow', '', FALSE)
+ON CONFLICT (id) DO UPDATE SET
+  name = EXCLUDED.name,
+  email = EXCLUDED.email,
+  mobile = EXCLUDED.mobile;
 INSERT INTO public.user_roles (profile_id, role)
 VALUES ('4221fd8b-65a9-434e-a0e3-69d3b497511c', 'customer')
 ON CONFLICT (profile_id, role) DO NOTHING;
 INSERT INTO public.profiles (id, name, email, mobile, state, city, area, is_verified)
-VALUES ('5234f26e-442d-4b84-a937-ef48c8f9c6db', 'Owner AI Test', 'owner_ai_2966@test.com', '9876543210', 'Uttar Pradesh', 'Lucknow', '', FALSE)
-ON CONFLICT (id) DO NOTHING;
+VALUES ('5234f26e-442d-4b84-a937-ef48c8f9c6db', 'Owner AI Test', 'owner_ai_2966@test.com', '9810000084', 'Uttar Pradesh', 'Lucknow', '', FALSE)
+ON CONFLICT (id) DO UPDATE SET
+  name = EXCLUDED.name,
+  email = EXCLUDED.email,
+  mobile = EXCLUDED.mobile;
 INSERT INTO public.user_roles (profile_id, role)
 VALUES ('5234f26e-442d-4b84-a937-ef48c8f9c6db', 'owner')
 ON CONFLICT (profile_id, role) DO NOTHING;
 INSERT INTO public.profiles (id, name, email, mobile, state, city, area, is_verified)
-VALUES ('0623c499-0760-45d6-a4c8-03c1b6d1d80b', 'Customer AI Test', 'cust_ai_2966@test.com', '9876543211', 'Uttar Pradesh', 'Lucknow', '', FALSE)
-ON CONFLICT (id) DO NOTHING;
+VALUES ('0623c499-0760-45d6-a4c8-03c1b6d1d80b', 'Customer AI Test', 'cust_ai_2966@test.com', '9810000085', 'Uttar Pradesh', 'Lucknow', '', FALSE)
+ON CONFLICT (id) DO UPDATE SET
+  name = EXCLUDED.name,
+  email = EXCLUDED.email,
+  mobile = EXCLUDED.mobile;
 INSERT INTO public.user_roles (profile_id, role)
 VALUES ('0623c499-0760-45d6-a4c8-03c1b6d1d80b', 'customer')
 ON CONFLICT (profile_id, role) DO NOTHING;
 INSERT INTO public.profiles (id, name, email, mobile, state, city, area, is_verified)
-VALUES ('2288057a-58f4-4a6c-a213-2b9707f0a563', 'Owner AI Test', 'owner_ai_7127@test.com', '9876543210', 'Uttar Pradesh', 'Lucknow', '', FALSE)
-ON CONFLICT (id) DO NOTHING;
+VALUES ('2288057a-58f4-4a6c-a213-2b9707f0a563', 'Owner AI Test', 'owner_ai_7127@test.com', '9810000086', 'Uttar Pradesh', 'Lucknow', '', FALSE)
+ON CONFLICT (id) DO UPDATE SET
+  name = EXCLUDED.name,
+  email = EXCLUDED.email,
+  mobile = EXCLUDED.mobile;
 INSERT INTO public.user_roles (profile_id, role)
 VALUES ('2288057a-58f4-4a6c-a213-2b9707f0a563', 'owner')
 ON CONFLICT (profile_id, role) DO NOTHING;
 INSERT INTO public.profiles (id, name, email, mobile, state, city, area, is_verified)
-VALUES ('b29be842-7799-4dc1-abf5-d5dfd9ae608b', 'Customer AI Test', 'cust_ai_7127@test.com', '9876543211', 'Uttar Pradesh', 'Lucknow', '', FALSE)
-ON CONFLICT (id) DO NOTHING;
+VALUES ('b29be842-7799-4dc1-abf5-d5dfd9ae608b', 'Customer AI Test', 'cust_ai_7127@test.com', '9810000087', 'Uttar Pradesh', 'Lucknow', '', FALSE)
+ON CONFLICT (id) DO UPDATE SET
+  name = EXCLUDED.name,
+  email = EXCLUDED.email,
+  mobile = EXCLUDED.mobile;
 INSERT INTO public.user_roles (profile_id, role)
 VALUES ('b29be842-7799-4dc1-abf5-d5dfd9ae608b', 'customer')
 ON CONFLICT (profile_id, role) DO NOTHING;
 INSERT INTO public.profiles (id, name, email, mobile, state, city, area, is_verified)
 VALUES ('b4675697-c8ba-4a93-a1ee-c05a9974f4cf', 'Rahul Customer', 'rahul_1789897407316@example.com', '9880256397', 'Uttar Pradesh', 'Lucknow', '', FALSE)
-ON CONFLICT (id) DO NOTHING;
+ON CONFLICT (id) DO UPDATE SET
+  name = EXCLUDED.name,
+  email = EXCLUDED.email,
+  mobile = EXCLUDED.mobile;
 INSERT INTO public.user_roles (profile_id, role)
 VALUES ('b4675697-c8ba-4a93-a1ee-c05a9974f4cf', 'customer')
 ON CONFLICT (profile_id, role) DO NOTHING;
 INSERT INTO public.profiles (id, name, email, mobile, state, city, area, is_verified)
 VALUES ('8f02f49e-2879-4a0d-a5c1-b95f418f076a', 'Priya Customer', 'priya_1789897407316@example.com', '9765580489', 'Uttar Pradesh', 'Lucknow', '', FALSE)
-ON CONFLICT (id) DO NOTHING;
+ON CONFLICT (id) DO UPDATE SET
+  name = EXCLUDED.name,
+  email = EXCLUDED.email,
+  mobile = EXCLUDED.mobile;
 INSERT INTO public.user_roles (profile_id, role)
 VALUES ('8f02f49e-2879-4a0d-a5c1-b95f418f076a', 'customer')
 ON CONFLICT (profile_id, role) DO NOTHING;
 INSERT INTO public.profiles (id, name, email, mobile, state, city, area, is_verified)
 VALUES ('f0336370-0367-4f58-aac7-c405b4ef6c2f', 'Vikram Rajput Partner', 'vikram_partner_1789897407316@example.com', '9661768949', 'Uttar Pradesh', 'Lucknow', '', FALSE)
-ON CONFLICT (id) DO NOTHING;
+ON CONFLICT (id) DO UPDATE SET
+  name = EXCLUDED.name,
+  email = EXCLUDED.email,
+  mobile = EXCLUDED.mobile;
 INSERT INTO public.user_roles (profile_id, role)
 VALUES ('f0336370-0367-4f58-aac7-c405b4ef6c2f', 'owner')
 ON CONFLICT (profile_id, role) DO NOTHING;
 INSERT INTO public.profiles (id, name, email, mobile, state, city, area, is_verified)
 VALUES ('178c4dc8-d182-423b-a05f-85a7b1349046', 'Aman Customer', 'aman_cust_1789897417807@example.com', '9852467953', 'Uttar Pradesh', 'Lucknow', '', FALSE)
-ON CONFLICT (id) DO NOTHING;
+ON CONFLICT (id) DO UPDATE SET
+  name = EXCLUDED.name,
+  email = EXCLUDED.email,
+  mobile = EXCLUDED.mobile;
 INSERT INTO public.user_roles (profile_id, role)
 VALUES ('178c4dc8-d182-423b-a05f-85a7b1349046', 'customer')
 ON CONFLICT (profile_id, role) DO NOTHING;
 INSERT INTO public.profiles (id, name, email, mobile, state, city, area, is_verified)
 VALUES ('0766276e-d9f0-4289-a12a-ba0c1182a784', 'Sunil Owner Partner', 'sunil_owner_1789897417807@example.com', '9748729040', 'Uttar Pradesh', 'Lucknow', '', FALSE)
-ON CONFLICT (id) DO NOTHING;
+ON CONFLICT (id) DO UPDATE SET
+  name = EXCLUDED.name,
+  email = EXCLUDED.email,
+  mobile = EXCLUDED.mobile;
 INSERT INTO public.user_roles (profile_id, role)
 VALUES ('0766276e-d9f0-4289-a12a-ba0c1182a784', 'owner')
 ON CONFLICT (profile_id, role) DO NOTHING;
 INSERT INTO public.profiles (id, name, email, mobile, state, city, area, is_verified)
 VALUES ('9f9bebdb-c314-4bac-a3aa-1ca5feff0d7d', 'Stranger User', 'stranger_1789897417807@example.com', '9636979260', 'Uttar Pradesh', 'Lucknow', '', FALSE)
-ON CONFLICT (id) DO NOTHING;
+ON CONFLICT (id) DO UPDATE SET
+  name = EXCLUDED.name,
+  email = EXCLUDED.email,
+  mobile = EXCLUDED.mobile;
 INSERT INTO public.user_roles (profile_id, role)
 VALUES ('9f9bebdb-c314-4bac-a3aa-1ca5feff0d7d', 'customer')
 ON CONFLICT (profile_id, role) DO NOTHING;
 INSERT INTO public.profiles (id, name, email, mobile, state, city, area, is_verified)
 VALUES ('c4f097e1-6c38-49f9-a596-56b299ef2a0b', 'Kavita Verma Customer', 'kavita_1789897425419@example.com', '9843961377', 'Uttar Pradesh', 'Lucknow', '', FALSE)
-ON CONFLICT (id) DO NOTHING;
+ON CONFLICT (id) DO UPDATE SET
+  name = EXCLUDED.name,
+  email = EXCLUDED.email,
+  mobile = EXCLUDED.mobile;
 INSERT INTO public.user_roles (profile_id, role)
 VALUES ('c4f097e1-6c38-49f9-a596-56b299ef2a0b', 'customer')
 ON CONFLICT (profile_id, role) DO NOTHING;
 INSERT INTO public.profiles (id, name, email, mobile, state, city, area, is_verified)
 VALUES ('6a319d55-7ec3-4308-a322-f833e5b1be7b', 'Deepak Stranger', 'deepak_1789897425419@example.com', '9757605905', 'Uttar Pradesh', 'Lucknow', '', FALSE)
-ON CONFLICT (id) DO NOTHING;
+ON CONFLICT (id) DO UPDATE SET
+  name = EXCLUDED.name,
+  email = EXCLUDED.email,
+  mobile = EXCLUDED.mobile;
 INSERT INTO public.user_roles (profile_id, role)
 VALUES ('6a319d55-7ec3-4308-a322-f833e5b1be7b', 'customer')
 ON CONFLICT (profile_id, role) DO NOTHING;
 INSERT INTO public.profiles (id, name, email, mobile, state, city, area, is_verified)
 VALUES ('970e7b39-44b6-4a8a-a5bc-0d14226b7d53', 'Manoj Singh Partner', 'manoj_1789897425419@example.com', '9661516281', 'Uttar Pradesh', 'Lucknow', '', FALSE)
-ON CONFLICT (id) DO NOTHING;
+ON CONFLICT (id) DO UPDATE SET
+  name = EXCLUDED.name,
+  email = EXCLUDED.email,
+  mobile = EXCLUDED.mobile;
 INSERT INTO public.user_roles (profile_id, role)
 VALUES ('970e7b39-44b6-4a8a-a5bc-0d14226b7d53', 'owner')
 ON CONFLICT (profile_id, role) DO NOTHING;
 INSERT INTO public.profiles (id, name, email, mobile, state, city, area, is_verified)
 VALUES ('e3e248b4-3db8-4cfa-afa2-69dbb649190e', 'Rohan Verma', '9876101963@hallkhoj.phone', '9876101963', 'Uttar Pradesh', 'Lucknow', 'Chinhat', TRUE)
-ON CONFLICT (id) DO NOTHING;
+ON CONFLICT (id) DO UPDATE SET
+  name = EXCLUDED.name,
+  email = EXCLUDED.email,
+  mobile = EXCLUDED.mobile;
 INSERT INTO public.user_roles (profile_id, role)
 VALUES ('e3e248b4-3db8-4cfa-afa2-69dbb649190e', 'customer')
 ON CONFLICT (profile_id, role) DO NOTHING;
 INSERT INTO public.profiles (id, name, email, mobile, state, city, area, is_verified)
-VALUES ('0d3b14b9-fbc8-4e80-aeb7-0b6211fd254f', 'Kavita Singh', 'user_1789898159465@hallkhoj.com', '9876000001', 'Uttar Pradesh', 'Lucknow', '', FALSE)
-ON CONFLICT (id) DO NOTHING;
+VALUES ('0d3b14b9-fbc8-4e80-aeb7-0b6211fd254f', 'Kavita Singh', 'user_1789898159465@hallkhoj.com', '9810000098', 'Uttar Pradesh', 'Lucknow', '', FALSE)
+ON CONFLICT (id) DO UPDATE SET
+  name = EXCLUDED.name,
+  email = EXCLUDED.email,
+  mobile = EXCLUDED.mobile;
 INSERT INTO public.user_roles (profile_id, role)
 VALUES ('0d3b14b9-fbc8-4e80-aeb7-0b6211fd254f', 'customer')
 ON CONFLICT (profile_id, role) DO NOTHING;
 INSERT INTO public.profiles (id, name, email, mobile, state, city, area, is_verified)
-VALUES ('b3ec3805-51e2-4265-a099-187f09a34611', 'Rajesh Verma', 'owner_p5_1789898168036@hallkhoj.com', '9876543210', 'Uttar Pradesh', 'Lucknow', '', FALSE)
-ON CONFLICT (id) DO NOTHING;
+VALUES ('b3ec3805-51e2-4265-a099-187f09a34611', 'Rajesh Verma', 'owner_p5_1789898168036@hallkhoj.com', '9810000099', 'Uttar Pradesh', 'Lucknow', '', FALSE)
+ON CONFLICT (id) DO UPDATE SET
+  name = EXCLUDED.name,
+  email = EXCLUDED.email,
+  mobile = EXCLUDED.mobile;
 INSERT INTO public.user_roles (profile_id, role)
 VALUES ('b3ec3805-51e2-4265-a099-187f09a34611', 'owner')
 ON CONFLICT (profile_id, role) DO NOTHING;
 INSERT INTO public.profiles (id, name, email, mobile, state, city, area, is_verified)
-VALUES ('fdeab50c-249f-48fb-a3fa-7e28f463a377', 'Sunita Customer', 'cust_p5_1789898168036@hallkhoj.com', '9123456780', 'Uttar Pradesh', 'Lucknow', '', FALSE)
-ON CONFLICT (id) DO NOTHING;
+VALUES ('fdeab50c-249f-48fb-a3fa-7e28f463a377', 'Sunita Customer', 'cust_p5_1789898168036@hallkhoj.com', '9810000100', 'Uttar Pradesh', 'Lucknow', '', FALSE)
+ON CONFLICT (id) DO UPDATE SET
+  name = EXCLUDED.name,
+  email = EXCLUDED.email,
+  mobile = EXCLUDED.mobile;
 INSERT INTO public.user_roles (profile_id, role)
 VALUES ('fdeab50c-249f-48fb-a3fa-7e28f463a377', 'customer')
 ON CONFLICT (profile_id, role) DO NOTHING;
 INSERT INTO public.profiles (id, name, email, mobile, state, city, area, is_verified)
-VALUES ('9d6d24c7-07df-42bf-aaf4-d3d29bc967af', 'Rajesh Verma', 'owner_p5_1789898187705@hallkhoj.com', '9876543210', 'Uttar Pradesh', 'Lucknow', '', FALSE)
-ON CONFLICT (id) DO NOTHING;
+VALUES ('9d6d24c7-07df-42bf-aaf4-d3d29bc967af', 'Rajesh Verma', 'owner_p5_1789898187705@hallkhoj.com', '9810000101', 'Uttar Pradesh', 'Lucknow', '', FALSE)
+ON CONFLICT (id) DO UPDATE SET
+  name = EXCLUDED.name,
+  email = EXCLUDED.email,
+  mobile = EXCLUDED.mobile;
 INSERT INTO public.user_roles (profile_id, role)
 VALUES ('9d6d24c7-07df-42bf-aaf4-d3d29bc967af', 'owner')
 ON CONFLICT (profile_id, role) DO NOTHING;
 INSERT INTO public.profiles (id, name, email, mobile, state, city, area, is_verified)
-VALUES ('3f8fc8d9-2062-46ad-a122-fb377ba091b4', 'Sunita Customer', 'cust_p5_1789898187705@hallkhoj.com', '9123456780', 'Uttar Pradesh', 'Lucknow', '', FALSE)
-ON CONFLICT (id) DO NOTHING;
+VALUES ('3f8fc8d9-2062-46ad-a122-fb377ba091b4', 'Sunita Customer', 'cust_p5_1789898187705@hallkhoj.com', '9810000102', 'Uttar Pradesh', 'Lucknow', '', FALSE)
+ON CONFLICT (id) DO UPDATE SET
+  name = EXCLUDED.name,
+  email = EXCLUDED.email,
+  mobile = EXCLUDED.mobile;
 INSERT INTO public.user_roles (profile_id, role)
 VALUES ('3f8fc8d9-2062-46ad-a122-fb377ba091b4', 'customer')
 ON CONFLICT (profile_id, role) DO NOTHING;
 INSERT INTO public.profiles (id, name, email, mobile, state, city, area, is_verified)
-VALUES ('541ac2f0-a846-449a-a5d6-6367b019cbc9', 'Target Customer', 'cust_p6_1789898196012@hallkhoj.com', '9888877777', 'Uttar Pradesh', 'Lucknow', '', FALSE)
-ON CONFLICT (id) DO NOTHING;
+VALUES ('541ac2f0-a846-449a-a5d6-6367b019cbc9', 'Target Customer', 'cust_p6_1789898196012@hallkhoj.com', '9810000103', 'Uttar Pradesh', 'Lucknow', '', FALSE)
+ON CONFLICT (id) DO UPDATE SET
+  name = EXCLUDED.name,
+  email = EXCLUDED.email,
+  mobile = EXCLUDED.mobile;
 INSERT INTO public.user_roles (profile_id, role)
 VALUES ('541ac2f0-a846-449a-a5d6-6367b019cbc9', 'customer')
 ON CONFLICT (profile_id, role) DO NOTHING;
 INSERT INTO public.profiles (id, name, email, mobile, state, city, area, is_verified)
-VALUES ('474278d0-4968-4335-a741-ebb47df88d1e', 'Pradeep Tiwari', 'owner_p6_1789898196012@hallkhoj.com', '9777766666', 'Uttar Pradesh', 'Lucknow', '', TRUE)
-ON CONFLICT (id) DO NOTHING;
+VALUES ('474278d0-4968-4335-a741-ebb47df88d1e', 'Pradeep Tiwari', 'owner_p6_1789898196012@hallkhoj.com', '9810000104', 'Uttar Pradesh', 'Lucknow', '', TRUE)
+ON CONFLICT (id) DO UPDATE SET
+  name = EXCLUDED.name,
+  email = EXCLUDED.email,
+  mobile = EXCLUDED.mobile;
 INSERT INTO public.user_roles (profile_id, role)
 VALUES ('474278d0-4968-4335-a741-ebb47df88d1e', 'owner')
 ON CONFLICT (profile_id, role) DO NOTHING;
 INSERT INTO public.profiles (id, name, email, mobile, state, city, area, is_verified)
 VALUES ('2c295bf0-4e9c-46e9-a3e2-3406578f638e', 'E2E Test Customer', 'e2e_cust_1789899449367@test.com', '9876500001', 'Uttar Pradesh', 'Lucknow', '', FALSE)
-ON CONFLICT (id) DO NOTHING;
+ON CONFLICT (id) DO UPDATE SET
+  name = EXCLUDED.name,
+  email = EXCLUDED.email,
+  mobile = EXCLUDED.mobile;
 INSERT INTO public.user_roles (profile_id, role)
 VALUES ('2c295bf0-4e9c-46e9-a3e2-3406578f638e', 'customer')
 ON CONFLICT (profile_id, role) DO NOTHING;
 INSERT INTO public.profiles (id, name, email, mobile, state, city, area, is_verified)
 VALUES ('a7448621-5810-48cb-a5b5-93ae2e14543b', 'E2E Venue Owner', 'e2e_owner_1789899449367@test.com', '9876500002', 'Uttar Pradesh', 'Lucknow', '', FALSE)
-ON CONFLICT (id) DO NOTHING;
+ON CONFLICT (id) DO UPDATE SET
+  name = EXCLUDED.name,
+  email = EXCLUDED.email,
+  mobile = EXCLUDED.mobile;
 INSERT INTO public.user_roles (profile_id, role)
 VALUES ('a7448621-5810-48cb-a5b5-93ae2e14543b', 'owner')
 ON CONFLICT (profile_id, role) DO NOTHING;
 INSERT INTO public.profiles (id, name, email, mobile, state, city, area, is_verified)
-VALUES ('77cf7a20-5e26-4759-a865-fbd60f1ecc95', 'E2E Test Customer', 'e2e_cust_1789899546063@test.com', '9876500001', 'Uttar Pradesh', 'Lucknow', '', FALSE)
-ON CONFLICT (id) DO NOTHING;
+VALUES ('77cf7a20-5e26-4759-a865-fbd60f1ecc95', 'E2E Test Customer', 'e2e_cust_1789899546063@test.com', '9810000107', 'Uttar Pradesh', 'Lucknow', '', FALSE)
+ON CONFLICT (id) DO UPDATE SET
+  name = EXCLUDED.name,
+  email = EXCLUDED.email,
+  mobile = EXCLUDED.mobile;
 INSERT INTO public.user_roles (profile_id, role)
 VALUES ('77cf7a20-5e26-4759-a865-fbd60f1ecc95', 'customer')
 ON CONFLICT (profile_id, role) DO NOTHING;
 INSERT INTO public.profiles (id, name, email, mobile, state, city, area, is_verified)
-VALUES ('7ed23ed6-158e-4d23-abe2-2c2e3e21d13c', 'E2E Venue Owner', 'e2e_owner_1789899546063@test.com', '9876500002', 'Uttar Pradesh', 'Lucknow', '', FALSE)
-ON CONFLICT (id) DO NOTHING;
+VALUES ('7ed23ed6-158e-4d23-abe2-2c2e3e21d13c', 'E2E Venue Owner', 'e2e_owner_1789899546063@test.com', '9810000108', 'Uttar Pradesh', 'Lucknow', '', FALSE)
+ON CONFLICT (id) DO UPDATE SET
+  name = EXCLUDED.name,
+  email = EXCLUDED.email,
+  mobile = EXCLUDED.mobile;
 INSERT INTO public.user_roles (profile_id, role)
 VALUES ('7ed23ed6-158e-4d23-abe2-2c2e3e21d13c', 'owner')
 ON CONFLICT (profile_id, role) DO NOTHING;
 INSERT INTO public.profiles (id, name, email, mobile, state, city, area, is_verified)
-VALUES ('fee1e73c-6197-44f2-afd9-1469c97776f5', 'E2E Test Customer', 'e2e_cust_1789899627529@test.com', '9876500001', 'Uttar Pradesh', 'Lucknow', '', FALSE)
-ON CONFLICT (id) DO NOTHING;
+VALUES ('fee1e73c-6197-44f2-afd9-1469c97776f5', 'E2E Test Customer', 'e2e_cust_1789899627529@test.com', '9810000109', 'Uttar Pradesh', 'Lucknow', '', FALSE)
+ON CONFLICT (id) DO UPDATE SET
+  name = EXCLUDED.name,
+  email = EXCLUDED.email,
+  mobile = EXCLUDED.mobile;
 INSERT INTO public.user_roles (profile_id, role)
 VALUES ('fee1e73c-6197-44f2-afd9-1469c97776f5', 'customer')
 ON CONFLICT (profile_id, role) DO NOTHING;
 INSERT INTO public.profiles (id, name, email, mobile, state, city, area, is_verified)
-VALUES ('6d7e361e-b67f-416f-aebf-6421be48ecd1', 'E2E Venue Owner', 'e2e_owner_1789899627529@test.com', '9876500002', 'Uttar Pradesh', 'Lucknow', '', FALSE)
-ON CONFLICT (id) DO NOTHING;
+VALUES ('6d7e361e-b67f-416f-aebf-6421be48ecd1', 'E2E Venue Owner', 'e2e_owner_1789899627529@test.com', '9810000110', 'Uttar Pradesh', 'Lucknow', '', FALSE)
+ON CONFLICT (id) DO UPDATE SET
+  name = EXCLUDED.name,
+  email = EXCLUDED.email,
+  mobile = EXCLUDED.mobile;
 INSERT INTO public.user_roles (profile_id, role)
 VALUES ('6d7e361e-b67f-416f-aebf-6421be48ecd1', 'owner')
 ON CONFLICT (profile_id, role) DO NOTHING;
 INSERT INTO public.profiles (id, name, email, mobile, state, city, area, is_verified)
-VALUES ('e5d6505a-4486-4ae1-a035-806fde8df272', 'E2E Test Customer', 'e2e_cust_1789899647320@test.com', '9876500001', 'Uttar Pradesh', 'Lucknow', '', FALSE)
-ON CONFLICT (id) DO NOTHING;
+VALUES ('e5d6505a-4486-4ae1-a035-806fde8df272', 'E2E Test Customer', 'e2e_cust_1789899647320@test.com', '9810000111', 'Uttar Pradesh', 'Lucknow', '', FALSE)
+ON CONFLICT (id) DO UPDATE SET
+  name = EXCLUDED.name,
+  email = EXCLUDED.email,
+  mobile = EXCLUDED.mobile;
 INSERT INTO public.user_roles (profile_id, role)
 VALUES ('e5d6505a-4486-4ae1-a035-806fde8df272', 'customer')
 ON CONFLICT (profile_id, role) DO NOTHING;
 INSERT INTO public.profiles (id, name, email, mobile, state, city, area, is_verified)
-VALUES ('5f1dcff4-ba54-43c5-afbb-8d286cd0809e', 'E2E Venue Owner', 'e2e_owner_1789899647320@test.com', '9876500002', 'Uttar Pradesh', 'Lucknow', '', FALSE)
-ON CONFLICT (id) DO NOTHING;
+VALUES ('5f1dcff4-ba54-43c5-afbb-8d286cd0809e', 'E2E Venue Owner', 'e2e_owner_1789899647320@test.com', '9810000112', 'Uttar Pradesh', 'Lucknow', '', FALSE)
+ON CONFLICT (id) DO UPDATE SET
+  name = EXCLUDED.name,
+  email = EXCLUDED.email,
+  mobile = EXCLUDED.mobile;
 INSERT INTO public.user_roles (profile_id, role)
 VALUES ('5f1dcff4-ba54-43c5-afbb-8d286cd0809e', 'owner')
 ON CONFLICT (profile_id, role) DO NOTHING;
 INSERT INTO public.profiles (id, name, email, mobile, state, city, area, is_verified)
-VALUES ('aa6f6339-af05-4619-aa98-b8e041bd3031', 'E2E Test Customer', 'e2e_cust_1789899691559@test.com', '9876500001', 'Uttar Pradesh', 'Lucknow', '', FALSE)
-ON CONFLICT (id) DO NOTHING;
+VALUES ('aa6f6339-af05-4619-aa98-b8e041bd3031', 'E2E Test Customer', 'e2e_cust_1789899691559@test.com', '9810000113', 'Uttar Pradesh', 'Lucknow', '', FALSE)
+ON CONFLICT (id) DO UPDATE SET
+  name = EXCLUDED.name,
+  email = EXCLUDED.email,
+  mobile = EXCLUDED.mobile;
 INSERT INTO public.user_roles (profile_id, role)
 VALUES ('aa6f6339-af05-4619-aa98-b8e041bd3031', 'customer')
 ON CONFLICT (profile_id, role) DO NOTHING;
 INSERT INTO public.profiles (id, name, email, mobile, state, city, area, is_verified)
-VALUES ('b43c3331-6363-4f4c-ace8-25760d559c6d', 'E2E Venue Owner', 'e2e_owner_1789899691559@test.com', '9876500002', 'Uttar Pradesh', 'Lucknow', '', FALSE)
-ON CONFLICT (id) DO NOTHING;
+VALUES ('b43c3331-6363-4f4c-ace8-25760d559c6d', 'E2E Venue Owner', 'e2e_owner_1789899691559@test.com', '9810000114', 'Uttar Pradesh', 'Lucknow', '', FALSE)
+ON CONFLICT (id) DO UPDATE SET
+  name = EXCLUDED.name,
+  email = EXCLUDED.email,
+  mobile = EXCLUDED.mobile;
 INSERT INTO public.user_roles (profile_id, role)
 VALUES ('b43c3331-6363-4f4c-ace8-25760d559c6d', 'owner')
 ON CONFLICT (profile_id, role) DO NOTHING;
 INSERT INTO public.profiles (id, name, email, mobile, state, city, area, is_verified)
-VALUES ('932e2efc-481e-4e5f-a8c3-03a329f3ff8a', 'Rohan Sharma', 'prod_cust_1789899757000@hallkhoj.in', '9876543210', 'Uttar Pradesh', 'Lucknow', '', FALSE)
-ON CONFLICT (id) DO NOTHING;
+VALUES ('932e2efc-481e-4e5f-a8c3-03a329f3ff8a', 'Rohan Sharma', 'prod_cust_1789899757000@hallkhoj.in', '9810000115', 'Uttar Pradesh', 'Lucknow', '', FALSE)
+ON CONFLICT (id) DO UPDATE SET
+  name = EXCLUDED.name,
+  email = EXCLUDED.email,
+  mobile = EXCLUDED.mobile;
 INSERT INTO public.user_roles (profile_id, role)
 VALUES ('932e2efc-481e-4e5f-a8c3-03a329f3ff8a', 'customer')
 ON CONFLICT (profile_id, role) DO NOTHING;
 INSERT INTO public.profiles (id, name, email, mobile, state, city, area, is_verified)
-VALUES ('496e5893-a258-457a-a6b2-2bd9b43a8632', 'Vikram Singh', 'prod_owner_1789899757000@hallkhoj.in', '9876543211', 'Uttar Pradesh', 'Lucknow', '', FALSE)
-ON CONFLICT (id) DO NOTHING;
+VALUES ('496e5893-a258-457a-a6b2-2bd9b43a8632', 'Vikram Singh', 'prod_owner_1789899757000@hallkhoj.in', '9810000116', 'Uttar Pradesh', 'Lucknow', '', FALSE)
+ON CONFLICT (id) DO UPDATE SET
+  name = EXCLUDED.name,
+  email = EXCLUDED.email,
+  mobile = EXCLUDED.mobile;
 INSERT INTO public.user_roles (profile_id, role)
 VALUES ('496e5893-a258-457a-a6b2-2bd9b43a8632', 'owner')
 ON CONFLICT (profile_id, role) DO NOTHING;
 INSERT INTO public.profiles (id, name, email, mobile, state, city, area, is_verified)
-VALUES ('9ca92914-1a92-4307-ab25-4ccd2806f8a4', 'Rohan Sharma', 'prod_cust_1789899823266@hallkhoj.in', '9876543210', 'Uttar Pradesh', 'Lucknow', '', FALSE)
-ON CONFLICT (id) DO NOTHING;
+VALUES ('9ca92914-1a92-4307-ab25-4ccd2806f8a4', 'Rohan Sharma', 'prod_cust_1789899823266@hallkhoj.in', '9810000117', 'Uttar Pradesh', 'Lucknow', '', FALSE)
+ON CONFLICT (id) DO UPDATE SET
+  name = EXCLUDED.name,
+  email = EXCLUDED.email,
+  mobile = EXCLUDED.mobile;
 INSERT INTO public.user_roles (profile_id, role)
 VALUES ('9ca92914-1a92-4307-ab25-4ccd2806f8a4', 'customer')
 ON CONFLICT (profile_id, role) DO NOTHING;
 INSERT INTO public.profiles (id, name, email, mobile, state, city, area, is_verified)
-VALUES ('340f8960-7a9a-46db-ac1f-176ffc096200', 'Rohan Sharma', 'prod_cust_1789899841500@hallkhoj.in', '9876543210', 'Uttar Pradesh', 'Lucknow', '', FALSE)
-ON CONFLICT (id) DO NOTHING;
+VALUES ('340f8960-7a9a-46db-ac1f-176ffc096200', 'Rohan Sharma', 'prod_cust_1789899841500@hallkhoj.in', '9810000118', 'Uttar Pradesh', 'Lucknow', '', FALSE)
+ON CONFLICT (id) DO UPDATE SET
+  name = EXCLUDED.name,
+  email = EXCLUDED.email,
+  mobile = EXCLUDED.mobile;
 INSERT INTO public.user_roles (profile_id, role)
 VALUES ('340f8960-7a9a-46db-ac1f-176ffc096200', 'customer')
 ON CONFLICT (profile_id, role) DO NOTHING;
 INSERT INTO public.profiles (id, name, email, mobile, state, city, area, is_verified)
-VALUES ('c4b5041e-9e7b-4e5c-aa42-a54e6ffabdb6', 'Vikram Singh', 'prod_owner_1789899841500@hallkhoj.in', '9876543211', 'Uttar Pradesh', 'Lucknow', '', FALSE)
-ON CONFLICT (id) DO NOTHING;
+VALUES ('c4b5041e-9e7b-4e5c-aa42-a54e6ffabdb6', 'Vikram Singh', 'prod_owner_1789899841500@hallkhoj.in', '9810000119', 'Uttar Pradesh', 'Lucknow', '', FALSE)
+ON CONFLICT (id) DO UPDATE SET
+  name = EXCLUDED.name,
+  email = EXCLUDED.email,
+  mobile = EXCLUDED.mobile;
 INSERT INTO public.user_roles (profile_id, role)
 VALUES ('c4b5041e-9e7b-4e5c-aa42-a54e6ffabdb6', 'owner')
 ON CONFLICT (profile_id, role) DO NOTHING;
 INSERT INTO public.profiles (id, name, email, mobile, state, city, area, is_verified)
-VALUES ('91decefd-a3f6-4530-ae01-4fd865e83759', 'Rohan Sharma', 'prod_cust_1789899888088@hallkhoj.in', '9876543210', 'Uttar Pradesh', 'Lucknow', '', FALSE)
-ON CONFLICT (id) DO NOTHING;
+VALUES ('91decefd-a3f6-4530-ae01-4fd865e83759', 'Rohan Sharma', 'prod_cust_1789899888088@hallkhoj.in', '9810000120', 'Uttar Pradesh', 'Lucknow', '', FALSE)
+ON CONFLICT (id) DO UPDATE SET
+  name = EXCLUDED.name,
+  email = EXCLUDED.email,
+  mobile = EXCLUDED.mobile;
 INSERT INTO public.user_roles (profile_id, role)
 VALUES ('91decefd-a3f6-4530-ae01-4fd865e83759', 'customer')
 ON CONFLICT (profile_id, role) DO NOTHING;
 INSERT INTO public.profiles (id, name, email, mobile, state, city, area, is_verified)
-VALUES ('a5abf92a-c7a2-4897-ab31-0fc91644a78b', 'Vikram Singh', 'prod_owner_1789899888088@hallkhoj.in', '9876543211', 'Uttar Pradesh', 'Lucknow', '', FALSE)
-ON CONFLICT (id) DO NOTHING;
+VALUES ('a5abf92a-c7a2-4897-ab31-0fc91644a78b', 'Vikram Singh', 'prod_owner_1789899888088@hallkhoj.in', '9810000121', 'Uttar Pradesh', 'Lucknow', '', FALSE)
+ON CONFLICT (id) DO UPDATE SET
+  name = EXCLUDED.name,
+  email = EXCLUDED.email,
+  mobile = EXCLUDED.mobile;
 INSERT INTO public.user_roles (profile_id, role)
 VALUES ('a5abf92a-c7a2-4897-ab31-0fc91644a78b', 'owner')
 ON CONFLICT (profile_id, role) DO NOTHING;
 INSERT INTO public.profiles (id, name, email, mobile, state, city, area, is_verified)
-VALUES ('525adf26-9920-4d31-a110-1e3e22c77c68', 'Rohan Sharma', 'prod_cust_1789899964242@hallkhoj.in', '9876543210', 'Uttar Pradesh', 'Lucknow', '', FALSE)
-ON CONFLICT (id) DO NOTHING;
+VALUES ('525adf26-9920-4d31-a110-1e3e22c77c68', 'Rohan Sharma', 'prod_cust_1789899964242@hallkhoj.in', '9810000122', 'Uttar Pradesh', 'Lucknow', '', FALSE)
+ON CONFLICT (id) DO UPDATE SET
+  name = EXCLUDED.name,
+  email = EXCLUDED.email,
+  mobile = EXCLUDED.mobile;
 INSERT INTO public.user_roles (profile_id, role)
 VALUES ('525adf26-9920-4d31-a110-1e3e22c77c68', 'customer')
 ON CONFLICT (profile_id, role) DO NOTHING;
 INSERT INTO public.profiles (id, name, email, mobile, state, city, area, is_verified)
-VALUES ('d7bd62fe-f5f1-44d8-ad0b-0dbf5e830083', 'Vikram Singh', 'prod_owner_1789899964242@hallkhoj.in', '9876543211', 'Uttar Pradesh', 'Lucknow', '', FALSE)
-ON CONFLICT (id) DO NOTHING;
+VALUES ('d7bd62fe-f5f1-44d8-ad0b-0dbf5e830083', 'Vikram Singh', 'prod_owner_1789899964242@hallkhoj.in', '9810000123', 'Uttar Pradesh', 'Lucknow', '', FALSE)
+ON CONFLICT (id) DO UPDATE SET
+  name = EXCLUDED.name,
+  email = EXCLUDED.email,
+  mobile = EXCLUDED.mobile;
 INSERT INTO public.user_roles (profile_id, role)
 VALUES ('d7bd62fe-f5f1-44d8-ad0b-0dbf5e830083', 'owner')
 ON CONFLICT (profile_id, role) DO NOTHING;
 INSERT INTO public.profiles (id, name, email, mobile, state, city, area, is_verified)
-VALUES ('5076fddc-95e5-46d2-aa80-5d9812a7facc', 'E2E Test Customer', 'e2e_cust_1789899996399@test.com', '9876500001', 'Uttar Pradesh', 'Lucknow', '', FALSE)
-ON CONFLICT (id) DO NOTHING;
+VALUES ('5076fddc-95e5-46d2-aa80-5d9812a7facc', 'E2E Test Customer', 'e2e_cust_1789899996399@test.com', '9810000124', 'Uttar Pradesh', 'Lucknow', '', FALSE)
+ON CONFLICT (id) DO UPDATE SET
+  name = EXCLUDED.name,
+  email = EXCLUDED.email,
+  mobile = EXCLUDED.mobile;
 INSERT INTO public.user_roles (profile_id, role)
 VALUES ('5076fddc-95e5-46d2-aa80-5d9812a7facc', 'customer')
 ON CONFLICT (profile_id, role) DO NOTHING;
 INSERT INTO public.profiles (id, name, email, mobile, state, city, area, is_verified)
-VALUES ('effdb8de-d0f5-44a9-a7e8-c4396b6140ce', 'E2E Venue Owner', 'e2e_owner_1789899996399@test.com', '9876500002', 'Uttar Pradesh', 'Lucknow', '', FALSE)
-ON CONFLICT (id) DO NOTHING;
+VALUES ('effdb8de-d0f5-44a9-a7e8-c4396b6140ce', 'E2E Venue Owner', 'e2e_owner_1789899996399@test.com', '9810000125', 'Uttar Pradesh', 'Lucknow', '', FALSE)
+ON CONFLICT (id) DO UPDATE SET
+  name = EXCLUDED.name,
+  email = EXCLUDED.email,
+  mobile = EXCLUDED.mobile;
 INSERT INTO public.user_roles (profile_id, role)
 VALUES ('effdb8de-d0f5-44a9-a7e8-c4396b6140ce', 'owner')
 ON CONFLICT (profile_id, role) DO NOTHING;
 INSERT INTO public.profiles (id, name, email, mobile, state, city, area, is_verified)
-VALUES ('75fbe0fa-f672-4b14-aa9b-48bbbc025091', 'Owner AI Test', 'owner_ai_5712@test.com', '9876543210', 'Uttar Pradesh', 'Lucknow', '', FALSE)
-ON CONFLICT (id) DO NOTHING;
+VALUES ('75fbe0fa-f672-4b14-aa9b-48bbbc025091', 'Owner AI Test', 'owner_ai_5712@test.com', '9810000126', 'Uttar Pradesh', 'Lucknow', '', FALSE)
+ON CONFLICT (id) DO UPDATE SET
+  name = EXCLUDED.name,
+  email = EXCLUDED.email,
+  mobile = EXCLUDED.mobile;
 INSERT INTO public.user_roles (profile_id, role)
 VALUES ('75fbe0fa-f672-4b14-aa9b-48bbbc025091', 'owner')
 ON CONFLICT (profile_id, role) DO NOTHING;
 INSERT INTO public.profiles (id, name, email, mobile, state, city, area, is_verified)
-VALUES ('b818068a-56b0-4916-ac80-f4d30c1c69aa', 'Customer AI Test', 'cust_ai_5712@test.com', '9876543211', 'Uttar Pradesh', 'Lucknow', '', FALSE)
-ON CONFLICT (id) DO NOTHING;
+VALUES ('b818068a-56b0-4916-ac80-f4d30c1c69aa', 'Customer AI Test', 'cust_ai_5712@test.com', '9810000127', 'Uttar Pradesh', 'Lucknow', '', FALSE)
+ON CONFLICT (id) DO UPDATE SET
+  name = EXCLUDED.name,
+  email = EXCLUDED.email,
+  mobile = EXCLUDED.mobile;
 INSERT INTO public.user_roles (profile_id, role)
 VALUES ('b818068a-56b0-4916-ac80-f4d30c1c69aa', 'customer')
 ON CONFLICT (profile_id, role) DO NOTHING;
 INSERT INTO public.profiles (id, name, email, mobile, state, city, area, is_verified)
-VALUES ('abc2971d-0eaa-4333-a828-223706ce49b9', 'Owner AI Test', 'owner_ai_6905@test.com', '9876543210', 'Uttar Pradesh', 'Lucknow', '', FALSE)
-ON CONFLICT (id) DO NOTHING;
+VALUES ('abc2971d-0eaa-4333-a828-223706ce49b9', 'Owner AI Test', 'owner_ai_6905@test.com', '9810000128', 'Uttar Pradesh', 'Lucknow', '', FALSE)
+ON CONFLICT (id) DO UPDATE SET
+  name = EXCLUDED.name,
+  email = EXCLUDED.email,
+  mobile = EXCLUDED.mobile;
 INSERT INTO public.user_roles (profile_id, role)
 VALUES ('abc2971d-0eaa-4333-a828-223706ce49b9', 'owner')
 ON CONFLICT (profile_id, role) DO NOTHING;
 INSERT INTO public.profiles (id, name, email, mobile, state, city, area, is_verified)
-VALUES ('2dbabdf2-bf71-40a6-a80c-53403959c850', 'Customer AI Test', 'cust_ai_6905@test.com', '9876543211', 'Uttar Pradesh', 'Lucknow', '', FALSE)
-ON CONFLICT (id) DO NOTHING;
+VALUES ('2dbabdf2-bf71-40a6-a80c-53403959c850', 'Customer AI Test', 'cust_ai_6905@test.com', '9810000129', 'Uttar Pradesh', 'Lucknow', '', FALSE)
+ON CONFLICT (id) DO UPDATE SET
+  name = EXCLUDED.name,
+  email = EXCLUDED.email,
+  mobile = EXCLUDED.mobile;
 INSERT INTO public.user_roles (profile_id, role)
 VALUES ('2dbabdf2-bf71-40a6-a80c-53403959c850', 'customer')
 ON CONFLICT (profile_id, role) DO NOTHING;
 INSERT INTO public.profiles (id, name, email, mobile, state, city, area, is_verified)
-VALUES ('4b7e8750-8375-4a15-a21b-2316de414d72', 'Rohan Sharma', 'prod_cust_1789900085893@hallkhoj.in', '9876543210', 'Uttar Pradesh', 'Lucknow', '', FALSE)
-ON CONFLICT (id) DO NOTHING;
+VALUES ('4b7e8750-8375-4a15-a21b-2316de414d72', 'Rohan Sharma', 'prod_cust_1789900085893@hallkhoj.in', '9810000130', 'Uttar Pradesh', 'Lucknow', '', FALSE)
+ON CONFLICT (id) DO UPDATE SET
+  name = EXCLUDED.name,
+  email = EXCLUDED.email,
+  mobile = EXCLUDED.mobile;
 INSERT INTO public.user_roles (profile_id, role)
 VALUES ('4b7e8750-8375-4a15-a21b-2316de414d72', 'customer')
 ON CONFLICT (profile_id, role) DO NOTHING;
 INSERT INTO public.profiles (id, name, email, mobile, state, city, area, is_verified)
-VALUES ('d5f68eb4-3511-45b8-a982-2a7fd31ad00e', 'Vikram Singh', 'prod_owner_1789900085893@hallkhoj.in', '9876543211', 'Uttar Pradesh', 'Lucknow', '', FALSE)
-ON CONFLICT (id) DO NOTHING;
+VALUES ('d5f68eb4-3511-45b8-a982-2a7fd31ad00e', 'Vikram Singh', 'prod_owner_1789900085893@hallkhoj.in', '9810000131', 'Uttar Pradesh', 'Lucknow', '', FALSE)
+ON CONFLICT (id) DO UPDATE SET
+  name = EXCLUDED.name,
+  email = EXCLUDED.email,
+  mobile = EXCLUDED.mobile;
 INSERT INTO public.user_roles (profile_id, role)
 VALUES ('d5f68eb4-3511-45b8-a982-2a7fd31ad00e', 'owner')
 ON CONFLICT (profile_id, role) DO NOTHING;
 INSERT INTO public.profiles (id, name, email, mobile, state, city, area, is_verified)
 VALUES ('763a9fac-9163-41e3-a8a3-34cb21abe96c', 'Aman Customer', 'aman_cust_1789900091942@example.com', '9881959943', 'Uttar Pradesh', 'Lucknow', '', FALSE)
-ON CONFLICT (id) DO NOTHING;
+ON CONFLICT (id) DO UPDATE SET
+  name = EXCLUDED.name,
+  email = EXCLUDED.email,
+  mobile = EXCLUDED.mobile;
 INSERT INTO public.user_roles (profile_id, role)
 VALUES ('763a9fac-9163-41e3-a8a3-34cb21abe96c', 'customer')
 ON CONFLICT (profile_id, role) DO NOTHING;
 INSERT INTO public.profiles (id, name, email, mobile, state, city, area, is_verified)
 VALUES ('f843f1c9-cfed-4e6b-ae5e-7b5f03948461', 'Sunil Owner Partner', 'sunil_owner_1789900091942@example.com', '9728697376', 'Uttar Pradesh', 'Lucknow', '', FALSE)
-ON CONFLICT (id) DO NOTHING;
+ON CONFLICT (id) DO UPDATE SET
+  name = EXCLUDED.name,
+  email = EXCLUDED.email,
+  mobile = EXCLUDED.mobile;
 INSERT INTO public.user_roles (profile_id, role)
 VALUES ('f843f1c9-cfed-4e6b-ae5e-7b5f03948461', 'owner')
 ON CONFLICT (profile_id, role) DO NOTHING;
 INSERT INTO public.profiles (id, name, email, mobile, state, city, area, is_verified)
 VALUES ('0a5184d8-2253-4938-a36b-78e065ba844e', 'Stranger User', 'stranger_1789900091942@example.com', '9678322829', 'Uttar Pradesh', 'Lucknow', '', FALSE)
-ON CONFLICT (id) DO NOTHING;
+ON CONFLICT (id) DO UPDATE SET
+  name = EXCLUDED.name,
+  email = EXCLUDED.email,
+  mobile = EXCLUDED.mobile;
 INSERT INTO public.user_roles (profile_id, role)
 VALUES ('0a5184d8-2253-4938-a36b-78e065ba844e', 'customer')
 ON CONFLICT (profile_id, role) DO NOTHING;
 INSERT INTO public.profiles (id, name, email, mobile, state, city, area, is_verified)
 VALUES ('77a5a7b4-a65f-4a32-a36f-b8ebf439e127', 'Kavita Verma Customer', 'kavita_1789900100116@example.com', '9867529956', 'Uttar Pradesh', 'Lucknow', '', FALSE)
-ON CONFLICT (id) DO NOTHING;
+ON CONFLICT (id) DO UPDATE SET
+  name = EXCLUDED.name,
+  email = EXCLUDED.email,
+  mobile = EXCLUDED.mobile;
 INSERT INTO public.user_roles (profile_id, role)
 VALUES ('77a5a7b4-a65f-4a32-a36f-b8ebf439e127', 'customer')
 ON CONFLICT (profile_id, role) DO NOTHING;
 INSERT INTO public.profiles (id, name, email, mobile, state, city, area, is_verified)
 VALUES ('76b82a50-16e6-4a58-af30-c18fee7b09b8', 'Deepak Stranger', 'deepak_1789900100116@example.com', '9781910826', 'Uttar Pradesh', 'Lucknow', '', FALSE)
-ON CONFLICT (id) DO NOTHING;
+ON CONFLICT (id) DO UPDATE SET
+  name = EXCLUDED.name,
+  email = EXCLUDED.email,
+  mobile = EXCLUDED.mobile;
 INSERT INTO public.user_roles (profile_id, role)
 VALUES ('76b82a50-16e6-4a58-af30-c18fee7b09b8', 'customer')
 ON CONFLICT (profile_id, role) DO NOTHING;
 INSERT INTO public.profiles (id, name, email, mobile, state, city, area, is_verified)
 VALUES ('54f07d2a-2ea1-4364-aa61-b0b4811e034e', 'Manoj Singh Partner', 'manoj_1789900100116@example.com', '9626801424', 'Uttar Pradesh', 'Lucknow', '', FALSE)
-ON CONFLICT (id) DO NOTHING;
+ON CONFLICT (id) DO UPDATE SET
+  name = EXCLUDED.name,
+  email = EXCLUDED.email,
+  mobile = EXCLUDED.mobile;
 INSERT INTO public.user_roles (profile_id, role)
 VALUES ('54f07d2a-2ea1-4364-aa61-b0b4811e034e', 'owner')
 ON CONFLICT (profile_id, role) DO NOTHING;
 INSERT INTO public.profiles (id, name, email, mobile, state, city, area, is_verified)
 VALUES ('74dd72b1-4a2a-45f3-aedc-5796b6d742fd', 'Rahul Customer', 'rahul_1789900115926@example.com', '9831020693', 'Uttar Pradesh', 'Lucknow', '', FALSE)
-ON CONFLICT (id) DO NOTHING;
+ON CONFLICT (id) DO UPDATE SET
+  name = EXCLUDED.name,
+  email = EXCLUDED.email,
+  mobile = EXCLUDED.mobile;
 INSERT INTO public.user_roles (profile_id, role)
 VALUES ('74dd72b1-4a2a-45f3-aedc-5796b6d742fd', 'customer')
 ON CONFLICT (profile_id, role) DO NOTHING;
 INSERT INTO public.profiles (id, name, email, mobile, state, city, area, is_verified)
 VALUES ('600e73ec-3f73-44d6-a504-8a8c9dec19ab', 'Priya Customer', 'priya_1789900115926@example.com', '9784550547', 'Uttar Pradesh', 'Lucknow', '', FALSE)
-ON CONFLICT (id) DO NOTHING;
+ON CONFLICT (id) DO UPDATE SET
+  name = EXCLUDED.name,
+  email = EXCLUDED.email,
+  mobile = EXCLUDED.mobile;
 INSERT INTO public.user_roles (profile_id, role)
 VALUES ('600e73ec-3f73-44d6-a504-8a8c9dec19ab', 'customer')
 ON CONFLICT (profile_id, role) DO NOTHING;
 INSERT INTO public.profiles (id, name, email, mobile, state, city, area, is_verified)
 VALUES ('fd0b5c66-7ed1-405b-adbd-c30bc9bc99d4', 'Vikram Rajput Partner', 'vikram_partner_1789900115926@example.com', '9678369370', 'Uttar Pradesh', 'Lucknow', '', FALSE)
-ON CONFLICT (id) DO NOTHING;
+ON CONFLICT (id) DO UPDATE SET
+  name = EXCLUDED.name,
+  email = EXCLUDED.email,
+  mobile = EXCLUDED.mobile;
 INSERT INTO public.user_roles (profile_id, role)
 VALUES ('fd0b5c66-7ed1-405b-adbd-c30bc9bc99d4', 'owner')
 ON CONFLICT (profile_id, role) DO NOTHING;
 INSERT INTO public.profiles (id, name, email, mobile, state, city, area, is_verified)
-VALUES ('0a43da61-284c-4f97-a8e8-126c313c0ee1', 'Target Customer', 'cust_p6_1789900125038@hallkhoj.com', '9888877777', 'Uttar Pradesh', 'Lucknow', '', FALSE)
-ON CONFLICT (id) DO NOTHING;
+VALUES ('0a43da61-284c-4f97-a8e8-126c313c0ee1', 'Target Customer', 'cust_p6_1789900125038@hallkhoj.com', '9810000141', 'Uttar Pradesh', 'Lucknow', '', FALSE)
+ON CONFLICT (id) DO UPDATE SET
+  name = EXCLUDED.name,
+  email = EXCLUDED.email,
+  mobile = EXCLUDED.mobile;
 INSERT INTO public.user_roles (profile_id, role)
 VALUES ('0a43da61-284c-4f97-a8e8-126c313c0ee1', 'customer')
 ON CONFLICT (profile_id, role) DO NOTHING;
 INSERT INTO public.profiles (id, name, email, mobile, state, city, area, is_verified)
-VALUES ('f1fd29be-3329-4bc1-a1ba-396f2836c85a', 'Pradeep Tiwari', 'owner_p6_1789900125038@hallkhoj.com', '9777766666', 'Uttar Pradesh', 'Lucknow', '', TRUE)
-ON CONFLICT (id) DO NOTHING;
+VALUES ('f1fd29be-3329-4bc1-a1ba-396f2836c85a', 'Pradeep Tiwari', 'owner_p6_1789900125038@hallkhoj.com', '9810000142', 'Uttar Pradesh', 'Lucknow', '', TRUE)
+ON CONFLICT (id) DO UPDATE SET
+  name = EXCLUDED.name,
+  email = EXCLUDED.email,
+  mobile = EXCLUDED.mobile;
 INSERT INTO public.user_roles (profile_id, role)
 VALUES ('f1fd29be-3329-4bc1-a1ba-396f2836c85a', 'owner')
 ON CONFLICT (profile_id, role) DO NOTHING;
 INSERT INTO public.profiles (id, name, email, mobile, state, city, area, is_verified)
-VALUES ('94d1b3f4-68da-4648-acdc-8e26b21d5a61', 'Manish Kumar', 'manishkumar35@gmail.com', '6203025057', 'Bihar', 'Chapra', 'dhobwal', FALSE)
-ON CONFLICT (id) DO NOTHING;
+VALUES ('94d1b3f4-68da-4648-acdc-8e26b21d5a61', 'Manish Kumar', 'manishkumar35@gmail.com', '9810000143', 'Bihar', 'Chapra', 'dhobwal', FALSE)
+ON CONFLICT (id) DO UPDATE SET
+  name = EXCLUDED.name,
+  email = EXCLUDED.email,
+  mobile = EXCLUDED.mobile;
 INSERT INTO public.user_roles (profile_id, role)
 VALUES ('94d1b3f4-68da-4648-acdc-8e26b21d5a61', 'customer')
 ON CONFLICT (profile_id, role) DO NOTHING;
 INSERT INTO public.profiles (id, name, email, mobile, state, city, area, is_verified)
 VALUES ('0240c2c2-f0aa-4459-a4b9-865f18c23925', 'Vikram Singhania', 'banquet_owner_1790530546561@test.com', '9812358432', 'Uttar Pradesh', 'Varanasi', 'Sigra', FALSE)
-ON CONFLICT (id) DO NOTHING;
+ON CONFLICT (id) DO UPDATE SET
+  name = EXCLUDED.name,
+  email = EXCLUDED.email,
+  mobile = EXCLUDED.mobile;
 INSERT INTO public.user_roles (profile_id, role)
 VALUES ('0240c2c2-f0aa-4459-a4b9-865f18c23925', 'owner')
 ON CONFLICT (profile_id, role) DO NOTHING;
 INSERT INTO public.profiles (id, name, email, mobile, state, city, area, is_verified)
 VALUES ('43e65e36-8de1-4cd7-a2f6-88a4425b0f50', 'Rahul Verma', 'customer_1790530546561@test.com', '9765443171', 'Delhi NCR', 'Noida', '', FALSE)
-ON CONFLICT (id) DO NOTHING;
+ON CONFLICT (id) DO UPDATE SET
+  name = EXCLUDED.name,
+  email = EXCLUDED.email,
+  mobile = EXCLUDED.mobile;
 INSERT INTO public.user_roles (profile_id, role)
 VALUES ('43e65e36-8de1-4cd7-a2f6-88a4425b0f50', 'customer')
 ON CONFLICT (profile_id, role) DO NOTHING;
 INSERT INTO public.profiles (id, name, email, mobile, state, city, area, is_verified)
 VALUES ('2fc8bc77-9a04-4f5b-a374-26c11729ab22', 'Ramesh Sharma', 'usr_1790531943670_gkuyfz@hallkhoj.in', '6423490857', 'Uttar Pradesh', 'Lucknow', '', FALSE)
-ON CONFLICT (id) DO NOTHING;
+ON CONFLICT (id) DO UPDATE SET
+  name = EXCLUDED.name,
+  email = EXCLUDED.email,
+  mobile = EXCLUDED.mobile;
 INSERT INTO public.user_roles (profile_id, role)
 VALUES ('2fc8bc77-9a04-4f5b-a374-26c11729ab22', 'customer')
 ON CONFLICT (profile_id, role) DO NOTHING;
 INSERT INTO public.profiles (id, name, email, mobile, state, city, area, is_verified)
 VALUES ('edbb7e33-1828-4c92-aa21-9b77337b64b8', 'Suresh Verma', 'usr_1790531945374_tidn3h@hallkhoj.in', '6565627805', 'Bihar', 'Patna', '', FALSE)
-ON CONFLICT (id) DO NOTHING;
+ON CONFLICT (id) DO UPDATE SET
+  name = EXCLUDED.name,
+  email = EXCLUDED.email,
+  mobile = EXCLUDED.mobile;
 INSERT INTO public.user_roles (profile_id, role)
 VALUES ('edbb7e33-1828-4c92-aa21-9b77337b64b8', 'owner')
 ON CONFLICT (profile_id, role) DO NOTHING;
 INSERT INTO public.profiles (id, name, email, mobile, state, city, area, is_verified)
 VALUES ('22927177-952b-4688-a1b2-95874977192f', 'Ramesh Sharma', 'usr_1790531967030_o9heeh@hallkhoj.in', '6463524268', 'Uttar Pradesh', 'Lucknow', '', FALSE)
-ON CONFLICT (id) DO NOTHING;
+ON CONFLICT (id) DO UPDATE SET
+  name = EXCLUDED.name,
+  email = EXCLUDED.email,
+  mobile = EXCLUDED.mobile;
 INSERT INTO public.user_roles (profile_id, role)
 VALUES ('22927177-952b-4688-a1b2-95874977192f', 'customer')
 ON CONFLICT (profile_id, role) DO NOTHING;
 INSERT INTO public.profiles (id, name, email, mobile, state, city, area, is_verified)
 VALUES ('d87d16bf-a0d2-41b0-a65c-5c891b64acaa', 'Suresh Verma', 'usr_1790531967350_vy1868@hallkhoj.in', '7170570930', 'Bihar', 'Patna', '', FALSE)
-ON CONFLICT (id) DO NOTHING;
+ON CONFLICT (id) DO UPDATE SET
+  name = EXCLUDED.name,
+  email = EXCLUDED.email,
+  mobile = EXCLUDED.mobile;
 INSERT INTO public.user_roles (profile_id, role)
 VALUES ('d87d16bf-a0d2-41b0-a65c-5c891b64acaa', 'owner')
 ON CONFLICT (profile_id, role) DO NOTHING;
 INSERT INTO public.profiles (id, name, email, mobile, state, city, area, is_verified)
 VALUES ('16b596c3-0723-43fb-a9e6-f0cddf3649de', 'Vikramaditya Singh', 'usr_1790533840949_pz3amj@hallkhoj.in', '7260014086', 'Uttar Pradesh', 'Lucknow', '', FALSE)
-ON CONFLICT (id) DO NOTHING;
+ON CONFLICT (id) DO UPDATE SET
+  name = EXCLUDED.name,
+  email = EXCLUDED.email,
+  mobile = EXCLUDED.mobile;
 INSERT INTO public.user_roles (profile_id, role)
 VALUES ('16b596c3-0723-43fb-a9e6-f0cddf3649de', 'owner')
 ON CONFLICT (profile_id, role) DO NOTHING;
 INSERT INTO public.profiles (id, name, email, mobile, state, city, area, is_verified)
-VALUES ('a06633e7-aca5-498c-aea7-a690f88dd620', 'Manish Kumar', 'mkumar25843@gmail.com', '6203025057', 'amritsar', 'Amritsar', 'dhobwal', FALSE)
-ON CONFLICT (id) DO NOTHING;
+VALUES ('a06633e7-aca5-498c-aea7-a690f88dd620', 'Manish Kumar', 'mkumar25843_151@gmail.com', '9810000151', 'amritsar', 'Amritsar', 'dhobwal', FALSE)
+ON CONFLICT (id) DO UPDATE SET
+  name = EXCLUDED.name,
+  email = EXCLUDED.email,
+  mobile = EXCLUDED.mobile;
 INSERT INTO public.user_roles (profile_id, role)
 VALUES ('a06633e7-aca5-498c-aea7-a690f88dd620', 'owner')
+ON CONFLICT (profile_id, role) DO NOTHING;
+INSERT INTO public.profiles (id, name, email, mobile, state, city, area, is_verified)
+VALUES ('e295bfcb-b96a-4eb4-ae18-b28ece8a0874', 'Autonomous Tester', 'test_email_user_1793777076519@example.com', NULL, 'Uttar Pradesh', 'Lucknow', '', TRUE)
+ON CONFLICT (id) DO UPDATE SET
+  name = EXCLUDED.name,
+  email = EXCLUDED.email,
+  mobile = EXCLUDED.mobile;
+INSERT INTO public.user_roles (profile_id, role)
+VALUES ('e295bfcb-b96a-4eb4-ae18-b28ece8a0874', 'customer')
+ON CONFLICT (profile_id, role) DO NOTHING;
+INSERT INTO public.profiles (id, name, email, mobile, state, city, area, is_verified)
+VALUES ('724fce1a-b3eb-4525-aec3-23b925553ad4', 'Google User', 'google_verified_1793777076654@gmail.com', NULL, 'Uttar Pradesh', 'Lucknow', '', TRUE)
+ON CONFLICT (id) DO UPDATE SET
+  name = EXCLUDED.name,
+  email = EXCLUDED.email,
+  mobile = EXCLUDED.mobile;
+INSERT INTO public.user_roles (profile_id, role)
+VALUES ('724fce1a-b3eb-4525-aec3-23b925553ad4', 'customer')
+ON CONFLICT (profile_id, role) DO NOTHING;
+INSERT INTO public.profiles (id, name, email, mobile, state, city, area, is_verified)
+VALUES ('4d326a9f-9cd2-490c-afbc-d71c483336a2', 'Autonomous Tester', 'test_email_user_1793777273225@example.com', NULL, 'Uttar Pradesh', 'Lucknow', '', TRUE)
+ON CONFLICT (id) DO UPDATE SET
+  name = EXCLUDED.name,
+  email = EXCLUDED.email,
+  mobile = EXCLUDED.mobile;
+INSERT INTO public.user_roles (profile_id, role)
+VALUES ('4d326a9f-9cd2-490c-afbc-d71c483336a2', 'customer')
+ON CONFLICT (profile_id, role) DO NOTHING;
+INSERT INTO public.profiles (id, name, email, mobile, state, city, area, is_verified)
+VALUES ('736b7ead-e2c2-4917-acac-2b1cd6bd8498', 'Google User', 'google_verified_1793777273363@gmail.com', NULL, 'Uttar Pradesh', 'Lucknow', '', TRUE)
+ON CONFLICT (id) DO UPDATE SET
+  name = EXCLUDED.name,
+  email = EXCLUDED.email,
+  mobile = EXCLUDED.mobile;
+INSERT INTO public.user_roles (profile_id, role)
+VALUES ('736b7ead-e2c2-4917-acac-2b1cd6bd8498', 'customer')
+ON CONFLICT (profile_id, role) DO NOTHING;
+INSERT INTO public.profiles (id, name, email, mobile, state, city, area, is_verified)
+VALUES ('ec469520-9bdd-4cbf-a3df-854818b4fc50', 'Autonomous Tester', 'test_email_user_1793777344359@example.com', NULL, 'Uttar Pradesh', 'Lucknow', '', TRUE)
+ON CONFLICT (id) DO UPDATE SET
+  name = EXCLUDED.name,
+  email = EXCLUDED.email,
+  mobile = EXCLUDED.mobile;
+INSERT INTO public.user_roles (profile_id, role)
+VALUES ('ec469520-9bdd-4cbf-a3df-854818b4fc50', 'customer')
+ON CONFLICT (profile_id, role) DO NOTHING;
+INSERT INTO public.profiles (id, name, email, mobile, state, city, area, is_verified)
+VALUES ('434a3cc0-9bce-4758-ab02-a938c01150d8', 'Google User', 'google_verified_1793777344493@gmail.com', NULL, 'Uttar Pradesh', 'Lucknow', '', TRUE)
+ON CONFLICT (id) DO UPDATE SET
+  name = EXCLUDED.name,
+  email = EXCLUDED.email,
+  mobile = EXCLUDED.mobile;
+INSERT INTO public.user_roles (profile_id, role)
+VALUES ('434a3cc0-9bce-4758-ab02-a938c01150d8', 'customer')
+ON CONFLICT (profile_id, role) DO NOTHING;
+INSERT INTO public.profiles (id, name, email, mobile, state, city, area, is_verified)
+VALUES ('e4b2ce30-7db3-4f10-afa2-37b9ca4732f7', 'Autonomous Tester', 'test_email_user_1793778031857@example.com', NULL, 'Uttar Pradesh', 'Lucknow', '', TRUE)
+ON CONFLICT (id) DO UPDATE SET
+  name = EXCLUDED.name,
+  email = EXCLUDED.email,
+  mobile = EXCLUDED.mobile;
+INSERT INTO public.user_roles (profile_id, role)
+VALUES ('e4b2ce30-7db3-4f10-afa2-37b9ca4732f7', 'customer')
+ON CONFLICT (profile_id, role) DO NOTHING;
+INSERT INTO public.profiles (id, name, email, mobile, state, city, area, is_verified)
+VALUES ('0781acf5-474e-47e6-ab6f-ce81e90e4189', 'Google User', 'google_verified_1793778032004@gmail.com', NULL, 'Uttar Pradesh', 'Lucknow', '', TRUE)
+ON CONFLICT (id) DO UPDATE SET
+  name = EXCLUDED.name,
+  email = EXCLUDED.email,
+  mobile = EXCLUDED.mobile;
+INSERT INTO public.user_roles (profile_id, role)
+VALUES ('0781acf5-474e-47e6-ab6f-ce81e90e4189', 'customer')
+ON CONFLICT (profile_id, role) DO NOTHING;
+INSERT INTO public.profiles (id, name, email, mobile, state, city, area, is_verified)
+VALUES ('b8408d8c-5421-47d8-abf4-f954f62a7a97', 'Autonomous Tester', 'test_email_user_1793783081496@example.com', NULL, 'Uttar Pradesh', 'Lucknow', '', TRUE)
+ON CONFLICT (id) DO UPDATE SET
+  name = EXCLUDED.name,
+  email = EXCLUDED.email,
+  mobile = EXCLUDED.mobile;
+INSERT INTO public.user_roles (profile_id, role)
+VALUES ('b8408d8c-5421-47d8-abf4-f954f62a7a97', 'customer')
+ON CONFLICT (profile_id, role) DO NOTHING;
+INSERT INTO public.profiles (id, name, email, mobile, state, city, area, is_verified)
+VALUES ('f9c0ab68-eb66-4fb9-a2c6-ba12b99a62b1', 'Google User', 'google_verified_1793783081635@gmail.com', NULL, 'Uttar Pradesh', 'Lucknow', '', TRUE)
+ON CONFLICT (id) DO UPDATE SET
+  name = EXCLUDED.name,
+  email = EXCLUDED.email,
+  mobile = EXCLUDED.mobile;
+INSERT INTO public.user_roles (profile_id, role)
+VALUES ('f9c0ab68-eb66-4fb9-a2c6-ba12b99a62b1', 'customer')
+ON CONFLICT (profile_id, role) DO NOTHING;
+INSERT INTO public.profiles (id, name, email, mobile, state, city, area, is_verified)
+VALUES ('98709546-2a0c-4246-a816-d9b68e7b3131', 'Autonomous Tester', 'test_email_user_1793785187063@example.com', NULL, 'Uttar Pradesh', 'Lucknow', '', TRUE)
+ON CONFLICT (id) DO UPDATE SET
+  name = EXCLUDED.name,
+  email = EXCLUDED.email,
+  mobile = EXCLUDED.mobile;
+INSERT INTO public.user_roles (profile_id, role)
+VALUES ('98709546-2a0c-4246-a816-d9b68e7b3131', 'customer')
+ON CONFLICT (profile_id, role) DO NOTHING;
+INSERT INTO public.profiles (id, name, email, mobile, state, city, area, is_verified)
+VALUES ('7d54f619-2496-4f72-a717-5a4e1345afbd', 'Google User', 'google_verified_1793785187198@gmail.com', NULL, 'Uttar Pradesh', 'Lucknow', '', TRUE)
+ON CONFLICT (id) DO UPDATE SET
+  name = EXCLUDED.name,
+  email = EXCLUDED.email,
+  mobile = EXCLUDED.mobile;
+INSERT INTO public.user_roles (profile_id, role)
+VALUES ('7d54f619-2496-4f72-a717-5a4e1345afbd', 'customer')
+ON CONFLICT (profile_id, role) DO NOTHING;
+INSERT INTO public.profiles (id, name, email, mobile, state, city, area, is_verified)
+VALUES ('9488167c-141f-4f51-a760-aec05f2f80bf', 'Autonomous Tester', 'test_email_user_1793788515647@example.com', NULL, 'Uttar Pradesh', 'Lucknow', '', TRUE)
+ON CONFLICT (id) DO UPDATE SET
+  name = EXCLUDED.name,
+  email = EXCLUDED.email,
+  mobile = EXCLUDED.mobile;
+INSERT INTO public.user_roles (profile_id, role)
+VALUES ('9488167c-141f-4f51-a760-aec05f2f80bf', 'customer')
+ON CONFLICT (profile_id, role) DO NOTHING;
+INSERT INTO public.profiles (id, name, email, mobile, state, city, area, is_verified)
+VALUES ('689f5068-19ed-4753-ae43-7000c54fbcc9', 'Google User', 'google_verified_1793788515794@gmail.com', NULL, 'Uttar Pradesh', 'Lucknow', '', TRUE)
+ON CONFLICT (id) DO UPDATE SET
+  name = EXCLUDED.name,
+  email = EXCLUDED.email,
+  mobile = EXCLUDED.mobile;
+INSERT INTO public.user_roles (profile_id, role)
+VALUES ('689f5068-19ed-4753-ae43-7000c54fbcc9', 'customer')
+ON CONFLICT (profile_id, role) DO NOTHING;
+INSERT INTO public.profiles (id, name, email, mobile, state, city, area, is_verified)
+VALUES ('d7280a3b-a616-4a68-ac66-c657f67781c8', 'Autonomous Tester', 'test_email_user_1793788549674@example.com', NULL, 'Uttar Pradesh', 'Lucknow', '', TRUE)
+ON CONFLICT (id) DO UPDATE SET
+  name = EXCLUDED.name,
+  email = EXCLUDED.email,
+  mobile = EXCLUDED.mobile;
+INSERT INTO public.user_roles (profile_id, role)
+VALUES ('d7280a3b-a616-4a68-ac66-c657f67781c8', 'customer')
+ON CONFLICT (profile_id, role) DO NOTHING;
+INSERT INTO public.profiles (id, name, email, mobile, state, city, area, is_verified)
+VALUES ('fe87f8c1-ba69-4c88-a9a1-04ba9e0b4a0c', 'Google User', 'google_verified_1793788549819@gmail.com', NULL, 'Uttar Pradesh', 'Lucknow', '', TRUE)
+ON CONFLICT (id) DO UPDATE SET
+  name = EXCLUDED.name,
+  email = EXCLUDED.email,
+  mobile = EXCLUDED.mobile;
+INSERT INTO public.user_roles (profile_id, role)
+VALUES ('fe87f8c1-ba69-4c88-a9a1-04ba9e0b4a0c', 'customer')
+ON CONFLICT (profile_id, role) DO NOTHING;
+INSERT INTO public.profiles (id, name, email, mobile, state, city, area, is_verified)
+VALUES ('7c15267a-1eb2-4598-a7e7-fe3394cef79a', 'Autonomous Tester', 'test_email_user_1793788579629@example.com', NULL, 'Uttar Pradesh', 'Lucknow', '', TRUE)
+ON CONFLICT (id) DO UPDATE SET
+  name = EXCLUDED.name,
+  email = EXCLUDED.email,
+  mobile = EXCLUDED.mobile;
+INSERT INTO public.user_roles (profile_id, role)
+VALUES ('7c15267a-1eb2-4598-a7e7-fe3394cef79a', 'customer')
+ON CONFLICT (profile_id, role) DO NOTHING;
+INSERT INTO public.profiles (id, name, email, mobile, state, city, area, is_verified)
+VALUES ('b2a73121-442e-428f-ae3f-cb7dc30a2427', 'Google User', 'google_verified_1793788579773@gmail.com', NULL, 'Uttar Pradesh', 'Lucknow', '', TRUE)
+ON CONFLICT (id) DO UPDATE SET
+  name = EXCLUDED.name,
+  email = EXCLUDED.email,
+  mobile = EXCLUDED.mobile;
+INSERT INTO public.user_roles (profile_id, role)
+VALUES ('b2a73121-442e-428f-ae3f-cb7dc30a2427', 'customer')
+ON CONFLICT (profile_id, role) DO NOTHING;
+INSERT INTO public.profiles (id, name, email, mobile, state, city, area, is_verified)
+VALUES ('b7fa9a5e-ba3c-4052-a1a6-1378b6902ebc', 'Autonomous Tester', 'test_email_user_1793788646655@example.com', NULL, 'Uttar Pradesh', 'Lucknow', '', TRUE)
+ON CONFLICT (id) DO UPDATE SET
+  name = EXCLUDED.name,
+  email = EXCLUDED.email,
+  mobile = EXCLUDED.mobile;
+INSERT INTO public.user_roles (profile_id, role)
+VALUES ('b7fa9a5e-ba3c-4052-a1a6-1378b6902ebc', 'customer')
+ON CONFLICT (profile_id, role) DO NOTHING;
+INSERT INTO public.profiles (id, name, email, mobile, state, city, area, is_verified)
+VALUES ('6b93039f-c180-4742-ae8b-9b0c3b766bcb', 'Google User', 'google_verified_1793788646793@gmail.com', NULL, 'Uttar Pradesh', 'Lucknow', '', TRUE)
+ON CONFLICT (id) DO UPDATE SET
+  name = EXCLUDED.name,
+  email = EXCLUDED.email,
+  mobile = EXCLUDED.mobile;
+INSERT INTO public.user_roles (profile_id, role)
+VALUES ('6b93039f-c180-4742-ae8b-9b0c3b766bcb', 'customer')
+ON CONFLICT (profile_id, role) DO NOTHING;
+INSERT INTO public.profiles (id, name, email, mobile, state, city, area, is_verified)
+VALUES ('943967c8-ed2f-4a7e-a983-8cffa20224b4', 'Autonomous Tester', 'test_email_user_1793788718264@example.com', NULL, 'Uttar Pradesh', 'Lucknow', '', TRUE)
+ON CONFLICT (id) DO UPDATE SET
+  name = EXCLUDED.name,
+  email = EXCLUDED.email,
+  mobile = EXCLUDED.mobile;
+INSERT INTO public.user_roles (profile_id, role)
+VALUES ('943967c8-ed2f-4a7e-a983-8cffa20224b4', 'customer')
+ON CONFLICT (profile_id, role) DO NOTHING;
+INSERT INTO public.profiles (id, name, email, mobile, state, city, area, is_verified)
+VALUES ('2a19c8e1-f630-4375-aae8-1a5fb488862a', 'Google User', 'google_verified_1793788718406@gmail.com', NULL, 'Uttar Pradesh', 'Lucknow', '', TRUE)
+ON CONFLICT (id) DO UPDATE SET
+  name = EXCLUDED.name,
+  email = EXCLUDED.email,
+  mobile = EXCLUDED.mobile;
+INSERT INTO public.user_roles (profile_id, role)
+VALUES ('2a19c8e1-f630-4375-aae8-1a5fb488862a', 'customer')
+ON CONFLICT (profile_id, role) DO NOTHING;
+INSERT INTO public.profiles (id, name, email, mobile, state, city, area, is_verified)
+VALUES ('737cb510-c59f-4820-adfa-d2446bc20284', 'Autonomous Tester', 'test_email_user_1793788834245@example.com', NULL, 'Uttar Pradesh', 'Lucknow', '', TRUE)
+ON CONFLICT (id) DO UPDATE SET
+  name = EXCLUDED.name,
+  email = EXCLUDED.email,
+  mobile = EXCLUDED.mobile;
+INSERT INTO public.user_roles (profile_id, role)
+VALUES ('737cb510-c59f-4820-adfa-d2446bc20284', 'customer')
+ON CONFLICT (profile_id, role) DO NOTHING;
+INSERT INTO public.profiles (id, name, email, mobile, state, city, area, is_verified)
+VALUES ('2c89e483-b181-4daf-a962-ce544c5d2b45', 'Google User', 'google_verified_1793788834379@gmail.com', NULL, 'Uttar Pradesh', 'Lucknow', '', TRUE)
+ON CONFLICT (id) DO UPDATE SET
+  name = EXCLUDED.name,
+  email = EXCLUDED.email,
+  mobile = EXCLUDED.mobile;
+INSERT INTO public.user_roles (profile_id, role)
+VALUES ('2c89e483-b181-4daf-a962-ce544c5d2b45', 'customer')
+ON CONFLICT (profile_id, role) DO NOTHING;
+INSERT INTO public.profiles (id, name, email, mobile, state, city, area, is_verified)
+VALUES ('a8ef40d7-a587-4899-a7da-b103e725d108', 'Autonomous Tester', 'test_email_user_1793789626065@example.com', NULL, 'Uttar Pradesh', 'Lucknow', '', TRUE)
+ON CONFLICT (id) DO UPDATE SET
+  name = EXCLUDED.name,
+  email = EXCLUDED.email,
+  mobile = EXCLUDED.mobile;
+INSERT INTO public.user_roles (profile_id, role)
+VALUES ('a8ef40d7-a587-4899-a7da-b103e725d108', 'customer')
+ON CONFLICT (profile_id, role) DO NOTHING;
+INSERT INTO public.profiles (id, name, email, mobile, state, city, area, is_verified)
+VALUES ('9d8ccf7b-5c2a-400b-a3b2-ab975f9b1622', 'Google User', 'google_verified_1793789626216@gmail.com', NULL, 'Uttar Pradesh', 'Lucknow', '', TRUE)
+ON CONFLICT (id) DO UPDATE SET
+  name = EXCLUDED.name,
+  email = EXCLUDED.email,
+  mobile = EXCLUDED.mobile;
+INSERT INTO public.user_roles (profile_id, role)
+VALUES ('9d8ccf7b-5c2a-400b-a3b2-ab975f9b1622', 'customer')
+ON CONFLICT (profile_id, role) DO NOTHING;
+INSERT INTO public.profiles (id, name, email, mobile, state, city, area, is_verified)
+VALUES ('3a92cc39-1d8d-4f13-a5a7-ca14c9f9c520', 'Autonomous Tester', 'test_email_user_1793790905420@example.com', NULL, 'Uttar Pradesh', 'Lucknow', '', TRUE)
+ON CONFLICT (id) DO UPDATE SET
+  name = EXCLUDED.name,
+  email = EXCLUDED.email,
+  mobile = EXCLUDED.mobile;
+INSERT INTO public.user_roles (profile_id, role)
+VALUES ('3a92cc39-1d8d-4f13-a5a7-ca14c9f9c520', 'customer')
+ON CONFLICT (profile_id, role) DO NOTHING;
+INSERT INTO public.profiles (id, name, email, mobile, state, city, area, is_verified)
+VALUES ('6708daf7-976f-46cb-afb6-58ee787d7edf', 'Google User', 'google_verified_1793790905655@gmail.com', NULL, 'Uttar Pradesh', 'Lucknow', '', TRUE)
+ON CONFLICT (id) DO UPDATE SET
+  name = EXCLUDED.name,
+  email = EXCLUDED.email,
+  mobile = EXCLUDED.mobile;
+INSERT INTO public.user_roles (profile_id, role)
+VALUES ('6708daf7-976f-46cb-afb6-58ee787d7edf', 'customer')
+ON CONFLICT (profile_id, role) DO NOTHING;
+INSERT INTO public.profiles (id, name, email, mobile, state, city, area, is_verified)
+VALUES ('a56c0a87-69d5-4f0c-afb6-fe511176a8e3', 'Autonomous Tester', 'test_email_user_1793790990505@example.com', NULL, 'Uttar Pradesh', 'Lucknow', '', TRUE)
+ON CONFLICT (id) DO UPDATE SET
+  name = EXCLUDED.name,
+  email = EXCLUDED.email,
+  mobile = EXCLUDED.mobile;
+INSERT INTO public.user_roles (profile_id, role)
+VALUES ('a56c0a87-69d5-4f0c-afb6-fe511176a8e3', 'customer')
+ON CONFLICT (profile_id, role) DO NOTHING;
+INSERT INTO public.profiles (id, name, email, mobile, state, city, area, is_verified)
+VALUES ('81d448a8-837a-44e8-a859-5d5764e6c0d5', 'Google User', 'google_verified_1793790990730@gmail.com', NULL, 'Uttar Pradesh', 'Lucknow', '', TRUE)
+ON CONFLICT (id) DO UPDATE SET
+  name = EXCLUDED.name,
+  email = EXCLUDED.email,
+  mobile = EXCLUDED.mobile;
+INSERT INTO public.user_roles (profile_id, role)
+VALUES ('81d448a8-837a-44e8-a859-5d5764e6c0d5', 'customer')
+ON CONFLICT (profile_id, role) DO NOTHING;
+INSERT INTO public.profiles (id, name, email, mobile, state, city, area, is_verified)
+VALUES ('b180ca49-f05a-416e-a325-616aa50e73bc', 'Autonomous Tester', 'test_email_user_1793791211594@example.com', NULL, 'Uttar Pradesh', 'Lucknow', '', TRUE)
+ON CONFLICT (id) DO UPDATE SET
+  name = EXCLUDED.name,
+  email = EXCLUDED.email,
+  mobile = EXCLUDED.mobile;
+INSERT INTO public.user_roles (profile_id, role)
+VALUES ('b180ca49-f05a-416e-a325-616aa50e73bc', 'customer')
+ON CONFLICT (profile_id, role) DO NOTHING;
+INSERT INTO public.profiles (id, name, email, mobile, state, city, area, is_verified)
+VALUES ('e668b385-627d-4f8f-a227-b11ea44647db', 'Google User', 'google_verified_1793791211801@gmail.com', NULL, 'Uttar Pradesh', 'Lucknow', '', TRUE)
+ON CONFLICT (id) DO UPDATE SET
+  name = EXCLUDED.name,
+  email = EXCLUDED.email,
+  mobile = EXCLUDED.mobile;
+INSERT INTO public.user_roles (profile_id, role)
+VALUES ('e668b385-627d-4f8f-a227-b11ea44647db', 'customer')
+ON CONFLICT (profile_id, role) DO NOTHING;
+INSERT INTO public.profiles (id, name, email, mobile, state, city, area, is_verified)
+VALUES ('009b96e5-79b2-4a5c-a868-86239903fc13', 'Autonomous Tester', 'test_email_user_1793791322681@example.com', NULL, 'Uttar Pradesh', 'Lucknow', '', TRUE)
+ON CONFLICT (id) DO UPDATE SET
+  name = EXCLUDED.name,
+  email = EXCLUDED.email,
+  mobile = EXCLUDED.mobile;
+INSERT INTO public.user_roles (profile_id, role)
+VALUES ('009b96e5-79b2-4a5c-a868-86239903fc13', 'customer')
+ON CONFLICT (profile_id, role) DO NOTHING;
+INSERT INTO public.profiles (id, name, email, mobile, state, city, area, is_verified)
+VALUES ('8231a6d6-5c01-4833-ac0c-ccb2f454d9a7', 'Google User', 'google_verified_1793791322916@gmail.com', NULL, 'Uttar Pradesh', 'Lucknow', '', TRUE)
+ON CONFLICT (id) DO UPDATE SET
+  name = EXCLUDED.name,
+  email = EXCLUDED.email,
+  mobile = EXCLUDED.mobile;
+INSERT INTO public.user_roles (profile_id, role)
+VALUES ('8231a6d6-5c01-4833-ac0c-ccb2f454d9a7', 'customer')
+ON CONFLICT (profile_id, role) DO NOTHING;
+INSERT INTO public.profiles (id, name, email, mobile, state, city, area, is_verified)
+VALUES ('5a02c815-fa74-4105-a959-9a907bb77a67', 'Autonomous Tester', 'test_email_user_1793792904102@example.com', NULL, 'Uttar Pradesh', 'Lucknow', '', TRUE)
+ON CONFLICT (id) DO UPDATE SET
+  name = EXCLUDED.name,
+  email = EXCLUDED.email,
+  mobile = EXCLUDED.mobile;
+INSERT INTO public.user_roles (profile_id, role)
+VALUES ('5a02c815-fa74-4105-a959-9a907bb77a67', 'customer')
+ON CONFLICT (profile_id, role) DO NOTHING;
+INSERT INTO public.profiles (id, name, email, mobile, state, city, area, is_verified)
+VALUES ('efe58271-0386-4467-afef-addedcad9c77', 'Google User', 'google_verified_1793792904351@gmail.com', NULL, 'Uttar Pradesh', 'Lucknow', '', TRUE)
+ON CONFLICT (id) DO UPDATE SET
+  name = EXCLUDED.name,
+  email = EXCLUDED.email,
+  mobile = EXCLUDED.mobile;
+INSERT INTO public.user_roles (profile_id, role)
+VALUES ('efe58271-0386-4467-afef-addedcad9c77', 'customer')
+ON CONFLICT (profile_id, role) DO NOTHING;
+INSERT INTO public.profiles (id, name, email, mobile, state, city, area, is_verified)
+VALUES ('20a15b4c-9838-4b79-abf4-35bfba51e7b1', 'Autonomous Tester', 'test_email_user_1793793920536@example.com', NULL, 'Uttar Pradesh', 'Lucknow', '', TRUE)
+ON CONFLICT (id) DO UPDATE SET
+  name = EXCLUDED.name,
+  email = EXCLUDED.email,
+  mobile = EXCLUDED.mobile;
+INSERT INTO public.user_roles (profile_id, role)
+VALUES ('20a15b4c-9838-4b79-abf4-35bfba51e7b1', 'customer')
+ON CONFLICT (profile_id, role) DO NOTHING;
+INSERT INTO public.profiles (id, name, email, mobile, state, city, area, is_verified)
+VALUES ('98dee29c-62c0-4311-a159-3b168a04db8e', 'Google User', 'google_verified_1793793920663@gmail.com', NULL, 'Uttar Pradesh', 'Lucknow', '', TRUE)
+ON CONFLICT (id) DO UPDATE SET
+  name = EXCLUDED.name,
+  email = EXCLUDED.email,
+  mobile = EXCLUDED.mobile;
+INSERT INTO public.user_roles (profile_id, role)
+VALUES ('98dee29c-62c0-4311-a159-3b168a04db8e', 'customer')
+ON CONFLICT (profile_id, role) DO NOTHING;
+INSERT INTO public.profiles (id, name, email, mobile, state, city, area, is_verified)
+VALUES ('56511cbd-afdc-4718-a342-78a154ea26a5', 'Autonomous Tester', 'test_email_user_1793794908920@example.com', NULL, 'Uttar Pradesh', 'Lucknow', '', TRUE)
+ON CONFLICT (id) DO UPDATE SET
+  name = EXCLUDED.name,
+  email = EXCLUDED.email,
+  mobile = EXCLUDED.mobile;
+INSERT INTO public.user_roles (profile_id, role)
+VALUES ('56511cbd-afdc-4718-a342-78a154ea26a5', 'customer')
+ON CONFLICT (profile_id, role) DO NOTHING;
+INSERT INTO public.profiles (id, name, email, mobile, state, city, area, is_verified)
+VALUES ('65a0f51a-f42c-4c16-a7b3-be0152082c93', 'Google User', 'google_verified_1793794909037@gmail.com', NULL, 'Uttar Pradesh', 'Lucknow', '', TRUE)
+ON CONFLICT (id) DO UPDATE SET
+  name = EXCLUDED.name,
+  email = EXCLUDED.email,
+  mobile = EXCLUDED.mobile;
+INSERT INTO public.user_roles (profile_id, role)
+VALUES ('65a0f51a-f42c-4c16-a7b3-be0152082c93', 'customer')
 ON CONFLICT (profile_id, role) DO NOTHING;
 
 -- 3. OWNERS

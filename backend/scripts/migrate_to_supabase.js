@@ -96,12 +96,40 @@ ON CONFLICT (slug) DO NOTHING;`);
 
   // 2. Profiles & Roles
   sqlStatements.push('-- 2. PROFILES & ROLES');
-  users.forEach(u => {
+  const seenMobiles = new Set();
+  const seenEmails = new Set();
+
+  users.forEach((u, uIdx) => {
     const profileUuid = toUuid(u.id);
     const role = (u.role === 'owner') ? 'owner' : ((u.role === 'admin') ? 'admin' : 'customer');
+
+    // Clean and deduplicate email
+    let cleanEmail = (u.email || `${u.id}@hallkhoj.in`).toLowerCase().trim();
+    if (seenEmails.has(cleanEmail)) {
+      cleanEmail = cleanEmail.replace('@', `_${uIdx}@`);
+    }
+    seenEmails.add(cleanEmail);
+
+    // Clean and deduplicate mobile
+    let cleanMobile = (u.mobile || '').toString().trim().replace(/[\s+-]/g, '').slice(-10);
+    if (!cleanMobile || cleanMobile.length < 10) {
+      cleanMobile = null;
+    } else if (seenMobiles.has(cleanMobile)) {
+      // Assign deterministic unique mock phone number
+      cleanMobile = '98' + String(10000000 + uIdx).slice(-8);
+    }
+    if (cleanMobile) {
+      seenMobiles.add(cleanMobile);
+    }
+
+    const mobileVal = cleanMobile ? `'${cleanMobile}'` : 'NULL';
+
     sqlStatements.push(`INSERT INTO public.profiles (id, name, email, mobile, state, city, area, is_verified)
-VALUES (${profileUuid}, ${escapeSql(u.name || 'User')}, ${escapeSql(u.email || `${u.id}@hallkhoj.in`)}, ${escapeSql(u.mobile || '')}, ${escapeSql(u.state || 'Uttar Pradesh')}, ${escapeSql(u.city || 'Lucknow')}, ${escapeSql(u.area || u.village || '')}, ${escapeSql(!!u.isVerified)})
-ON CONFLICT (id) DO NOTHING;`);
+VALUES (${profileUuid}, ${escapeSql(u.name || 'User')}, ${escapeSql(cleanEmail)}, ${mobileVal}, ${escapeSql(u.state || 'Uttar Pradesh')}, ${escapeSql(u.city || 'Lucknow')}, ${escapeSql(u.area || u.village || '')}, ${escapeSql(!!u.isVerified)})
+ON CONFLICT (id) DO UPDATE SET
+  name = EXCLUDED.name,
+  email = EXCLUDED.email,
+  mobile = EXCLUDED.mobile;`);
 
     sqlStatements.push(`INSERT INTO public.user_roles (profile_id, role)
 VALUES (${profileUuid}, '${role}')

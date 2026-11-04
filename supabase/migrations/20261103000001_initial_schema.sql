@@ -14,7 +14,7 @@ CREATE TABLE IF NOT EXISTS public.profiles (
     auth_user_id UUID REFERENCES auth.users(id) ON DELETE CASCADE,
     name VARCHAR(255) NOT NULL,
     email VARCHAR(255) UNIQUE,
-    mobile VARCHAR(20) UNIQUE,
+    mobile VARCHAR(20),
     avatar_url TEXT,
     state VARCHAR(100),
     district VARCHAR(100),
@@ -26,6 +26,9 @@ CREATE TABLE IF NOT EXISTS public.profiles (
     created_at TIMESTAMPTZ DEFAULT NOW(),
     updated_at TIMESTAMPTZ DEFAULT NOW()
 );
+
+-- Partial unique index for mobile (allows null/empty while enforcing uniqueness for valid phone numbers)
+CREATE UNIQUE INDEX IF NOT EXISTS profiles_mobile_idx ON public.profiles (mobile) WHERE mobile IS NOT NULL AND mobile != '';
 
 -- 2. USER ROLES (Strict RBAC: CUSTOMER, OWNER, ADMIN - Section 38 & Phase 13)
 CREATE TABLE IF NOT EXISTS public.user_roles (
