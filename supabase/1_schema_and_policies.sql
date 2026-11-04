@@ -79,7 +79,7 @@ CREATE TABLE IF NOT EXISTS public.owners (
     bank_account_number VARCHAR(50),
     bank_ifsc VARCHAR(30),
     bank_name VARCHAR(100),
-    verification_status VARCHAR(50) DEFAULT 'PENDING' CHECK (verification_status IN ('PENDING', 'VERIFIED', 'REJECTED')),
+    verification_status VARCHAR(50) DEFAULT 'PENDING' CHECK (verification_status IN ('PENDING', 'VERIFIED', 'APPROVED', 'REJECTED', 'SUSPENDED')),
     rating NUMERIC(3,2) DEFAULT 5.00,
     review_count INTEGER DEFAULT 0,
     created_at TIMESTAMPTZ DEFAULT NOW(),
@@ -94,7 +94,7 @@ CREATE TABLE IF NOT EXISTS public.venues (
     type VARCHAR(100) NOT NULL DEFAULT 'Marriage Hall',
     category VARCHAR(100) NOT NULL DEFAULT 'Marriage Halls',
     category_slug VARCHAR(100) NOT NULL DEFAULT 'marriage-halls',
-    status VARCHAR(50) DEFAULT 'PENDING_APPROVAL' CHECK (status IN ('DRAFT', 'PENDING_APPROVAL', 'APPROVED', 'REJECTED', 'SUSPENDED')),
+    status VARCHAR(50) DEFAULT 'PENDING_APPROVAL' CHECK (status IN ('DRAFT', 'PENDING_APPROVAL', 'APPROVED', 'REJECTED', 'SUSPENDED', 'FLAGGED')),
     state VARCHAR(100) NOT NULL,
     district VARCHAR(100) NOT NULL,
     city VARCHAR(100) NOT NULL,
@@ -521,7 +521,7 @@ WITH CHECK (public.is_admin());
 CREATE POLICY "Anyone can view verified owners"
 ON public.owners FOR SELECT
 TO anon, authenticated
-USING (verification_status = 'VERIFIED' OR profile_id = (SELECT public.current_profile_id()) OR public.is_admin());
+USING (verification_status IN ('VERIFIED', 'APPROVED') OR profile_id = (SELECT public.current_profile_id()) OR public.is_admin());
 
 CREATE POLICY "Owners can update own business record"
 ON public.owners FOR UPDATE

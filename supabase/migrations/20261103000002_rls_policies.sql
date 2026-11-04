@@ -111,7 +111,7 @@ WITH CHECK (public.is_admin());
 CREATE POLICY "Anyone can view verified owners"
 ON public.owners FOR SELECT
 TO anon, authenticated
-USING (verification_status = 'VERIFIED' OR profile_id = (SELECT public.current_profile_id()) OR public.is_admin());
+USING (verification_status IN ('VERIFIED', 'APPROVED') OR profile_id = (SELECT public.current_profile_id()) OR public.is_admin());
 
 CREATE POLICY "Owners can update own business record"
 ON public.owners FOR UPDATE
