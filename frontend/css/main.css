@@ -553,3 +553,6 @@ button, input, select, textarea {
   clip: rect(0, 0, 0, 0);
   border: 0;
 }
+
+/* Master Glassmorphism Redesign Specification */
+@import url("master-redesign.css");

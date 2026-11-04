@@ -564,7 +564,7 @@
   const STORAGE_KEY = 'hkf_selected_language';
 
   function getCurrentLang() {
-    return localStorage.getItem(STORAGE_KEY) || 'hi';
+    return localStorage.getItem(STORAGE_KEY) || 'en';
   }
 
   function setLanguage(langCode) {

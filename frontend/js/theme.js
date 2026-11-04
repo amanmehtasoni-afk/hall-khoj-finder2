@@ -21,10 +21,7 @@
     } catch (e) {
       // Storage unavailable (e.g. private browsing restrictions)
     }
-    if (window.matchMedia && window.matchMedia('(prefers-color-scheme: light)').matches) {
-      return 'light';
-    }
-    return 'dark'; // Default to Cinematic Midnight Navy Dark
+    return 'dark'; // Default to Luxury Midnight Navy Dark
   }
 
   function updateMetaThemeColor(theme) {

@@ -1073,7 +1073,7 @@ USING (
 -- >>> START: SEED DATA <<<
 -- ==============================================================================
 -- HALL KHOJ FINDER — PRODUCTION SEED DATA (MIGRATED FROM BACKEND/DATA)
--- Generated on: 2026-11-04T12:45:11.172Z
+-- Generated on: 2026-11-04T16:46:46.461Z
 -- ==============================================================================
 
 BEGIN;
@@ -2866,6 +2866,69 @@ ON CONFLICT (id) DO UPDATE SET
 INSERT INTO public.user_roles (profile_id, role)
 VALUES ('65a0f51a-f42c-4c16-a7b3-be0152082c93', 'customer')
 ON CONFLICT (profile_id, role) DO NOTHING;
+INSERT INTO public.profiles (id, name, email, mobile, state, city, area, is_verified)
+VALUES ('73d1adef-92e0-44be-ac56-42e0c2eae4d8', 'Autonomous Tester', 'test_email_user_1793796409907@example.com', NULL, 'Uttar Pradesh', 'Lucknow', '', TRUE)
+ON CONFLICT (id) DO UPDATE SET
+  name = EXCLUDED.name,
+  email = EXCLUDED.email,
+  mobile = EXCLUDED.mobile;
+INSERT INTO public.user_roles (profile_id, role)
+VALUES ('73d1adef-92e0-44be-ac56-42e0c2eae4d8', 'customer')
+ON CONFLICT (profile_id, role) DO NOTHING;
+INSERT INTO public.profiles (id, name, email, mobile, state, city, area, is_verified)
+VALUES ('1c3de209-6097-4cb4-a5bb-3b461cb9c5c0', 'Google User', 'google_verified_1793796410034@gmail.com', NULL, 'Uttar Pradesh', 'Lucknow', '', TRUE)
+ON CONFLICT (id) DO UPDATE SET
+  name = EXCLUDED.name,
+  email = EXCLUDED.email,
+  mobile = EXCLUDED.mobile;
+INSERT INTO public.user_roles (profile_id, role)
+VALUES ('1c3de209-6097-4cb4-a5bb-3b461cb9c5c0', 'customer')
+ON CONFLICT (profile_id, role) DO NOTHING;
+INSERT INTO public.profiles (id, name, email, mobile, state, city, area, is_verified)
+VALUES ('f760d938-a094-40fd-a646-0eee19cc203d', 'Autonomous Tester', 'test_email_user_1793798054593@example.com', NULL, 'Uttar Pradesh', 'Lucknow', '', TRUE)
+ON CONFLICT (id) DO UPDATE SET
+  name = EXCLUDED.name,
+  email = EXCLUDED.email,
+  mobile = EXCLUDED.mobile;
+INSERT INTO public.user_roles (profile_id, role)
+VALUES ('f760d938-a094-40fd-a646-0eee19cc203d', 'customer')
+ON CONFLICT (profile_id, role) DO NOTHING;
+INSERT INTO public.profiles (id, name, email, mobile, state, city, area, is_verified)
+VALUES ('10ef171c-d376-4201-a4a2-853f1736200b', 'Google User', 'google_verified_1793798054709@gmail.com', NULL, 'Uttar Pradesh', 'Lucknow', '', TRUE)
+ON CONFLICT (id) DO UPDATE SET
+  name = EXCLUDED.name,
+  email = EXCLUDED.email,
+  mobile = EXCLUDED.mobile;
+INSERT INTO public.user_roles (profile_id, role)
+VALUES ('10ef171c-d376-4201-a4a2-853f1736200b', 'customer')
+ON CONFLICT (profile_id, role) DO NOTHING;
+INSERT INTO public.profiles (id, name, email, mobile, state, city, area, is_verified)
+VALUES ('68838e3d-7444-488c-a109-b335ded21627', 'Autonomous Tester', 'test_email_user_1793805960770@example.com', NULL, 'Uttar Pradesh', 'Lucknow', '', TRUE)
+ON CONFLICT (id) DO UPDATE SET
+  name = EXCLUDED.name,
+  email = EXCLUDED.email,
+  mobile = EXCLUDED.mobile;
+INSERT INTO public.user_roles (profile_id, role)
+VALUES ('68838e3d-7444-488c-a109-b335ded21627', 'customer')
+ON CONFLICT (profile_id, role) DO NOTHING;
+INSERT INTO public.profiles (id, name, email, mobile, state, city, area, is_verified)
+VALUES ('d9825b9a-bf5d-49bd-ad7c-f53a99b64c9d', 'Google User', 'google_verified_1793805960893@gmail.com', NULL, 'Uttar Pradesh', 'Lucknow', '', TRUE)
+ON CONFLICT (id) DO UPDATE SET
+  name = EXCLUDED.name,
+  email = EXCLUDED.email,
+  mobile = EXCLUDED.mobile;
+INSERT INTO public.user_roles (profile_id, role)
+VALUES ('d9825b9a-bf5d-49bd-ad7c-f53a99b64c9d', 'customer')
+ON CONFLICT (profile_id, role) DO NOTHING;
+INSERT INTO public.profiles (id, name, email, mobile, state, city, area, is_verified)
+VALUES ('203672d9-14ef-4a33-a3f9-b4f12c650966', 'AMAN KUMAR', 'usr_1793806599978_tkb1s4@hallkhoj.in', '9773647612', 'Punjab', 'Amritsar', 'Green Avenue', TRUE)
+ON CONFLICT (id) DO UPDATE SET
+  name = EXCLUDED.name,
+  email = EXCLUDED.email,
+  mobile = EXCLUDED.mobile;
+INSERT INTO public.user_roles (profile_id, role)
+VALUES ('203672d9-14ef-4a33-a3f9-b4f12c650966', 'owner')
+ON CONFLICT (profile_id, role) DO NOTHING;
 
 -- 3. OWNERS
 INSERT INTO public.owners (id, profile_id, business_name, business_type, email, mobile, city, state, verification_status, rating, review_count)
@@ -3051,10 +3114,13 @@ ON CONFLICT (id) DO NOTHING;
 INSERT INTO public.owners (id, profile_id, business_name, business_type, email, mobile, city, state, verification_status, rating, review_count)
 VALUES ('a031d362-2560-4f7b-a0fc-bd923ff03e47', '09cc413d-1921-45e6-a38d-9577d92f55de', 'Heritage Event Services', 'Marriage Hall', 'partner@hallkhoj.com', '9876543210', 'Lucknow', 'Uttar Pradesh', 'APPROVED', 4.9, 0)
 ON CONFLICT (id) DO NOTHING;
+INSERT INTO public.owners (id, profile_id, business_name, business_type, email, mobile, city, state, verification_status, rating, review_count)
+VALUES ('b32861aa-8f52-4584-a722-baf32b83f8b7', '203672d9-14ef-4a33-a3f9-b4f12c650966', 'Hk-52 Galaxy', 'Marriage Hall / Wedding Venue', '', '9773647612', 'Amritsar', 'Punjab', 'PENDING', 5, 0)
+ON CONFLICT (id) DO NOTHING;
 
 -- 4. VENUES
 INSERT INTO public.venues (id, owner_id, name, type, category, category_slug, status, state, district, city, area, pin, starting_price, price_weekday, price_weekend, price_full_day, capacity_min, capacity_max, rating, review_count, is_verified, has_3d_model, cover_image_url)
-VALUES ('37262382-60d2-4ea8-a4e4-a2781f08ccc9', '09cc413d-1921-45e6-a38d-9577d92f55de', 'The Royal Grand Heritage Palace', 'Marriage Hall', 'Marriage Halls', 'marriage-halls', 'APPROVED', 'Uttar Pradesh', 'Lucknow', 'Lucknow', 'Gomti Nagar', '226010', 65000, 65000, 85000, 110000, 200, 1200, 5, 152, TRUE, TRUE, 'https://images.unsplash.com/photo-1519167758481-83f550bb49b3?auto=format&fit=crop&w=800&q=80')
+VALUES ('37262382-60d2-4ea8-a4e4-a2781f08ccc9', '09cc413d-1921-45e6-a38d-9577d92f55de', 'Royal Palace Banquet', 'Marriage Hall', 'Marriage Halls', 'marriage-halls', 'APPROVED', 'Bihar', 'Patna', 'Patna', 'Bailey Road', '226010', 50000, 65000, 85000, 110000, 200, 1200, 4.8, 256, TRUE, TRUE, 'https://images.unsplash.com/photo-1519741497674-611481863552?auto=format&fit=crop&w=800&q=80')
 ON CONFLICT (id) DO NOTHING;
 INSERT INTO public.venue_facilities (venue_id, facility_name)
 VALUES ('37262382-60d2-4ea8-a4e4-a2781f08ccc9', 'Central AC')
@@ -3129,7 +3195,7 @@ INSERT INTO public.venue_availability (venue_id, event_date, time_slot, status)
 VALUES ('37262382-60d2-4ea8-a4e4-a2781f08ccc9', '2026-12-06', 'Full Day', 'PENDING')
 ON CONFLICT (venue_id, event_date, time_slot) DO NOTHING;
 INSERT INTO public.venues (id, owner_id, name, type, category, category_slug, status, state, district, city, area, pin, starting_price, price_weekday, price_weekend, price_full_day, capacity_min, capacity_max, rating, review_count, is_verified, has_3d_model, cover_image_url)
-VALUES ('408bab40-46a5-44a6-a6d8-1385eb948fd2', '3c3f3af1-952a-420c-a76d-0f8e0474922a', 'Mayur Emerald Banquet & Lawn', 'Banquet Hall', 'Marriage Halls', 'marriage-halls', 'APPROVED', 'Bihar', 'Patna', 'Patna', 'Bailey Road', '800014', 45000, 45000, 60000, 85000, 100, 750, 4.8, 96, TRUE, TRUE, 'https://images.unsplash.com/photo-1544830254-20b1274f881b?auto=format&fit=crop&w=800&q=80')
+VALUES ('408bab40-46a5-44a6-a6d8-1385eb948fd2', '3c3f3af1-952a-420c-a76d-0f8e0474922a', 'The Grand Marriage Hall', 'Banquet Hall', 'Marriage Halls', 'marriage-halls', 'APPROVED', 'Uttar Pradesh', 'Lucknow', 'Lucknow', 'Gomti Nagar', '800014', 75000, 45000, 60000, 85000, 100, 750, 4.7, 189, TRUE, TRUE, 'https://images.unsplash.com/photo-1519167758481-83f550bb49b3?auto=format&fit=crop&w=800&q=80')
 ON CONFLICT (id) DO NOTHING;
 INSERT INTO public.venue_facilities (venue_id, facility_name)
 VALUES ('408bab40-46a5-44a6-a6d8-1385eb948fd2', 'Air Conditioned')
@@ -3159,7 +3225,7 @@ INSERT INTO public.venue_availability (venue_id, event_date, time_slot, status)
 VALUES ('408bab40-46a5-44a6-a6d8-1385eb948fd2', '2026-10-18', 'Full Day', 'AVAILABLE')
 ON CONFLICT (venue_id, event_date, time_slot) DO NOTHING;
 INSERT INTO public.venues (id, owner_id, name, type, category, category_slug, status, state, district, city, area, pin, starting_price, price_weekday, price_weekend, price_full_day, capacity_min, capacity_max, rating, review_count, is_verified, has_3d_model, cover_image_url)
-VALUES ('aa6530bc-a18d-41ae-a7fc-bfec99c16114', 'f16b14e1-0b22-495b-ae06-2e06533e41b8', 'Sanskriti Luxury Resort & Lawn', 'Resort', 'Marriage Halls', 'marriage-halls', 'APPROVED', 'Haryana', 'Gurugram', 'Delhi NCR', 'Sector 48', '122018', 120000, 120000, 160000, 220000, 300, 2000, 4.95, 230, TRUE, TRUE, 'https://images.unsplash.com/photo-1566073771259-6a8506099945?auto=format&fit=crop&w=800&q=80')
+VALUES ('aa6530bc-a18d-41ae-a7fc-bfec99c16114', 'f16b14e1-0b22-495b-ae06-2e06533e41b8', 'Lotus Banquet & Resort', 'Resort', 'Marriage Halls', 'marriage-halls', 'APPROVED', 'Uttar Pradesh', 'Varanasi', 'Varanasi', 'Cantt Road', '122018', 60000, 120000, 160000, 220000, 300, 2000, 4.9, 320, TRUE, TRUE, 'https://images.unsplash.com/photo-1545232979-fbf6711681ad?auto=format&fit=crop&w=800&q=80')
 ON CONFLICT (id) DO NOTHING;
 INSERT INTO public.venue_facilities (venue_id, facility_name)
 VALUES ('aa6530bc-a18d-41ae-a7fc-bfec99c16114', 'Poolside Lawn')
@@ -3827,6 +3893,42 @@ ON CONFLICT (venue_id, facility_name) DO NOTHING;
 INSERT INTO public.venue_availability (venue_id, event_date, time_slot, status)
 VALUES ('0bf0c964-7c20-473e-a7da-27f7b41ad3c9', '2026-11-04', 'Full Day', 'AVAILABLE')
 ON CONFLICT (venue_id, event_date, time_slot) DO NOTHING;
+INSERT INTO public.venues (id, owner_id, name, type, category, category_slug, status, state, district, city, area, pin, starting_price, price_weekday, price_weekend, price_full_day, capacity_min, capacity_max, rating, review_count, is_verified, has_3d_model, cover_image_url)
+VALUES ('ec37ae53-5724-4e15-a374-bd67793d0ca3', '203672d9-14ef-4a33-a3f9-b4f12c650966', 'Hk-52 Galaxy', 'Marriage Hall', 'Marriage Hall', 'marriage-halls', 'PENDING_APPROVAL', 'Punjab', 'Amritsar', 'Amritsar', 'Green Avenue', '226010', 50000, 50000, 62500, 75000, 98, 500, 5, 0, FALSE, FALSE, 'https://images.unsplash.com/photo-1519167758481-83f550bb49b3?auto=format&fit=crop&w=800&q=80')
+ON CONFLICT (id) DO NOTHING;
+INSERT INTO public.venue_facilities (venue_id, facility_name)
+VALUES ('ec37ae53-5724-4e15-a374-bd67793d0ca3', 'Parking')
+ON CONFLICT (venue_id, facility_name) DO NOTHING;
+INSERT INTO public.venue_facilities (venue_id, facility_name)
+VALUES ('ec37ae53-5724-4e15-a374-bd67793d0ca3', 'AC')
+ON CONFLICT (venue_id, facility_name) DO NOTHING;
+INSERT INTO public.venue_facilities (venue_id, facility_name)
+VALUES ('ec37ae53-5724-4e15-a374-bd67793d0ca3', 'Catering')
+ON CONFLICT (venue_id, facility_name) DO NOTHING;
+INSERT INTO public.venue_facilities (venue_id, facility_name)
+VALUES ('ec37ae53-5724-4e15-a374-bd67793d0ca3', 'Decoration')
+ON CONFLICT (venue_id, facility_name) DO NOTHING;
+INSERT INTO public.venue_facilities (venue_id, facility_name)
+VALUES ('ec37ae53-5724-4e15-a374-bd67793d0ca3', 'Stage')
+ON CONFLICT (venue_id, facility_name) DO NOTHING;
+INSERT INTO public.venue_facilities (venue_id, facility_name)
+VALUES ('ec37ae53-5724-4e15-a374-bd67793d0ca3', 'DJ/Music')
+ON CONFLICT (venue_id, facility_name) DO NOTHING;
+INSERT INTO public.venue_facilities (venue_id, facility_name)
+VALUES ('ec37ae53-5724-4e15-a374-bd67793d0ca3', 'Generator')
+ON CONFLICT (venue_id, facility_name) DO NOTHING;
+INSERT INTO public.venue_facilities (venue_id, facility_name)
+VALUES ('ec37ae53-5724-4e15-a374-bd67793d0ca3', 'Wi-Fi')
+ON CONFLICT (venue_id, facility_name) DO NOTHING;
+INSERT INTO public.venue_facilities (venue_id, facility_name)
+VALUES ('ec37ae53-5724-4e15-a374-bd67793d0ca3', 'Rooms')
+ON CONFLICT (venue_id, facility_name) DO NOTHING;
+INSERT INTO public.venue_facilities (venue_id, facility_name)
+VALUES ('ec37ae53-5724-4e15-a374-bd67793d0ca3', 'Lift')
+ON CONFLICT (venue_id, facility_name) DO NOTHING;
+INSERT INTO public.venue_facilities (venue_id, facility_name)
+VALUES ('ec37ae53-5724-4e15-a374-bd67793d0ca3', 'Wheelchair')
+ON CONFLICT (venue_id, facility_name) DO NOTHING;
 
 -- 5. BOOKINGS (Phase 9 State Compliance)
 INSERT INTO public.bookings (id, booking_code, venue_id, owner_id, customer_id, customer_name, customer_mobile, customer_email, event_date, time_slot, guest_count, base_price, total_amount, advance_required, status)
