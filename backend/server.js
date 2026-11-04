@@ -189,6 +189,20 @@ app.use('/api/support', supportRoutes);
 
 // 9. Serve Static Frontend Files
 app.use(express.static(FRONTEND_DIR));
+app.use('/report', express.static(path.join(__dirname, '../reports')));
+
+// Major Project Report Download Endpoints
+app.get('/report', (req, res) => {
+  res.sendFile(path.join(__dirname, '../reports/project-report.html'));
+});
+
+app.get('/major-project-report.pdf', (req, res) => {
+  res.sendFile(path.join(__dirname, '../HALL_KHOJ_FINDER_MAJOR_PROJECT_REPORT.pdf'));
+});
+
+app.get('/major-project-report.docx', (req, res) => {
+  res.sendFile(path.join(__dirname, '../HALL_KHOJ_FINDER_MAJOR_PROJECT_REPORT.docx'));
+});
 
 // Fallback for HTML routing
 app.get('/', (req, res) => {
