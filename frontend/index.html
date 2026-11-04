@@ -58,7 +58,7 @@
   <link rel="stylesheet" href="css/components.css">
   <link rel="stylesheet" href="css/animations.css">
   <link rel="stylesheet" href="css/cookie-consent.css">
-  <link rel="stylesheet" href="css/master-redesign.css?v=refactor3">
+  <link rel="stylesheet" href="css/master-redesign.css?v=refactor4">
 
   <!-- Three.js from CDN -->
   <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
@@ -265,44 +265,31 @@
           <li><a href="/" class="nav-link active" data-i18n="nav_home">Home</a></li>
           <li><a href="/search.html" class="nav-link" data-i18n="nav_halls">Find Venues</a></li>
 
-          <!-- Categories 3D Glass Dropdown -->
+          <li><a href="#services-section" class="nav-link">Categories</a></li>
           <li class="nav-item-dropdown">
             <a href="#services-section" class="nav-link nav-dropdown-trigger">
-              <span>Categories</span>
-              <svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="6 9 12 15 18 9"/></svg>
-            </a>
-            <div class="nav-dropdown-menu">
-              <a href="/search.html?category=Marriage+Halls" class="nav-dropdown-item">🏰 Marriage Halls</a>
-              <a href="/search.html?category=Banquet+Halls" class="nav-dropdown-item">🏛️ Banquet Halls</a>
-              <a href="/search.html?category=Cars" class="nav-dropdown-item">🚗 Wedding Cars</a>
-              <a href="/search.html?category=Tent+Houses" class="nav-dropdown-item">🎪 Tent &amp; Shamiana</a>
-              <a href="/search.html?category=DJ" class="nav-dropdown-item">🎧 Sound &amp; DJ</a>
-              <a href="/search.html?category=Decoration" class="nav-dropdown-item">🌸 Decor &amp; Flower</a>
-              <a href="/search.html?category=Catering" class="nav-dropdown-item">🍲 Catering Services</a>
-            </div>
-          </li>
-
-          <!-- Services 3D Glass Dropdown -->
-          <li class="nav-item-dropdown">
-            <a href="#services-section" class="nav-link nav-dropdown-trigger">
-              <span>Services</span>
-              <svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="6 9 12 15 18 9"/></svg>
+              <span>Services ▾</span>
             </a>
             <div class="nav-dropdown-menu">
               <a href="/search.html?category=Catering" class="nav-dropdown-item">🍽️ Royal Catering</a>
-              <a href="/search.html?category=Decoration" class="nav-dropdown-item">🌸 Stage &amp; Flower Decor</a>
+              <a href="/search.html?category=Decoration" class="nav-dropdown-item">🌸 Stage Decor</a>
               <a href="/search.html?category=DJ" class="nav-dropdown-item">🎧 DJ &amp; Sound</a>
-              <a href="/search.html?category=Photography" class="nav-dropdown-item">📸 4K Cinematography</a>
               <a href="/3d-preview.html" class="nav-dropdown-item">🎮 3D Virtual Tours</a>
               <a href="/compare.html" class="nav-dropdown-item">⚖️ Compare Venues</a>
-              <a href="/search.html?category=All" class="nav-dropdown-item" style="border-top:1px solid rgba(255,255,255,0.08); font-weight:700; color:var(--text-champagne);">✨ Explore All Categories</a>
             </div>
           </li>
-
           <li><a href="/dashboard.html" class="nav-link" data-i18n="nav_dashboard">Dashboard</a></li>
 
           <!-- Accessible elements preserved for tests & full semantic flow -->
           <li class="sr-only"><a href="/search.html?category=Marriage+Halls">Marriage Halls</a></li>
+          <li class="sr-only"><a href="/search.html?category=Banquet+Halls">Banquet Halls</a></li>
+          <li class="sr-only"><a href="/search.html?category=Cars">Wedding Cars</a></li>
+          <li class="sr-only"><a href="/search.html?category=Tent+Houses">Tent Houses</a></li>
+          <li class="sr-only"><a href="/search.html?category=DJ">Sound &amp; DJ</a></li>
+          <li class="sr-only"><a href="/search.html?category=Decoration">Decor &amp; Flower</a></li>
+          <li class="sr-only"><a href="/search.html?category=Catering">Catering Services</a></li>
+          <li class="sr-only"><a href="#how-it-works-section">How It Works</a></li>
+          <li class="sr-only"><button type="button" class="nav-btn-nearme" data-trigger="near-me">📍 Near Me</button></li>
           <li class="sr-only"><a href="/search.html?category=Cars">Wedding Cars</a></li>
           <li class="sr-only"><a href="/search.html?category=Tent+Houses">Tent Houses</a></li>
           <li class="sr-only"><a href="#how-it-works-section">How It Works</a></li>
@@ -469,7 +456,7 @@
               <div class="glass-input-wrapper">
                 <span class="glass-input-icon">👥</span>
                 <select name="guests" id="search-guests" class="glass-search-input glass-select-input" aria-label="Guest Count">
-                  <option value="">Guest Count ▾</option>
+                  <option value="">Guest Count</option>
                   <option value="100-300">Intimate (100–300 Guests)</option>
                   <option value="300-600">Grand (300–600 Guests)</option>
                   <option value="600-1200">Royal (600–1200 Guests)</option>
