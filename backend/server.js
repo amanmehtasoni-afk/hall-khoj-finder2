@@ -131,6 +131,34 @@ app.get('/api/database/status', (req, res) => {
   });
 });
 
+// Public Client Configuration (Safe for browser: anon key & project url, NO secrets)
+app.get('/api/config/public', (req, res) => {
+  const isSupabaseValid = process.env.SUPABASE_URL && 
+    !process.env.SUPABASE_URL.includes('your-project') &&
+    process.env.SUPABASE_ANON_KEY &&
+    !process.env.SUPABASE_ANON_KEY.includes('your-');
+
+  return res.json({
+    success: true,
+    data: {
+      supabase: {
+        url: isSupabaseValid ? process.env.SUPABASE_URL : '',
+        anonKey: isSupabaseValid ? process.env.SUPABASE_ANON_KEY : '',
+        isConfigured: Boolean(isSupabaseValid)
+      },
+      googleAuth: {
+        clientId: process.env.GOOGLE_CLIENT_ID || ''
+      },
+      razorpay: {
+        keyId: process.env.RAZORPAY_KEY_ID || process.env.PAYMENT_KEY_ID || ''
+      },
+      googleMaps: {
+        apiKey: process.env.GOOGLE_MAPS_API_KEY || ''
+      }
+    }
+  });
+});
+
 // 7. Rate Limiting Protection (Phase 16)
 // Stricter limiter on sensitive endpoints (auth, AI, payments)
 app.use('/api/auth', sensitiveEndpointLimiter);

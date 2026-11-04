@@ -32,7 +32,34 @@ window.HKF_Supabase = (function () {
       console.warn('⚠️ [Supabase Client] Initialization error, falling back to local bridge:', e.message);
     }
   } else {
-    console.log('ℹ️ [Supabase Client] No cloud keys provided. Operating in seamless Local Bridge mode.');
+    // Attempt automatic discovery from server /api/config/public
+    if (typeof fetch !== 'undefined') {
+      fetch('/api/config/public')
+        .then(r => r.json())
+        .then(json => {
+          if (json?.data?.supabase?.url && json?.data?.supabase?.anonKey && typeof window.supabase !== 'undefined') {
+            try {
+              client = window.supabase.createClient(json.data.supabase.url, json.data.supabase.anonKey, {
+                auth: {
+                  persistSession: true,
+                  autoRefreshToken: true,
+                  detectSessionInUrl: true
+                }
+              });
+              console.log('✓ [Supabase Client] Connected to Supabase Cloud via /api/config/public:', json.data.supabase.url);
+            } catch (err) {
+              console.warn('⚠️ [Supabase Client] Init error from config endpoint:', err.message);
+            }
+          } else {
+            console.log('ℹ️ [Supabase Client] No cloud keys provided. Operating in seamless Local Bridge mode.');
+          }
+        })
+        .catch(() => {
+          console.log('ℹ️ [Supabase Client] Operating in seamless Local Bridge mode.');
+        });
+    } else {
+      console.log('ℹ️ [Supabase Client] No cloud keys provided. Operating in seamless Local Bridge mode.');
+    }
   }
 
   // Helper: Local fallback request
