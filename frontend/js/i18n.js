@@ -634,35 +634,109 @@
     });
   }
 
-  // Inject sleek Language Switcher Widget into Navbar
+  // Inject 3D Floating Language Switcher Widget into Navbar and Drawers (Phase 4)
   function renderLanguageSwitcher() {
     const targetContainers = document.querySelectorAll('.language-switcher-container, #language-selector-mount');
-    const current = getCurrentLang();
+    const currentCode = getCurrentLang();
+    const currentLangObj = LANGUAGES.find(l => l.code === currentCode) || LANGUAGES[0];
 
     targetContainers.forEach(container => {
-      if (container.querySelector('#hkf-language-select')) return; // already rendered
+      if (container.querySelector('.hkf-lang-widget')) return; // already rendered
 
-      const wrapper = document.createElement('div');
-      wrapper.className = 'hkf-lang-picker-wrapper';
-      wrapper.innerHTML = `
-        <label for="hkf-language-select" class="hkf-lang-label" title="Change Language">
-          <span class="lang-icon">🌐</span>
-          <select id="hkf-language-select" class="hkf-lang-select" aria-label="Select Language">
+      const widget = document.createElement('div');
+      widget.className = 'hkf-lang-widget';
+      widget.innerHTML = `
+        <button type="button" class="hkf-lang-btn" aria-haspopup="true" aria-expanded="false" title="Change Language / भाषा बदलें">
+          <span class="hkf-lang-globe-3d">🌐</span>
+          <span class="hkf-current-lang-text">${currentLangObj.flag} ${currentLangObj.name}</span>
+          <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="6 9 12 15 18 9"/></svg>
+        </button>
+
+        <div class="hkf-lang-dropdown" role="menu">
+          <div class="hkf-lang-search-box">
+            <input type="text" class="hkf-lang-search-input" placeholder="Search language / भाषा खोजें..." aria-label="Search Language">
+          </div>
+          <ul class="hkf-lang-list">
             ${LANGUAGES.map(l => `
-              <option value="${l.code}" ${l.code === current ? 'selected' : ''}>
-                ${l.flag} ${l.name} (${l.english})
-              </option>
+              <li>
+                <button type="button" class="hkf-lang-item-btn ${l.code === currentCode ? 'active' : ''}" data-code="${l.code}">
+                  <span>${l.flag} <strong>${l.name}</strong> <small style="opacity:0.75; font-size:0.78rem;">(${l.english})</small></span>
+                  ${l.code === currentCode ? '<span style="color:#10b981; font-weight:bold;">✓</span>' : ''}
+                </button>
+              </li>
             `).join('')}
-          </select>
-        </label>
+          </ul>
+        </div>
       `;
 
-      const select = wrapper.querySelector('select');
-      select.addEventListener('change', (e) => {
-        setLanguage(e.target.value);
+      const btn = widget.querySelector('.hkf-lang-btn');
+      const dropdown = widget.querySelector('.hkf-lang-dropdown');
+      const searchInput = widget.querySelector('.hkf-lang-search-input');
+      const items = widget.querySelectorAll('.hkf-lang-item-btn');
+
+      btn.addEventListener('click', (e) => {
+        e.stopPropagation();
+        const isOpen = dropdown.classList.contains('open');
+        document.querySelectorAll('.hkf-lang-dropdown.open').forEach(d => d.classList.remove('open'));
+        if (!isOpen) {
+          dropdown.classList.add('open');
+          btn.setAttribute('aria-expanded', 'true');
+          setTimeout(() => searchInput.focus(), 50);
+        } else {
+          dropdown.classList.remove('open');
+          btn.setAttribute('aria-expanded', 'false');
+        }
       });
 
-      container.appendChild(wrapper);
+      // Search filtering
+      searchInput.addEventListener('input', (e) => {
+        const query = e.target.value.toLowerCase().trim();
+        widget.querySelectorAll('.hkf-lang-list li').forEach(li => {
+          const text = li.textContent.toLowerCase();
+          li.style.display = text.includes(query) ? '' : 'none';
+        });
+      });
+
+      // Item selection
+      items.forEach(item => {
+        item.addEventListener('click', (e) => {
+          e.stopPropagation();
+          const code = item.getAttribute('data-code');
+          setLanguage(code);
+          dropdown.classList.remove('open');
+          btn.setAttribute('aria-expanded', 'false');
+
+          const newLang = LANGUAGES.find(l => l.code === code) || LANGUAGES[0];
+          document.querySelectorAll('.hkf-current-lang-text').forEach(el => {
+            el.textContent = `${newLang.flag} ${newLang.name}`;
+          });
+          document.querySelectorAll('.hkf-lang-item-btn').forEach(btnEl => {
+            const isMatch = btnEl.getAttribute('data-code') === code;
+            btnEl.classList.toggle('active', isMatch);
+            const check = btnEl.querySelector('span:last-child');
+            if (isMatch && (!check || !check.textContent.includes('✓'))) {
+              btnEl.insertAdjacentHTML('beforeend', '<span style="color:#10b981; font-weight:bold;">✓</span>');
+            } else if (!isMatch && check && check.textContent.includes('✓')) {
+              check.remove();
+            }
+          });
+        });
+      });
+
+      container.appendChild(widget);
+    });
+
+    // Close on click outside or Escape
+    document.addEventListener('click', (e) => {
+      if (!e.target.closest('.hkf-lang-widget')) {
+        document.querySelectorAll('.hkf-lang-dropdown.open').forEach(d => d.classList.remove('open'));
+      }
+    });
+
+    document.addEventListener('keydown', (e) => {
+      if (e.key === 'Escape') {
+        document.querySelectorAll('.hkf-lang-dropdown.open').forEach(d => d.classList.remove('open'));
+      }
     });
   }
 

@@ -3,11 +3,11 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Hall Khoj Finder — Find Marriage Halls, Cars, Tents & Event Services</title>
-  <meta name="description" content="Apne Paas Ka Hall, Tent, Car Aur Event Services Ek Jagah Khojiye. Book Marriage Halls, Banquet Halls, Luxury Wedding Cars, Tent Houses and Catering.">
+  <title>Hall Khoj Finder — India's Premier 3D Event Booking Marketplace</title>
+  <meta name="description" content="Discover, explore in 3D, and book Marriage Halls, Banquet Halls, Luxury Wedding Cars, Tent Houses, Catering and Event Services across India. Zero broker fees.">
   <link rel="canonical" href="https://hallkhoj.in/">
   <link rel="manifest" href="/manifest.json">
-  <meta name="theme-color" content="#070a13">
+  <meta name="theme-color" content="#071426">
   <meta name="mobile-web-app-capable" content="yes">
   <meta name="apple-mobile-web-app-capable" content="yes">
   <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
@@ -21,11 +21,11 @@
   <meta property="og:image" content="/assets/logo.png">
   <link rel="icon" type="image/png" href="/assets/logo.png">
 
-
   <!-- Twitter Card -->
   <meta name="twitter:card" content="summary_large_image">
-  <meta name="twitter:title" content="Hall Khoj Finder">
-  <meta name="twitter:description" content="Apne Paas Ka Hall, Tent, Car Aur Event Services Ek Jagah Khojiye.">
+  <meta name="twitter:title" content="Hall Khoj Finder — 3D Event Marketplace">
+  <meta name="twitter:description" content="Book Marriage Halls, Banquet Halls, Wedding Cars & Tents across India directly with owners.">
+  <meta name="twitter:image" content="/assets/logo.png">
 
   <!-- Schema.org JSON-LD -->
   <script type="application/ld+json">
@@ -53,13 +53,174 @@
 
   <!-- Core CSS Bundle -->
   <link rel="stylesheet" href="css/main.css">
-  <link rel="stylesheet" href="css/components.css">
   <link rel="stylesheet" href="css/3d.css">
+  <link rel="stylesheet" href="css/3d-icons.css">
+  <link rel="stylesheet" href="css/components.css">
   <link rel="stylesheet" href="css/animations.css">
   <link rel="stylesheet" href="css/cookie-consent.css">
 
-  <!-- Three.js (Loaded via reliable CDN) -->
+  <!-- Three.js from CDN -->
   <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+
+  <style>
+    /* Section Separation & Visual Identity Styles */
+    .section-event-types {
+      background: radial-gradient(circle at 50% 0%, rgba(57, 139, 255, 0.08) 0%, transparent 60%);
+    }
+    .section-destinations {
+      background: radial-gradient(circle at 50% 100%, rgba(217, 199, 160, 0.08) 0%, transparent 70%);
+    }
+    .section-preview-3d {
+      background: linear-gradient(180deg, rgba(7, 20, 38, 0.4) 0%, rgba(18, 59, 104, 0.3) 50%, rgba(7, 20, 38, 0.4) 100%);
+    }
+    .section-offers {
+      background: radial-gradient(circle at 10% 50%, rgba(245, 158, 11, 0.07) 0%, transparent 50%),
+                  radial-gradient(circle at 90% 50%, rgba(16, 185, 129, 0.07) 0%, transparent 50%);
+    }
+    .section-testimonials {
+      background: rgba(12, 31, 56, 0.4);
+    }
+    :root[data-theme="light"] .section-testimonials {
+      background: rgba(241, 245, 249, 0.6);
+    }
+
+    /* Event Type Card */
+    .event-type-card {
+      position: relative;
+      border-radius: var(--radius-lg);
+      overflow: hidden;
+      height: 240px;
+      display: flex;
+      flex-direction: column;
+      justify-content: flex-end;
+      padding: 1.5rem;
+      border: 1px solid var(--border-subtle);
+      box-shadow: var(--shadow-md);
+      transition: all var(--transition-normal);
+      cursor: pointer;
+    }
+    .event-type-card:hover {
+      transform: translateY(-6px) scale(1.02);
+      border-color: var(--primary);
+      box-shadow: 0 15px 35px var(--primary-glow);
+    }
+    .event-type-img {
+      position: absolute;
+      inset: 0;
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      transition: transform 0.5s ease;
+      z-index: 1;
+    }
+    .event-type-card:hover .event-type-img {
+      transform: scale(1.08);
+    }
+    .event-type-overlay {
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(180deg, rgba(7, 20, 38, 0.1) 0%, rgba(7, 20, 38, 0.85) 75%, #071426 100%);
+      z-index: 2;
+    }
+    :root[data-theme="light"] .event-type-overlay {
+      background: linear-gradient(180deg, rgba(0, 0, 0, 0.1) 0%, rgba(0, 0, 0, 0.75) 75%, rgba(0, 0, 0, 0.95) 100%);
+    }
+    .event-type-content {
+      position: relative;
+      z-index: 3;
+      color: #ffffff;
+    }
+
+    /* Destination Card */
+    .dest-card {
+      position: relative;
+      border-radius: var(--radius-lg);
+      overflow: hidden;
+      height: 280px;
+      padding: 1.5rem;
+      display: flex;
+      flex-direction: column;
+      justify-content: flex-end;
+      border: 1px solid var(--border-subtle);
+      transition: all var(--transition-normal);
+      cursor: pointer;
+    }
+    .dest-card:hover {
+      transform: translateY(-8px);
+      box-shadow: 0 20px 40px rgba(0, 0, 0, 0.5);
+      border-color: var(--secondary);
+    }
+    .dest-img {
+      position: absolute;
+      inset: 0;
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      transition: transform 0.6s ease;
+      z-index: 1;
+    }
+    .dest-card:hover .dest-img {
+      transform: scale(1.1);
+    }
+    .dest-overlay {
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(180deg, transparent 30%, rgba(7, 20, 38, 0.9) 80%, #071426 100%);
+      z-index: 2;
+    }
+    :root[data-theme="light"] .dest-overlay {
+      background: linear-gradient(180deg, transparent 30%, rgba(0, 0, 0, 0.75) 80%, rgba(0, 0, 0, 0.95) 100%);
+    }
+    .dest-content {
+      position: relative;
+      z-index: 3;
+      color: #ffffff;
+    }
+
+    /* FAQ Accordion */
+    .faq-item {
+      background: var(--bg-card);
+      border: 1px solid var(--border-subtle);
+      border-radius: var(--radius-md);
+      margin-bottom: 0.85rem;
+      overflow: hidden;
+      transition: all var(--transition-fast);
+    }
+    .faq-question {
+      width: 100%;
+      padding: 1.25rem 1.5rem;
+      background: transparent;
+      border: none;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      color: var(--text-primary);
+      font-weight: 700;
+      font-size: 1.05rem;
+      cursor: pointer;
+      text-align: left;
+    }
+    .faq-answer {
+      display: none;
+      padding: 0 1.5rem 1.25rem 1.5rem;
+      color: var(--text-secondary);
+      font-size: 0.95rem;
+      line-height: 1.6;
+    }
+    .faq-item.open .faq-answer {
+      display: block;
+    }
+    .faq-item.open {
+      border-color: var(--primary);
+      box-shadow: 0 4px 18px var(--primary-glow);
+    }
+    .faq-icon {
+      transition: transform 0.3s ease;
+    }
+    .faq-item.open .faq-icon {
+      transform: rotate(180deg);
+    }
+  </style>
 </head>
 <body>
 
@@ -81,22 +242,22 @@
       <nav role="navigation" aria-label="Main Navigation">
         <ul class="nav-links">
           <li><a href="/" class="nav-link active" data-i18n="nav_home">Home</a></li>
-          <li><a href="/search.html" class="nav-link" data-i18n="nav_halls">Find Services</a></li>
-          <li><a href="/search.html?category=Marriage+Halls" class="nav-link" data-i18n="cat_marriage_halls">Halls</a></li>
-          <li><a href="/search.html?category=Cars" class="nav-link" data-i18n="cat_wedding_cars">Cars</a></li>
-          <li><a href="/search.html?category=Tent+Houses" class="nav-link" data-i18n="cat_tent_houses">Tent Houses</a></li>
-          <li><a href="#services-section" class="nav-link" data-i18n="nav_services">Services</a></li>
-          <li><a href="#" class="nav-link" data-trigger="near-me">Near Me</a></li>
-          <li><a href="#how-it-works" class="nav-link">How It Works</a></li>
+          <li><a href="/search.html" class="nav-link" data-i18n="nav_halls">Find Venues</a></li>
+          <li><a href="/compare.html" class="nav-link">Compare</a></li>
+          <li><a href="/3d-preview.html" class="nav-link">3D Walkthrough</a></li>
+          <li><a href="#event-types-section" class="nav-link">Event Types</a></li>
+          <li><a href="#services-section" class="nav-link" data-i18n="nav_services">Categories</a></li>
+          <li><a href="#destinations-section" class="nav-link">Destinations</a></li>
+          <li><a href="/support.html" class="nav-link">Support</a></li>
         </ul>
       </nav>
 
       <!-- Nav Actions -->
       <div class="nav-actions">
-        <!-- Language Switcher Mount (14 Indian Languages) -->
+        <!-- 3D Language Switcher Mount (14 Indian Languages - Phase 4) -->
         <div class="language-switcher-container"></div>
 
-        <!-- Dark/Light Theme Toggle -->
+        <!-- 3D Dark/Light Theme Toggle (Phase 5) -->
         <button class="theme-toggle-btn" data-action="toggle-theme" aria-label="Toggle Dark/Light Mode" title="Toggle Theme">
           <span class="theme-icon-sun">☀️</span>
           <span class="theme-icon-moon" style="display:none;">🌙</span>
@@ -105,10 +266,10 @@
         <div id="nav-auth-actions" class="flex items-center gap-2">
           <a href="/login.html" class="btn btn-secondary btn-sm" data-i18n="nav_login">Login</a>
           <a href="/register.html" class="btn btn-primary btn-sm" data-i18n="nav_register">Register</a>
-          <a href="/register.html?role=owner" class="btn btn-gold btn-sm" data-i18n="owner_cta_btn">List Your Business</a>
+          <a href="/register.html?role=owner" class="btn btn-champagne btn-sm" data-i18n="owner_cta_btn">List Your Business</a>
         </div>
 
-        <!-- Mobile Menu Hamburger Button -->
+        <!-- Mobile Menu Toggle Button -->
         <button id="open-drawer-btn" class="mobile-menu-toggle" aria-label="Open Navigation Menu">
           <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
             <line x1="3" y1="12" x2="21" y2="12"></line>
@@ -136,7 +297,9 @@
 
     <ul class="flex flex-col gap-2" style="list-style:none; margin-top:0.5rem;">
       <li><a href="/" class="nav-link active" data-i18n="nav_home">🏠 Home</a></li>
-      <li><a href="/search.html" class="nav-link" data-i18n="nav_halls">🔍 Find All Services</a></li>
+      <li><a href="/search.html" class="nav-link" data-i18n="nav_halls">🔍 Find Venues &amp; Vendors</a></li>
+      <li><a href="/compare.html" class="nav-link">⚖️ Compare Venues</a></li>
+      <li><a href="/3d-preview.html" class="nav-link">🎮 3D Layout Tour</a></li>
       <li><a href="/search.html?category=Marriage+Halls" class="nav-link" data-i18n="cat_marriage_halls">🏰 Marriage Halls</a></li>
       <li><a href="/search.html?category=Cars" class="nav-link" data-i18n="cat_wedding_cars">🚗 Wedding Cars</a></li>
       <li><a href="/search.html?category=Tent+Houses" class="nav-link" data-i18n="cat_tent_houses">🎪 Tent Houses</a></li>
@@ -145,31 +308,32 @@
       <li><a href="#" class="nav-link" data-trigger="ai-search" data-i18n="ai_search_btn">✨ Hall Khoj AI Assistant</a></li>
       <li><a href="/dashboard.html" class="nav-link" data-i18n="nav_dashboard">📋 Customer Dashboard</a></li>
       <li><a href="/owner/dashboard.html" class="nav-link" data-i18n="nav_owner_portal">🏢 Owner Dashboard</a></li>
-      <li><a href="/admin/dashboard.html" class="nav-link">🛡️ Admin Panel</a></li>
+      <li><a href="/support.html" class="nav-link">📞 Support &amp; Help Desk</a></li>
     </ul>
 
     <div id="drawer-auth-actions" class="flex flex-col gap-2" style="margin-top:auto; padding-top:1rem; border-top:1px solid var(--border-subtle);">
       <a href="/login.html" class="btn btn-secondary w-full" data-i18n="nav_login">Sign In</a>
-      <a href="/register.html?role=owner" class="btn btn-gold w-full" data-i18n="owner_cta_btn">List Your Business</a>
+      <a href="/register.html?role=owner" class="btn btn-champagne w-full" data-i18n="owner_cta_btn">List Your Business</a>
     </div>
   </aside>
 
   <!-- =========================================================================
-       HERO SECTION WITH CINEMATIC VIDEO BACKGROUND & TRANSPARENT ADVANCED SEARCH
+       MAIN HOMEPAGE CONTENT (16 VERTICAL SECTIONS - PHASE 3 SPECIFICATION)
   ========================================================================= -->
   <main>
+
+    <!-- SECTION 1 & 2: PREMIUM 3D HERO SECTION & SMART SEARCH BAR -->
     <section class="section hero-section" style="position:relative; min-height:96vh; display:flex; align-items:center; justify-content:center; overflow:hidden;">
-      <!-- Cinematic Multi-Video Hero Background -->
+      <!-- Cinematic Multi-Video Background Crossfader -->
       <div id="hero-video-wrapper" class="hero-video-wrapper" aria-hidden="true"></div>
 
-      <!-- Three.js Ambient Particle Overlay (Subtle 3D Atmosphere) -->
-      <div id="hero-3d-wrapper" class="hero-3d-wrapper" style="pointer-events:none; z-index:4; opacity:0.55;" aria-hidden="true">
+      <!-- Three.js Ambient Particle Overlay -->
+      <div id="hero-3d-wrapper" class="hero-3d-wrapper" style="pointer-events:none; z-index:4; opacity:0.65;" aria-hidden="true">
         <canvas id="hero-3d-canvas"></canvas>
       </div>
 
       <!-- Hero Main Content -->
-      <div class="container hero-content" style="position:relative; z-index:15; padding:7.5rem 0 4rem 0;">
-        <!-- Tagline Pill & Backend Telemetry Status -->
+      <div class="container hero-content" style="position:relative; z-index:15; padding:7rem 0 3.5rem 0;">
         <div style="display:flex; flex-wrap:wrap; align-items:center; justify-content:center; gap:0.75rem; margin-bottom:1.5rem;">
           <div class="hero-tagline-badge animate-float" style="background:rgba(217, 199, 160, 0.15); border-color:rgba(217, 199, 160, 0.4); color:var(--text-champagne);">
             <span>👑</span>
@@ -181,15 +345,14 @@
           </div>
         </div>
 
-        <!-- Headings: Phase 3 Exact Specification -->
-        <h1 class="hero-heading" style="margin-bottom:1rem;">
+        <h1 class="hero-heading" style="margin-bottom:1rem; text-align:center;">
           <span class="royal-gradient-text">"Find Your Perfect Wedding Destination."</span>
         </h1>
-        <p class="hero-subheading" style="font-size:1.25rem; font-weight:500; color:var(--text-primary); text-shadow:0 2px 10px rgba(0,0,0,0.7); max-width:760px; margin:0 auto 2rem auto;">
-          Discover, Explore and Book Your Dream Wedding Venue Across India.
+        <p class="hero-subheading" style="font-size:1.25rem; font-weight:500; color:var(--text-primary); text-shadow:0 2px 10px rgba(0,0,0,0.7); max-width:760px; margin:0 auto 2rem auto; text-align:center;">
+          Discover, Explore in 3D and Book Your Dream Wedding Venue Across India.
         </p>
 
-        <!-- Hero Primary Action Buttons: Phase 3 Exact Specification -->
+        <!-- Hero Primary Action Buttons -->
         <div style="display:flex; flex-wrap:wrap; align-items:center; justify-content:center; gap:1.25rem; margin-bottom:2.5rem;">
           <a href="/search.html" class="btn btn-primary btn-lg" style="box-shadow:0 10px 30px var(--primary-glow); padding:0.9rem 2.2rem; font-size:1rem; letter-spacing:0.04em;">
             <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>
@@ -201,15 +364,12 @@
           </a>
         </div>
 
-        <!-- Transparent Advanced Multi-Parameter Search Bar: Phase 3 Specification -->
+        <!-- SECTION 2: SMART SEARCH BAR (Advanced Multi-Parameter Card) -->
         <div class="advanced-search-card">
           <form id="hero-advanced-search-form" action="/search.html" method="GET">
             <div class="adv-search-grid">
-              <!-- 1. State -->
               <div class="adv-field-group">
-                <label class="adv-field-label" for="search-state">
-                  <span>📍</span> State
-                </label>
+                <label class="adv-field-label" for="search-state"><span>📍</span> State</label>
                 <select id="search-state" name="state" class="adv-select">
                   <option value="">All States</option>
                   <option value="Uttar Pradesh">Uttar Pradesh</option>
@@ -218,50 +378,32 @@
                   <option value="Rajasthan">Rajasthan</option>
                   <option value="Maharashtra">Maharashtra</option>
                   <option value="Madhya Pradesh">Madhya Pradesh</option>
-                  <option value="West Bengal">West Bengal</option>
                   <option value="Punjab">Punjab</option>
-                  <option value="Gujarat">Gujarat</option>
-                  <option value="Karnataka">Karnataka</option>
                 </select>
               </div>
 
-              <!-- 2. District -->
               <div class="adv-field-group">
-                <label class="adv-field-label" for="search-district">
-                  <span>🏛️</span> District
-                </label>
+                <label class="adv-field-label" for="search-district"><span>🏛️</span> District</label>
                 <input type="text" id="search-district" name="district" class="adv-input" placeholder="e.g. Lucknow, Patna, Jaipur...">
               </div>
 
-              <!-- 3. City -->
               <div class="adv-field-group">
-                <label class="adv-field-label" for="search-city">
-                  <span>🏙️</span> City
-                </label>
-                <input type="text" id="search-city" name="city" class="adv-input" placeholder="e.g. Gomti Nagar, Rohini...">
+                <label class="adv-field-label" for="search-city"><span>🏙️</span> City</label>
+                <input type="text" id="search-city" name="city" class="adv-input" placeholder="e.g. Gomti Nagar, Bailey Road...">
               </div>
 
-              <!-- 4. PIN Code -->
               <div class="adv-field-group">
-                <label class="adv-field-label" for="search-pin">
-                  <span>📮</span> PIN Code
-                </label>
+                <label class="adv-field-label" for="search-pin"><span>📮</span> PIN Code</label>
                 <input type="text" id="search-pin" name="pin" class="adv-input" placeholder="e.g. 226010" pattern="[0-9]{6}">
               </div>
 
-              <!-- 5. Event Date -->
               <div class="adv-field-group">
-                <label class="adv-field-label" for="search-date">
-                  <span>📅</span> Event Date
-                </label>
+                <label class="adv-field-label" for="search-date"><span>📅</span> Event Date</label>
                 <input type="date" id="search-date" name="eventDate" class="adv-input">
               </div>
 
-              <!-- 6. Guest Count -->
               <div class="adv-field-group">
-                <label class="adv-field-label" for="search-guests">
-                  <span>👥</span> Guest Count
-                </label>
+                <label class="adv-field-label" for="search-guests"><span>👥</span> Guest Count</label>
                 <select id="search-guests" name="guests" class="adv-select">
                   <option value="">Any Capacity</option>
                   <option value="100-300">Intimate (100–300 Guests)</option>
@@ -271,30 +413,23 @@
                 </select>
               </div>
 
-              <!-- 7. Venue Type -->
               <div class="adv-field-group">
-                <label class="adv-field-label" for="search-type">
-                  <span>🏰</span> Venue Type
-                </label>
+                <label class="adv-field-label" for="search-type"><span>🏰</span> Venue Type</label>
                 <select id="search-type" name="category" class="adv-select">
                   <option value="">All Categories</option>
                   <option value="Marriage Halls">Marriage Hall / Palace</option>
                   <option value="Banquet Halls">Banquet Hall</option>
-                  <option value="Luxury Resorts">Luxury Wedding Resort & Lawn</option>
+                  <option value="Luxury Resorts">Luxury Wedding Resort</option>
                   <option value="Cars">Luxury Wedding Cars</option>
-                  <option value="Tent Houses">Tent House & Shamiana</option>
+                  <option value="Tent Houses">Tent House &amp; Shamiana</option>
                   <option value="Catering">Royal Catering Services</option>
-                  <option value="Decoration">Floral & Theme Decoration</option>
-                  <option value="Photography">Wedding Photography & Drone</option>
-                  <option value="DJ">DJ & Sound System</option>
+                  <option value="Decoration">Floral &amp; Stage Decor</option>
+                  <option value="Photography">Wedding Cinematography</option>
                 </select>
               </div>
 
-              <!-- 8. Budget -->
               <div class="adv-field-group">
-                <label class="adv-field-label" for="search-budget">
-                  <span>💰</span> Budget Range
-                </label>
+                <label class="adv-field-label" for="search-budget"><span>💰</span> Budget Range</label>
                 <select id="search-budget" name="budget" class="adv-select">
                   <option value="">Any Budget</option>
                   <option value="0-100000">Under ₹1,00,000</option>
@@ -305,19 +440,18 @@
               </div>
             </div>
 
-            <!-- Bottom Row: Quick Filters & Search CTA -->
+            <!-- Quick Chips & Action Row -->
             <div class="adv-search-bottom-row">
               <div class="adv-quick-chips">
                 <span style="font-size:0.78rem; color:var(--text-muted); font-weight:600;">Popular:</span>
                 <a href="/search.html?category=Marriage+Halls&city=Lucknow" class="adv-chip">Palaces in Lucknow</a>
-                <a href="/search.html?category=Marriage+Halls&city=Patna" class="adv-chip">Banquet Halls in Patna</a>
-                <a href="/search.html?category=Cars" class="adv-chip">Mercedes & Audi Cars</a>
-                <a href="/search.html?category=Tent+Houses" class="adv-chip">German Waterproof Hanger</a>
-                <a href="/3d-preview.html" class="adv-chip" style="border-color:var(--primary); color:var(--primary-light);">🎮 3D Layout Walkthrough</a>
+                <a href="/search.html?category=Marriage+Halls&city=Patna" class="adv-chip">Banquets in Patna</a>
+                <a href="/search.html?category=Cars" class="adv-chip">Mercedes Wedding Cars</a>
+                <a href="/3d-preview.html" class="adv-chip" style="border-color:var(--primary); color:var(--primary-light);">🎮 3D Layout Tour</a>
               </div>
 
               <div style="display:flex; align-items:center; gap:0.75rem;">
-                <button type="button" class="btn btn-secondary btn-sm" data-trigger="near-me" title="Use My Current GPS Location">
+                <button type="button" class="btn btn-secondary btn-sm" data-trigger="near-me" title="Use GPS Location">
                   <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#10b981" stroke-width="2.5"><circle cx="12" cy="12" r="10"/><polygon points="16.24 7.76 14.12 14.12 7.76 16.24 9.88 9.88 16.24 7.76"/></svg>
                   <span>Near Me</span>
                 </button>
@@ -328,423 +462,749 @@
               </div>
             </div>
           </form>
+
+          <!-- Interactive Event Planning Tools Strip (Phase 17) -->
+          <div class="planning-tools-strip">
+            <div style="font-weight: 700; color: var(--text-champagne); font-size: 0.95rem; display: flex; align-items: center; gap: 0.4rem;">
+              <span>⚡</span> <span>Smart Event Planners:</span>
+            </div>
+            <button type="button" class="tool-trigger-btn" data-open-tool="budget">
+              <span>💰</span> <span>Wedding Budget Planner</span>
+            </button>
+            <button type="button" class="tool-trigger-btn" data-open-tool="checklist">
+              <span>📋</span> <span>Event Timeline Checklist</span>
+            </button>
+            <button type="button" class="tool-trigger-btn" data-open-tool="capacity">
+              <span>📐</span> <span>Guest Capacity Calculator</span>
+            </button>
+          </div>
         </div>
       </div>
     </section>
 
-    <!-- =========================================================================
-         SECTION 4: FIRST SCREEN ROLE SELECTION (USER vs OWNER)
-    ========================================================================= -->
-    <section class="section role-selection-section" aria-label="Choose Your Role">
+    <!-- SECTION 3: SEARCH BY EVENT TYPE -->
+    <section id="event-types-section" class="section section-event-types">
       <div class="container">
-        <div class="role-cards-grid perspective-container">
-          <!-- User / Customer 3D Card -->
-          <article class="role-card role-user card-3d">
-            <div class="role-card-header">
-              <div class="role-icon-box">
-                <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>
-              </div>
-              <span class="badge badge-indigo">For Customers</span>
+        <div class="text-center" style="margin-bottom:2.5rem;">
+          <h2 class="section-title">Search by Event Type</h2>
+          <p class="section-subtitle">Whether an intimate family celebration or a grand royal wedding, discover specialized venues for every occasion.</p>
+        </div>
+
+        <div style="display:grid; grid-template-columns:repeat(auto-fit, minmax(320px, 1fr)); gap:1.5rem;">
+          <!-- 1. Weddings & Vivah -->
+          <a href="/search.html?category=Marriage+Halls" class="event-type-card">
+            <img decoding="async" loading="lazy" src="https://images.unsplash.com/photo-1519741497674-611481863552?auto=format&fit=crop&w=800&q=80" alt="Weddings & Vivah" class="event-type-img">
+            <div class="event-type-overlay"></div>
+            <div class="event-type-content">
+              <span class="badge badge-gold" style="margin-bottom:0.4rem;">500–2500 Guests</span>
+              <h3 style="font-size:1.35rem; color:#ffffff; margin-bottom:0.25rem;">Weddings &amp; Vivah</h3>
+              <p style="font-size:0.85rem; color:#cbd5e1;">Grand marriage palaces, royal lawns, and mandap spaces.</p>
             </div>
+          </a>
 
-            <div>
-              <h2 class="role-title">User Explorer</h2>
-              <p class="role-desc">
-                "Find halls, cars, tent houses and event services" — Check live dates, inspect 3D layout stages, view transparent pricing, and reserve with zero middleman friction.
-              </p>
+          <!-- 2. Grand Receptions -->
+          <a href="/search.html?category=Banquet+Halls" class="event-type-card">
+            <img decoding="async" loading="lazy" src="https://images.unsplash.com/photo-1519167758481-83f550bb49b3?auto=format&fit=crop&w=800&q=80" alt="Grand Receptions" class="event-type-img">
+            <div class="event-type-overlay"></div>
+            <div class="event-type-content">
+              <span class="badge badge-indigo" style="margin-bottom:0.4rem;">300–1200 Guests</span>
+              <h3 style="font-size:1.35rem; color:#ffffff; margin-bottom:0.25rem;">Grand Receptions</h3>
+              <p style="font-size:0.85rem; color:#cbd5e1;">High-ceiling air-conditioned banquet halls with chandeliers.</p>
             </div>
+          </a>
 
-            <div class="role-pills">
-              <span class="role-pill">Marriage Halls</span>
-              <span class="role-pill">Luxury Cars</span>
-              <span class="role-pill">Tent & Shamiana</span>
-              <span class="role-pill">Catering & DJ</span>
+          <!-- 3. Sangeet, Mehendi & Haldi -->
+          <a href="/search.html?category=Decoration" class="event-type-card">
+            <img decoding="async" loading="lazy" src="https://images.unsplash.com/photo-1583939003579-730e3918a45a?auto=format&fit=crop&w=800&q=80" alt="Sangeet & Mehendi" class="event-type-img">
+            <div class="event-type-overlay"></div>
+            <div class="event-type-content">
+              <span class="badge badge-gold" style="margin-bottom:0.4rem;">100–400 Guests</span>
+              <h3 style="font-size:1.35rem; color:#ffffff; margin-bottom:0.25rem;">Sangeet, Mehendi &amp; Haldi</h3>
+              <p style="font-size:0.85rem; color:#cbd5e1;">Vibrant outdoor lawns, poolside cabanas, and stage setups.</p>
             </div>
+          </a>
 
-            <a href="/search.html" class="btn btn-primary w-full">
-              <span>Find & Book Services</span>
-              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="9 18 15 12 9 6"/></svg>
-            </a>
-          </article>
-
-          <!-- Business Owner 3D Card -->
-          <article class="role-card role-owner card-3d card-3d-gold">
-            <div class="role-card-header">
-              <div class="role-icon-box">
-                <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="7" width="20" height="14" rx="2" ry="2"/><path d="M16 21V5a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v16"/></svg>
-              </div>
-              <span class="badge badge-gold">For Business Owners</span>
+          <!-- 4. Corporate Galas & Conferences -->
+          <a href="/search.html?category=Luxury+Resorts" class="event-type-card">
+            <img decoding="async" loading="lazy" src="https://images.unsplash.com/photo-1511795409834-ef04bbd61622?auto=format&fit=crop&w=800&q=80" alt="Corporate Galas" class="event-type-img">
+            <div class="event-type-overlay"></div>
+            <div class="event-type-content">
+              <span class="badge badge-indigo" style="margin-bottom:0.4rem;">150–800 Guests</span>
+              <h3 style="font-size:1.35rem; color:#ffffff; margin-bottom:0.25rem;">Corporate Galas &amp; Summits</h3>
+              <p style="font-size:0.85rem; color:#cbd5e1;">5-star convention centres with state-of-the-art AV equipment.</p>
             </div>
+          </a>
 
-            <div>
-              <h2 class="role-title">Venue &amp; Service Owner</h2>
-              <p class="role-desc">
-                "List and manage your business" — Grow bookings across your city & district, manage calendar availability, get instant sound alerts for new requests, and accept payments securely.
-              </p>
+          <!-- 5. Birthdays & Anniversaries -->
+          <a href="/search.html?category=Party+Halls" class="event-type-card">
+            <img decoding="async" loading="lazy" src="https://images.unsplash.com/photo-1464366400600-7168b8af9bc3?auto=format&fit=crop&w=800&q=80" alt="Birthdays & Anniversaries" class="event-type-img">
+            <div class="event-type-overlay"></div>
+            <div class="event-type-content">
+              <span class="badge badge-gold" style="margin-bottom:0.4rem;">50–250 Guests</span>
+              <h3 style="font-size:1.35rem; color:#ffffff; margin-bottom:0.25rem;">Birthdays &amp; Anniversaries</h3>
+              <p style="font-size:0.85rem; color:#cbd5e1;">Intimate party lounges with catering and custom lighting.</p>
             </div>
+          </a>
 
-
-            <div class="role-pills">
-              <span class="role-pill">Marriage Hall Owner</span>
-              <span class="role-pill">Wedding Car Owner</span>
-              <span class="role-pill">Tent House Owner</span>
-              <span class="role-pill">Event Service Provider</span>
+          <!-- 6. Cultural Fairs & Exhibitions -->
+          <a href="/search.html?category=Tent+Houses" class="event-type-card">
+            <img decoding="async" loading="lazy" src="https://images.unsplash.com/photo-1540555700478-4be289fbecef?auto=format&fit=crop&w=800&q=80" alt="Cultural Fairs & Exhibitions" class="event-type-img">
+            <div class="event-type-overlay"></div>
+            <div class="event-type-content">
+              <span class="badge badge-indigo" style="margin-bottom:0.4rem;">1000–5000 Guests</span>
+              <h3 style="font-size:1.35rem; color:#ffffff; margin-bottom:0.25rem;">Cultural Fairs &amp; Exhibitions</h3>
+              <p style="font-size:0.85rem; color:#cbd5e1;">German waterproof hangers, open grounds, and pavilion setups.</p>
             </div>
-
-            <a href="/register.html?role=owner" class="btn btn-gold w-full">
-              <span>List Your Business Now</span>
-              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="9 18 15 12 9 6"/></svg>
-            </a>
-          </article>
+          </a>
         </div>
       </div>
     </section>
 
-    <!-- =========================================================================
-         SECTION 8: SERVICE CATEGORIES (13 ESSENTIAL CATEGORIES)
-    ========================================================================= -->
+    <!-- SECTION 4: EXPLORE ALL CATEGORIES (14 Categories with 3D Badges) -->
     <section id="services-section" class="section">
       <div class="container">
-        <h2 class="section-title">Explore Event Categories</h2>
-        <p class="section-subtitle">Select a category to discover verified local providers in your village, city or district.</p>
+        <div class="text-center" style="margin-bottom:2.5rem;">
+          <h2 class="section-title">Explore All Event Categories</h2>
+          <p class="section-subtitle">Verified local vendors and service providers with transparent pricing and direct booking.</p>
+        </div>
 
         <div class="categories-grid perspective-container">
-          <!-- 1. Marriage Halls -->
-          <a href="/search.html?category=Marriage+Halls" class="category-card card-3d">
-            <div class="category-icon-box">
-              <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg>
-            </div>
-            <span class="category-name">Marriage Halls</span>
-            <span class="category-count">140+ Venues</span>
+          <a href="/search.html?category=Marriage+Halls" class="category-3d-card">
+            <div class="icon-3d-box icon-3d-gold icon-3d-md">🏰</div>
+            <span class="category-3d-title">Marriage Halls</span>
+            <span style="font-size:0.75rem; color:var(--text-muted);">140+ Palaces</span>
           </a>
 
-          <!-- 2. Cars -->
-          <a href="/search.html?category=Cars" class="category-card card-3d">
-            <div class="category-icon-box">
-              <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M19 17h2c.6 0 1-.4 1-1v-3c0-.9-.7-1.7-1.5-1.9C18.7 10.6 16 10 16 10s-1.3-1.4-2.2-2.3c-.5-.4-1.1-.7-1.8-.7H5c-.6 0-1.1.4-1.4.9l-1.4 2.9C2.1 11 2 11.5 2 12v4c0 .6.4 1 1 1h2"/><circle cx="7" cy="17" r="2"/><circle cx="17" cy="17" r="2"/></svg>
-            </div>
-            <span class="category-name">Wedding Cars</span>
-            <span class="category-count">85+ Luxury Cars</span>
+          <a href="/search.html?category=Banquet+Halls" class="category-3d-card">
+            <div class="icon-3d-box icon-3d-blue icon-3d-md">🏛️</div>
+            <span class="category-3d-title">Banquet Halls</span>
+            <span style="font-size:0.75rem; color:var(--text-muted);">110+ Venues</span>
           </a>
 
-          <!-- 3. Tent Houses -->
-          <a href="/search.html?category=Tent+Houses" class="category-card card-3d">
-            <div class="category-icon-box">
-              <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M19 20H5a2 2 0 0 1-2-2V6a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2v12a2 2 0 0 1-2 2z"/><polyline points="12 4 4 14 20 14"/></svg>
-            </div>
-            <span class="category-name">Tent Houses</span>
-            <span class="category-count">92+ Vendors</span>
+          <a href="/search.html?category=Luxury+Resorts" class="category-3d-card">
+            <div class="icon-3d-box icon-3d-emerald icon-3d-md">🌴</div>
+            <span class="category-3d-title">Luxury Resorts</span>
+            <span style="font-size:0.75rem; color:var(--text-muted);">65+ Resorts</span>
           </a>
 
-          <!-- 4. Decoration -->
-          <a href="/search.html?category=Decoration" class="category-card card-3d">
-            <div class="category-icon-box">
-              <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
-            </div>
-            <span class="category-name">Stage Decoration</span>
-            <span class="category-count">110+ Decorators</span>
+          <a href="/search.html?category=Cars" class="category-3d-card">
+            <div class="icon-3d-box icon-3d-ruby icon-3d-md">🚗</div>
+            <span class="category-3d-title">Wedding Cars</span>
+            <span style="font-size:0.75rem; color:var(--text-muted);">85+ Luxury Cars</span>
           </a>
 
-          <!-- 5. Lighting -->
-          <a href="/search.html?category=Lighting" class="category-card card-3d">
-            <div class="category-icon-box">
-              <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 18h6"/><path d="M10 22h4"/><path d="M12 2a7 7 0 0 0-7 7c0 2.5 1.5 4.5 3 6h8c1.5-1.5 3-3.5 3-6a7 7 0 0 0-7-7z"/></svg>
-            </div>
-            <span class="category-name">Lighting & Halogen</span>
-            <span class="category-count">65+ Providers</span>
+          <a href="/search.html?category=Tent+Houses" class="category-3d-card">
+            <div class="icon-3d-box icon-3d-purple icon-3d-md">🎪</div>
+            <span class="category-3d-title">Tent Houses</span>
+            <span style="font-size:0.75rem; color:var(--text-muted);">92+ Vendors</span>
           </a>
 
-          <!-- 6. Catering -->
-          <a href="/search.html?category=Catering" class="category-card card-3d">
-            <div class="category-icon-box">
-              <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 8h1a4 4 0 0 1 0 8h-1"/><path d="M2 8h16v9a4 4 0 0 1-4 4H6a4 4 0 0 1-4-4V8z"/><line x1="6" y1="1" x2="6" y2="4"/><line x1="10" y1="1" x2="10" y2="4"/><line x1="14" y1="1" x2="14" y2="4"/></svg>
-            </div>
-            <span class="category-name">Catering Services</span>
-            <span class="category-count">98+ Caterers</span>
+          <a href="/search.html?category=Catering" class="category-3d-card">
+            <div class="icon-3d-box icon-3d-gold icon-3d-md">🍲</div>
+            <span class="category-3d-title">Royal Catering</span>
+            <span style="font-size:0.75rem; color:var(--text-muted);">98+ Caterers</span>
           </a>
 
-          <!-- 7. Photography -->
-          <a href="/search.html?category=Photography" class="category-card card-3d">
-            <div class="category-icon-box">
-              <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M23 19a2 2 0 0 1-2 2H3a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h4l2-3h6l2 3h4a2 2 0 0 1 2 2z"/><circle cx="12" cy="13" r="4"/></svg>
-            </div>
-            <span class="category-name">Photography & Video</span>
-            <span class="category-count">125+ Studios</span>
+          <a href="/search.html?category=Decoration" class="category-3d-card">
+            <div class="icon-3d-box icon-3d-emerald icon-3d-md">✨</div>
+            <span class="category-3d-title">Stage &amp; Decor</span>
+            <span style="font-size:0.75rem; color:var(--text-muted);">110+ Decorators</span>
           </a>
 
-          <!-- 8. DJ -->
-          <a href="/search.html?category=DJ" class="category-card card-3d">
-            <div class="category-icon-box">
-              <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><circle cx="12" cy="12" r="3"/><circle cx="12" cy="12" r="1"/></svg>
-            </div>
-            <span class="category-name">DJ & Music</span>
-            <span class="category-count">78+ Artists</span>
+          <a href="/search.html?category=Photography" class="category-3d-card">
+            <div class="icon-3d-box icon-3d-blue icon-3d-md">📷</div>
+            <span class="category-3d-title">Photography</span>
+            <span style="font-size:0.75rem; color:var(--text-muted);">125+ Studios</span>
           </a>
 
-          <!-- 9. Sound System -->
-          <a href="/search.html?category=Sound+System" class="category-card card-3d">
-            <div class="category-icon-box">
-              <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="4" y="2" width="16" height="20" rx="2"/><circle cx="12" cy="14" r="4"/><line x1="12" y1="6" x2="12.01" y2="6"/></svg>
-            </div>
-            <span class="category-name">Sound & Concert Audio</span>
-            <span class="category-count">54+ Systems</span>
+          <a href="/search.html?category=DJ" class="category-3d-card">
+            <div class="icon-3d-box icon-3d-purple icon-3d-md">🎧</div>
+            <span class="category-3d-title">DJ &amp; Sound</span>
+            <span style="font-size:0.75rem; color:var(--text-muted);">78+ Artists</span>
           </a>
 
-          <!-- 10. Furniture -->
-          <a href="/search.html?category=Furniture" class="category-card card-3d">
-            <div class="category-icon-box">
-              <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 19v2"/><path d="M18 19v2"/><path d="M4 11a2 2 0 0 1 2-2h12a2 2 0 0 1 2 2v6H4v-6z"/></svg>
-            </div>
-            <span class="category-name">Furniture & Sofas</span>
-            <span class="category-count">48+ Providers</span>
+          <a href="/search.html?category=Lighting" class="category-3d-card">
+            <div class="icon-3d-box icon-3d-gold icon-3d-md">💡</div>
+            <span class="category-3d-title">Lighting Setup</span>
+            <span style="font-size:0.75rem; color:var(--text-muted);">65+ Providers</span>
           </a>
 
-          <!-- 11. Flower Decoration -->
-          <a href="/search.html?category=Flower+Decoration" class="category-card card-3d">
-            <div class="category-icon-box">
-              <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="3"/><path d="M12 2a5 5 0 0 0-5 5c0 3 5 8 5 8s5-5 5-8a5 5 0 0 0-5-5z"/></svg>
-            </div>
-            <span class="category-name">Flower Decoration</span>
-            <span class="category-count">82+ Florists</span>
+          <a href="/search.html?category=Flower+Decoration" class="category-3d-card">
+            <div class="icon-3d-box icon-3d-ruby icon-3d-md">🌸</div>
+            <span class="category-3d-title">Flower Decor</span>
+            <span style="font-size:0.75rem; color:var(--text-muted);">82+ Florists</span>
           </a>
 
-          <!-- 12. Catering Staff -->
-          <a href="/search.html?category=Catering+Staff" class="category-card card-3d">
-            <div class="category-icon-box">
-              <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>
-            </div>
-            <span class="category-name">Catering Staff</span>
-            <span class="category-count">60+ Teams</span>
+          <a href="/search.html?category=Furniture" class="category-3d-card">
+            <div class="icon-3d-box icon-3d-blue icon-3d-md">🪑</div>
+            <span class="category-3d-title">Furniture &amp; Mandap</span>
+            <span style="font-size:0.75rem; color:var(--text-muted);">48+ Providers</span>
           </a>
 
-          <!-- 13. Event Staff -->
-          <a href="/search.html?category=Event+Staff" class="category-card card-3d">
-            <div class="category-icon-box">
-              <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
-            </div>
-            <span class="category-name">Security & Staff</span>
-            <span class="category-count">45+ Agencies</span>
+          <a href="/search.html?category=Catering+Staff" class="category-3d-card">
+            <div class="icon-3d-box icon-3d-emerald icon-3d-md">👨‍🍳</div>
+            <span class="category-3d-title">Catering Staff</span>
+            <span style="font-size:0.75rem; color:var(--text-muted);">60+ Teams</span>
+          </a>
+
+          <a href="/search.html?category=Event+Staff" class="category-3d-card">
+            <div class="icon-3d-box icon-3d-glass icon-3d-md">🛡️</div>
+            <span class="category-3d-title">Security &amp; Staff</span>
+            <span style="font-size:0.75rem; color:var(--text-muted);">45+ Agencies</span>
           </a>
         </div>
       </div>
     </section>
 
-    <!-- =========================================================================
-         SECTION 10: FEATURED VERIFIED VENUES & 3D CARDS
-    ========================================================================= -->
-    <section class="section" style="background: rgba(13, 19, 34, 0.45);">
+    <!-- SECTION 5: POPULAR VENUES (Live Synchronized Luxury Venues) -->
+    <section class="section" style="background: rgba(12, 31, 56, 0.45);">
       <div class="container">
         <div class="flex items-center justify-between" style="margin-bottom: 2rem; flex-wrap:wrap; gap:1rem;">
           <div>
             <div class="flex items-center gap-2">
-              <h2 class="section-title" style="text-align:left; margin-bottom:0.25rem;">Featured Luxury Venues</h2>
+              <h2 class="section-title" style="text-align:left; margin-bottom:0.25rem;">Popular Verified Venues</h2>
               <span id="live-venues-badge" class="badge badge-emerald" style="display:none; align-items:center; gap:0.35rem; font-size:0.75rem;">
-                <span class="pulse-dot"></span> Live Backend Data
+                <span class="pulse-dot"></span> Live Backend Sync
               </span>
             </div>
-            <p style="color:var(--text-muted); font-size:0.95rem;">Handpicked banquet halls with interactive 3D layout inspection & verified badges.</p>
+            <p style="color:var(--text-secondary); font-size:0.95rem;">Handpicked banquet halls with interactive 3D layout inspection and verified owner badges.</p>
           </div>
-          <a href="/search.html" class="btn btn-secondary btn-sm">View All Halls &rarr;</a>
+          <a href="/search.html" class="btn btn-secondary btn-sm">View All 140+ Venues &rarr;</a>
         </div>
 
         <div id="featured-listings-container" class="listings-grid perspective-container">
-          <!-- Hall Card 1 -->
-          <article class="listing-card card-3d">
-            <div class="listing-media">
-              <img decoding="async" src="https://images.unsplash.com/photo-1519167758481-83f550bb49b3?auto=format&fit=crop&w=800&q=80" alt="The Royal Grand Heritage Palace" class="listing-img" loading="lazy">
-              <div class="listing-badges">
-                <span class="badge badge-verified">✓ Verified</span>
-                <span class="badge badge-indigo">3D Layout Ready</span>
-              </div>
-              <button class="listing-fav-btn" aria-label="Add to Favorites">
-                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/></svg>
-              </button>
-            </div>
+          <!-- Live synchronized listings render dynamically from API -->
+        </div>
+      </div>
+    </section>
 
-            <div class="listing-body">
-              <div class="listing-header-row">
-                <h3 class="listing-title">The Royal Grand Heritage Palace</h3>
-                <div class="listing-rating">★ 4.9 <span style="color:var(--text-muted); font-weight:normal; font-size:0.75rem;">(148)</span></div>
-              </div>
+    <!-- SECTION 6: FEATURED VENDORS -->
+    <section class="section">
+      <div class="container">
+        <div class="text-center" style="margin-bottom:2.5rem;">
+          <h2 class="section-title">Featured Event Vendors</h2>
+          <p class="section-subtitle">Collaborate with top-rated wedding caterers, decorators, cinematographers and live music artists.</p>
+        </div>
 
-              <div class="listing-location-row">
-                <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>
-                <span>Gomti Nagar, Lucknow • <strong style="color:#10b981;">2.4 km away</strong></span>
-              </div>
-
-              <div class="listing-amenities-row">
-                <span class="amenity-chip">Capacity: 200–1200 Guests</span>
-                <span class="amenity-chip">Central AC</span>
-                <span class="amenity-chip">Lawn</span>
-                <span class="amenity-chip">Parking 150 Cars</span>
-              </div>
-
-              <div class="listing-footer-row">
-                <div class="listing-price-box">
-                  <span class="listing-price-label">Starting From</span>
-                  <span class="listing-price-val">₹65,000 <span style="font-size:0.75rem; color:var(--text-muted); font-weight:normal;">/ event</span></span>
-                </div>
-                <div class="listing-actions-row">
-                  <a href="/hall-details.html?id=h-101" class="btn btn-secondary btn-sm">Inspect 3D</a>
-                  <a href="/booking.html?hallId=h-101" class="btn btn-primary btn-sm">Book Now</a>
-                </div>
-              </div>
-            </div>
+        <div style="display:grid; grid-template-columns:repeat(auto-fit, minmax(280px, 1fr)); gap:1.5rem;">
+          <!-- Vendor 1 -->
+          <article class="glass-panel" style="padding:1.5rem; text-align:center;">
+            <div class="icon-3d-box icon-3d-gold icon-3d-lg" style="margin:0 auto 1rem auto;">🍲</div>
+            <h3 style="font-size:1.15rem; margin-bottom:0.25rem;">Royal Shahi Caterers</h3>
+            <div style="color:var(--primary-light); font-size:0.85rem; margin-bottom:0.5rem;">Awadhi &amp; North Indian Buffets</div>
+            <div style="font-size:0.85rem; color:var(--text-muted); margin-bottom:1rem;">★ 5.0 (180+ Reviews) • Lucknow, UP</div>
+            <a href="https://wa.me/919773647612?text=Inquiry%20for%20Royal%20Shahi%20Catering" target="_blank" rel="noopener" class="btn btn-secondary btn-sm w-full">Inquire on WhatsApp</a>
           </article>
 
-          <!-- Hall Card 2 -->
-          <article class="listing-card card-3d">
-            <div class="listing-media">
-              <img decoding="async" src="https://images.unsplash.com/photo-1544830254-20b1274f881b?auto=format&fit=crop&w=800&q=80" alt="Mayur Emerald Banquet & Lawn" class="listing-img" loading="lazy">
-              <div class="listing-badges">
-                <span class="badge badge-verified">✓ Verified</span>
-                <span class="badge badge-status-available">Available Oct 15</span>
-              </div>
-              <button class="listing-fav-btn" aria-label="Add to Favorites">
-                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/></svg>
-              </button>
-            </div>
-
-            <div class="listing-body">
-              <div class="listing-header-row">
-                <h3 class="listing-title">Mayur Emerald Banquet & Lawn</h3>
-                <div class="listing-rating">★ 4.8 <span style="color:var(--text-muted); font-weight:normal; font-size:0.75rem;">(96)</span></div>
-              </div>
-
-              <div class="listing-location-row">
-                <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>
-                <span>Bailey Road, Patna • <strong style="color:#10b981;">4.1 km away</strong></span>
-              </div>
-
-              <div class="listing-amenities-row">
-                <span class="amenity-chip">Capacity: 100–750 Guests</span>
-                <span class="amenity-chip">Stage Setup</span>
-                <span class="amenity-chip">Generator Backup</span>
-              </div>
-
-              <div class="listing-footer-row">
-                <div class="listing-price-box">
-                  <span class="listing-price-label">Starting From</span>
-                  <span class="listing-price-val">₹45,000 <span style="font-size:0.75rem; color:var(--text-muted); font-weight:normal;">/ event</span></span>
-                </div>
-                <div class="listing-actions-row">
-                  <a href="/hall-details.html?id=h-102" class="btn btn-secondary btn-sm">Inspect 3D</a>
-                  <a href="/booking.html?hallId=h-102" class="btn btn-primary btn-sm">Book Now</a>
-                </div>
-              </div>
-            </div>
+          <!-- Vendor 2 -->
+          <article class="glass-panel" style="padding:1.5rem; text-align:center;">
+            <div class="icon-3d-box icon-3d-ruby icon-3d-lg" style="margin:0 auto 1rem auto;">✨</div>
+            <h3 style="font-size:1.15rem; margin-bottom:0.25rem;">Imperial Stage &amp; Floral</h3>
+            <div style="color:var(--primary-light); font-size:0.85rem; margin-bottom:0.5rem;">Royal Mandap &amp; Theme Decor</div>
+            <div style="font-size:0.85rem; color:var(--text-muted); margin-bottom:1rem;">★ 4.9 (140+ Reviews) • Jaipur, RJ</div>
+            <a href="https://wa.me/919773647612?text=Inquiry%20for%20Imperial%20Decor" target="_blank" rel="noopener" class="btn btn-secondary btn-sm w-full">Inquire on WhatsApp</a>
           </article>
 
-          <!-- Hall Card 3 -->
-          <article class="listing-card card-3d">
-            <div class="listing-media">
-              <img decoding="async" src="https://images.unsplash.com/photo-1566073771259-6a8506099945?auto=format&fit=crop&w=800&q=80" alt="Sanskriti Luxury Resort & Poolside Lawn" class="listing-img" loading="lazy">
-              <div class="listing-badges">
-                <span class="badge badge-verified">✓ Verified</span>
-                <span class="badge badge-gold">Premium Resort</span>
-              </div>
-              <button class="listing-fav-btn" aria-label="Add to Favorites">
-                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/></svg>
-              </button>
-            </div>
+          <!-- Vendor 3 -->
+          <article class="glass-panel" style="padding:1.5rem; text-align:center;">
+            <div class="icon-3d-box icon-3d-blue icon-3d-lg" style="margin:0 auto 1rem auto;">📷</div>
+            <h3 style="font-size:1.15rem; margin-bottom:0.25rem;">ShutterVows Wedding Films</h3>
+            <div style="color:var(--primary-light); font-size:0.85rem; margin-bottom:0.5rem;">4K Drone &amp; Candid Cinematography</div>
+            <div style="font-size:0.85rem; color:var(--text-muted); margin-bottom:1rem;">★ 4.95 (210+ Reviews) • Delhi NCR</div>
+            <a href="https://wa.me/919773647612?text=Inquiry%20for%20Wedding%20Cinematography" target="_blank" rel="noopener" class="btn btn-secondary btn-sm w-full">Inquire on WhatsApp</a>
+          </article>
 
-            <div class="listing-body">
-              <div class="listing-header-row">
-                <h3 class="listing-title">Sanskriti Luxury Resort & Lawn</h3>
-                <div class="listing-rating">★ 4.95 <span style="color:var(--text-muted); font-weight:normal; font-size:0.75rem;">(230)</span></div>
-              </div>
-
-              <div class="listing-location-row">
-                <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>
-                <span>Sector 48, Gurugram • <strong style="color:#10b981;">8.7 km away</strong></span>
-              </div>
-
-              <div class="listing-amenities-row">
-                <span class="amenity-chip">Capacity: 300–2000 Guests</span>
-                <span class="amenity-chip">15 AC Rooms</span>
-                <span class="amenity-chip">Valet 300 Cars</span>
-              </div>
-
-              <div class="listing-footer-row">
-                <div class="listing-price-box">
-                  <span class="listing-price-label">Starting From</span>
-                  <span class="listing-price-val">₹1,20,000 <span style="font-size:0.75rem; color:var(--text-muted); font-weight:normal;">/ day</span></span>
-                </div>
-                <div class="listing-actions-row">
-                  <a href="/hall-details.html?id=h-103" class="btn btn-secondary btn-sm">Inspect 3D</a>
-                  <a href="/booking.html?hallId=h-103" class="btn btn-primary btn-sm">Book Now</a>
-                </div>
-              </div>
-            </div>
+          <!-- Vendor 4 -->
+          <article class="glass-panel" style="padding:1.5rem; text-align:center;">
+            <div class="icon-3d-box icon-3d-purple icon-3d-lg" style="margin:0 auto 1rem auto;">🎧</div>
+            <h3 style="font-size:1.15rem; margin-bottom:0.25rem;">BeatVibe Live Concert DJ</h3>
+            <div style="color:var(--primary-light); font-size:0.85rem; margin-bottom:0.5rem;">Line-Array Sound &amp; LED Stage</div>
+            <div style="font-size:0.85rem; color:var(--text-muted); margin-bottom:1rem;">★ 4.85 (95+ Reviews) • Patna, BR</div>
+            <a href="https://wa.me/919773647612?text=Inquiry%20for%20Live%20Sound%20and%20DJ" target="_blank" rel="noopener" class="btn btn-secondary btn-sm w-full">Inquire on WhatsApp</a>
           </article>
         </div>
       </div>
     </section>
 
-    <!-- =========================================================================
-         HOW IT WORKS SECTION
-    ========================================================================= -->
+    <!-- SECTION 7: TRENDING WEDDING DESTINATIONS -->
+    <section id="destinations-section" class="section section-destinations">
+      <div class="container">
+        <div class="text-center" style="margin-bottom:2.5rem;">
+          <h2 class="section-title">Trending Wedding Destinations</h2>
+          <p class="section-subtitle">From royal heritage palaces in Rajasthan to scenic beachside resorts in Goa, explore India's most sought-after wedding hubs.</p>
+        </div>
+
+        <div style="display:grid; grid-template-columns:repeat(auto-fit, minmax(320px, 1fr)); gap:1.5rem;">
+          <!-- 1. Udaipur -->
+          <a href="/search.html?state=Rajasthan&city=Udaipur" class="dest-card">
+            <img decoding="async" loading="lazy" src="https://images.unsplash.com/photo-1590050752117-238cb0fb12b1?auto=format&fit=crop&w=800&q=80" alt="Udaipur Wedding Venues" class="dest-img">
+            <div class="dest-overlay"></div>
+            <div class="dest-content">
+              <span class="badge badge-gold" style="margin-bottom:0.35rem;">Heritage Palaces</span>
+              <h3 style="font-size:1.4rem; color:#ffffff; margin-bottom:0.2rem;">Udaipur</h3>
+              <p style="font-size:0.85rem; color:#cbd5e1;">City of Lakes, Royal Island Banquets &amp; Heritage Forts.</p>
+            </div>
+          </a>
+
+          <!-- 2. Jaipur -->
+          <a href="/search.html?state=Rajasthan&city=Jaipur" class="dest-card">
+            <img decoding="async" loading="lazy" src="https://images.unsplash.com/photo-1477587458883-47145ed94245?auto=format&fit=crop&w=800&q=80" alt="Jaipur Wedding Venues" class="dest-img">
+            <div class="dest-overlay"></div>
+            <div class="dest-content">
+              <span class="badge badge-indigo" style="margin-bottom:0.35rem;">Royal Haveli Lawns</span>
+              <h3 style="font-size:1.4rem; color:#ffffff; margin-bottom:0.2rem;">Jaipur</h3>
+              <p style="font-size:0.85rem; color:#cbd5e1;">Majestic Pink City Palaces &amp; Historic Courtyards.</p>
+            </div>
+          </a>
+
+          <!-- 3. Lucknow -->
+          <a href="/search.html?state=Uttar+Pradesh&city=Lucknow" class="dest-card">
+            <img decoding="async" loading="lazy" src="https://images.unsplash.com/photo-1566073771259-6a8506099945?auto=format&fit=crop&w=800&q=80" alt="Lucknow Wedding Venues" class="dest-img">
+            <div class="dest-overlay"></div>
+            <div class="dest-content">
+              <span class="badge badge-gold" style="margin-bottom:0.35rem;">Nawabi Banquets</span>
+              <h3 style="font-size:1.4rem; color:#ffffff; margin-bottom:0.2rem;">Lucknow</h3>
+              <p style="font-size:0.85rem; color:#cbd5e1;">Sprawling Resorts, Shahi Hospitality &amp; Grand Lawns.</p>
+            </div>
+          </a>
+
+          <!-- 4. Goa -->
+          <a href="/search.html?state=Goa" class="dest-card">
+            <img decoding="async" loading="lazy" src="https://images.unsplash.com/photo-1512343879784-a960bf40e7f2?auto=format&fit=crop&w=800&q=80" alt="Goa Wedding Venues" class="dest-img">
+            <div class="dest-overlay"></div>
+            <div class="dest-content">
+              <span class="badge badge-indigo" style="margin-bottom:0.35rem;">Beachfront Resorts</span>
+              <h3 style="font-size:1.4rem; color:#ffffff; margin-bottom:0.2rem;">Goa</h3>
+              <p style="font-size:0.85rem; color:#cbd5e1;">Sunset Mandaps, Ocean View Lawns &amp; Luxury Villas.</p>
+            </div>
+          </a>
+
+          <!-- 5. Delhi NCR -->
+          <a href="/search.html?state=Delhi" class="dest-card">
+            <img decoding="async" loading="lazy" src="https://images.unsplash.com/photo-1545232979-fbf68fe9b1af?auto=format&fit=crop&w=800&q=80" alt="Delhi NCR Wedding Venues" class="dest-img">
+            <div class="dest-overlay"></div>
+            <div class="dest-content">
+              <span class="badge badge-gold" style="margin-bottom:0.35rem;">Luxury Farmhouses</span>
+              <h3 style="font-size:1.4rem; color:#ffffff; margin-bottom:0.2rem;">Delhi NCR</h3>
+              <p style="font-size:0.85rem; color:#cbd5e1;">5-Star Convention Ballrooms &amp; Sprawling Farmhouses.</p>
+            </div>
+          </a>
+
+          <!-- 6. Varanasi -->
+          <a href="/search.html?state=Uttar+Pradesh&city=Varanasi" class="dest-card">
+            <img decoding="async" loading="lazy" src="https://images.unsplash.com/photo-1561361513-2d000a50f0dc?auto=format&fit=crop&w=800&q=80" alt="Varanasi Wedding Venues" class="dest-img">
+            <div class="dest-overlay"></div>
+            <div class="dest-content">
+              <span class="badge badge-indigo" style="margin-bottom:0.35rem;">Ghat-Side Mandaps</span>
+              <h3 style="font-size:1.4rem; color:#ffffff; margin-bottom:0.2rem;">Varanasi</h3>
+              <p style="font-size:0.85rem; color:#cbd5e1;">Spiritual Riverfront Pavilions &amp; Grand Classical Lawns.</p>
+            </div>
+          </a>
+        </div>
+      </div>
+    </section>
+
+    <!-- SECTION 8: 3D VENUE PREVIEW & INTERACTIVE SHOWCASE -->
+    <section class="section section-preview-3d">
+      <div class="container">
+        <div class="glass-panel" style="padding:2.5rem; display:grid; grid-template-columns:1fr 1fr; gap:2.5rem; align-items:center;">
+          <div>
+            <div class="badge badge-indigo" style="margin-bottom:1rem;">Interactive WebGL Technology</div>
+            <h2 style="font-size:2.2rem; line-height:1.2; margin-bottom:1rem;">Walk Through Venues in Realistic 3D Before Booking</h2>
+            <p style="color:var(--text-secondary); margin-bottom:1.5rem; line-height:1.6;">
+              Inspect the grand entrance, stage positioning, dining arrangements, and chandelier lighting modes with smooth 360-degree orbit controls directly from your browser.
+            </p>
+            <div style="display:flex; flex-direction:column; gap:0.75rem; margin-bottom:2rem;">
+              <div class="flex items-center gap-2">
+                <span class="badge badge-verified">✓</span>
+                <span style="font-size:0.92rem;">Simulate Daylight, Sunset &amp; Night Gala ambient lighting</span>
+              </div>
+              <div class="flex items-center gap-2">
+                <span class="badge badge-verified">✓</span>
+                <span style="font-size:0.92rem;">Examine guest capacity and table arrangements</span>
+              </div>
+              <div class="flex items-center gap-2">
+                <span class="badge badge-verified">✓</span>
+                <span style="font-size:0.92rem;">Zero plugins required — works seamlessly on mobile &amp; desktop</span>
+              </div>
+            </div>
+            <a href="/3d-preview.html" class="btn btn-primary btn-lg" style="box-shadow:0 10px 25px var(--primary-glow);">
+              <span>Launch 3D Walkthrough</span>
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="9 18 15 12 9 6"/></svg>
+            </a>
+          </div>
+
+          <div style="position:relative; border-radius:var(--radius-lg); overflow:hidden; border:1px solid var(--border-light); box-shadow:var(--shadow-lg);">
+            <img decoding="async" loading="lazy" src="https://images.unsplash.com/photo-1519167758481-83f550bb49b3?auto=format&fit=crop&w=800&q=80" alt="3D Hall Preview" style="width:100%; height:360px; object-fit:cover;">
+            <div style="position:absolute; inset:0; background:rgba(7,20,38,0.45); display:flex; flex-direction:column; align-items:center; justify-content:center; gap:1rem; padding:1.5rem; text-align:center;">
+              <div class="icon-3d-box icon-3d-gold icon-3d-lg">🎮</div>
+              <h3 style="color:#ffffff; font-size:1.3rem;">3D Virtual Venue Model</h3>
+              <p style="color:#cbd5e1; font-size:0.88rem; max-width:320px;">Rotate, pan, zoom, and inspect stage elevation in full 3D.</p>
+              <a href="/3d-preview.html" class="btn btn-champagne btn-sm">Enter 3D Venue &rarr;</a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- SECTION 9: HOW HALL KHOJ FINDER WORKS -->
     <section id="how-it-works" class="section">
       <div class="container text-center">
         <h2 class="section-title">How Hall Khoj Finder Works</h2>
         <p class="section-subtitle">A seamless 3-step experience from finding your venue to booking your complete wedding event.</p>
 
-        <div style="display:grid; grid-template-columns:repeat(auto-fit, minmax(260px, 1fr)); gap:2rem; margin-top:3rem;">
+        <div style="display:grid; grid-template-columns:repeat(auto-fit, minmax(280px, 1fr)); gap:2rem; margin-top:3rem;">
           <div class="glass-panel" style="padding:2.25rem 1.5rem;">
-            <div class="role-icon-box" style="margin:0 auto 1.25rem auto; background:rgba(99, 102, 241, 0.2); color:#818cf8;">1</div>
-            <h3 style="font-size:1.25rem; margin-bottom:0.6rem;">Discover & Filter</h3>
-            <p style="font-size:0.9rem;">Search halls, luxury wedding cars, and tent houses near your village, PIN code or city with voice or AI search.</p>
+            <div class="role-icon-box" style="margin:0 auto 1.25rem auto; background:rgba(57, 139, 255, 0.2); color:#398bff; font-weight:800; font-size:1.2rem;">1</div>
+            <h3 style="font-size:1.25rem; margin-bottom:0.6rem;">Discover &amp; 3D Tour</h3>
+            <p style="font-size:0.9rem; color:var(--text-secondary);">Search halls, luxury wedding cars, and tent houses near your village, PIN code or city with AI or GPS search.</p>
           </div>
 
           <div class="glass-panel" style="padding:2.25rem 1.5rem;">
-            <div class="role-icon-box" style="margin:0 auto 1.25rem auto; background:rgba(245, 158, 11, 0.2); color:#fbbf24;">2</div>
-            <h3 style="font-size:1.25rem; margin-bottom:0.6rem;">Inspect 3D & Calendar</h3>
-            <p style="font-size:0.9rem;">Rotate and examine stage & dining layouts in interactive 3D. Check real-time date availability without waiting for callbacks.</p>
+            <div class="role-icon-box" style="margin:0 auto 1.25rem auto; background:rgba(245, 158, 11, 0.2); color:#fbbf24; font-weight:800; font-size:1.2rem;">2</div>
+            <h3 style="font-size:1.25rem; margin-bottom:0.6rem;">Compare &amp; Custom Quote</h3>
+            <p style="font-size:0.9rem; color:var(--text-secondary);">Rotate and examine stage &amp; dining layouts in interactive 3D. Check real-time date availability without waiting for callbacks.</p>
           </div>
 
           <div class="glass-panel" style="padding:2.25rem 1.5rem;">
-            <div class="role-icon-box" style="margin:0 auto 1.25rem auto; background:rgba(16, 185, 129, 0.2); color:#34d399;">3</div>
-            <h3 style="font-size:1.25rem; margin-bottom:0.6rem;">Book & Celebrate</h3>
-            <p style="font-size:0.9rem;">Reserve directly with the verified owner. Get instant status alerts, unique HKF tracking IDs, and transparent pricing.</p>
+            <div class="role-icon-box" style="margin:0 auto 1.25rem auto; background:rgba(16, 185, 129, 0.2); color:#34d399; font-weight:800; font-size:1.2rem;">3</div>
+            <h3 style="font-size:1.25rem; margin-bottom:0.6rem;">Book &amp; Celebrate</h3>
+            <p style="font-size:0.9rem; color:var(--text-secondary);">Reserve directly with the verified owner. Get instant status alerts, unique HKF tracking IDs, and transparent pricing.</p>
           </div>
         </div>
       </div>
     </section>
+
+    <!-- SECTION 10: WHY CHOOSE HALL KHOJ FINDER -->
+    <section class="section" style="background: rgba(12, 31, 56, 0.35);">
+      <div class="container">
+        <div class="text-center" style="margin-bottom:2.5rem;">
+          <h2 class="section-title">Why Choose Hall Khoj Finder</h2>
+          <p class="section-subtitle">India's most trusted event marketplace with physical venue verification and zero middleman inflation.</p>
+        </div>
+
+        <div style="display:grid; grid-template-columns:repeat(auto-fit, minmax(300px, 1fr)); gap:1.5rem;">
+          <div class="glass-panel" style="padding:1.75rem;">
+            <div class="icon-3d-box icon-3d-gold icon-3d-md" style="margin-bottom:1rem;">🛡️</div>
+            <h3 style="font-size:1.15rem; margin-bottom:0.5rem;">100% Verified Venues &amp; Owners</h3>
+            <p style="font-size:0.88rem; color:var(--text-secondary);">Every listed banquet hall and car provider is physically verified with GST and KYC documentation.</p>
+          </div>
+
+          <div class="glass-panel" style="padding:1.75rem;">
+            <div class="icon-3d-box icon-3d-blue icon-3d-md" style="margin-bottom:1rem;">💰</div>
+            <h3 style="font-size:1.15rem; margin-bottom:0.5rem;">Direct Owner Pricing</h3>
+            <p style="font-size:0.88rem; color:var(--text-secondary);">Zero commissions or agent markups. Deal directly with venue managers for the best package deal.</p>
+          </div>
+
+          <div class="glass-panel" style="padding:1.75rem;">
+            <div class="icon-3d-box icon-3d-emerald icon-3d-md" style="margin-bottom:1rem;">🎮</div>
+            <h3 style="font-size:1.15rem; margin-bottom:0.5rem;">3D Layout Inspection</h3>
+            <p style="font-size:0.88rem; color:var(--text-secondary);">Save travel time by inspecting stage setups, seating density, and ambient lighting in interactive 3D.</p>
+          </div>
+
+          <div class="glass-panel" style="padding:1.75rem;">
+            <div class="icon-3d-box icon-3d-purple icon-3d-md" style="margin-bottom:1rem;">⚡</div>
+            <h3 style="font-size:1.15rem; margin-bottom:0.5rem;">Instant Confirmation Slips</h3>
+            <p style="font-size:0.88rem; color:var(--text-secondary);">Receive official downloadable digital confirmation receipts with unique HKF reservation codes.</p>
+          </div>
+
+          <div class="glass-panel" style="padding:1.75rem;">
+            <div class="icon-3d-box icon-3d-ruby icon-3d-md" style="margin-bottom:1rem;">🔒</div>
+            <h3 style="font-size:1.15rem; margin-bottom:0.5rem;">Advance Payment Protection</h3>
+            <p style="font-size:0.88rem; color:var(--text-secondary);">Your token advance is securely tracked with clear cancellation rules and verified refund terms.</p>
+          </div>
+
+          <div class="glass-panel" style="padding:1.75rem;">
+            <div class="icon-3d-box icon-3d-gold icon-3d-md" style="margin-bottom:1rem;">📞</div>
+            <h3 style="font-size:1.15rem; margin-bottom:0.5rem;">24/7 Dedicated Concierge</h3>
+            <p style="font-size:0.88rem; color:var(--text-secondary);">Need urgent wedding planning support? Call our concierge team anytime at +91 97736 47612.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- SECTION 11: SPECIAL OFFERS & FESTIVE DISCOUNTS -->
+    <section class="section section-offers">
+      <div class="container">
+        <div class="text-center" style="margin-bottom:2.5rem;">
+          <span class="badge badge-gold" style="margin-bottom:0.5rem;">Limited Time Promotions</span>
+          <h2 class="section-title">Special Offers &amp; Festive Discounts</h2>
+          <p class="section-subtitle">Exclusive savings on advance venue bookings, complete event packages, and auspicious wedding muhurats.</p>
+        </div>
+
+        <div style="display:grid; grid-template-columns:repeat(auto-fit, minmax(320px, 1fr)); gap:1.5rem;">
+          <!-- Offer 1 -->
+          <div class="glass-panel" style="padding:2rem; border-left:4px solid var(--color-champagne);">
+            <div style="font-size:0.8rem; font-weight:700; color:var(--text-champagne); text-transform:uppercase; margin-bottom:0.35rem;">Promo Code: HKFSHUBH2026</div>
+            <h3 style="font-size:1.3rem; margin-bottom:0.5rem;">15% Off Advance Token</h3>
+            <p style="font-size:0.88rem; color:var(--text-secondary); margin-bottom:1rem;">Book your banquet hall at least 90 days prior to auspicious wedding dates and save 15% on advance token payment.</p>
+            <a href="/search.html" class="btn btn-champagne btn-sm">Claim Discount &rarr;</a>
+          </div>
+
+          <!-- Offer 2 -->
+          <div class="glass-panel" style="padding:2rem; border-left:4px solid var(--primary);">
+            <div style="font-size:0.8rem; font-weight:700; color:var(--primary-light); text-transform:uppercase; margin-bottom:0.35rem;">Promo Code: ROYALTRIO</div>
+            <h3 style="font-size:1.3rem; margin-bottom:0.5rem;">Wedding Trio: Save ₹35,000</h3>
+            <p style="font-size:0.88rem; color:var(--text-secondary); margin-bottom:1rem;">Book Hall + Luxury Wedding Car + Tent House together as a package deal and get ₹35,000 flat discount.</p>
+            <a href="/search.html" class="btn btn-primary btn-sm">Explore Packages &rarr;</a>
+          </div>
+
+          <!-- Offer 3 -->
+          <div class="glass-panel" style="padding:2rem; border-left:4px solid var(--color-available);">
+            <div style="font-size:0.8rem; font-weight:700; color:#34d399; text-transform:uppercase; margin-bottom:0.35rem;">Promo Code: FIRST50</div>
+            <h3 style="font-size:1.3rem; margin-bottom:0.5rem;">₹5,000 Welcome Credit</h3>
+            <p style="font-size:0.88rem; color:var(--text-secondary); margin-bottom:1rem;">New users receive ₹5,000 cash credit applied instantly on their first verified banquet or lawn booking.</p>
+            <a href="/register.html" class="btn btn-secondary btn-sm">Register to Claim &rarr;</a>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- SECTION 12: CUSTOMER TESTIMONIALS & REAL WEDDING STORIES -->
+    <section class="section section-testimonials">
+      <div class="container">
+        <div class="text-center" style="margin-bottom:2.5rem;">
+          <h2 class="section-title">Real Stories from Happy Couples</h2>
+          <p class="section-subtitle">Read how families across India discovered their dream wedding venues with zero hassle through Hall Khoj Finder.</p>
+        </div>
+
+        <div style="display:grid; grid-template-columns:repeat(auto-fit, minmax(300px, 1fr)); gap:1.75rem;">
+          <!-- Review 1 -->
+          <div class="glass-panel" style="padding:1.75rem;">
+            <div style="color:#fbbf24; font-size:1.1rem; margin-bottom:0.75rem;">★★★★★</div>
+            <p style="font-style:italic; font-size:0.92rem; color:var(--text-primary); margin-bottom:1.25rem; line-height:1.6;">
+              "The 3D walkthrough was a game changer for our wedding planning! We were living in Bangalore but planning our reception in Lucknow. Inspecting the stage and dining area in 3D gave us total confidence."
+            </p>
+            <div style="display:flex; align-items:center; gap:0.85rem;">
+              <div style="width:44px; height:44px; border-radius:50%; background:var(--primary); color:#ffffff; display:flex; align-items:center; justify-content:center; font-weight:700;">AV</div>
+              <div>
+                <h4 style="font-size:0.95rem; margin:0;">Ananya &amp; Vikram</h4>
+                <div style="font-size:0.78rem; color:var(--text-muted);">Booked The Royal Grand Heritage Palace, Lucknow</div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Review 2 -->
+          <div class="glass-panel" style="padding:1.75rem;">
+            <div style="color:#fbbf24; font-size:1.1rem; margin-bottom:0.75rem;">★★★★★</div>
+            <p style="font-style:italic; font-size:0.92rem; color:var(--text-primary); margin-bottom:1.25rem; line-height:1.6;">
+              "Direct owner booking saved us at least ₹50,000 in broker fees. The owner confirmed our date within 2 hours, and the digital receipt made everything formal and secure. Highly recommended!"
+            </p>
+            <div style="display:flex; align-items:center; gap:0.85rem;">
+              <div style="width:44px; height:44px; border-radius:50%; background:var(--secondary); color:#071426; display:flex; align-items:center; justify-content:center; font-weight:700;">PR</div>
+              <div>
+                <h4 style="font-size:0.95rem; margin:0;">Priyanka &amp; Rohan</h4>
+                <div style="font-size:0.78rem; color:var(--text-muted);">Booked Mayur Emerald Banquet, Patna</div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Review 3 -->
+          <div class="glass-panel" style="padding:1.75rem;">
+            <div style="color:#fbbf24; font-size:1.1rem; margin-bottom:0.75rem;">★★★★★</div>
+            <p style="font-style:italic; font-size:0.92rem; color:var(--text-primary); margin-bottom:1.25rem; line-height:1.6;">
+              "We booked the resort, two luxury Audi wedding cars, and royal catering all through Hall Khoj Finder. The WhatsApp support helped us coordinate everything smoothly."
+            </p>
+            <div style="display:flex; align-items:center; gap:0.85rem;">
+              <div style="width:44px; height:44px; border-radius:50%; background:#10b981; color:#ffffff; display:flex; align-items:center; justify-content:center; font-weight:700;">NS</div>
+              <div>
+                <h4 style="font-size:0.95rem; margin:0;">Neha &amp; Siddharth</h4>
+                <div style="font-size:0.78rem; color:var(--text-muted);">Booked Sanskriti Luxury Resort, Gurugram</div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- SECTION 13: APP PROMOTION & PWA OFFLINE ACCESS -->
+    <section class="section" style="background: radial-gradient(circle at 50% 50%, rgba(57, 139, 255, 0.12) 0%, transparent 70%);">
+      <div class="container">
+        <div class="glass-panel" style="padding:2.5rem; display:grid; grid-template-columns:1.2fr 0.8fr; gap:2.5rem; align-items:center;">
+          <div>
+            <span class="badge badge-indigo" style="margin-bottom:0.75rem;">Mobile-First Event Planning</span>
+            <h2 style="font-size:2.2rem; margin-bottom:1rem;">Hall Khoj in Your Pocket</h2>
+            <p style="color:var(--text-secondary); margin-bottom:1.5rem; line-height:1.6;">
+              Install our progressive web application for offline browsing, instant sound alerts for owner approvals, and one-click WhatsApp inquiries.
+            </p>
+            <div style="display:flex; flex-wrap:wrap; gap:1rem; align-items:center;">
+              <button type="button" class="btn btn-primary" onclick="alert('Hall Khoj PWA is enabled! Add to your Home Screen from your browser menu.')">
+                <span>📱 Install Web App</span>
+              </button>
+              <a href="/search.html" class="btn btn-secondary">
+                <span>Browse Offline Venues</span>
+              </a>
+            </div>
+          </div>
+
+          <div style="text-align:center;">
+            <div class="glass-panel-subtle" style="display:inline-block; padding:1.5rem; border-radius:var(--radius-lg);">
+              <div style="font-size:2.8rem; margin-bottom:0.5rem;">📲</div>
+              <div style="font-weight:700; color:var(--text-primary); margin-bottom:0.25rem;">Scan &amp; Explore on Mobile</div>
+              <div style="font-size:0.8rem; color:var(--text-muted);">Works on Android, iPhone &amp; iPad</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- SECTION 14: FAQ SECTION (Interactive Accordion) -->
+    <section class="section">
+      <div class="container" style="max-width:860px;">
+        <div class="text-center" style="margin-bottom:2.5rem;">
+          <h2 class="section-title">Frequently Asked Questions</h2>
+          <p class="section-subtitle">Everything you need to know about venue discovery, 3D tours, advance payments, and owner contact.</p>
+        </div>
+
+        <div class="faq-accordion">
+          <!-- FAQ 1 -->
+          <div class="faq-item open">
+            <button class="faq-question" type="button">
+              <span>How does 3D venue layout inspection work?</span>
+              <span class="faq-icon">▼</span>
+            </button>
+            <div class="faq-answer">
+              Every verified venue on Hall Khoj Finder features an architectural 3D model powered by Three.js WebGL. You can rotate, pan, zoom, switch between daylight, sunset, and night gala lighting modes, and examine seating capacity without physically traveling to the venue.
+            </div>
+          </div>
+
+          <!-- FAQ 2 -->
+          <div class="faq-item">
+            <button class="faq-question" type="button">
+              <span>Is my advance booking token protected?</span>
+              <span class="faq-icon">▼</span>
+            </button>
+            <div class="faq-answer">
+              Yes, advance token payments (typically 25%) are processed through our secure gateway with HMAC-SHA256 verification. Payments are held in escrow status until the venue owner manually reviews and confirms your date and booking request.
+            </div>
+          </div>
+
+          <!-- FAQ 3 -->
+          <div class="faq-item">
+            <button class="faq-question" type="button">
+              <span>Can I contact the venue owner directly?</span>
+              <span class="faq-icon">▼</span>
+            </button>
+            <div class="faq-answer">
+              Yes! Once you submit an inquiry or booking request, you can directly chat with the owner, call them, or connect via WhatsApp concierge with zero middleman interference.
+            </div>
+          </div>
+
+          <!-- FAQ 4 -->
+          <div class="faq-item">
+            <button class="faq-question" type="button">
+              <span>What is the cancellation and refund policy?</span>
+              <span class="faq-icon">▼</span>
+            </button>
+            <div class="faq-answer">
+              Full details are provided in our Terms &amp; Cancellation Policy. If a booking is rejected by the owner, your advance is 100% refunded immediately. For customer cancellations made 60+ days before the event, refunds follow the venue's stated policy.
+            </div>
+          </div>
+
+          <!-- FAQ 5 -->
+          <div class="faq-item">
+            <button class="faq-question" type="button">
+              <span>How do banquet hall and car owners list their business?</span>
+              <span class="faq-icon">▼</span>
+            </button>
+            <div class="faq-answer">
+              Business owners can sign up via our Business Owner Portal at /register.html?role=owner, submit their venue details, photos, and KYC documentation, and start receiving verified booking requests within 24 hours.
+            </div>
+          </div>
+
+          <!-- FAQ 6 -->
+          <div class="faq-item">
+            <button class="faq-question" type="button">
+              <span>Are listed venue prices transparent?</span>
+              <span class="faq-icon">▼</span>
+            </button>
+            <div class="faq-answer">
+              Yes. All starting prices, guest capacity limits, AC charges, and included facilities are explicitly published by the verified owners with zero hidden platform markups.
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- SECTION 15: CONTACT AND SUPPORT SECTION -->
+    <section class="section" style="background: rgba(12, 31, 56, 0.45);">
+      <div class="container">
+        <div class="text-center" style="margin-bottom:2.5rem;">
+          <h2 class="section-title">Contact &amp; 24/7 Support</h2>
+          <p class="section-subtitle">Our wedding concierge team is ready to assist you with hall recommendations, availability checks, and booking support.</p>
+        </div>
+
+        <div style="display:grid; grid-template-columns:repeat(auto-fit, minmax(240px, 1fr)); gap:1.5rem;">
+          <div class="glass-panel" style="padding:1.5rem; text-align:center;">
+            <div class="icon-3d-box icon-3d-blue icon-3d-md" style="margin:0 auto 0.75rem auto;">📞</div>
+            <h3 style="font-size:1.1rem; margin-bottom:0.25rem;">24/7 Phone Helpline</h3>
+            <p style="font-size:0.85rem; color:var(--text-muted); margin-bottom:0.75rem;">Direct voice support with our specialists</p>
+            <a href="tel:+919773647612" style="font-weight:700; color:var(--primary); font-size:1.05rem;">+91 97736 47612</a>
+          </div>
+
+          <div class="glass-panel" style="padding:1.5rem; text-align:center;">
+            <div class="icon-3d-box icon-3d-emerald icon-3d-md" style="margin:0 auto 0.75rem auto;">💬</div>
+            <h3 style="font-size:1.1rem; margin-bottom:0.25rem;">WhatsApp Concierge</h3>
+            <p style="font-size:0.85rem; color:var(--text-muted); margin-bottom:0.75rem;">Instant quotes, photos &amp; live chat</p>
+            <a href="https://wa.me/919773647612" target="_blank" rel="noopener" style="font-weight:700; color:#10b981; font-size:1.05rem;">Chat on WhatsApp &rarr;</a>
+          </div>
+
+          <div class="glass-panel" style="padding:1.5rem; text-align:center;">
+            <div class="icon-3d-box icon-3d-purple icon-3d-md" style="margin:0 auto 0.75rem auto;">🎫</div>
+            <h3 style="font-size:1.1rem; margin-bottom:0.25rem;">Online Ticket Desk</h3>
+            <p style="font-size:0.85rem; color:var(--text-muted); margin-bottom:0.75rem;">Track inquiries and engineering tickets</p>
+            <a href="/support.html" style="font-weight:700; color:var(--primary); font-size:1.05rem;">Open Support Desk &rarr;</a>
+          </div>
+
+          <div class="glass-panel" style="padding:1.5rem; text-align:center;">
+            <div class="icon-3d-box icon-3d-gold icon-3d-md" style="margin:0 auto 0.75rem auto;">✉️</div>
+            <h3 style="font-size:1.1rem; margin-bottom:0.25rem;">Email Support</h3>
+            <p style="font-size:0.85rem; color:var(--text-muted); margin-bottom:0.75rem;">Official inquiries &amp; corporate bookings</p>
+            <a href="mailto:support@hallkhoj.in" style="font-weight:700; color:var(--text-champagne); font-size:1.05rem;">support@hallkhoj.in</a>
+          </div>
+        </div>
+      </div>
+    </section>
+
   </main>
 
   <!-- =========================================================================
-       FOOTER
+       SECTION 16: COMPLETE MULTI-COLUMN FOOTER
   ========================================================================= -->
   <footer class="site-footer">
     <div class="container">
       <div class="footer-grid">
+        <!-- Col 1: Brand & Tagline -->
         <div>
           <div class="brand-logo" style="margin-bottom:1rem;">
             <img src="/assets/logo.png" alt="Hall Khoj" class="brand-logo-img" loading="lazy" decoding="async">
             <span class="brand-title">HALL KHOJ</span>
           </div>
-          <p style="font-size:0.875rem; color:var(--text-muted); line-height:1.6;">
-            India's premiere 3D Event Services Marketplace. Discover Marriage Halls, Cars, Tent Houses, DJs, and Decorators with transparent pricing.
+          <p style="font-size:0.875rem; color:var(--text-secondary); line-height:1.6;">
+            India's premier 3D Event Services Marketplace. Discover Marriage Halls, Cars, Tent Houses, DJs, and Decorators with transparent pricing.
           </p>
           <div style="margin-top:1rem; font-size:0.8rem; color:#fbbf24; font-weight:600;">
             "Apne Paas Ka Hall, Tent, Car Aur Event Services Ek Jagah Khojiye"
           </div>
         </div>
 
+        <!-- Col 2: Event Categories -->
         <div>
-          <h4>Event Services</h4>
+          <h4>Explore Categories</h4>
           <ul>
-            <li><a href="/search.html?category=Marriage+Halls">Marriage & Banquet Halls</a></li>
+            <li><a href="/search.html?category=Marriage+Halls">Marriage &amp; Banquet Halls</a></li>
+            <li><a href="/search.html?category=Luxury+Resorts">Luxury Wedding Resorts</a></li>
             <li><a href="/search.html?category=Cars">Luxury Wedding Cars</a></li>
-            <li><a href="/search.html?category=Tent+Houses">Tent & Shamiana Works</a></li>
-            <li><a href="/search.html?category=Catering">Royal Catering Services</a></li>
-            <li><a href="/search.html?category=Decoration">Stage & Flower Decoration</a></li>
-            <li><a href="/gallery.html">3D Virtual Gallery</a></li>
+            <li><a href="/search.html?category=Tent+Houses">Tent &amp; Shamiana Works</a></li>
+            <li><a href="/search.html?category=Catering">Royal Shahi Catering</a></li>
+            <li><a href="/search.html?category=Decoration">Stage &amp; Flower Decor</a></li>
+            <li><a href="/3d-preview.html">3D Virtual Gallery</a></li>
           </ul>
         </div>
 
+        <!-- Col 3: Portals & Roles -->
         <div>
-          <h4>Portals & Roles</h4>
+          <h4>Portals &amp; Roles</h4>
           <ul>
             <li><a href="/dashboard.html">Customer Dashboard</a></li>
             <li><a href="/owner/dashboard.html">Business Owner Portal</a></li>
@@ -755,8 +1215,9 @@
           </ul>
         </div>
 
+        <!-- Col 4: Direct Support & Contact -->
         <div>
-          <h4>Direct Support & Contact</h4>
+          <h4>Contact &amp; Legal</h4>
           <ul>
             <li><a href="/support.html">Contact &amp; Support Desk</a></li>
             <li><a href="/support.html?tab=bug-report">Report a Bug / Issue</a></li>
@@ -773,7 +1234,7 @@
         <div style="display:flex; flex-wrap:wrap; gap:1.25rem; align-items:center;">
           <a href="/privacy.html">Privacy Policy</a>
           <a href="/terms.html">Terms &amp; Conditions</a>
-          <a href="/support.html">Support &amp; Help</a>
+          <a href="/support.html">Support &amp; Help Desk</a>
           <a href="/sitemap.xml" target="_blank">Sitemap</a>
           <button type="button" class="cookie-settings-btn" data-action="open-cookie-settings">Cookie Preferences</button>
         </div>
@@ -782,7 +1243,7 @@
   </footer>
 
   <!-- =========================================================================
-       MOBILE BOTTOM NAVIGATION DOCKED BAR
+       MOBILE BOTTOM NAVIGATION DOCKED BAR (Phone-Friendly)
   ========================================================================= -->
   <nav class="mobile-bottom-nav" aria-label="Mobile Quick Navigation">
     <a href="/" class="mobile-nav-item active">
@@ -808,7 +1269,7 @@
   </nav>
 
   <!-- =========================================================================
-       MODAL 1: VOICE SEARCH LISTENING DIALOG
+       MODALS: VOICE SEARCH, NEAR ME RADIUS & AI SEARCH ASSISTANT
   ========================================================================= -->
   <div id="voice-search-modal" class="modal-backdrop" role="dialog" aria-modal="true" aria-labelledby="voice-modal-title">
     <div class="modal-dialog">
@@ -819,7 +1280,6 @@
         <button class="modal-close-btn" aria-label="Close dialog">&times;</button>
       </div>
       <div class="modal-body text-center">
-        <!-- Animated Audio Waveform -->
         <div class="audio-waveform">
           <div class="wave-bar"></div>
           <div class="wave-bar"></div>
@@ -844,14 +1304,11 @@
     </div>
   </div>
 
-  <!-- =========================================================================
-       MODAL 2: NEAR ME RADIUS & LOCATION DIALOG
-  ========================================================================= -->
   <div id="near-me-modal" class="modal-backdrop" role="dialog" aria-modal="true" aria-labelledby="near-me-title">
     <div class="modal-dialog">
       <div class="modal-header">
         <h3 id="near-me-title" class="modal-title flex items-center gap-1">
-          <span>📍</span> Find Events & Services Near Me
+          <span>📍</span> Find Events &amp; Services Near Me
         </h3>
         <button class="modal-close-btn" aria-label="Close dialog">&times;</button>
       </div>
@@ -870,7 +1327,6 @@
           <button type="button" class="radius-pill" data-radius="100">100 KM</button>
         </div>
 
-        <!-- Manual Fallback Input if GPS is denied or unavailable -->
         <div style="margin-top:1.25rem;">
           <label for="manual-location-input" style="font-size:0.85rem; color:var(--text-secondary); font-weight:600;">Or enter City, Village or PIN Code:</label>
           <input id="manual-location-input" type="text" class="search-input" style="height:46px; border-radius:var(--radius-md); margin-top:0.4rem;" placeholder="e.g. Lucknow, Varanasi, 226010">
@@ -878,15 +1334,12 @@
 
         <div class="flex gap-2" style="margin-top:1.75rem;">
           <button class="btn btn-secondary w-full" data-modal-close>Cancel</button>
-          <button id="near-me-apply-btn" class="btn btn-gold w-full">Find Nearby Services</button>
+          <button id="near-me-apply-btn" class="btn btn-champagne w-full">Find Nearby Services</button>
         </div>
       </div>
     </div>
   </div>
 
-  <!-- =========================================================================
-       MODAL 3: HALL KHOJ AI ASSISTANT DIALOG
-  ========================================================================= -->
   <div id="ai-search-modal" class="modal-backdrop" role="dialog" aria-modal="true" aria-labelledby="ai-modal-title">
     <div class="modal-dialog">
       <div class="modal-header">
@@ -901,7 +1354,6 @@
           Tell me your event requirements in natural language. I will search our verified database without inventing facts.
         </p>
 
-        <!-- Prompt Suggestions -->
         <div style="display:flex; flex-wrap:wrap; gap:0.4rem; margin-bottom:1rem;">
           <button type="button" class="role-pill" data-ai-sample="Banquet for 500 guests under 60k with AC in Lucknow">💡 500 guests AC Banquet under 60k</button>
           <button type="button" class="role-pill" data-ai-sample="Wedding luxury car with driver tomorrow in Patna">💡 Wedding car with driver tomorrow</button>
@@ -918,25 +1370,270 @@
     </div>
   </div>
 
-  <!-- Toast Notification Container -->
+  <!-- =========================================================================
+       PLANNING TOOLS MODALS: BUDGET PLANNER, CHECKLIST & CAPACITY (Phase 17)
+  ========================================================================= -->
+  <!-- MODAL: WEDDING BUDGET PLANNER -->
+  <div id="modal-budget-planner" class="modal-backdrop" role="dialog" aria-modal="true" aria-labelledby="budget-modal-title">
+    <div class="modal-dialog" style="max-width: 620px;">
+      <div class="modal-header">
+        <div class="flex items-center gap-1">
+          <div class="icon-3d-box icon-3d-gold icon-3d-sm">💰</div>
+          <h3 id="budget-modal-title" class="modal-title">Wedding Budget Planner</h3>
+        </div>
+        <button class="modal-close-btn" aria-label="Close dialog">&times;</button>
+      </div>
+      <div class="modal-body">
+        <p style="font-size:0.88rem; color:var(--text-secondary); margin-bottom:1rem;">
+          Estimate your complete event expenditure based on proven Indian wedding cost allocations.
+        </p>
+
+        <div style="margin-bottom:1.25rem;">
+          <label for="budget-total-input" style="font-size:0.85rem; font-weight:700; color:var(--text-primary); margin-bottom:0.4rem; display:block;">Total Estimated Budget (₹):</label>
+          <div style="display:flex; gap:0.5rem; align-items:center;">
+            <input id="budget-total-input" type="number" step="10000" min="50000" max="100000000" class="search-input" style="height:48px; font-size:1.15rem; font-weight:700; color:var(--color-champagne);" value="1000000">
+          </div>
+          <div style="display:flex; flex-wrap:wrap; gap:0.35rem; margin-top:0.6rem;">
+            <button type="button" class="radius-pill" data-budget-preset="500000">₹5 Lakh</button>
+            <button type="button" class="radius-pill" data-budget-preset="1000000">₹10 Lakh</button>
+            <button type="button" class="radius-pill" data-budget-preset="2000000">₹20 Lakh</button>
+            <button type="button" class="radius-pill" data-budget-preset="3500000">₹35 Lakh</button>
+            <button type="button" class="radius-pill" data-budget-preset="5000000">₹50 Lakh</button>
+          </div>
+        </div>
+
+        <div style="display:flex; flex-direction:column; gap:0.85rem; margin-bottom:1.5rem;">
+          <!-- Venue -->
+          <div class="budget-category-box">
+            <div style="display:flex; justify-content:space-between; align-items:center; font-size:0.88rem;">
+              <span>🏰 Venue &amp; Banquet Hall (<strong id="budget-pct-venue">40%</strong>)</span>
+              <strong id="budget-val-venue" style="color:var(--text-champagne);">₹4,00,000</strong>
+            </div>
+            <div class="budget-progress-track">
+              <div id="budget-bar-venue" class="budget-progress-fill" style="width:40%; background:linear-gradient(90deg, #f59e0b, #fbbf24);"></div>
+            </div>
+          </div>
+
+          <!-- Catering -->
+          <div class="budget-category-box">
+            <div style="display:flex; justify-content:space-between; align-items:center; font-size:0.88rem;">
+              <span>🍽️ Shahi Catering &amp; Dining (<strong id="budget-pct-catering">25%</strong>)</span>
+              <strong id="budget-val-catering" style="color:var(--primary-light);">₹2,50,000</strong>
+            </div>
+            <div class="budget-progress-track">
+              <div id="budget-bar-catering" class="budget-progress-fill" style="width:25%; background:linear-gradient(90deg, #398bff, #60a5fa);"></div>
+            </div>
+          </div>
+
+          <!-- Decor -->
+          <div class="budget-category-box">
+            <div style="display:flex; justify-content:space-between; align-items:center; font-size:0.88rem;">
+              <span>🌸 Stage &amp; Flower Decor (<strong id="budget-pct-decor">15%</strong>)</span>
+              <strong id="budget-val-decor" style="color:#ec4899;">₹1,50,000</strong>
+            </div>
+            <div class="budget-progress-track">
+              <div id="budget-bar-decor" class="budget-progress-fill" style="width:15%; background:linear-gradient(90deg, #ec4899, #f472b6);"></div>
+            </div>
+          </div>
+
+          <!-- Photography -->
+          <div class="budget-category-box">
+            <div style="display:flex; justify-content:space-between; align-items:center; font-size:0.88rem;">
+              <span>📸 Photography &amp; Cinematography (<strong id="budget-pct-photo">10%</strong>)</span>
+              <strong id="budget-val-photo" style="color:#8b5cf6;">₹1,00,000</strong>
+            </div>
+            <div class="budget-progress-track">
+              <div id="budget-bar-photo" class="budget-progress-fill" style="width:10%; background:linear-gradient(90deg, #8b5cf6, #a78bfa);"></div>
+            </div>
+          </div>
+
+          <!-- Cars -->
+          <div class="budget-category-box">
+            <div style="display:flex; justify-content:space-between; align-items:center; font-size:0.88rem;">
+              <span>🚗 Luxury Wedding Cars (<strong id="budget-pct-cars">5%</strong>)</span>
+              <strong id="budget-val-cars" style="color:#10b981;">₹50,000</strong>
+            </div>
+            <div class="budget-progress-track">
+              <div id="budget-bar-cars" class="budget-progress-fill" style="width:5%; background:linear-gradient(90deg, #10b981, #34d399);"></div>
+            </div>
+          </div>
+
+          <!-- Misc -->
+          <div class="budget-category-box">
+            <div style="display:flex; justify-content:space-between; align-items:center; font-size:0.88rem;">
+              <span>🎁 Puja &amp; Contingency Buffer (<strong id="budget-pct-misc">5%</strong>)</span>
+              <strong id="budget-val-misc" style="color:var(--text-muted);">₹50,000</strong>
+            </div>
+            <div class="budget-progress-track">
+              <div id="budget-bar-misc" class="budget-progress-fill" style="width:5%; background:linear-gradient(90deg, #64748b, #94a3b8);"></div>
+            </div>
+          </div>
+        </div>
+
+        <div style="padding:0.75rem 1rem; background:rgba(255,255,255,0.04); border-radius:var(--radius-md); display:flex; justify-content:space-between; align-items:center; margin-bottom:1.25rem;">
+          <span style="font-size:0.9rem; color:var(--text-secondary);">Total Target Allocation:</span>
+          <strong id="budget-allocated-total" style="font-size:1.15rem; color:var(--text-primary);">₹10,00,000</strong>
+        </div>
+
+        <div class="flex gap-2">
+          <button id="budget-print-btn" class="btn btn-secondary w-full" type="button">
+            <span>📥 Export Text Plan</span>
+          </button>
+          <button id="budget-save-btn" class="btn btn-champagne w-full" type="button">
+            <span>💾 Save Budget</span>
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- MODAL: EVENT PLANNING CHECKLIST -->
+  <div id="modal-event-checklist" class="modal-backdrop" role="dialog" aria-modal="true" aria-labelledby="checklist-modal-title">
+    <div class="modal-dialog" style="max-width: 640px; max-height:85vh; display:flex; flex-direction:column;">
+      <div class="modal-header">
+        <div class="flex items-center gap-1">
+          <div class="icon-3d-box icon-3d-blue icon-3d-sm">📋</div>
+          <h3 id="checklist-modal-title" class="modal-title">Event Planning Checklist</h3>
+        </div>
+        <button class="modal-close-btn" aria-label="Close dialog">&times;</button>
+      </div>
+      <div class="modal-body" style="overflow-y:auto; flex:1;">
+        <div style="margin-bottom:1.25rem;">
+          <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:0.4rem; font-size:0.85rem;">
+            <span style="color:var(--text-secondary); font-weight:600;">Timeline Progress:</span>
+            <span id="checklist-progress-text" style="color:#10b981; font-weight:700;">Loading...</span>
+          </div>
+          <div class="budget-progress-track" style="height:10px;">
+            <div id="checklist-progress-bar" class="budget-progress-fill" style="width:0%; background:linear-gradient(90deg, #10b981, #059669);"></div>
+          </div>
+        </div>
+
+        <div style="display:flex; gap:0.5rem; margin-bottom:1.25rem;">
+          <input id="checklist-new-task" type="text" class="search-input" style="height:42px;" placeholder="Add custom wedding task...">
+          <button id="checklist-add-btn" type="button" class="btn btn-primary btn-sm" style="height:42px; padding:0 1.25rem;">Add</button>
+        </div>
+
+        <div id="checklist-items-container">
+          <!-- Dynamically populated from planning-tools.js -->
+        </div>
+
+        <div style="margin-top:1.25rem; display:flex; justify-content:space-between; align-items:center;">
+          <button id="checklist-reset-btn" type="button" style="background:none; border:none; color:var(--text-muted); font-size:0.82rem; cursor:pointer; text-decoration:underline;">
+            Reset to Standard Timeline
+          </button>
+          <button type="button" class="btn btn-secondary btn-sm" data-modal-close>Close</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- MODAL: GUEST CAPACITY & SEATING CALCULATOR -->
+  <div id="modal-capacity-calc" class="modal-backdrop" role="dialog" aria-modal="true" aria-labelledby="calc-modal-title">
+    <div class="modal-dialog" style="max-width: 600px;">
+      <div class="modal-header">
+        <div class="flex items-center gap-1">
+          <div class="icon-3d-box icon-3d-emerald icon-3d-sm">📐</div>
+          <h3 id="calc-modal-title" class="modal-title">Guest Capacity &amp; Space Calculator</h3>
+        </div>
+        <button class="modal-close-btn" aria-label="Close dialog">&times;</button>
+      </div>
+      <div class="modal-body">
+        <div style="display:grid; grid-template-columns:1fr 1fr; gap:0.75rem; margin-bottom:1rem;">
+          <div>
+            <label style="font-size:0.82rem; font-weight:600; color:var(--text-secondary); display:block; margin-bottom:0.35rem;">Calculation Mode:</label>
+            <select id="calc-mode-select" class="adv-select" style="height:44px;">
+              <option value="guests">By Guest Headcount</option>
+              <option value="area">By Hall Carpet Area</option>
+            </select>
+          </div>
+          <div>
+            <label id="calc-input-label" style="font-size:0.82rem; font-weight:600; color:var(--text-secondary); display:block; margin-bottom:0.35rem;">Expected Number of Guests:</label>
+            <input id="calc-primary-input" type="number" min="50" max="25000" step="25" value="500" class="search-input" style="height:44px; font-weight:700;">
+          </div>
+        </div>
+
+        <div style="margin-bottom:1rem;">
+          <label style="font-size:0.82rem; font-weight:600; color:var(--text-secondary); display:block; margin-bottom:0.35rem;">Seating &amp; Dining Style:</label>
+          <select id="calc-seating-style" class="adv-select" style="height:44px;">
+            <option value="banquet">Banquet Dining with Round Tables (13 sq.ft / guest)</option>
+            <option value="theater">Theater Auditorium Seating (9 sq.ft / guest)</option>
+            <option value="cocktail">Standing Floating Reception (6 sq.ft / guest)</option>
+          </select>
+        </div>
+
+        <div style="margin-bottom:1.25rem;">
+          <label style="font-size:0.82rem; font-weight:600; color:var(--text-secondary); display:block; margin-bottom:0.4rem;">Include Dedicated Zones:</label>
+          <div style="display:flex; flex-wrap:wrap; gap:0.85rem;">
+            <label style="display:flex; align-items:center; gap:0.4rem; font-size:0.85rem; cursor:pointer;">
+              <input type="checkbox" id="calc-inc-stage" checked style="accent-color:var(--primary);"> Mandap &amp; Stage (400 sq.ft)
+            </label>
+            <label style="display:flex; align-items:center; gap:0.4rem; font-size:0.85rem; cursor:pointer;">
+              <input type="checkbox" id="calc-inc-buffet" checked style="accent-color:var(--primary);"> Shahi Buffet Counters (750 sq.ft)
+            </label>
+            <label style="display:flex; align-items:center; gap:0.4rem; font-size:0.85rem; cursor:pointer;">
+              <input type="checkbox" id="calc-inc-dance" checked style="accent-color:var(--primary);"> DJ &amp; Dance Floor (350 sq.ft)
+            </label>
+          </div>
+        </div>
+
+        <div id="calc-results" style="display:grid; grid-template-columns:repeat(2, 1fr); gap:0.75rem; margin-bottom:1.5rem;">
+          <div class="calc-stat-pill">
+            <div style="font-size:0.78rem; color:var(--text-muted); text-transform:uppercase;">Comfortable Capacity</div>
+            <div id="calc-res-guests" style="font-size:1.3rem; font-weight:700; color:var(--text-champagne);">500 Guests</div>
+          </div>
+          <div class="calc-stat-pill">
+            <div style="font-size:0.78rem; color:var(--text-muted); text-transform:uppercase;">Recommended Area</div>
+            <div id="calc-res-sqft" style="font-size:1.3rem; font-weight:700; color:var(--primary-light);">8,000 Sq. Ft.</div>
+          </div>
+          <div class="calc-stat-pill">
+            <div style="font-size:0.78rem; color:var(--text-muted); text-transform:uppercase;">Metric Dimension</div>
+            <div id="calc-res-sqm" style="font-size:1.05rem; font-weight:700; color:var(--text-primary);">743 m²</div>
+          </div>
+          <div class="calc-stat-pill">
+            <div style="font-size:0.78rem; color:var(--text-muted); text-transform:uppercase;">Estimated Parking</div>
+            <div id="calc-res-parking" style="font-size:1.05rem; font-weight:700; color:#10b981;">125 Cars</div>
+          </div>
+        </div>
+
+        <div class="flex gap-2">
+          <button class="btn btn-secondary w-full" data-modal-close>Close</button>
+          <a id="calc-find-venues-btn" href="/search.html?capacity=500" class="btn btn-primary w-full">Find Matching Halls &rarr;</a>
+        </div>
+      </div>
+    </div>
+  </div>
+
   <div class="toast-container" aria-live="polite"></div>
 
-  <!-- Application Scripts (Correct Dependency Order) -->
+  <!-- Application Scripts -->
   <script src="js/i18n.js"></script>
   <script src="js/api.js"></script>
   <script src="js/auth.js"></script>
   <script src="js/app.js"></script>
   <script src="js/nav.js"></script>
   <script src="js/modals.js"></script>
+  <script src="js/planning-tools.js"></script>
   <script src="js/ai-search-client.js"></script>
   <script src="js/search.js"></script>
   <script src="js/three-hero.js"></script>
   <script src="js/video-hero.js"></script>
 
-  <!-- Full-Stack Connector: Synchronizes Live Backend Data, Auth & Health on index.html -->
+  <!-- Full-Stack Connector -->
   <script>
     (function initIndexFullStack() {
-      // 1. Live Backend Health Connection & Telemetry
+      // 1. FAQ Accordion Toggle
+      document.querySelectorAll('.faq-question').forEach(btn => {
+        btn.addEventListener('click', () => {
+          const item = btn.closest('.faq-item');
+          const wasOpen = item.classList.contains('open');
+          document.querySelectorAll('.faq-item.open').forEach(f => f.classList.remove('open'));
+          if (!wasOpen) {
+            item.classList.add('open');
+          }
+        });
+      });
+
+      // 2. Live Backend Health Connection & Telemetry
       async function checkBackendConnection() {
         const statusPill = document.getElementById('backend-status-pill');
         const statusText = document.getElementById('backend-status-text');
@@ -953,7 +1650,7 @@
               statusPill.classList.add('online');
             }
             if (statusText) {
-              statusText.innerHTML = `🟢 Backend Online <span style="opacity:0.8; font-size:0.75rem;">(${storageMode})</span>`;
+              statusText.innerHTML = `🟢 Live Backend Online <span style="opacity:0.8; font-size:0.75rem;">(${storageMode})</span>`;
             }
             if (footerInfo) {
               footerInfo.textContent = `Backend v${data.version || '20.0'} Online (${storageMode})`;
@@ -962,7 +1659,6 @@
             throw new Error('Health check returned status ' + res.status);
           }
         } catch (err) {
-          console.warn('[Backend Telemetry Error]', err);
           if (statusPill) {
             statusPill.classList.remove('online');
             statusPill.classList.add('offline');
@@ -976,14 +1672,14 @@
         }
       }
 
-      // 2. Dynamic User Authentication State in Navbar & Mobile Drawer
+      // 3. Dynamic User Authentication State in Navbar & Mobile Drawer
       function syncUserAuthNav() {
         const navAuthActions = document.getElementById('nav-auth-actions');
         const drawerAuthActions = document.getElementById('drawer-auth-actions');
         const currentUser = window.HKF_API?.auth?.getCurrentUser ? window.HKF_API.auth.getCurrentUser() : null;
 
         if (currentUser && (currentUser.name || currentUser.mobile || currentUser.email)) {
-          const displayName = currentUser.name || currentUser.mobile || 'My Account';
+          const displayName = currentUser.name || currentUser.email || currentUser.mobile || 'My Account';
           const isOwner = currentUser.role === 'owner';
           const isAdmin = currentUser.role === 'admin';
           const dashboardUrl = isAdmin ? '/admin/dashboard.html' : (isOwner ? '/owner/dashboard.html' : '/dashboard.html');
@@ -1025,7 +1721,7 @@
         }
       }
 
-      // 3. Dynamic Real-Time Featured Listings from Backend API
+      // 4. Dynamic Real-Time Featured Listings from Backend API
       async function loadBackendFeaturedListings() {
         const container = document.getElementById('featured-listings-container');
         const liveBadge = document.getElementById('live-venues-badge');
@@ -1042,7 +1738,6 @@
           if (items && items.length > 0) {
             if (liveBadge) liveBadge.style.display = 'inline-flex';
 
-            // Filter out flagged venues and pick up to 6
             const displayVenues = items
               .filter(v => v.status !== 'FLAGGED')
               .slice(0, 6);
@@ -1105,7 +1800,6 @@
                 `;
               }).join('');
 
-              // Re-bind 3D tilt and favorites on newly created dynamic cards
               if (window.init3DCardTilt) window.init3DCardTilt();
               if (window.initFavorites) window.initFavorites();
             }
@@ -1118,10 +1812,8 @@
       // Register PWA Service Worker
       if ('serviceWorker' in navigator && (window.location.protocol === 'https:' || window.location.hostname === 'localhost' || window.location.hostname === '127.0.0.1')) {
         window.addEventListener('load', () => {
-          navigator.serviceWorker.register('/sw.js').then((reg) => {
-            console.log('✓ [PWA] Service Worker registered with scope:', reg.scope);
-          }).catch((err) => {
-            console.warn('[PWA] Service Worker registration failed:', err.message);
+          navigator.serviceWorker.register('/sw.js').catch((err) => {
+            console.warn('[PWA] Registration:', err.message);
           });
         });
       }
@@ -1141,7 +1833,7 @@
     })();
   </script>
 
-  <!-- Observability, Analytics & Privacy Consent (Phases 10, 11, 21) -->
+  <!-- Observability, Analytics & Privacy Consent -->
   <script src="/js/error-monitor.js"></script>
   <script src="/js/cookie-consent.js"></script>
   <script src="/js/analytics.js"></script>

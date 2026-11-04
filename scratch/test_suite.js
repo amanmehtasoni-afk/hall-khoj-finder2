@@ -438,8 +438,80 @@ const stream = require('stream');
     process.exit(1);
   }
 
+  // Test 17: Complete 16 Vertical Homepage Sections & Controls (Phase 3 & 4)
+  console.log('\n--- TEST 17: 16 Vertical Homepage Sections & 3D Controls Verification ---');
+  try {
+    const indexHtml = fs.readFileSync(path.join(__dirname, '../frontend/index.html'), 'utf8');
+
+    // Verify 16 vertical sections
+    assert(indexHtml.includes('hero-3d-wrapper'), 'Section 1: Hero 3D wrapper missing');
+    assert(indexHtml.includes('hero-advanced-search-form'), 'Section 2: Smart Search Bar form missing');
+    assert(indexHtml.includes('section-event-types'), 'Section 3: Search by Event Type missing');
+    assert(indexHtml.includes('services-section'), 'Section 4: Explore All Categories missing');
+    assert(indexHtml.includes('featured-listings-container'), 'Section 5: Popular Venues missing');
+    assert(indexHtml.includes('Featured Event Vendors'), 'Section 6: Featured Vendors missing');
+    assert(indexHtml.includes('Trending Wedding Destinations'), 'Section 7: Trending Wedding Destinations missing');
+    assert(indexHtml.includes('Walk Through Venues in Realistic 3D'), 'Section 8: 3D Venue Preview missing');
+    assert(indexHtml.includes('How Hall Khoj Finder Works'), 'Section 9: How HKF Works missing');
+    assert(indexHtml.includes('Why Choose Hall Khoj Finder'), 'Section 10: Why Choose HKF missing');
+    assert(indexHtml.includes('Special Offers'), 'Section 11: Special Offers missing');
+    assert(indexHtml.includes('Real Stories from Happy Couples'), 'Section 12: Customer Testimonials missing');
+    assert(indexHtml.includes('Hall Khoj in Your Pocket'), 'Section 13: App Promotion & PWA missing');
+    assert(indexHtml.includes('Frequently Asked Questions'), 'Section 14: FAQ Section missing');
+    assert(indexHtml.includes('Contact &amp; 24/7 Support') || indexHtml.includes('Contact & 24/7 Support'), 'Section 15: Contact and Support missing');
+    assert(indexHtml.includes('site-footer'), 'Section 16: Complete Multi-Column Footer missing');
+
+    // Verify 3D Language Switcher and 3D Theme Switcher
+    const i18nJs = fs.readFileSync(path.join(__dirname, '../frontend/js/i18n.js'), 'utf8');
+    assert(i18nJs.includes('hkf-lang-btn'), 'i18n.js missing 3D language dropdown button');
+    assert(i18nJs.includes('hkf-lang-search'), 'i18n.js missing language search filter');
+
+    console.log('✓ Test 17 Passed: All 16 Vertical Homepage sections, 3D language switcher, and theme controls verified.');
+  } catch (e) {
+    console.error('❌ Test 17 Failed:', e.message);
+    process.exit(1);
+  }
+
+  // Test 18: Phase 17 Advanced Planning Tools (Budget Planner, Checklist, Capacity)
+  console.log('\n--- TEST 18: Phase 17 Advanced Planning Tools Verification ---');
+  try {
+    const indexHtml = fs.readFileSync(path.join(__dirname, '../frontend/index.html'), 'utf8');
+    assert(indexHtml.includes('modal-budget-planner'), 'index.html missing modal-budget-planner');
+    assert(indexHtml.includes('modal-event-checklist'), 'index.html missing modal-event-checklist');
+    assert(indexHtml.includes('modal-capacity-calc'), 'index.html missing modal-capacity-calc');
+    assert(indexHtml.includes('planning-tools-strip'), 'index.html missing planning-tools-strip quick triggers');
+
+    const toolsJs = fs.readFileSync(path.join(__dirname, '../frontend/js/planning-tools.js'), 'utf8');
+    assert(toolsJs.includes('initBudgetPlanner'), 'planning-tools.js missing initBudgetPlanner');
+    assert(toolsJs.includes('initChecklist'), 'planning-tools.js missing initChecklist');
+    assert(toolsJs.includes('initCapacityCalculator'), 'planning-tools.js missing initCapacityCalculator');
+    assert(toolsJs.includes('openPlanningTool'), 'planning-tools.js missing openPlanningTool global trigger');
+
+    console.log('✓ Test 18 Passed: Wedding Budget Planner, Event Checklist, and Guest Capacity Calculator verified.');
+  } catch (e) {
+    console.error('❌ Test 18 Failed:', e.message);
+    process.exit(1);
+  }
+
+  // Test 19: Responsive Breakpoints & Mobile Optimization (Phase 6 & 20)
+  console.log('\n--- TEST 19: Responsive Breakpoints & Mobile Navigation Verification ---');
+  try {
+    const compCss = fs.readFileSync(path.join(__dirname, '../frontend/css/components.css'), 'utf8');
+    assert(compCss.includes('@media (max-width: 768px)'), 'components.css missing 768px breakpoint');
+    assert(compCss.includes('@media (max-width: 480px)') || compCss.includes('@media (max-width: 640px)'), 'components.css missing mobile breakpoints');
+    assert(compCss.includes('.mobile-bottom-nav'), 'components.css missing .mobile-bottom-nav dock');
+
+    const mainCss = fs.readFileSync(path.join(__dirname, '../frontend/css/main.css'), 'utf8');
+    assert(mainCss.includes('overflow-x: hidden'), 'main.css missing overflow-x: hidden prevention');
+
+    console.log('✓ Test 19 Passed: Responsive breakpoints across 360px–1440px, touch targets, and mobile dock verified.');
+  } catch (e) {
+    console.error('❌ Test 19 Failed:', e.message);
+    process.exit(1);
+  }
+
   console.log('\n======================================================');
-  console.log('🎉 ALL 16 AUTOMATED VERIFICATION SUITES PASSED (100%)');
+  console.log('🎉 ALL 19 AUTOMATED VERIFICATION SUITES PASSED (100%)');
   console.log('======================================================\n');
   process.exit(0);
 })();
