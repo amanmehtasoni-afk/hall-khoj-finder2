@@ -42,3 +42,5 @@ build/
 .firebase/
 .vercel/
 .netlify/
+
+.playwright-mcp/
