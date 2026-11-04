@@ -44,3 +44,5 @@ build/
 .netlify/
 
 .playwright-mcp/
+
+scratch/screenshots/

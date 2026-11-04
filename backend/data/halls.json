@@ -52,10 +52,11 @@
       "2026-10-23": "BLOCKED",
       "2026-11-04": "AVAILABLE",
       "2026-10-05": "BLOCKED",
-      "2026-11-13": "PENDING",
-      "2026-12-06": "PENDING"
+      "2026-11-13": "AVAILABLE",
+      "2026-12-06": "AVAILABLE",
+      "2026-12-04": "AVAILABLE"
     },
-    "updatedAt": "2026-10-14T09:07:18.538Z",
+    "updatedAt": "2026-11-04T18:17:37.163Z",
     "createdAt": "2026-09-19T14:39:20.008Z",
     "address": "Bailey Road, Near Saguna More, Patna, Bihar 801503",
     "photos": [

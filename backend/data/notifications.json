@@ -2337,5 +2337,66 @@
     "createdAt": "2026-10-14T09:07:18.544Z",
     "readAt": null,
     "updatedAt": "2026-10-14T09:07:18.545Z"
+  },
+  {
+    "id": "notif_1793816207626_agri2c",
+    "userId": "owner_101",
+    "type": "BOOKING_REQUEST",
+    "title": "New Booking Request",
+    "message": "Manish kumar has requested to book Royal Palace Banquet on 2026-12-04.",
+    "data": {
+      "bookingId": "HKF-2026-525547",
+      "serviceId": "h-101",
+      "eventDate": "2026-12-04"
+    },
+    "read": false,
+    "createdAt": "2026-11-04T18:16:47.626Z",
+    "readAt": null,
+    "updatedAt": "2026-11-04T18:16:47.626Z"
+  },
+  {
+    "id": "notif_1793816247912_sa6zjx",
+    "userId": "guest_customer",
+    "type": "BOOKING_UPDATE",
+    "title": "Booking CANCELLED",
+    "message": "Your booking HKF-2026-525547 for Royal Palace Banquet is now CANCELLED.",
+    "data": {
+      "bookingId": "HKF-2026-525547",
+      "status": "CANCELLED"
+    },
+    "read": false,
+    "createdAt": "2026-11-04T18:17:27.912Z",
+    "readAt": null,
+    "updatedAt": "2026-11-04T18:17:27.912Z"
+  },
+  {
+    "id": "notif_1793816255599_p0b0kp",
+    "userId": "guest_customer",
+    "type": "BOOKING_UPDATE",
+    "title": "Booking CANCELLED",
+    "message": "Your booking HKF-2026-221427 for The Royal Grand Heritage Palace is now CANCELLED.",
+    "data": {
+      "bookingId": "HKF-2026-221427",
+      "status": "CANCELLED"
+    },
+    "read": false,
+    "createdAt": "2026-11-04T18:17:35.599Z",
+    "readAt": null,
+    "updatedAt": "2026-11-04T18:17:35.599Z"
+  },
+  {
+    "id": "notif_1793816257164_pjn3mk",
+    "userId": "guest_customer",
+    "type": "BOOKING_UPDATE",
+    "title": "Booking CANCELLED",
+    "message": "Your booking HKF-2026-492109 for The Royal Grand Heritage Palace is now CANCELLED.",
+    "data": {
+      "bookingId": "HKF-2026-492109",
+      "status": "CANCELLED"
+    },
+    "read": false,
+    "createdAt": "2026-11-04T18:17:37.165Z",
+    "readAt": null,
+    "updatedAt": "2026-11-04T18:17:37.165Z"
   }
 ]

@@ -2666,7 +2666,7 @@
     },
     "totalPrice": 97350,
     "advanceRequired": 24338,
-    "status": "REQUESTED",
+    "status": "CANCELLED",
     "statusHistory": [
       {
         "status": "REQUESTED",
@@ -2674,10 +2674,17 @@
         "actorId": "guest_customer",
         "actorRole": "customer",
         "note": "Booking request created by customer"
+      },
+      {
+        "status": "CANCELLED",
+        "timestamp": "2026-11-04T18:17:37.161Z",
+        "actorId": "usr_1793816234289_n3vhoy",
+        "actorRole": "owner",
+        "note": "Status transitioned to CANCELLED"
       }
     ],
     "createdAt": "2026-10-14T09:01:25.907Z",
-    "updatedAt": "2026-10-14T09:01:25.907Z"
+    "updatedAt": "2026-11-04T18:17:37.161Z"
   },
   {
     "id": "HKF-2026-578235",
@@ -2746,7 +2753,7 @@
     },
     "totalPrice": 73750,
     "advanceRequired": 18438,
-    "status": "REQUESTED",
+    "status": "CANCELLED",
     "statusHistory": [
       {
         "status": "REQUESTED",
@@ -2754,9 +2761,63 @@
         "actorId": "guest_customer",
         "actorRole": "customer",
         "note": "Booking request created by customer"
+      },
+      {
+        "status": "CANCELLED",
+        "timestamp": "2026-11-04T18:17:35.590Z",
+        "actorId": "usr_1793816234289_n3vhoy",
+        "actorRole": "owner",
+        "note": "Status transitioned to CANCELLED"
       }
     ],
     "createdAt": "2026-10-14T09:07:18.527Z",
-    "updatedAt": "2026-10-14T09:07:18.527Z"
+    "updatedAt": "2026-11-04T18:17:35.590Z"
+  },
+  {
+    "id": "HKF-2026-525547",
+    "bookingId": "HKF-2026-525547",
+    "serviceId": "h-101",
+    "serviceName": "Royal Palace Banquet",
+    "hallId": "h-101",
+    "hallName": "Royal Palace Banquet",
+    "serviceType": "Marriage Halls",
+    "ownerId": "owner_101",
+    "customerId": "guest_customer",
+    "customerName": "Manish kumar",
+    "customerMobile": "6203025057",
+    "customerEmail": "customer@example.com",
+    "eventDate": "2026-12-04",
+    "timeSlot": "Full Day",
+    "guestCount": 350,
+    "requirements": "",
+    "pricing": {
+      "basePrice": 110000,
+      "cleaningFee": 2500,
+      "discount": 5000,
+      "gstTax": 19350,
+      "totalAmount": 126850,
+      "advanceRequired": 31713
+    },
+    "totalPrice": 126850,
+    "advanceRequired": 31713,
+    "status": "CANCELLED",
+    "statusHistory": [
+      {
+        "status": "REQUESTED",
+        "timestamp": "2026-11-04T18:16:47.610Z",
+        "actorId": "guest_customer",
+        "actorRole": "customer",
+        "note": "Booking request created by customer"
+      },
+      {
+        "status": "CANCELLED",
+        "timestamp": "2026-11-04T18:17:27.908Z",
+        "actorId": "usr_1793816234289_n3vhoy",
+        "actorRole": "owner",
+        "note": "Status transitioned to CANCELLED"
+      }
+    ],
+    "createdAt": "2026-11-04T18:16:47.610Z",
+    "updatedAt": "2026-11-04T18:17:27.909Z"
   }
 ]
